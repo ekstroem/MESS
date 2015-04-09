@@ -13,9 +13,7 @@
 #' @param alternative One- or two-sided test
 #' @param method Power calculations based on exact or asymptotic test
 #' @return Object of class \code{power.htest}, a list of the arguments
-#' (including the computed one) augmented with method and note elements. %%
-#' ~Describe the value returned %% If it is a LIST, use %% \item{comp1
-#' }{Description of 'comp1'} %% \item{comp2 }{Description of 'comp2'} %% ...
+#' (including the computed one) augmented with method and note elements. 
 #' @note \code{uniroot} is used to solve power equation for unknowns, so you
 #' may see errors from it, notably about inability to bracket the root when
 #' invalid arguments are given.

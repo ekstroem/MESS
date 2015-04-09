@@ -87,7 +87,7 @@ NULL
 #' the clusters (each containg three plates).} }
 #' @source Data were kindly provided by Casper Ingerslev Henriksen, Department
 #' of Agricultural Sciences, KU-LIFE. Added by Torben Martinussen
-#' <tma@life.ku.dk>
+#' <tma@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 
@@ -122,7 +122,7 @@ NULL
 #' baseline} \item{list("PCA4")}{a numeric vector with percent blood clotting
 #' activity on day 4} }
 #' @source Ann-Charlotte Heiberg, project at The Royal Veterinary and
-#' Agricultural University, 1999. \cr Added by Ib M. Skovgaard <ims@life.ku.dk>
+#' Agricultural University, 1999. \cr Added by Ib M. Skovgaard <ims@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 
@@ -162,7 +162,7 @@ NULL
 #' http://aktuelnaturvidenskab.dk/fileadmin/an/nr-4/an4_2010gletscher.pdf
 #' @source Data provided by Sebastian Mernild.\cr Originally obtained from
 #' http://www.dmi.dk/dmi/index/gronland/vejrarkiv-gl.htm. \cr Added by Claus
-#' Ekstrom <ekstrom@life.ku.dk>
+#' Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 
@@ -261,8 +261,8 @@ NULL
 #' @references Morant, M. et al. (2010). Metabolomic, Transcriptional, Hormonal
 #' and Signaling Cross-Talk in Superroot2. \emph{Molecular Plant}. 3,
 #' p.192--211.
-#' @source Data provided by Kirsten Jorgensen <kij@life.ku.dk>. \cr Added by
-#' Claus Ekstrom <ekstrom@life.ku.dk>
+#' @source Data provided by Kirsten Jorgensen <kij@@life.ku.dk>. \cr Added by
+#' Claus Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 
@@ -421,8 +421,8 @@ NULL
 #' @references Morant, M. et al. (2010). Metabolomic, Transcriptional, Hormonal
 #' and Signaling Cross-Talk in Superroot2. \emph{Molecular Plant}. 3,
 #' p.192--211.
-#' @source Data provided by Soren Bak <bak@life.ku.dk>. \cr Added by Claus
-#' Ekstrom <ekstrom@life.ku.dk>
+#' @source Data provided by Soren Bak <bak@@life.ku.dk>. \cr Added by Claus
+#' Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 

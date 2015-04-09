@@ -16,9 +16,7 @@
 #' @param power Power of test (1 minus Type II error probability)
 #' @param alternative One- or two-sided test
 #' @return Object of class \code{power.htest}, a list of the arguments
-#' (including the computed one) augmented with method and note elements. %%
-#' ~Describe the value returned %% If it is a LIST, use %% \item{comp1
-#' }{Description of 'comp1'} %% \item{comp2 }{Description of 'comp2'} %% ...
+#' (including the computed one) augmented with method and note elements.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
 #' @seealso \code{\link{binom.test}}
 #' @keywords htest

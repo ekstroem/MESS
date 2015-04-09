@@ -34,9 +34,7 @@
 #' @param \dots further arguments and graphical parameters passed to
 #' \code{plot}.
 #' @return Returns a vector of counts of each bar. This may be changed in the
-#' future. The plot is the primary output of the function. %% ~Describe the
-#' value returned %% If it is a LIST, use %% \item{comp1 }{Description of
-#' 'comp1'} %% \item{comp2 }{Description of 'comp2'} %% ...
+#' future. The plot is the primary output of the function.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
 #' @references Tukey, J. W. 1972. \emph{Some Graphic and Semigraphic Displays}.
 #' In \emph{Statistical Papers in Honor of George W. Snedecor}, p. 293-316.
