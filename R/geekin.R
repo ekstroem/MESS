@@ -1,3 +1,82 @@
+#' Fit a generalized estimating equation (GEE) model with fixed additive
+#' correlation structure
+#' 
+#' The geekin function fits generalized estimating equations but where the
+#' correlation structure is given as linear function of (scaled) fixed
+#' correlation structures.
+#' 
+#' The geekin function is essentially a wrapper function to \code{geeglm}.
+#' Through the varlist argument, it allows for correlation structures of the
+#' form
+#' 
+#' R = sum_i=1^k alpha_i R_i
+#' 
+#' where alpha_i are(nuisance) scale parameters that are used to scale the
+#' off-diagonal elements of the individual correlation matrices, R_i.
+#' 
+#' @aliases geekin print.geekin
+#' @param formula See corresponding documentation to \code{glm}.
+#' @param family See corresponding documentation to \code{glm}.
+#' @param data See corresponding documentation to \code{glm}.
+#' @param weights See corresponding documentation to \code{glm}.
+#' @param subset See corresponding documentation to \code{glm}.
+#' @param id a vector which identifies the clusters. The length of \code{id}
+#' should be the same as the number of observations. Data must be sorted so
+#' that observations on a cluster are contiguous rows for all entities in the
+#' formula. If not the function will give an error
+#' @param na.action See corresponding documentation to \code{glm}.
+#' @param control See corresponding documentation to \code{glm}.
+#' @param varlist a list containing one or more matrix or bdsmatrix objects
+#' that represent the correlation structures
+#' @param \dots further arguments passed to or from other methods.
+#' @return Returns an object of type \code{geeglm}.
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{lmekin}, \code{geeglm}
+#' @keywords models
+#' @examples
+#' 
+#' 
+#'  # Get dataset
+#'  library(kinship2)
+#'  library(mvtnorm)
+#'  data(minnbreast)
+#' 
+#'  breastpeda <- with(minnbreast[order(minnbreast$famid), ], pedigree(id, 
+#'                    fatherid, motherid, sex,
+#'                    status=(cancer& !is.na(cancer)), affected=proband,
+#'                    famid=famid))
+#' 
+#' set.seed(10)
+#' 
+#' nfam <- 6
+#' breastped <- breastpeda[1:nfam]
+#' 
+#'  # Simulate a response
+#' 
+#' # Make dataset for lme4
+#' df <- lapply(1:nfam, function(xx) {
+#'             as.data.frame(breastped[xx])
+#'             }) 
+#' 
+#' mydata <- do.call(rbind, df)
+#' mydata$famid <- rep(1:nfam, times=unlist(lapply(df, nrow)))
+#' 
+#' y <- lapply(1:nfam, function(xx) {
+#'             x <- breastped[xx]
+#'             rmvtnorm.pedigree(1, x, h2=0.3, c2=0)
+#'             }) 
+#' yy <- unlist(y)
+#' 
+#' library(geepack)
+#' 
+#' geekin(yy ~ 1, id=mydata$famid, varlist=list(2*kinship(breastped)))
+#' 
+#' # lmekin(yy ~ 1 + (1|id), data=mydata, varlist=list(2*kinship(breastped)),method="REML")
+#' 
+#' 
+#' 
+#' 
+#' @export geekin
 geekin <- function(formula,
                    family=gaussian, 
                    data,

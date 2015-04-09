@@ -67,6 +67,34 @@ desctable.default <- function(object, group=NULL, proportions=FALSE, ...) {
 }
 
 
+
+
+#' Create a descriptive table of summaries
+#' 
+#' Creates a descriptive table of summary statistics
+#' 
+#' 
+#' @aliases desctable desctable.character desctable.factor desctable.default
+#' desctable.data.frame desctable.integer desctable.numeric
+#' @param object an object for which a descriptive summary table is desired
+#' @param group A factor the same length as object (or the elements of object
+#' if that is a data frame) that is used to split up the summary for each level
+#' of group. If set to NULL (the default) then every observation is assumed to
+#' be in one group
+#' @param proportions Logical. Should proportions be listed for categorical
+#' data (defaults to FALSE)
+#' @param \dots any other arguments passed of functions
+#' @return A list with length the same as object with items \item{output
+#' }{Output for use with the descriptive table} \item{p }{p-value for testing
+#' equality across groups (set to NULL if groups=NULL)}
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{\link{summary}}
+#' @keywords print
+#' @examples
+#' 
+#' desctable(ToothGrowth, ToothGrowth$supp)
+#' 
+#' @export desctable
 desctable <- function(object, group=NULL, proportions=FALSE, ...) {
 
     UseMethod("desctable")

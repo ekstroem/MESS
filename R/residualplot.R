@@ -37,6 +37,50 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
 
 
 
+
+
+#' Plots a standardaized residual
+#' 
+#' Plots a standardized residual plot from an lm object and provides additional
+#' graphics to help evaluate the variance homogeneity and mean.
+#' 
+#' Plots a standardized residual plot from an lm object and provides additional
+#' graphics to help evaluate the variance homogeneity and mean.
+#' 
+#' The brown area is a smoothed estimate of 1.96*SD of the standardized
+#' residuals in a window around the predicted value. The brown area should
+#' largely be rectangular if the standardized residuals have more or less the
+#' same variance.
+#' 
+#' The dashed line shows the smoothed mean of the standardized residuals and
+#' should generally follow the horizontal line through (0,0).
+#' 
+#' @aliases residualplot residualplot.lm residualplot.default
+#' @param x lm object or a numeric vector
+#' @param y numeric vector for the y axis values
+#' @param candy logical. Should a lowess curve and local standard deviation of
+#' the residual be added to the plot. Defaults to \code{TRUE}
+#' @param bandwidth The width of the window used to calculate the local
+#' smoothed version of the mean and the variance. Value should be between 0 and
+#' 1 and determines the percentage of the window width used
+#' @param xlab x axis label
+#' @param ylab y axis label
+#' @param col.sd color for the background residual deviation
+#' @param col.alpha number between 0 and 1 determining the transprency of the
+#' standard deviation plotting color
+#' @param ... Other arguments passed to the plot function
+#' @return Produces a standardized residual plot
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @seealso \code{\link{rstandard}}, \code{\link{predict}}
+#' @keywords hplot
+#' @examples
+#' 
+#' # Linear regression example
+#' data(trees)
+#' model <- lm(Volume ~ Girth + Height, data=trees)
+#' residualplot(model)
+#' 
+#' @export residualplot
 residualplot <- function(x, y, candy=TRUE, bandwidth = 0.3, 
 	                 xlab="Fitted values", ylab="Std.res.", 
                          col.sd="blue", col.alpha=0.3,...) {

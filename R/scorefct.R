@@ -1,3 +1,13 @@
+#' Internal functions for the MESS package
+#' 
+#' 
+#' 
+#' @param o %% ~~Describe \code{o} here~~
+#' @param beta %% ~~Describe \code{beta} here~~
+#' @param testidx %% ~~Describe \code{testidx} here~~
+#' @param sas %% ~~Describe \code{sas} here~~
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @keywords ~kwd1 ~kwd2
 scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
 
     # Check that ids are correctly ordered

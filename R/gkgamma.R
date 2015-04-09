@@ -1,3 +1,38 @@
+#' Goodman-Kruskal's gamma statistic for a two-dimensional table
+#' 
+#' Compute Goodman-Kruskal's gamma statistic for a two-dimensional table of
+#' ordered categories
+#' 
+#' 
+#' @param x A matrix or table representing the two-dimensional ordered
+#' contingency table of observations
+#' @param conf.level Level of confidence interval
+#' @return A list with class \code{htest} containing the following components:
+#' 
+#' \item{statistic }{the value the test statistic for testing no association}
+#' \item{p.value }{the p-value for the test} \item{estimate }{the value the
+#' gamma estimate} \item{conf.int }{the confidence interval for the gamma
+#' estimate} \item{method }{a character string indicating the type of test
+#' performed} \item{data.name }{a character string indicating the name of the
+#' data input} \item{observed }{the observed counts} \item{s0 }{the SE used
+#' when computing the test statistics} \item{s1 }{the SE used when computing
+#' the confidence interval}
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{\link{chisq.test}}
+#' @references Goodman, Leo A. and Kruskal, William H. (1954). "Measures of
+#' Association for Cross Classifications". Journal of the American Statistical
+#' Association 49 (268): 732-764.
+#' @keywords htest
+#' @examples
+#' 
+#' # Data from the Glostrup study comparing smoking to overall health in males
+#' smoke <- matrix(c(16, 15, 13, 10, 1, 73, 75, 59, 81, 29, 6, 6, 7, 17, 3, 1, 0, 1, 3, 1), ncol=4)
+#' colnames(smoke) <- c("VGood", "Good", "Fair", "Bad") # General health status
+#' rownames(smoke) <- c("Never", "No more", "1-14", "15-24", "25+")  # Smoke amount
+#' gkgamma(smoke)
+#' chisq.test(smoke)
+#' 
+#' @export gkgamma
 gkgamma <- function(x, conf.level = 0.95) {
 
   if (! (is.matrix(as.matrix(x)))) {

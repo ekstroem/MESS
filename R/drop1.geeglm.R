@@ -1,3 +1,31 @@
+#' Drop All Possible Single Terms to a geeglm Model Using Wald Test
+#' 
+#' Compute all the single terms in the scope argument that can dropped from the
+#' model, and compute a table of the corresponding Wald test statistics.
+#' 
+#' 
+#' @param object a fitted object of class geese.
+#' @param scope %% ~~Describe \code{scope} here~~
+#' @param test %% ~~Describe \code{test} here~~
+#' @param method Indicates which method is used for computing the standard
+#' error. \code{robust} is the default and corresponds to the modified sandwich
+#' estimator. \code{naive} is the classical naive cariance estimate.
+#' \code{sandwich} is an alias for \code{robust}.
+#' @param \dots other arguments. Not currently used
+#' @return An object of class "anova" summarizing the differences in fit
+#' between the models.
+#' @author Claus Ekstrom \email{claus@@ekstroem.dk}
+#' @seealso \code{\link{drop1}}, \code{geeglm}, \code{geese}
+#' @keywords htest
+#' @examples
+#' 
+#' library(geepack)
+#' data(ohio)
+#' fit <- geeglm(resp ~ age + smoke + age:smoke, id=id, data=ohio,
+#'              family=binomial, corstr="exch", scale.fix=TRUE)
+#' drop1(fit)
+#' 
+#' @export drop1.geeglm
 drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sasscore"),
                          method=c("robust", "naive", "sandwich"), ...) {
   test <- match.arg(test)

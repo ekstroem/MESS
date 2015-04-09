@@ -47,6 +47,54 @@ QIC.geeglm <- function(object, ...) {
     kpm <- params+length(object$geese$alpha)
     
     # QIC
+
+
+#' Quasi Information Criterion
+#' 
+#' Function for calculating the quasi-likelihood under the independence model
+#' information criterion (QIC), quasi-likelihood, correlation information
+#' criterion (CIC), and corrected QIC for one or several fitted geeglm model
+#' object from the geepack package.
+#' 
+#' QIC is used to select a correlation structure. The QICu is used to compare
+#' models that have the same working correlation matrix and the same
+#' quasi-likelihood form but different mean specifications. CIC has been
+#' suggested as a more robust alternative to QIC when the model for the mean
+#' may not fit the data very well and when models with different correlation
+#' structures are compared.
+#' 
+#' Models with smaller values of QIC, CIC, QICu, or QICC are preferred.
+#' 
+#' If the MASS package is loaded then the \code{\link{ginv}} function is used
+#' for matrix inversion. Otherwise the standard \code{\link{solve}} function is
+#' used.
+#' 
+#' @aliases QIC QIC.geeglm QIC.geekin QIC.ordgee
+#' @param object a fitted GEE model from the geepack package. Currently only
+#' works on geeglm objects
+#' @param \dots optionally more fitted geeglm model objects
+#' @return A vector or matrix with the QIC, QICu, quasi likelihood, CIC, the
+#' number of mean effect parameters, and the corrected QIC for each GEE object
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{geeglm}
+#' @references Pan, W. (2001). \emph{Akaike's information criterion in
+#' generalized estimating equations}. Biometrics, 57, 120-125.\cr Hardin, J.W.
+#' and Hilbe, J.M. (2012). \emph{Generalized Estimating Equations, 2nd
+#' Edition}, Chapman and Hall/CRC: New York. \cr Hin, L.-Y. and Wang, Y-G.
+#' (2009). \emph{Working-correlation-structure identification in generalized
+#' estimating equations}, Statistics in Medicine 28: 642-658. \cr Thall, P.F.
+#' and Vail, S.C. (1990). \emph{Some Covariance Models for Longitudinal Count
+#' Data with Overdispersion}.  Biometrics, 46, 657-671.
+#' @keywords htest
+#' @examples
+#' 
+#' library(geepack)
+#' data(ohio)
+#' fit <- geeglm(resp ~ age + smoke + age:smoke, id=id, data=ohio,
+#'              family=binomial, corstr="exch", scale.fix=TRUE)
+#' QIC(fit)
+#' 
+#' @export QIC
     QIC <- -2*(quasi - trace)
     QICu <- -2*(quasi - params)
     QICC <- QIC + (2*kpm*(kpm+1))/(length(object$residuals)-kpm-1)

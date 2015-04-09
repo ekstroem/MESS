@@ -1,3 +1,38 @@
+#' Simulate residual multivariate Gaussian data from a polygenic model
+#' 
+#' Simulates residual multivariate Gaussian response data from a pedigree where
+#' the additive genetic, dominance genetic, and shared environmental effects
+#' are taken into account.
+#' 
+#' The three parameters should have a sum: h2+c2+d2 that is less than 1. The
+#' total variance is set to 1, and the mean is zero.
+#' 
+#' @param n numeric. The number of simulations to generate
+#' @param pedigree a \code{pedigree} object
+#' @param h2 numeric. The heritability
+#' @param c2 numeric. The environmentability
+#' @param d2 numeric. The dominance deviance effect
+#' @return Returns a matrix with the simulated values with n columns (one for
+#' each simulation) and each row matches the corresponding individual from the
+#' pedigree
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{pedigree}, \code{kinship},
+#' @keywords datagen
+#' @examples
+#' 
+#' library(kinship2)
+#' library(mvtnorm)
+#' mydata <- data.frame(id=1:5, 
+#'                      dadid=c(NA, NA, 1, 1, 1), 
+#'                      momid=c(NA, NA, 2, 2, 2), 
+#'                      sex=c("male", "female", "male", "male", "male"), 
+#'                      famid=c(1,1,1,1,1))
+#' relation <- data.frame(id1=c(3), id2=c(4), famid=c(1), code=c(1))
+#' ped <- pedigree(id=mydata$id, dadid=mydata$dadid, momid=mydata$momid, 
+#'                 sex=mydata$sex, relation=relation)
+#' rmvtnorm.pedigree(2, ped, h2=.25)
+#' 
+#' @export rmvtnorm.pedigree
 rmvtnorm.pedigree <- function(n=1, pedigree, h2=0, c2=0, d2=0) {
 
 # simulate.pedigree
@@ -24,6 +59,44 @@ rmvtnorm.pedigree <- function(n=1, pedigree, h2=0, c2=0, d2=0) {
   t(rmvnorm(n, mean=rep(0, pedsize), sigma=vcmat))
 }
 
+
+
+#' Simulate residual multivariate t-distributed data from a polygenic model
+#' 
+#' Simulates residual multivariate t-distributed response data from a pedigree
+#' where the additive genetic, dominance genetic, and shared environmental
+#' effects are taken into account.
+#' 
+#' The three parameters should have a sum: h2+c2+d2 that is less than 1. The
+#' total variance is set to 1, and the mean is zero.
+#' 
+#' @param n numeric. The number of simulations to generate
+#' @param pedigree a \code{pedigree} object
+#' @param h2 numeric. The heritability
+#' @param c2 numeric. The environmentability
+#' @param d2 numeric. The dominance deviance effect
+#' @param df numeric. The degrees of freedom for the t distribution
+#' @return Returns a matrix with the simulated values with n columns (one for
+#' each simulation) and each row matches the corresponding individual from the
+#' pedigree
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}
+#' @seealso \code{pedigree}, \code{kinship},
+#' @keywords datagen
+#' @examples
+#' 
+#' library(kinship2)
+#' library(mvtnorm)
+#' mydata <- data.frame(id=1:5, 
+#'                      dadid=c(NA, NA, 1, 1, 1), 
+#'                      momid=c(NA, NA, 2, 2, 2), 
+#'                      sex=c("male", "female", "male", "male", "male"), 
+#'                      famid=c(1,1,1,1,1))
+#' relation <- data.frame(id1=c(3), id2=c(4), famid=c(1), code=c(1))
+#' ped <- pedigree(id=mydata$id, dadid=mydata$dadid, momid=mydata$momid, 
+#'                 sex=mydata$sex, relation=relation)
+#' rmvt.pedigree(2, ped, h2=.25, df=4)
+#' 
+#' @export rmvt.pedigree
 rmvt.pedigree <- function(n=1, pedigree, h2=0, c2=0, d2=0, df=1) {
 
 # simulate.pedigree
