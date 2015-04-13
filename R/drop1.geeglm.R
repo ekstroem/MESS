@@ -5,8 +5,8 @@
 #' 
 #' 
 #' @param object a fitted object of class geese.
-#' @param scope %% ~~Describe \code{scope} here~~
-#' @param test %% ~~Describe \code{test} here~~
+#' @param scope a formula giving the terms to be considered for adding or dropping.
+#' @param test  the type of test to include. 
 #' @param method Indicates which method is used for computing the standard
 #' error. \code{robust} is the default and corresponds to the modified sandwich
 #' estimator. \code{naive} is the classical naive cariance estimate.

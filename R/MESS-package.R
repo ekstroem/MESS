@@ -253,16 +253,10 @@ NULL
 #' (wildtype)\cr \code{cycle} \tab numeric \tab Cycle number for the
 #' experiment\cr \code{transcript}\tab factor \tab Transcript used for the
 #' different runs\cr }
-#' 
-#' % \describe{ % \item{\code{flour}}{numeric Fluorescence level} %
-#' \item{\code{lines}}{factor Plant lines \code{rnt} % (mutant) and \code{wt}
-#' (wildtype)} % \item{\code{cycle}}{numeric Cycle number for the experiment} %
-#' \item{\code{experiment}}{numeric Experiment number} % }
 #' @references Morant, M. et al. (2010). Metabolomic, Transcriptional, Hormonal
 #' and Signaling Cross-Talk in Superroot2. \emph{Molecular Plant}. 3,
 #' p.192--211.
-#' @source Data provided by Kirsten Jorgensen <kij@@life.ku.dk>. \cr Added by
-#' Claus Ekstrom <ekstrom@@life.ku.dk>
+#' @source Data provided by Kirsten Jorgensen <kij@@life.ku.dk>. \cr Added by Claus Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 
@@ -422,7 +416,7 @@ NULL
 #' and Signaling Cross-Talk in Superroot2. \emph{Molecular Plant}. 3,
 #' p.192--211.
 #' @source Data provided by Soren Bak <bak@@life.ku.dk>. \cr Added by Claus
-#' Ekstrom <ekstrom@@life.ku.dk>
+#' Ekstrom <ekstrom@@sund.ku.dk>
 #' @keywords datasets
 #' @examples
 #' 

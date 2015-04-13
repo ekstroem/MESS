@@ -10,9 +10,9 @@
 \arguments{
 \item{object}{a fitted object of class geese.}
 
-\item{scope}{%% ~~Describe \code{scope} here~~}
+\item{scope}{a formula giving the terms to be considered for adding or dropping.}
 
-\item{test}{%% ~~Describe \code{test} here~~}
+\item{test}{the type of test to include.}
 
 \item{method}{Indicates which method is used for computing the standard
 error. \code{robust} is the default and corresponds to the modified sandwich

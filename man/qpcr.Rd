@@ -9,15 +9,9 @@
 \code{line} \tab factor \tab Plant lines \code{rnt} (mutant) and \code{wt}
 (wildtype)\cr \code{cycle} \tab numeric \tab Cycle number for the
 experiment\cr \code{transcript}\tab factor \tab Transcript used for the
-different runs\cr }
-
-% \describe{ % \item{\code{flour}}{numeric Fluorescence level} %
-\item{\code{lines}}{factor Plant lines \code{rnt} % (mutant) and \code{wt}
-(wildtype)} % \item{\code{cycle}}{numeric Cycle number for the experiment} %
-\item{\code{experiment}}{numeric Experiment number} % }}
+different runs\cr }}
 \source{
-Data provided by Kirsten Jorgensen <kij@life.ku.dk>. \cr Added by
-Claus Ekstrom <ekstrom@life.ku.dk>
+Data provided by Kirsten Jorgensen <kij@life.ku.dk>. \cr Added by Claus Ekstrom <ekstrom@life.ku.dk>
 }
 \description{
 Gene expression levels from real-time quantitative polymerase chain reaction

@@ -2,12 +2,12 @@
 #' 
 #' 
 #' 
-#' @param o %% ~~Describe \code{o} here~~
-#' @param beta %% ~~Describe \code{beta} here~~
-#' @param testidx %% ~~Describe \code{testidx} here~~
-#' @param sas %% ~~Describe \code{sas} here~~
+#' @param o input geepack object from a geeglm fit.
+#' @param beta The estimated parameters. If set to \code{NULL} then the parameter estimates are extracted from the model fit object o.
+#' @param testidx Indices of the beta parameters that should be tested equal to zero
+#' @param sas Logical. Should the SAS version of the score test be computed. Defaults to \code{FALSE}.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
-#' @keywords ~kwd1 ~kwd2
+#' @keywords ~kwd1 
 scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
 
     # Check that ids are correctly ordered

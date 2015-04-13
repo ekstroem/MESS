@@ -7,13 +7,13 @@
 scorefct(o, beta = NULL, testidx = NULL, sas = FALSE)
 }
 \arguments{
-\item{o}{%% ~~Describe \code{o} here~~}
+\item{o}{input geepack object from a geeglm fit.}
 
-\item{beta}{%% ~~Describe \code{beta} here~~}
+\item{beta}{The estimated parameters. If set to \code{NULL} then the parameter estimates are extracted from the model fit object o.}
 
-\item{testidx}{%% ~~Describe \code{testidx} here~~}
+\item{testidx}{Indices of the beta parameters that should be tested equal to zero}
 
-\item{sas}{%% ~~Describe \code{sas} here~~}
+\item{sas}{Logical. Should the SAS version of the score test be computed. Defaults to \code{FALSE}.}
 }
 \description{
 Internal functions for the MESS package
@@ -22,5 +22,4 @@ Internal functions for the MESS package
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{~kwd1}
-\keyword{~kwd2}
 

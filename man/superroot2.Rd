@@ -15,7 +15,7 @@ type} \item{list("signal")}{a numeric vector with the gene expression level
 (normalized but not log transformed)} }}
 \source{
 Data provided by Soren Bak <bak@life.ku.dk>. \cr Added by Claus
-Ekstrom <ekstrom@life.ku.dk>
+Ekstrom <ekstrom@sund.ku.dk>
 }
 \description{
 Gene expression levels from two-color dye-swap experiment on 6 microarrays.
