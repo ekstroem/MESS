@@ -3,8 +3,8 @@
 #' Writes the data frame to a file in the XML format.
 #'
 #' @param data the data frame object to save
-#' @file the file name to be written to.
-#' @na.rm logical. Should missing values be discarded from the written XML file (defaults to FALSE)
+#' @param file the file name to be written to.
+#' @param na.rm logical. Should missing values be discarded from the written XML file (defaults to FALSE)
 #' @return None
 #' @details This function requires the \pkg{XML} package to be installed to function properly.
 #'
@@ -13,8 +13,8 @@
 #' write.xml(trees, file="mydata.xml")
 #'
 #' @author Claus Ekstrom, \email{claus@@rprimer.dk} based on previous work by Duncan Temple Lang.
-#' @keyword file
-#* @export write.xml
+#' @keywords file
+#' @export write.xml
 
 write.xml <- function(data, file=NULL, na.rm=FALSE) {
   if (!require(XML))
