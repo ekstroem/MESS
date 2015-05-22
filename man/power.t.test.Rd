@@ -57,20 +57,13 @@ see errors from it, notably about inability to bracket the root
 when invalid arguments are given.
 }
 \examples{
-power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05, power = NULL, ratio = 1, sd.ratio = 1,
-                  type = c("two.sample", "one.sample", "paired"),
-                  alternative = c("two.sided", "one.sided"),
-                  df.method = c("welch", "classical"), strict = FALSE)
+power.t.test(, delta=300, sd=450, power=.8, ratio=4)
 }
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}
 }
-\references{
-Duffy, S (1984). Asymptotic and Exact Power for the McNemar Test
-and its Analogue with R Controls per Case
-}
 \seealso{
-\code{\link{mcnemar.test}}
+\code{\link{power.prop.test}}
 }
 \keyword{htest}
 
