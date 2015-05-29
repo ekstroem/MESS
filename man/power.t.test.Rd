@@ -57,7 +57,7 @@ see errors from it, notably about inability to bracket the root
 when invalid arguments are given.
 }
 \examples{
-power.t.test(, delta=300, sd=450, power=.8, ratio=4)
+power.t.test(delta=300, sd=450, power=.8, ratio=4)
 }
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}

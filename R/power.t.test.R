@@ -1,8 +1,8 @@
 #' Power calculations for one and two sample t tests
-#' 
+#'
 #' Compute power of test, or determine parameters to obtain target
-#' power. 
-#' 
+#' power.
+#'
 #' @param n Number of observations (per group)
 #' @param delta True difference in means
 #' @param sd Standard deviation
@@ -33,75 +33,85 @@
 #' @seealso \code{\link{power.prop.test}}
 #' @keywords htest
 #' @examples
-#' power.t.test(, delta=300, sd=450, power=.8, ratio=4)
+#' power.t.test(delta=300, sd=450, power=.8, ratio=4)
 #' @export power.t.test
-power.t.test <- 
-  function (n = NULL, delta = NULL, sd = 1, sig.level = 0.05, power = NULL, 
-            ratio = 1, sd.ratio = 1, 
-            type = c("two.sample", "one.sample", "paired"), 
-            alternative = c("two.sided", "one.sided"), 
-            df.method = c("welch", "classical"), 
-            strict = FALSE) 
-{ 
-  type <- match.arg(type) 
-  if (type == "two.sample") { 
-     
-    if (sum(sapply(list(n, delta, sd, power, sig.level, ratio, sd.ratio), is.null)) != 1) 
-      stop("exactly one of n, delta, sd, power, sig.level, ratio and sd.ratio must be NULL") 
-     
-    if (!is.null(ratio) && ratio <= 0) 
-      stop("ratio between group sizes must be positive") 
-    if (!is.null(sd.ratio) && sd.ratio <= 0) 
-      stop("sd.ratio between group sd's must be positive") 
-  } 
-  else { 
-    if (sum(sapply(list(n, delta, sd, power, sig.level), is.null)) != 1) 
-      stop("exactly one of n, delta, sd, power, and sig.level must be NULL") 
-  } 
-   
-  alternative <- match.arg(alternative) 
-  df.method <- match.arg(df.method) 
-  tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1) 
-  tside <- switch(alternative, one.sided = 1, two.sided = 2) 
-  if (tside == 2 && !is.null(delta)) 
-    delta <- abs(delta) 
-  p.body <- quote({ 
-    nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)), 
-classical=(1+ratio)*n-2)) 
-    pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd, lower = FALSE) 
-  }) 
-  if (strict & tside == 2) 
-    p.body <- quote({ 
-      nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)), 
-classical=(1+ratio)*n-2)) 
-      qu <- qt(sig.level/tside, nu, lower = FALSE) 
-      ncp <- switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd 
-      pt(qu, nu, ncp = ncp, lower = FALSE) + 
-        pt(-qu, nu, ncp = ncp, lower = TRUE) 
-    }) 
-  if (is.null(power)) 
-    power <- eval(p.body) 
-  else if (is.null(n)) 
-    n <- uniroot(function(n) eval(p.body) - power, c(2, 1e+07))$root 
-  else if (is.null(sd)) 
-    sd <- uniroot(function(sd) eval(p.body) - power, delta * c(1e-07, 1e+07))$root 
-  else if (is.null(delta)) 
-    delta <- uniroot(function(delta) eval(p.body) - power, sd * c(1e-07, 1e+07))$root 
-  else if (is.null(sig.level)) 
-    sig.level <- uniroot(function(sig.level) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root 
-  else if (is.null(ratio)) 
-    ratio <- uniroot(function(ratio) eval(p.body) - power, c(2/n, 1e+07))$root 
-  else if (is.null(sd.ratio)) 
-    sd.ratio <- uniroot(function(sd.ratio) eval(p.body) - power, c(1e-07, 1e+07))$root 
-  else stop("internal error") 
-  NOTE <- switch(type, paired = "n is number of *pairs*, sd is std.dev. of *differences* within pairs", 
-                 two.sample = "n is vector of number in each group", NULL) 
-  n <- switch(type, paired=n, two.sample=c(n, n*ratio), one.sample=n) 
-  sd <- switch(type, paired=sd, two.sample=c(sd, sd*sd.ratio), one.sample=sd) 
-   
-  METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", 
-                         paired = "Paired"), "t test power calculation") 
-  structure(list(n = n, delta = delta, sd = sd, sig.level = sig.level, 
-                 power = power, alternative = alternative, note = NOTE, 
-                 method = METHOD), class = "power.htest") 
-} 
+power.t.test <-
+  function (n = NULL, delta = NULL, sd = 1, sig.level = 0.05, power = NULL,
+            ratio = 1, sd.ratio = 1,
+            type = c("two.sample", "one.sample", "paired"),
+            alternative = c("two.sided", "one.sided"),
+            df.method = c("welch", "classical"),
+            strict = FALSE)
+{
+  type <- match.arg(type)
+  if (type == "two.sample") {
+
+    if (sum(sapply(list(n, delta, sd, power, sig.level, ratio, sd.ratio), is.null)) != 1)
+      stop("exactly one of n, delta, sd, power, sig.level, ratio and sd.ratio must be NULL")
+
+    if (!is.null(ratio) && ratio <= 0)
+      stop("ratio between group sizes must be positive")
+    if (!is.null(sd.ratio) && sd.ratio <= 0)
+      stop("sd.ratio between group sd's must be positive")
+  }
+  else {
+      ratio <- 1
+      sd.ratio <- 1
+      if (sum(sapply(list(n, delta, sd, power, sig.level), is.null)) != 1)
+          stop("exactly one of n, delta, sd, power, and sig.level must be NULL")
+  }
+
+  alternative <- match.arg(alternative)
+  df.method <- match.arg(df.method)
+  tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)
+  tside <- switch(alternative, one.sided = 1, two.sided = 2)
+  if (tside == 2 && !is.null(delta))
+    delta <- abs(delta)
+  p.body <- quote({
+    nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)),
+classical=(1+ratio)*n-2))
+    pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd, lower = FALSE)
+  })
+  if (strict & tside == 2)
+    p.body <- quote({
+      nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)),
+classical=(1+ratio)*n-2))
+      qu <- qt(sig.level/tside, nu, lower = FALSE)
+      ncp <- switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd
+      pt(qu, nu, ncp = ncp, lower = FALSE) +
+        pt(-qu, nu, ncp = ncp, lower = TRUE)
+    })
+  if (is.null(power))
+    power <- eval(p.body)
+  else if (is.null(n))
+    n <- uniroot(function(n) eval(p.body) - power, c(2, 1e+07))$root
+  else if (is.null(sd))
+    sd <- uniroot(function(sd) eval(p.body) - power, delta * c(1e-07, 1e+07))$root
+  else if (is.null(delta))
+    delta <- uniroot(function(delta) eval(p.body) - power, sd * c(1e-07, 1e+07))$root
+  else if (is.null(sig.level))
+    sig.level <- uniroot(function(sig.level) eval(p.body) - power, c(1e-10, 1 - 1e-10))$root
+  else if (is.null(ratio))
+    ratio <- uniroot(function(ratio) eval(p.body) - power, c(2/n, 1e+07))$root
+  else if (is.null(sd.ratio))
+    sd.ratio <- uniroot(function(sd.ratio) eval(p.body) - power, c(1e-07, 1e+07))$root
+  else stop("internal error")
+  NOTE <- switch(type,
+                 paired = "n is number of *pairs*, sd is std.dev. of *differences* within pairs",
+                 two.sample = ifelse(ratio==1, "n is number in *each* group", "n is vector of number in each group"),
+                 NULL)
+#  n <- switch(type, paired=n, two.sample=c(n, ifelse(ratio==1, NULL, n*ratio)), one.sample=n)
+#  sd <- switch(type, paired=sd, two.sample=c(sd, ifelse(ratio==1, NULL, sd*sd.ratio)), one.sample=sd)
+
+  if (type=="two.sample" & ratio!=1) {
+      n <- c(n, n*ratio)
+      sd <- c(sd*sd.ratio)
+  }
+
+
+  METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = ifelse(ratio==1, "Two-sample", "Two-sample with unequal sizes"),
+                         paired = "Paired"), "t test power calculation")
+  structure(list(n = n, delta = delta, sd = sd, sig.level = sig.level,
+                 power = power, alternative = alternative, note = NOTE,
+                 method = METHOD), class = "power.htest")
+}
