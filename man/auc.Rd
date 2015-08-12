@@ -4,7 +4,8 @@
 \alias{auc}
 \title{Compute the area under the curve for two vectors.}
 \usage{
-auc(x, y, from = min(x), to = max(x), type = c("linear", "spline"), ...)
+auc(x, y, from = min(x), to = max(x), type = c("linear", "spline"),
+  absolutearea = FALSE, ...)
 }
 \arguments{
 \item{x}{a numeric vector of x values.}
@@ -20,6 +21,11 @@ curve. Defaults to the smallest y value.}
 \item{type}{The type of interpolation. Defaults to "linear" for area under
 the curve for linear interpolation. The value "spline" results in the area
 under the natural cubic spline interpolation.}
+
+\item{absolutearea}{A logical value that determines if negative
+areas should be added to the total area under the curve.  By
+default the auc function subtracts areas that have negative y
+values. Set \code{absolutearea=TRUE} to _add_ the absolute value of the negative areas to the total area.}
 
 \item{\dots}{additional arguments passed on to approx. In particular rule
 can be set to determine how values outside the range of x is handled.}
