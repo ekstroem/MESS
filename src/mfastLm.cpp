@@ -4,7 +4,7 @@ using namespace Rcpp;
 
 //' Fast marginal linear regression analyses
 //'
-//' @description 
+//' @description This function performs fast marginal linear regression analysis for one output vector and each column in the input matrix
 //' @param y The outcome vectorEither matrix where each column is a ranked list of
 //' @param x a matrix of predictor variables. 
 //' @param addintercept A logical whether an intercepts should be included in each of the analyses.
