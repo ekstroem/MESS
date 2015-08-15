@@ -4,8 +4,7 @@ using namespace Rcpp;
 
 //' Fast marginal linear regression analyses
 //'
-//'
-//'
+//' @description 
 //' @param y The outcome vectorEither matrix where each column is a ranked list of
 //' @param x a matrix of predictor variables. 
 //' @param addintercept A logical whether an intercepts should be included in each of the analyses.
