@@ -8,7 +8,7 @@
 #' 1.0\cr Date: \tab 2012-03-29\cr License: \tab GPL-2\cr } % ~~ An overview of
 #' how to use the package, including the most important ~~ % ~~ functions ~~
 #'
-#' @name MESS-package
+#' @name MESS
 #' @aliases MESS-package MESS
 #' @docType package
 #' @useDynLib MESS
