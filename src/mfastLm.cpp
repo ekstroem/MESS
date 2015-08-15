@@ -12,7 +12,7 @@ using namespace Rcpp;
 //' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
 //' @export
 //[[Rcpp::export]]
-DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
+DataFrame mfastLmcpp(NumericVector y, NumericMatrix x, int addintercept) {
   arma::uword n = x.nrow(), k = x.ncol();
   int df = 1;
 
