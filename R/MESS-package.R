@@ -12,7 +12,7 @@
 #' @aliases MESS-package MESS
 #' @docType package
 #' @useDynLib MESS
-#' @importFrom Rcpp evalCpp
+#' @importFrom Rcpp sourceCpp
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}\cr Maintainer: Claus Ekstrom
 #' \email{claus@@rprimer.dk}
 #' @references Ekstrom, C. (2011). The R Primer. Chapman & Hall.

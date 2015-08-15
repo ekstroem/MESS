@@ -2,9 +2,6 @@
 #include <RcppArmadillo.h>
 using namespace Rcpp;
 
-
-
-
 //' Fast marginal linear regression analyses
 //'
 //'
@@ -15,7 +12,7 @@ using namespace Rcpp;
 //' @return A list of two items
 //' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
 //' @export
-// [[Rcpp::export]]
+//[[Rcpp::export]]
 DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
   arma::uword n = x.nrow(), k = x.ncol();
   int df = 1;
