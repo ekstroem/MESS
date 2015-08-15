@@ -1,8 +1,8 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.3-4
-Date: 2015-8-12
+Version: 0.3-5
+Date: 2015-8-15
 Author: Claus Ekstrom <claus@rprimer.dk>
 Maintainer: Claus Ekstrom <claus@rprimer.dk>
 Depends:
@@ -10,9 +10,11 @@ Depends:
     glmnet,
     Matrix
 Imports:
+    Rcpp,
     kinship2,
     parallel,
     mvtnorm
+LinkingTo: Rcpp, RcppArmadillo    
 Suggests:
     MASS,
     lme4

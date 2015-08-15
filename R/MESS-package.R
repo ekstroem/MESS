@@ -1,18 +1,18 @@
-
-
 #' Collection of miscellaneous useful and semi-useful functions
-#' 
+#'
 #' Collection of miscellaneous useful and semi-useful functions and add-on
 #' functions that enhances a number of existing packages and provides In
 #' particular in relation to statistical genetics
-#' 
+#'
 #' \tabular{ll}{ Package: \tab MESS\cr Type: \tab Package\cr Version: \tab
 #' 1.0\cr Date: \tab 2012-03-29\cr License: \tab GPL-2\cr } % ~~ An overview of
 #' how to use the package, including the most important ~~ % ~~ functions ~~
-#' 
+#'
 #' @name MESS-package
 #' @aliases MESS-package MESS
 #' @docType package
+#' @useDynLib MESS
+#' @importFrom Rcpp evalCpp
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}\cr Maintainer: Claus Ekstrom
 #' \email{claus@@rprimer.dk}
 #' @references Ekstrom, C. (2011). The R Primer. Chapman & Hall.
@@ -20,14 +20,11 @@
 NULL
 
 
-
-
-
 #' Danish live births and deaths
-#' 
+#'
 #' Monthly live births and deaths in Denmark from January 1901 to March 2013.
-#' 
-#' 
+#'
+#'
 #' @name bdstat
 #' @docType data
 #' @format A data frame with 1356 observations on the following 4 variables.
@@ -40,21 +37,21 @@ NULL
 #' \url{http://www.statbank.dk}.
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(bdstat)
-#' 
+#'
 #' plot(bdstat$year + bdstat$month/13, bdstat$birth, type="l")
-#' 
-#' 
+#'
+#'
 #' # Create table of births
 #' # Remove year 2013 as it is incomplete
 #' btable <- xtabs(births ~ year + month, data=bdstat, subset=(year<2013))
-#' 
+#'
 #' # Compute yearly birth frequencies per month
 #' btable.freq <- prop.table(btable, margin=1)
-#' 
-#' 
-#' 
+#'
+#'
+#'
 NULL
 
 
@@ -62,14 +59,14 @@ NULL
 
 
 #' Bee data. Number of different types of bees caught.
-#' 
+#'
 #' Number of different types of bees caught in plates of different colours.
 #' There are four locations and within each location there are three replicates
 #' consisting of three plates of the three different colours (yellow, white and
 #' blue). Data are collected at 5 different dates over the summer season. Only
 #' data from one date available until data has been published.
-#' 
-#' 
+#'
+#'
 #' @name bees
 #' @docType data
 #' @format A data frame with 72 observations on the following 7 variables.
@@ -90,11 +87,11 @@ NULL
 #' <tma@@life.ku.dk>
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(bees)
 #' model <- glm(Number ~ Locality + Type*Color,
 #'              family=poisson, data=bees)
-#' 
+#'
 NULL
 
 
@@ -102,7 +99,7 @@ NULL
 
 
 #' Blood clotting for 158 rats
-#' 
+#'
 #' Blood clotting activity (PCA) is measured for 158 Norway rats from two
 #' locations just before (baseline) and four days after injection of an
 #' anticoagulant (bromadiolone). Normally this would cause reduced blood
@@ -110,8 +107,8 @@ NULL
 #' possess anticoagulent resistence to varying extent. The purpose is to relate
 #' anticoagulent resistence to gender and location and perhaps weight. Dose of
 #' injection is, however, admistered according to weight and gender.
-#' 
-#' 
+#'
+#'
 #' @name clotting
 #' @docType data
 #' @format A data frame with 158 observations on the following 6 variables.
@@ -125,7 +122,7 @@ NULL
 #' Agricultural University, 1999. \cr Added by Ib M. Skovgaard <ims@@life.ku.dk>
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #'  data(clotting)
 #'  dim(clotting)
 #'  head(clotting)
@@ -140,7 +137,7 @@ NULL
 #' ## Log transformation suggested.
 #' ## Random effect of rat.
 #' ## maybe str(clotting) ; plot(clotting) ...
-#' 
+#'
 NULL
 
 
@@ -148,11 +145,11 @@ NULL
 
 
 #' Average yearly summer air temperature for Tasiilaq, Greenland
-#' 
+#'
 #' Average yearly summer (June, July, August) air temperature for Tasiilaq,
 #' Greenland
-#' 
-#' 
+#'
+#'
 #' @name greenland
 #' @docType data
 #' @format A data frame with 51 observations on the following 2 variables.
@@ -165,12 +162,12 @@ NULL
 #' Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(greenland)
 #' model <- lm(airtemp ~ year, data=greenland)
 #' plot(greenland$year, greenland$airtemp, xlab="Year", ylab="Air temperature")
 #' abline(model, col="red")
-#' 
+#'
 NULL
 
 
@@ -178,11 +175,11 @@ NULL
 
 
 #' Happiness score and tax rates for 148 countries
-#' 
+#'
 #' Dataset on subjective happiness, tax rates, population sizes, continent, and
 #' major religion for 148 countries
-#' 
-#' 
+#'
+#'
 #' @name happiness
 #' @docType data
 #' @format A data frame with 148 observations on the following 6 variables.
@@ -210,28 +207,28 @@ NULL
 #' \url{http://worlddatabaseofhappiness.eur.nl/hap_nat/findingreports/RankReport_AverageHappiness.php}
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(happiness)
 #' with(happiness, symbols(tax, happy, circles=sqrt(population)/8, inches=FALSE, bg=continent))
-#' 
+#'
 #' #
 #' # Make a prettier image with transparent colors
 #' #
-#' 
+#'
 #' newcols <- rgb(t(col2rgb(palette())),
 #'                alpha=100, maxColorValue=255)
-#' 
+#'
 #' with(happiness, symbols(tax, happy, circles=sqrt(population)/8,
 #'                 inches=FALSE, bg=newcols[continent],
 #'                 xlab="Tax (% of GDP)", ylab="Happiness"))
-#' 
+#'
 #' #
 #' # Simple analysis
 #' #
 #' res <- lm(happy ~ religion + population + tax:continent, data=happiness)
 #' summary(res)
-#' 
-#' 
+#'
+#'
 NULL
 
 
@@ -239,12 +236,12 @@ NULL
 
 
 #' Gene expression from real-time quantitative PCR
-#' 
+#'
 #' Gene expression levels from real-time quantitative polymerase chain reaction
 #' (qPCR) experiments on two different plant lines. Each line was used for 7
 #' experiments each with 45 cycles.
-#' 
-#' 
+#'
+#'
 #' @name qpcr
 #' @docType data
 #' @format A data frame with 630 observations on the following 4 variables.
@@ -259,22 +256,22 @@ NULL
 #' @source Data provided by Kirsten Jorgensen <kij@@life.ku.dk>. \cr Added by Claus Ekstrom <ekstrom@@life.ku.dk>
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(qpcr)
-#' 
+#'
 #' #
 #' # Analyze a single run for the wt line, transcript 1
 #' #
 #' run1 <- subset(qpcr, transcript==1 & line=="wt")
-#' 
-#' model <- nls(flour ~ fmax/(1+exp(-(cycle-c)/b))+fb, 
+#'
+#' model <- nls(flour ~ fmax/(1+exp(-(cycle-c)/b))+fb,
 #'              start=list(c=25, b=1, fmax=100, fb=0), data=run1)
-#' 
+#'
 #' print(model)
-#' 
+#'
 #' plot(run1$cycle, run1$flour, xlab="Cycle", ylab="Fluorescence")
 #' lines(run1$cycle, predict(model))
-#' 
+#'
 NULL
 
 
@@ -282,17 +279,17 @@ NULL
 
 
 #' Perception of points in a swarm
-#' 
+#'
 #' Five raters were asked to guess the number of points in a swarm for 10
 #' different figures (which - unknown to the raters - were each repeated three
 #' times).
-#' 
+#'
 #' The raters har approximately 10 seconds to judge each picture, and the
 #' thought it was 30 different pictures. Before starting the experiment they
 #' were shown 6 (unrelated) pictures and were told the number of points in each
 #' of those pictures. The SAND column contains the picture id and the true
 #' number of points in the swarm.
-#' 
+#'
 #' @name rainman
 #' @docType data
 #' @format A data frame with 30 observations on the following 6 variables.
@@ -304,57 +301,57 @@ NULL
 #' @source Collected by Claus Ekstrom.
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(rainman)
 #' long <- data.frame(stack(rainman[,2:6]), figure=factor(rep(rainman$SAND,5)))
 #' figind <- interaction(long$figure,long$ind)
-#' # Use a linear random effect model from the 
+#' # Use a linear random effect model from the
 #' # lme4 package if available
 #' if(require(lme4)) {
 #'   model <- lmer(values ~ (1|ind) + (1|figure) + (1|figind), data=long)
 #' }
-#' 
+#'
 #' #
 #' # Point swarms were generated by the following program
 #' #
-#' 
+#'
 #' set.seed(2) # Original
 #' npoints <- sample(4:30)*4
 #' nplots <- 10
 #' pdf(file="swarms.pdf", onefile=TRUE)
-#' 
+#'
 #' s1 <- sample(npoints[1:nplots])
 #' print(s1)
-#' for (i in 1:nplots) {    
+#' for (i in 1:nplots) {
 #'   n <- s1[i]
 #'   set.seed(n)
 #'   x <- runif(n)
-#'   y <- runif(n)    
+#'   y <- runif(n)
 #'   plot(x,y, xlim=c(-.15, 1.15), ylim=c(-.15, 1.15), pch=20, axes=FALSE,
 #'        xlab="", ylab="")
 #' }
 #' s1 <- sample(npoints[1:nplots])
 #' print(s1)
-#' for (i in 1:nplots) {    
+#' for (i in 1:nplots) {
 #'   n <- s1[i]
 #'   set.seed(n)
 #'   x <- runif(n)
-#'   y <- runif(n)    
+#'   y <- runif(n)
 #'   plot(y,x, xlim=c(-.15, 1.15), ylim=c(-.15, 1.15), pch=20, axes=FALSE,
 #'        xlab="", ylab="")
 #' }
 #' s1 <- sample(npoints[1:nplots])
 #' print(s1)
-#' for (i in 1:nplots) {    
+#' for (i in 1:nplots) {
 #'   n <- s1[i]
 #'   set.seed(n)
 #'   x <- runif(n)
-#'   y <- runif(n)    
+#'   y <- runif(n)
 #'   plot(-x,y, xlim=c(-1.15, .15), ylim=c(-.15, 1.15), pch=20, axes=FALSE,
 #'        xlab="", ylab="")
 #' }
 #' dev.off()
-#' 
+#'
 NULL
 
 
@@ -362,12 +359,12 @@ NULL
 
 
 #' Danish national soccer players
-#' 
+#'
 #' Players on the Danish national soccer team. The dataset consists of all
 #' players who have been picked to play on the men's senior A-team, their
 #' position, date-of-birth, goals and matches.
-#' 
-#' 
+#'
+#'
 #' @name soccer
 #' @docType data
 #' @format A data frame with 805 observations on the following 5 variables.
@@ -381,13 +378,13 @@ NULL
 #' See \url{http://www.dbu.dk} for more information.
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(soccer)
-#' 
+#'
 #' birthmonth <- as.numeric(format(soccer$DoB, "%m"))
 #' birthyear <- as.numeric(format(soccer$DoB, "%Y"))
-#' 
-#' 
+#'
+#'
 NULL
 
 
@@ -395,12 +392,12 @@ NULL
 
 
 #' Gene expression data from two-color dye-swap experiment
-#' 
+#'
 #' Gene expression levels from two-color dye-swap experiment on 6 microarrays.
 #' Arrays 1 and 2 represent the first biological sample (ie, the first dye
 #' swap), 3 and 4 the second, and arrays 5 and 6 the third.
-#' 
-#' 
+#'
+#'
 #' @name superroot2
 #' @docType data
 #' @format A data frame with 258000 observations on the following 5 variables.
@@ -419,13 +416,13 @@ NULL
 #' Ekstrom <ekstrom@@sund.ku.dk>
 #' @keywords datasets
 #' @examples
-#' 
+#'
 #' data(superroot2)
 #' # Select one gene
 #' g1 <- superroot2[superroot2$gene=="AT2G24000.1",]
 #' model <- lm(log(signal) ~ plant + color + array, data=g1)
 #' summary(model)
-#' 
+#'
 NULL
 
 
