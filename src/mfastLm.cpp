@@ -2,18 +2,32 @@
 #include <RcppArmadillo.h>
 using namespace Rcpp;
 
+//' Fast marginal simple regresion analyses
+//'
+//' @description Fast computation of the regression slopes for each predictor represented by a column in a matrix
+//' @param y A vector of outcomes.
+//' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
+//' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
+//' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
+//' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
+//' @export
 // [[Rcpp::export]]
 DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
   arma::uword n = x.nrow(), k = x.ncol();
-  int df = 1;
+  int df = n-1;
 
+  // Sanity checks
+  if (y.size() != n) {
+    stop("The length of y and the number of rows in x must match");
+  }
+  
   arma::mat X(x.begin(), n, k, false);
   arma::colvec Y(y.begin(), y.size(), false);
   arma::mat newX;
   arma::mat x0=arma::ones<arma::mat>(n,1);
 
   if (addintercept) {
-    df = 2;
+    df = n-2;
   }
 
   arma::colvec rescoef = arma::zeros(k), resse = arma::zeros(k);
@@ -30,7 +44,7 @@ DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
     coef = arma::solve(newX, Y);
     rescoef(i) = coef(0);
     resid = Y - newX*coef;
-    sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-df));
+    sig2 = arma::as_scalar(arma::trans(resid)*resid/df);
     stderrest = arma::sqrt(sig2 * arma::diagvec( arma::inv(arma::trans(newX)*newX)) );
     resse(i) = stderrest(0);
   }
@@ -41,9 +55,14 @@ DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 }
 
 
-
-// [[Rcpp::export]]
-double MLtest() {
+//' Fast marginal simple regresion analyses
+//'
+//' @description Fast computation of the regression slopes for each predictor represented by a column in a matrix
+//' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
+//' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
+//' @export
+// [[Rcpp::export]]        
+double lmm() {
 
   arma::uword N = 10000;
   arma::uword d = 5;
