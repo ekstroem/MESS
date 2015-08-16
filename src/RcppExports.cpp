@@ -19,13 +19,3 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// lmm
-double lmm();
-RcppExport SEXP MESS_lmm() {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    __result = Rcpp::wrap(lmm());
-    return __result;
-END_RCPP
-}

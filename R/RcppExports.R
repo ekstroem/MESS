@@ -3,24 +3,14 @@
 
 #' Fast marginal simple regresion analyses
 #'
-#' @description Fast computation of the regression slopes for each predictor represented by a column in a matrix
+#' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 #' @param y A vector of outcomes.
 #' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
 #' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
 #' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
-#' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
+#' @author Claus Ekstrøm <claus@@rprimer.dk>
 #' @export
 mfastLm_cpp <- function(y, x, addintercept) {
     .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
-}
-
-#' Fast marginal simple regresion analyses
-#'
-#' @description Fast computation of the regression slopes for each predictor represented by a column in a matrix
-#' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
-#' @author Claus Ekstrøm <ekstrom@@sund.ku.dk>
-#' @export
-lmm <- function() {
-    .Call('MESS_lmm', PACKAGE = 'MESS')
 }
 
