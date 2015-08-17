@@ -8,9 +8,7 @@ Maintainer: Claus Ekstrom <claus@rprimer.dk>
 Depends:
     geepack,
     glmnet,
-    Matrix,
-    Rcpp,
-    RcppArmadillo
+    Matrix
 Imports:
     Rcpp,
     kinship2,
