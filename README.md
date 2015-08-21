@@ -8,3 +8,9 @@ from within R
 library(devtools)
 install_github('ekstroem/MESS')
 ```
+
+The stable version of MESS can always be obtained from CRAN
+
+```{r}
+install.packages("MESS")
+```
