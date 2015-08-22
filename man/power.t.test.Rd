@@ -2,7 +2,7 @@
 % Please edit documentation in R/power.t.test.R
 \name{power.t.test}
 \alias{power.t.test}
-\title{Power calculations for one and two sample t tests}
+\title{Power calculations for one and two sample t tests with unequal sample size}
 \usage{
 power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
   power = NULL, ratio = 1, sd.ratio = 1, type = c("two.sample",
@@ -38,7 +38,7 @@ augmented with \code{method} and \code{note} elements.
 }
 \description{
 Compute power of test, or determine parameters to obtain target
-power.
+power for equal and unequal sample sizes.
 }
 \details{
 Exactly one of the parameters \code{n}, \code{delta}, \code{power}, \code{sd}, \code{sig.level}, \code{ratio} \code{sd.ratio}

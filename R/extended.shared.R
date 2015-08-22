@@ -11,7 +11,6 @@
 #' orders of magnitude smaller than an ordinary matrix.  When called with a
 #' single pedigree and ordinary matrix is returned.
 #'
-#' @aliases common.shared common.shared.pedigree common.shared.pedigreeList
 #' @param id either a pedigree object or pedigreeList object
 #' @param \dots Any number of optional arguments. Not used at the moment
 #' @return a matrix of shared environment coefficients
@@ -24,7 +23,7 @@
 #' test1 <- data.frame(id  =c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14),
 #'                     mom =c(0, 0, 0, 0, 2, 2, 4, 4, 6,  2,  0,  0, 12, 13),
 #'                     dad =c(0, 0, 0, 0, 1, 1, 3, 3, 3,  7,  0,  0, 11, 10),
-#'                     sex =c(0, 1, 0, 1, 0, 1, 0, 1, 0,  0,  0,  1,  1,  1))
+#'                     sex =c(1, 2, 1, 2, 1, 2, 1, 2, 1,  1,  1,  2,  2,  2))
 #' tped <- with(test1, pedigree(id, dad, mom, sex))
 #' extended.shared(tped)
 #'
@@ -34,7 +33,8 @@ extended.shared <- function (id, ...)
   UseMethod("extended.shared")
 }
 
-
+#' @rdname extended.shared
+#' @export
 extended.shared.pedigreeList <- function (id, ...)
 {
 #    if (!require("Matrix")) {
@@ -47,9 +47,9 @@ extended.shared.pedigreeList <- function (id, ...)
     for (i in 1:length(famlist)) {
       family <- id[i]
       temp <- extended.shared(family)
-      matlist[[i]] <- as(forceSymmetric(temp), "dsCMatrix")
+      matlist[[i]] <- as(Matrix::forceSymmetric(temp), "dsCMatrix")
     }
-    result <- bdiag(matlist)
+    result <- Matrix::bdiag(matlist)
 
     if (any(duplicated(id$id))) {
       dimnames(result) <- list(NULL, paste(id$famid, id$id,
@@ -58,6 +58,8 @@ extended.shared.pedigreeList <- function (id, ...)
     result
 }
 
+#' @rdname extended.shared
+#' @export
 extended.shared.pedigree <- function (id, ...)
 {
   n <- length(id$id)

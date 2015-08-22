@@ -1,7 +1,7 @@
-#' Power calculations for one and two sample t tests
+#' Power calculations for one and two sample t tests with unequal sample size
 #'
 #' Compute power of test, or determine parameters to obtain target
-#' power.
+#' power for equal and unequal sample sizes.
 #'
 #' @param n Number of observations (per group)
 #' @param delta True difference in means

@@ -7,16 +7,17 @@ Author: Claus Ekstrom <claus@rprimer.dk>
 Maintainer: Claus Ekstrom <claus@rprimer.dk>
 Depends:
     geepack,
-    glmnet,
-    Matrix
 Imports:
+    MASS,
+    Matrix,
     Rcpp,
+    XML,
+    glmnet,
     kinship2,
-    parallel,
-    mvtnorm
+    mvtnorm,
+    parallel
 LinkingTo: Rcpp, RcppArmadillo    
 Suggests:
-    MASS,
     lme4
 Description: A mixed collection of useful and semi-useful diverse 
     statistical functions, some of which may even be referenced in 
