@@ -5,17 +5,17 @@
 \alias{bees}
 \title{Bee data. Number of different types of bees caught.}
 \format{A data frame with 72 observations on the following 7 variables.
-\describe{ \item{list("Locality")}{a factor with levels \code{Havreholm}
+\describe{ \item{Locality}{a factor with levels \code{Havreholm}
 \code{Kragevig} \code{Saltrup} \code{Svaerdborg}. Four different localities
-in Denmark.} \item{list("Replicate")}{a factor with levels \code{A} \code{B}
-\code{C}} \item{list("Color")}{a factor with levels \code{Blue} \code{White}
-\code{Yellow}. Colour of plates} \item{list("Time")}{a factor with levels
+in Denmark.} \item{Replicate}{a factor with levels \code{A} \code{B}
+\code{C}} \item{Color}{a factor with levels \code{Blue} \code{White}
+\code{Yellow}. Colour of plates} \item{Time}{a factor with levels
 \code{july1} \code{july14} \code{june17} \code{june3} \code{june6}. Data
 collected at different dates in summer season. Only one day is present in
 the current data frame until the full data has been released.}
-\item{list("Type")}{a factor with levels \code{Bumblebees} \code{Solitary}.
-Type of bee.} \item{list("Number")}{a numeric vector. The response variable
-with number of bees catched.} \item{list("id")}{a numeric vector. The id of
+\item{Type}{a factor with levels \code{Bumblebees} \code{Solitary}.
+Type of bee.} \item{Number}{a numeric vector. The response variable
+with number of bees catched.} \item{id}{a numeric vector. The id of
 the clusters (each containg three plates).} }}
 \source{
 Data were kindly provided by Casper Ingerslev Henriksen, Department

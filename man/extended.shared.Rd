@@ -6,14 +6,18 @@
 \alias{extended.shared.pedigreeList}
 \title{Compute a common shared environment matrix}
 \usage{
-extended.shared(id, ...)
+extended.shared(id, rho = 1, theta = 1, ...)
 
-\method{extended.shared}{pedigreeList}(id, ...)
+\method{extended.shared}{pedigreeList}(id, rho = 1, theta = 1, ...)
 
-\method{extended.shared}{pedigree}(id, ...)
+\method{extended.shared}{pedigree}(id, rho = 1, theta = 1, ...)
 }
 \arguments{
 \item{id}{either a pedigree object or pedigreeList object}
+
+\item{rho}{The correlation between spouses}
+
+\item{theta}{The partial path coefficient from parents to offspring}
 
 \item{\dots}{Any number of optional arguments. Not used at the moment}
 }

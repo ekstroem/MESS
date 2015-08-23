@@ -5,11 +5,11 @@
 \alias{soccer}
 \title{Danish national soccer players}
 \format{A data frame with 805 observations on the following 5 variables.
-\describe{ \item{list("name")}{a factor with names of the players}
-\item{list("DoB")}{a Date. The date-of-birth of the player}
-\item{list("position")}{a factor with levels \code{Forward} \code{Defender}
-\code{Midfielder} \code{Goalkeeper}} \item{list("matches")}{a numeric
-vector. The number of A matches played by the player} \item{list("goals")}{a
+\describe{ \item{name}{a factor with names of the players}
+\item{DoB}{a Date. The date-of-birth of the player}
+\item{position}{a factor with levels \code{Forward} \code{Defender}
+\code{Midfielder} \code{Goalkeeper}} \item{matches}{a numeric
+vector. The number of A matches played by the player} \item{goals}{a
 numeric vector. The number of goals scored by the player in A matches} }}
 \source{
 Data collected from the player database of DBU on March 21st, 2014.

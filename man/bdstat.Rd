@@ -5,10 +5,10 @@
 \alias{bdstat}
 \title{Danish live births and deaths}
 \format{A data frame with 1356 observations on the following 4 variables.
-\describe{ \item{list("year")}{a numeric vector giving the month}
-\item{list("month")}{a numeric vector giving the year}
-\item{list("births")}{a numeric vector. The number of births for the given
-month and year} \item{list("dead")}{a numeric vector. The number of deaths
+\describe{ \item{year}{a numeric vector giving the month}
+\item{month}{a numeric vector giving the year}
+\item{births}{a numeric vector. The number of births for the given
+month and year} \item{dead}{a numeric vector. The number of deaths
 for the given month and year} }}
 \source{
 Data were obtained from the StatBank from Danmarks Statistik, see

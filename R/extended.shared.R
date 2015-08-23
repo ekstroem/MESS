@@ -12,6 +12,8 @@
 #' single pedigree and ordinary matrix is returned.
 #'
 #' @param id either a pedigree object or pedigreeList object
+#' @param rho The correlation between spouses
+#' @param theta The partial path coefficient from parents to offspring
 #' @param \dots Any number of optional arguments. Not used at the moment
 #' @return a matrix of shared environment coefficients
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
@@ -28,14 +30,14 @@
 #' extended.shared(tped)
 #'
 #' @export extended.shared
-extended.shared <- function (id, ...)
+extended.shared <- function (id, rho=1, theta=1, ...)
 {
   UseMethod("extended.shared")
 }
 
 #' @rdname extended.shared
 #' @export
-extended.shared.pedigreeList <- function (id, ...)
+extended.shared.pedigreeList <- function (id, rho=1, theta=1, ...)
 {
 #    if (!require("Matrix")) {
 #        stop("suggested package Matrix not installed")
@@ -60,10 +62,7 @@ extended.shared.pedigreeList <- function (id, ...)
 
 #' @rdname extended.shared
 #' @export
-extended.shared.pedigree <-
-
-
-eip <-    function (id, rho=1, theta=1, ...)
+extended.shared.pedigree <- function (id, rho=1, theta=1, ...)
 {
   n <- length(id$id)
 

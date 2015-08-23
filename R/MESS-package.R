@@ -28,10 +28,10 @@ NULL
 #' @name bdstat
 #' @docType data
 #' @format A data frame with 1356 observations on the following 4 variables.
-#' \describe{ \item{list("year")}{a numeric vector giving the month}
-#' \item{list("month")}{a numeric vector giving the year}
-#' \item{list("births")}{a numeric vector. The number of births for the given
-#' month and year} \item{list("dead")}{a numeric vector. The number of deaths
+#' \describe{ \item{year}{a numeric vector giving the month}
+#' \item{month}{a numeric vector giving the year}
+#' \item{births}{a numeric vector. The number of births for the given
+#' month and year} \item{dead}{a numeric vector. The number of deaths
 #' for the given month and year} }
 #' @source Data were obtained from the StatBank from Danmarks Statistik, see
 #' \url{http://www.statbank.dk}.
@@ -70,17 +70,17 @@ NULL
 #' @name bees
 #' @docType data
 #' @format A data frame with 72 observations on the following 7 variables.
-#' \describe{ \item{list("Locality")}{a factor with levels \code{Havreholm}
+#' \describe{ \item{Locality}{a factor with levels \code{Havreholm}
 #' \code{Kragevig} \code{Saltrup} \code{Svaerdborg}. Four different localities
-#' in Denmark.} \item{list("Replicate")}{a factor with levels \code{A} \code{B}
-#' \code{C}} \item{list("Color")}{a factor with levels \code{Blue} \code{White}
-#' \code{Yellow}. Colour of plates} \item{list("Time")}{a factor with levels
+#' in Denmark.} \item{Replicate}{a factor with levels \code{A} \code{B}
+#' \code{C}} \item{Color}{a factor with levels \code{Blue} \code{White}
+#' \code{Yellow}. Colour of plates} \item{Time}{a factor with levels
 #' \code{july1} \code{july14} \code{june17} \code{june3} \code{june6}. Data
 #' collected at different dates in summer season. Only one day is present in
 #' the current data frame until the full data has been released.}
-#' \item{list("Type")}{a factor with levels \code{Bumblebees} \code{Solitary}.
-#' Type of bee.} \item{list("Number")}{a numeric vector. The response variable
-#' with number of bees catched.} \item{list("id")}{a numeric vector. The id of
+#' \item{Type}{a factor with levels \code{Bumblebees} \code{Solitary}.
+#' Type of bee.} \item{Number}{a numeric vector. The response variable
+#' with number of bees catched.} \item{id}{a numeric vector. The id of
 #' the clusters (each containg three plates).} }
 #' @source Data were kindly provided by Casper Ingerslev Henriksen, Department
 #' of Agricultural Sciences, KU-LIFE. Added by Torben Martinussen
@@ -112,11 +112,11 @@ NULL
 #' @name clotting
 #' @docType data
 #' @format A data frame with 158 observations on the following 6 variables.
-#' \describe{ \item{list("rat")}{a numeric vector} \item{list("locality")}{a
-#' factor with levels \code{Loc1} \code{Loc2}} \item{list("sex")}{a factor with
-#' levels \code{F} \code{M}} \item{list("weight")}{a numeric vector}
-#' \item{list("PCA0")}{a numeric vector with percent blood clotting activity at
-#' baseline} \item{list("PCA4")}{a numeric vector with percent blood clotting
+#' \describe{ \item{rat}{a numeric vector} \item{locality}{a
+#' factor with levels \code{Loc1} \code{Loc2}} \item{sex}{a factor with
+#' levels \code{F} \code{M}} \item{weight}{a numeric vector}
+#' \item{PCA0}{a numeric vector with percent blood clotting activity at
+#' baseline} \item{PCA4}{a numeric vector with percent blood clotting
 #' activity on day 4} }
 #' @source Ann-Charlotte Heiberg, project at The Royal Veterinary and
 #' Agricultural University, 1999. \cr Added by Ib M. Skovgaard <ims@@life.ku.dk>
@@ -153,7 +153,7 @@ NULL
 #' @name greenland
 #' @docType data
 #' @format A data frame with 51 observations on the following 2 variables.
-#' \describe{ \item{list("year")}{year} \item{list("airtemp")}{average air
+#' \describe{ \item{year}{year} \item{airtemp}{average air
 #' temperature (degrees Celcius)} }
 #' @references Aktuelt Naturvidenskab september 2010. \cr
 #' http://aktuelnaturvidenskab.dk/fileadmin/an/nr-4/an4_2010gletscher.pdf
@@ -183,16 +183,16 @@ NULL
 #' @name happiness
 #' @docType data
 #' @format A data frame with 148 observations on the following 6 variables.
-#' \describe{ \item{list("country")}{a factor with 148 levels that contain the
-#' country names} \item{list("happy")}{a numeric vector with the average
-#' subject happiness score (on a scale from 0-10)} \item{list("tax")}{a numeric
+#' \describe{ \item{country}{a factor with 148 levels that contain the
+#' country names} \item{happy}{a numeric vector with the average
+#' subject happiness score (on a scale from 0-10)} \item{tax}{a numeric
 #' vector showing the tax revenue as percentage of GDP}
-#' \item{list("religion")}{a factor with levels \code{Buddhist}
+#' \item{religion}{a factor with levels \code{Buddhist}
 #' \code{Christian} \code{Hindu} \code{Muslim} \code{None} or \code{Other}}
-#' \item{list("continent")}{a factor with levels \code{AF}, \code{AS},
+#' \item{continent}{a factor with levels \code{AF}, \code{AS},
 #' \code{EU}, \code{NA}, \code{OC}, \code{SA}, corresponding to the continents
 #' Africa, Asia, Europe, North America, Ocenaia, South American, respectively}
-#' \item{list("population")}{a numeric vector showing the population (in
+#' \item{population}{a numeric vector showing the population (in
 #' millions)} }
 #' @source Data collected by Ellen Ekstroem. \cr Population sizes are from
 #' Wikipedia per August 2nd, 2012
@@ -293,10 +293,10 @@ NULL
 #' @name rainman
 #' @docType data
 #' @format A data frame with 30 observations on the following 6 variables.
-#' \describe{ \item{list("SAND")}{The true number of points in the swarm. Each
-#' picture is replicated thrice} \item{list("ME")}{Ratings from judge 1}
-#' \item{list("TM")}{Ratings from judge 2} \item{list("AJ")}{Ratings from judge
-#' 3} \item{list("BM")}{Ratings from judge 4} \item{list("LO")}{Ratings from
+#' \describe{ \item{SAND}{The true number of points in the swarm. Each
+#' picture is replicated thrice} \item{ME}{Ratings from judge 1}
+#' \item{TM}{Ratings from judge 2} \item{AJ}{Ratings from judge
+#' 3} \item{BM}{Ratings from judge 4} \item{LO}{Ratings from
 #' judge 5} }
 #' @source Collected by Claus Ekstrom.
 #' @keywords datasets
@@ -368,11 +368,11 @@ NULL
 #' @name soccer
 #' @docType data
 #' @format A data frame with 805 observations on the following 5 variables.
-#' \describe{ \item{list("name")}{a factor with names of the players}
-#' \item{list("DoB")}{a Date. The date-of-birth of the player}
-#' \item{list("position")}{a factor with levels \code{Forward} \code{Defender}
-#' \code{Midfielder} \code{Goalkeeper}} \item{list("matches")}{a numeric
-#' vector. The number of A matches played by the player} \item{list("goals")}{a
+#' \describe{ \item{name}{a factor with names of the players}
+#' \item{DoB}{a Date. The date-of-birth of the player}
+#' \item{position}{a factor with levels \code{Forward} \code{Defender}
+#' \code{Midfielder} \code{Goalkeeper}} \item{matches}{a numeric
+#' vector. The number of A matches played by the player} \item{goals}{a
 #' numeric vector. The number of goals scored by the player in A matches} }
 #' @source Data collected from the player database of DBU on March 21st, 2014.
 #' See \url{http://www.dbu.dk} for more information.
@@ -401,13 +401,13 @@ NULL
 #' @name superroot2
 #' @docType data
 #' @format A data frame with 258000 observations on the following 5 variables.
-#' \describe{ \item{list("color")}{a factor with levels \code{green} \code{red}
-#' representing the dye used for the gene expression} \item{list("array")}{a
+#' \describe{ \item{color}{a factor with levels \code{green} \code{red}
+#' representing the dye used for the gene expression} \item{array}{a
 #' factor with levels \code{1} \code{2} \code{3} \code{4} \code{5} \code{6}
-#' corresponding to the 6 arrays} \item{list("gene")}{a factor with 21500
-#' levels representing the genes on the arrays} \item{list("plant")}{a factor
+#' corresponding to the 6 arrays} \item{gene}{a factor with 21500
+#' levels representing the genes on the arrays} \item{plant}{a factor
 #' with levels \code{rnt} \code{wt} for the two types of plants: runts and wild
-#' type} \item{list("signal")}{a numeric vector with the gene expression level
+#' type} \item{signal}{a numeric vector with the gene expression level
 #' (normalized but not log transformed)} }
 #' @references Morant, M. et al. (2010). Metabolomic, Transcriptional, Hormonal
 #' and Signaling Cross-Talk in Superroot2. \emph{Molecular Plant}. 3,

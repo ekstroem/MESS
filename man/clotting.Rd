@@ -5,11 +5,11 @@
 \alias{clotting}
 \title{Blood clotting for 158 rats}
 \format{A data frame with 158 observations on the following 6 variables.
-\describe{ \item{list("rat")}{a numeric vector} \item{list("locality")}{a
-factor with levels \code{Loc1} \code{Loc2}} \item{list("sex")}{a factor with
-levels \code{F} \code{M}} \item{list("weight")}{a numeric vector}
-\item{list("PCA0")}{a numeric vector with percent blood clotting activity at
-baseline} \item{list("PCA4")}{a numeric vector with percent blood clotting
+\describe{ \item{rat}{a numeric vector} \item{locality}{a
+factor with levels \code{Loc1} \code{Loc2}} \item{sex}{a factor with
+levels \code{F} \code{M}} \item{weight}{a numeric vector}
+\item{PCA0}{a numeric vector with percent blood clotting activity at
+baseline} \item{PCA4}{a numeric vector with percent blood clotting
 activity on day 4} }}
 \source{
 Ann-Charlotte Heiberg, project at The Royal Veterinary and

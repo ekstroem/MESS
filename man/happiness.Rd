@@ -5,16 +5,16 @@
 \alias{happiness}
 \title{Happiness score and tax rates for 148 countries}
 \format{A data frame with 148 observations on the following 6 variables.
-\describe{ \item{list("country")}{a factor with 148 levels that contain the
-country names} \item{list("happy")}{a numeric vector with the average
-subject happiness score (on a scale from 0-10)} \item{list("tax")}{a numeric
+\describe{ \item{country}{a factor with 148 levels that contain the
+country names} \item{happy}{a numeric vector with the average
+subject happiness score (on a scale from 0-10)} \item{tax}{a numeric
 vector showing the tax revenue as percentage of GDP}
-\item{list("religion")}{a factor with levels \code{Buddhist}
+\item{religion}{a factor with levels \code{Buddhist}
 \code{Christian} \code{Hindu} \code{Muslim} \code{None} or \code{Other}}
-\item{list("continent")}{a factor with levels \code{AF}, \code{AS},
+\item{continent}{a factor with levels \code{AF}, \code{AS},
 \code{EU}, \code{NA}, \code{OC}, \code{SA}, corresponding to the continents
 Africa, Asia, Europe, North America, Ocenaia, South American, respectively}
-\item{list("population")}{a numeric vector showing the population (in
+\item{population}{a numeric vector showing the population (in
 millions)} }}
 \source{
 Data collected by Ellen Ekstroem. \cr Population sizes are from

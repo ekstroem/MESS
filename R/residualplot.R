@@ -1,19 +1,23 @@
-residualplot.default <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Std.res.", col.sd="blue", col.alpha=0.3,...) { 
+#' @rdname residualplot
+#' @export
+residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Std.res.", col.sd="blue", col.alpha=0.3,...) {
 
-  if (candy) 
-    plot(x, y, xlab = xlab, ylab = ylab, 
+    if (is.null(y))
+        stop("y must be specified")
+  if (candy)
+    plot(x, y, xlab = xlab, ylab = ylab,
          pch = 1 + 15 * (abs(y) > 1.96), ...)
   else plot(x, y, xlab = xlab, ylab=ylab, ...)
   if (candy) {
 
     # Set the colors
-    if (col.alpha == 0) 
+    if (col.alpha == 0)
       col.trans <- col.sd
-    else col.trans <- sapply(col.sd, FUN = function(x) do.call(rgb, 
+    else col.trans <- sapply(col.sd, FUN = function(x) do.call(rgb,
                                      as.list(c(col2rgb(x)/255, col.alpha))))
     uniqx <- sort(unique(x))
     if (length(uniqx) > 3) {
-      lines(smooth.spline(x, y, df = 3), lty = 2, lwd = 2, 
+      lines(smooth.spline(x, y, df = 3), lty = 2, lwd = 2,
             col = "black")
     }
     window <- bandwidth * (max(x) - min(x))/2
@@ -22,13 +26,15 @@ residualplot.default <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted
       vary[i] <- 1.96 * sd(y[abs(x - uniqx[i]) <= window])
     }
     vary[is.na(vary)] <- 0
-    polygon(c(uniqx, rev(uniqx)), c(vary, -(rev(vary))), 
+    polygon(c(uniqx, rev(uniqx)), c(vary, -(rev(vary))),
             col = col.trans, border = NA)
   }
   return(invisible(NULL))
 }
 
 
+#' @rdname residualplot
+#' @export
 residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", col.alpha=0.3,...) {
   y <- rstudent(x)
   x <- predict(x)
@@ -40,21 +46,21 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
 
 
 #' Plots a standardaized residual
-#' 
+#'
 #' Plots a standardized residual plot from an lm object and provides additional
 #' graphics to help evaluate the variance homogeneity and mean.
-#' 
+#'
 #' Plots a standardized residual plot from an lm object and provides additional
 #' graphics to help evaluate the variance homogeneity and mean.
-#' 
+#'
 #' The brown area is a smoothed estimate of 1.96*SD of the standardized
 #' residuals in a window around the predicted value. The brown area should
 #' largely be rectangular if the standardized residuals have more or less the
 #' same variance.
-#' 
+#'
 #' The dashed line shows the smoothed mean of the standardized residuals and
 #' should generally follow the horizontal line through (0,0).
-#' 
+#'
 #' @aliases residualplot residualplot.lm residualplot.default
 #' @param x lm object or a numeric vector
 #' @param y numeric vector for the y axis values
@@ -74,15 +80,15 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
 #' @seealso \code{\link{rstandard}}, \code{\link{predict}}
 #' @keywords hplot
 #' @examples
-#' 
+#'
 #' # Linear regression example
 #' data(trees)
 #' model <- lm(Volume ~ Girth + Height, data=trees)
 #' residualplot(model)
-#' 
-#' @export residualplot
-residualplot <- function(x, y, candy=TRUE, bandwidth = 0.3, 
-	                 xlab="Fitted values", ylab="Std.res.", 
+#'
+#' @export
+residualplot <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3,
+	                 xlab="Fitted values", ylab="Std.res.",
                          col.sd="blue", col.alpha=0.3,...) {
   UseMethod("residualplot")
 }

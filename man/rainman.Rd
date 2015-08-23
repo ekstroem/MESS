@@ -5,10 +5,10 @@
 \alias{rainman}
 \title{Perception of points in a swarm}
 \format{A data frame with 30 observations on the following 6 variables.
-\describe{ \item{list("SAND")}{The true number of points in the swarm. Each
-picture is replicated thrice} \item{list("ME")}{Ratings from judge 1}
-\item{list("TM")}{Ratings from judge 2} \item{list("AJ")}{Ratings from judge
-3} \item{list("BM")}{Ratings from judge 4} \item{list("LO")}{Ratings from
+\describe{ \item{SAND}{The true number of points in the swarm. Each
+picture is replicated thrice} \item{ME}{Ratings from judge 1}
+\item{TM}{Ratings from judge 2} \item{AJ}{Ratings from judge
+3} \item{BM}{Ratings from judge 4} \item{LO}{Ratings from
 judge 5} }}
 \source{
 Collected by Claus Ekstrom.
