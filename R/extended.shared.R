@@ -60,16 +60,37 @@ extended.shared.pedigreeList <- function (id, ...)
 
 #' @rdname extended.shared
 #' @export
-extended.shared.pedigree <- function (id, ...)
+extended.shared.pedigree <-
+
+
+eip <-    function (id, rho=1, theta=1, ...)
 {
   n <- length(id$id)
 
   if (n == 1)
-    return(matrix(1, 1, 1, dimnames = list(id$id, id$id)))
+      return(matrix(1, 1, 1, dimnames = list(id$id, id$id)))
   if (any(duplicated(id$id)))
-    stop("All id values must be unique")
+      stop("All id values must be unique")
 
-  temp <- matrix(rep(1, n*n), n)
+  ## Create the I-B matrix
+  IB <- diag(n)
+  IB[cbind(seq(n),id$mindex)[id$mindex>0,]] <- -theta/2
+  IB[cbind(seq(n),id$findex)[id$findex>0,]] <- -theta/2
+
+  nonfounders <- (id$mindex+id$findex)>0
+
+  ## Create the Gamma matrix
+  ## and fix variances (standardization)
+  GAMmat <- diag(n)
+  diag(GAMmat)[nonfounders] <- sqrt(1-theta^2/2*(1+rho))
+
+  ## Spouses
+  spouses <- cbind(id$mindex, id$findex)[nonfounders,]
+  U <- diag(n)
+  U[spouses]       <- rho
+  U[spouses[,2:1]] <- rho
+
+  temp <- solve(IB) %*% GAMmat %*% U  %*%  t(GAMmat) %*% t(solve(IB))
   dimnames(temp) <- list(id$id, id$id)
   temp
 }
