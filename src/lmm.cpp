@@ -66,6 +66,17 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 
 
 
+
+//' @export
+// [[Rcpp::export]]
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
+}
+
+double MaximizeMixedModel(int nPedigrees, int nPedSize[], MATRIX y[], MATRIX x[], int nVC, MATRIX VC[], MATRIX start, MATRIX beta, int Method, int Constrain, int PrintInfo)
+{
+
+
+
 /*
  * PEDIPET
  * 
