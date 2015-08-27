@@ -69,11 +69,150 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 
 //' @export
 // [[Rcpp::export]]
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
-}
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
+  arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
-double MaximizeMixedModel(int nPedigrees, int nPedSize[], MATRIX y[], MATRIX x[], int nVC, MATRIX VC[], MATRIX start, MATRIX beta, int Method, int Constrain, int PrintInfo)
-{
+  // Should do sanity checks
+  
+  arma::mat X(x.begin(), n, k, false);
+  arma::colvec Y(y.begin(), y.size(), false);
+  arma::colvec theta = arma::zeros(nVC+1);
+
+  // Convert List/VC to at list of arma matrices
+  std::vector<arma::mat> VC(vc.size()+1);
+
+  for (int i=0; i < nVC; i++) {
+    Rcpp::NumericMatrix tmpcv = vc[i];
+    VC[i] = Rcpp::as<arma::mat>(tmpcv);
+    // VC[i](tmpcv.begin(), n, n, false);
+  }
+  VC[nVC].set_size(n,n);
+  VC[nVC].eye();
+  
+  
+
+  // Initial estimate for beta (from independence model)
+  arma::colvec beta = arma::solve(X, Y);
+  
+  arma::colvec resid = Y - X*beta;
+  double sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-k));
+  theta(nVC) = sig2;
+
+  /*
+
+  arma::mat Omega = sig2*arma::eye<arma::mat>(n,n);
+  arma::mat IOmega, P, xOmegax, IOmegaX, IOmega2;
+  arma::colvec mu = X * beta;
+  arma::mat Fisher(nVC+1, nVC+1), InvFisher(nVC+1, nVC+1);
+  arma::colvec Deriv(nVC+1);
+  arma::colvec WorkingTheta(k);
+
+  int i, j;
+*/
+  // Main iteration
+  for (int iter=0; iter<maxiter; iter++) {
+
+    printf("Iter %d\n", iter);
+    /*
+    // Compute the Inverse variance matrix
+    Omega = theta(nVC-1)*arma::eye<arma::mat>(n,n);
+    
+    for (i=0; i<nVC-1; i++) {
+      Omega += theta(i)*VC[i];  
+    }
+
+    IOmega = inv_sympd(Omega);
+
+    // X^t Omega X
+    P = IOmega;
+    IOmegaX = (IOmega*X);
+
+    xOmegax = arma::inv(arma::trans(X) * (IOmegaX));
+    P = IOmega - (IOmegaX*xOmegax)*arma::trans(IOmegaX);   
+
+    IOmega2 = P*P;
+    /*    
+    mu = X * beta;
+
+    Deriv.zeros();
+    Fisher.zeros();
+    
+    for (i = 0; i < nVC+1; i++) {
+      Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(Y)*P)*VC[i]*(P*(Y)));
+      
+      for (j = i; j < nVC+1; j++) {
+	Fisher(i,j) += arma::trace(IOmega2*VC[i]*VC[j]);
+	Fisher(j,i)  = Fisher(i,j);
+      }
+    }
+
+    // Remember to scale the 1st and 2nd derivatives by 1/2
+    Deriv  *= .5;
+    Fisher *= .5;
+
+    arma::colvec OldBeta = beta;
+*/
+    /*
+    if (Method == METHOD_ML) {
+      beta += Inverse(xOmegax)*DeltaBeta;
+      DeltaBeta = Inverse(xOmegax)*DeltaBeta;
+    }
+    */
+
+
+    /*    
+    // Inverts the matrix
+    arma::mat IFisher = inv(Fisher);
+
+    // Calculate the change in delta
+    arma::colvec DeltaTheta = IFisher*Deriv;
+    WorkingTheta = DeltaTheta;
+*/			
+
+    /*
+      dLogDet = 0;
+      for (nFam = 0; nFam < nPedigrees; nFam++)	{      
+	IOmega[nFam] = 0;
+	for (i = 0; i < nVC; i++) {	
+	  IOmega[nFam] += VC[nFam+nPedigrees*i]*theta(i+1,1);
+	}
+	IOmega[nFam] = Inverse(IOmega[nFam], &dLogDet2);
+	dLogDet += dLogDet2;
+      }
+      // Calculate P
+      InvOmega2 = P*P;
+
+      //	DeltaBeta += xT*(InvOmega*(y[nFam]-mu));
+      //	LogLike += - 0.5*(nPedSize[nFam]*log(2*PI) + dLogDet + (Transpose(y[nFam]-mu)*InvOmega*(y[nFam]-mu))(1,1));
+
+      for (i = 0; i < nVC; i++) {
+	Deriv(i+1,1) += - Trace(P*NewVC[i]) 
+	  + ((Transpose(NewY)*P)*NewVC[i]*(P*(NewY)))(1,1);
+	  
+	for (j = i; j < nVC; j++) {
+	  Fisher(i+1,j+1) += Trace(InvOmega2*NewVC[i]*NewVC[j]);
+	  Fisher(j+1,i+1)  = Fisher(i+1,j+1);
+	}
+      }
+
+      LogLike = - 0.5*(nTotal*log(2*PI) + dLogDet + dLogDet2 + (Transpose(NewY)*P*(NewY))(1,1));
+      LogLike -= - 0.5*nMeanParam*log(2*PI);
+    */
+
+    
+    
+  }
+
+  
+  
+    // create a new data frame and return it
+  return DataFrame::create(Rcpp::Named("coefficients")=beta,
+			   Rcpp::Named("theta")=theta
+			   //			   Rcpp::Named("Omega")=Omega,
+			   //			   Rcpp::Named("newtheta")=WorkingTheta
+			   );
+  
+}
 
 
 
@@ -100,7 +239,7 @@ double MaximizeMixedModel(int nPedigrees, int nPedSize[], MATRIX y[], MATRIX x[]
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA.
- */
+ *
 
 #include <iostream>
 #include <cmath>
@@ -577,3 +716,7 @@ double MaximizeMixedModel(int nPedigrees, int nPedSize[], MATRIX y[], MATRIX x[]
 
   return (newll);
 }
+
+
+*/
+

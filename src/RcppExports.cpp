@@ -19,6 +19,20 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// lmm_Maximize_cpp
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter);
+RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< List >::type vc(vcSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
+    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter));
+    return __result;
+END_RCPP
+}
 // mfastLm_cpp
 DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept);
 RcppExport SEXP MESS_mfastLm_cpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {

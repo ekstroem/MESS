@@ -14,6 +14,11 @@ lmm_maximize_cpp <- function(y, x, addintercept) {
     .Call('MESS_lmm_maximize_cpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
+#' @export
+lmm_Maximize_cpp <- function(y, x, vc, maxiter) {
+    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter)
+}
+
 #' Fast marginal simple regresion analyses
 #'
 #' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
