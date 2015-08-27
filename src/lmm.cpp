@@ -98,8 +98,6 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
   double sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-k));
   theta(nVC) = sig2;
 
-  /*
-
   arma::mat Omega = sig2*arma::eye<arma::mat>(n,n);
   arma::mat IOmega, P, xOmegax, IOmegaX, IOmega2;
   arma::colvec mu = X * beta;
@@ -108,21 +106,22 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
   arma::colvec WorkingTheta(k);
 
   int i, j;
-*/
+
   // Main iteration
   for (int iter=0; iter<maxiter; iter++) {
 
     printf("Iter %d\n", iter);
-    /*
+
     // Compute the Inverse variance matrix
-    Omega = theta(nVC-1)*arma::eye<arma::mat>(n,n);
+    Omega.zeros();
     
-    for (i=0; i<nVC-1; i++) {
+    for (i=0; i<=nVC; i++) {
       Omega += theta(i)*VC[i];  
     }
 
     IOmega = inv_sympd(Omega);
 
+    
     // X^t Omega X
     P = IOmega;
     IOmegaX = (IOmega*X);
@@ -131,7 +130,7 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     P = IOmega - (IOmegaX*xOmegax)*arma::trans(IOmegaX);   
 
     IOmega2 = P*P;
-    /*    
+    
     mu = X * beta;
 
     Deriv.zeros();
@@ -149,7 +148,7 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     // Remember to scale the 1st and 2nd derivatives by 1/2
     Deriv  *= .5;
     Fisher *= .5;
-
+    /*
     arma::colvec OldBeta = beta;
 */
     /*
@@ -160,14 +159,13 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     */
 
 
-    /*    
+        
     // Inverts the matrix
     arma::mat IFisher = inv(Fisher);
 
     // Calculate the change in delta
     arma::colvec DeltaTheta = IFisher*Deriv;
     WorkingTheta = DeltaTheta;
-*/			
 
     /*
       dLogDet = 0;
@@ -207,9 +205,9 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
   
     // create a new data frame and return it
   return DataFrame::create(Rcpp::Named("coefficients")=beta,
-			   Rcpp::Named("theta")=theta
-			   //			   Rcpp::Named("Omega")=Omega,
-			   //			   Rcpp::Named("newtheta")=WorkingTheta
+			   Rcpp::Named("theta")=theta,
+			   Rcpp::Named("Omega")=Omega,
+			   Rcpp::Named("newtheta")=WorkingTheta
 			   );
   
 }
