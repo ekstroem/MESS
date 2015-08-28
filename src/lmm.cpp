@@ -48,16 +48,6 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
     stderrest = arma::sqrt(sig2 * arma::diagvec( arma::inv(arma::trans(newX)*newX)) );
     resse(i) = stderrest(0);
   }
-
-
-
-
-
-
-
-
-
-
   
   // create a new data frame and return it
   return DataFrame::create(Rcpp::Named("coefficients")=rescoef,
@@ -70,11 +60,12 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 // 1. Step halving (probably not necessary if 2. is implemented)
 // 2. transform VC coefficients to have non-negative values
 // 3. Choose between ML / REML
+// 4. Add convergence tolerance
 
 
 //' @export
 // [[Rcpp::export]]
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, int method) {
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML = true) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
   // Should do sanity checks
@@ -152,11 +143,18 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, in
       
       for (j = i; j < nVC+1; j++) {
 	// Just do the VC VC multiplications once and store them for speed?
-	Fisher(i,j) += arma::trace(IOmega2*VC[i]*VC[j]);
-	Fisher(j,i)  = Fisher(i,j);
+	Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
+	Fisher(j,i) = Fisher(i,j);
       }
     }
 
+
+    if (!REML) {
+      //  beta += IxOmegax)*DeltaBeta;
+      //   DeltaBeta = Inverse(xOmegax)*DeltaBeta;
+    }
+
+    
     // Remember to scale the 1st and 2nd derivatives by 1/2
     Deriv  *= .5;
     Fisher *= .5;
@@ -164,14 +162,6 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, in
     /*
     arma::colvec OldBeta = beta;
 */
-    /*
-    if (Method == METHOD_ML) {
-      beta += Inverse(xOmegax)*DeltaBeta;
-      DeltaBeta = Inverse(xOmegax)*DeltaBeta;
-    }
-    */
-
-
         
     // Inverts the matrix
     arma::mat IFisher = inv(Fisher);
@@ -183,7 +173,7 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, in
     // Possibly do step-halving
 
 
-    theta += WorkingTheta;
+    theta += DeltaTheta;
 
     for (i = 0; i<theta.size(); i++) {
       if (theta(i)<=0)
@@ -192,37 +182,6 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, in
     
     logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
     logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
-
-    
-    /*
-      dLogDet = 0;
-      for (nFam = 0; nFam < nPedigrees; nFam++)	{      
-	IOmega[nFam] = 0;
-	for (i = 0; i < nVC; i++) {	
-	  IOmega[nFam] += VC[nFam+nPedigrees*i]*theta(i+1,1);
-	}
-	IOmega[nFam] = Inverse(IOmega[nFam], &dLogDet2);
-	dLogDet += dLogDet2;
-      }
-      // Calculate P
-      InvOmega2 = P*P;
-
-      //	DeltaBeta += xT*(InvOmega*(y[nFam]-mu));
-      //	LogLike += - 0.5*(nPedSize[nFam]*log(2*PI) + dLogDet + (Transpose(y[nFam]-mu)*InvOmega*(y[nFam]-mu))(1,1));
-
-      for (i = 0; i < nVC; i++) {
-	Deriv(i+1,1) += - Trace(P*NewVC[i]) 
-	  + ((Transpose(NewY)*P)*NewVC[i]*(P*(NewY)))(1,1);
-	  
-	for (j = i; j < nVC; j++) {
-	  Fisher(i+1,j+1) += Trace(InvOmega2*NewVC[i]*NewVC[j]);
-	  Fisher(j+1,i+1)  = Fisher(i+1,j+1);
-	}
-      }
-
-      LogLike = - 0.5*(nTotal*log(2*PI) + dLogDet + dLogDet2 + (Transpose(NewY)*P*(NewY))(1,1));
-      LogLike -= - 0.5*nMeanParam*log(2*PI);
-    */
 
     Rcout << theta << arma::endl;
     
@@ -233,7 +192,9 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, in
     // create a new data frame and return it
   return List::create(Rcpp::Named("coefficients")=beta,
 		      Rcpp::Named("sigmas")=theta,
-		      Rcpp::Named("logLik")=logLike
+		      Rcpp::Named("logLik")=logLike,
+		      Rcpp::Named("convergence")=0,
+		      Rcpp::Named("REML")=REML
 			   //  Rcpp::Named("Omega")=Omega,
 		      //			   Rcpp::Named("newtheta")=WorkingTheta
 			   );
