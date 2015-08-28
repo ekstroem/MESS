@@ -66,10 +66,15 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 
 
 
+// Currently missing in the algorithm in the code below:
+// 1. Step halving (probably not necessary if 2. is implemented)
+// 2. transform VC coefficients to have non-negative values
+// 3. Choose between ML / REML
+
 
 //' @export
 // [[Rcpp::export]]
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, int method) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
   // Should do sanity checks
@@ -86,8 +91,9 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     VC[i] = Rcpp::as<arma::mat>(tmpcv);
     // VC[i](tmpcv.begin(), n, n, false);
   }
-  VC[nVC].set_size(n,n);
-  VC[nVC].eye();
+  // VC[nVC].set_size(n,n);
+  // VC[nVC].eye();
+  VC[nVC] = arma::eye<arma::mat>(n,n);
   
   
 
@@ -96,21 +102,24 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
   
   arma::colvec resid = Y - X*beta;
   double sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-k));
+  double logLike = 0;
+  double logDet = 0, logDet2 = 0;
+  double sign;
   theta(nVC) = sig2;
 
-  arma::mat Omega = sig2*arma::eye<arma::mat>(n,n);
-  arma::mat IOmega, P, xOmegax, IOmegaX, IOmega2;
+  arma::mat Omega(n,n);
+  arma::mat IOmega, P, IxOmegax, xOx, IOmegaX, IOmega2;
   arma::colvec mu = X * beta;
-  arma::mat Fisher(nVC+1, nVC+1), InvFisher(nVC+1, nVC+1);
+  arma::mat Fisher(nVC+1, nVC+1), InvFisher(nVC+1, nVC+1) ;
   arma::colvec Deriv(nVC+1);
-  arma::colvec WorkingTheta(k);
+  arma::colvec WorkingTheta(k), PY(n);
 
   int i, j;
 
   // Main iteration
   for (int iter=0; iter<maxiter; iter++) {
 
-    printf("Iter %d\n", iter);
+    // printf("Iter %d\n", iter);
 
     // Compute the Inverse variance matrix
     Omega.zeros();
@@ -120,14 +129,15 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     }
 
     IOmega = inv_sympd(Omega);
+    log_det(logDet, sign, Omega);
 
     
     // X^t Omega X
-    P = IOmega;
     IOmegaX = (IOmega*X);
-
-    xOmegax = arma::inv(arma::trans(X) * (IOmegaX));
-    P = IOmega - (IOmegaX*xOmegax)*arma::trans(IOmegaX);   
+    xOx = arma::trans(X) * (IOmegaX);
+    IxOmegax = arma::inv(xOx);
+    log_det(logDet2, sign , xOx);
+    P = IOmega - (IOmegaX*IxOmegax)*arma::trans(IOmegaX);   
 
     IOmega2 = P*P;
     
@@ -135,11 +145,13 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
 
     Deriv.zeros();
     Fisher.zeros();
-    
+
+    PY = P*Y;
     for (i = 0; i < nVC+1; i++) {
-      Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(Y)*P)*VC[i]*(P*(Y)));
+      Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
       
       for (j = i; j < nVC+1; j++) {
+	// Just do the VC VC multiplications once and store them for speed?
 	Fisher(i,j) += arma::trace(IOmega2*VC[i]*VC[j]);
 	Fisher(j,i)  = Fisher(i,j);
       }
@@ -148,6 +160,7 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     // Remember to scale the 1st and 2nd derivatives by 1/2
     Deriv  *= .5;
     Fisher *= .5;
+
     /*
     arma::colvec OldBeta = beta;
 */
@@ -167,6 +180,20 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
     arma::colvec DeltaTheta = IFisher*Deriv;
     WorkingTheta = DeltaTheta;
 
+    // Possibly do step-halving
+
+
+    theta += WorkingTheta;
+
+    for (i = 0; i<theta.size(); i++) {
+      if (theta(i)<=0)
+	theta(i)=.0001;
+    }
+    
+    logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
+    logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
+
+    
     /*
       dLogDet = 0;
       for (nFam = 0; nFam < nPedigrees; nFam++)	{      
@@ -197,17 +224,18 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter) {
       LogLike -= - 0.5*nMeanParam*log(2*PI);
     */
 
-    
+    Rcout << theta << arma::endl;
     
   }
 
   
   
     // create a new data frame and return it
-  return DataFrame::create(Rcpp::Named("coefficients")=beta,
-			   Rcpp::Named("theta")=theta,
-			   Rcpp::Named("Omega")=Omega,
-			   Rcpp::Named("newtheta")=WorkingTheta
+  return List::create(Rcpp::Named("coefficients")=beta,
+		      Rcpp::Named("sigmas")=theta,
+		      Rcpp::Named("logLik")=logLike
+			   //  Rcpp::Named("Omega")=Omega,
+		      //			   Rcpp::Named("newtheta")=WorkingTheta
 			   );
   
 }
