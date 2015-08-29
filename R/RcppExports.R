@@ -15,8 +15,8 @@ lmm_maximize_cpp <- function(y, x, addintercept) {
 }
 
 #' @export
-lmm_Maximize_cpp <- function(y, x, vc, maxiter, REML = TRUE) {
-    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML)
+lmm_Maximize_cpp <- function(y, x, vc, maxiter, REML = TRUE, tolerance = 0.00001) {
+    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML, tolerance)
 }
 
 #' Fast marginal simple regresion analyses

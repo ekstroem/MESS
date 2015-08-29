@@ -20,8 +20,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // lmm_Maximize_cpp
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML);
-RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP) {
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML, double tolerance);
+RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP, SEXP toleranceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -30,7 +30,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< List >::type vc(vcSEXP);
     Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
     Rcpp::traits::input_parameter< bool >::type REML(REMLSEXP);
-    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter, REML));
+    Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
+    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter, REML, tolerance));
     return __result;
 END_RCPP
 }

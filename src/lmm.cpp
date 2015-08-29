@@ -57,15 +57,20 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 
 
 // Currently missing in the algorithm in the code below:
-// 1. Step halving (probably not necessary if 2. is implemented)
+// 1. Step halving
 // 2. transform VC coefficients to have non-negative values
 // 3. Choose between ML / REML
 // 4. Add convergence tolerance
-
+// 5. Clustered input
 
 //' @export
 // [[Rcpp::export]]
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML = true) {
+List lmm_Maximize_cpp(NumericVector y,
+		      NumericMatrix x,
+		      List vc,
+		      int maxiter,
+		      bool REML = true,
+		      double tolerance = 0.00001) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
   // Should do sanity checks
@@ -82,21 +87,19 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
     VC[i] = Rcpp::as<arma::mat>(tmpcv);
     // VC[i](tmpcv.begin(), n, n, false);
   }
-  // VC[nVC].set_size(n,n);
-  // VC[nVC].eye();
   VC[nVC] = arma::eye<arma::mat>(n,n);
   
   
-
   // Initial estimate for beta (from independence model)
   arma::colvec beta = arma::solve(X, Y);
-  
+  arma::colvec deltaBeta;
   arma::colvec resid = Y - X*beta;
   double sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-k));
-  double logLike = 0;
+  double logLike = 0, oldLogLike = 0;
   double logDet = 0, logDet2 = 0;
   double sign;
   theta(nVC) = sig2;
+  int errorcode = 25;
 
   arma::mat Omega(n,n);
   arma::mat IOmega, P, IxOmegax, xOx, IOmegaX, IOmega2;
@@ -107,7 +110,7 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
 
   int i, j;
 
-  // Main iteration
+  // Main iteration loop
   for (int iter=0; iter<maxiter; iter++) {
 
     // printf("Iter %d\n", iter);
@@ -118,7 +121,8 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
     for (i=0; i<=nVC; i++) {
       Omega += theta(i)*VC[i];  
     }
-
+    // Invert the estimated variance matrix
+    // and compute the determinant
     IOmega = inv_sympd(Omega);
     log_det(logDet, sign, Omega);
 
@@ -129,10 +133,14 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
     IxOmegax = arma::inv(xOx);
     log_det(logDet2, sign , xOx);
     P = IOmega - (IOmegaX*IxOmegax)*arma::trans(IOmegaX);   
-
     IOmega2 = P*P;
+
+    if (!REML) {
+      mu = X * beta;
+      deltaBeta = arma::trans(IOmegaX) * (Y-mu);
+    }
+
     
-    mu = X * beta;
 
     Deriv.zeros();
     Fisher.zeros();
@@ -172,7 +180,6 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
 
     // Possibly do step-halving
 
-
     theta += DeltaTheta;
 
     for (i = 0; i<theta.size(); i++) {
@@ -184,17 +191,27 @@ List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bo
     logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
 
     Rcout << theta << arma::endl;
+
+    if (iter>0 & abs(logLike-oldLogLike)<tolerance) {
+      errorcode=0;
+      break;
+    }
+
+    // Prepare for next iteration
+    oldLogLike = logLike;
     
   }
 
-  
+  // All we can do right now
+  REML=true;
   
     // create a new data frame and return it
   return List::create(Rcpp::Named("coefficients")=beta,
 		      Rcpp::Named("sigmas")=theta,
 		      Rcpp::Named("logLik")=logLike,
-		      Rcpp::Named("convergence")=0,
+		      Rcpp::Named("convergence")=errorcode,
 		      Rcpp::Named("REML")=REML
+		      // Need the two information matrices as well
 			   //  Rcpp::Named("Omega")=Omega,
 		      //			   Rcpp::Named("newtheta")=WorkingTheta
 			   );
@@ -279,7 +296,7 @@ char *ConvergenceText[5] = {
   "Stepsize too small",
   "Max iterations reached",
 };
- 
+*/ 
 
 /*
 
