@@ -32,3 +32,29 @@ mfastLm_cpp <- function(y, x, addintercept) {
     .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
+#' Fast quadratic form computation
+#'
+#' @description Fast computation of a quadratic form  t(x) %*% M %*% x
+#' @param x A matrix with dimensions n*k.
+#' @param M A matrix with dimenions n*n. If it is to be inverted then the matrix should be symmetric and positive difinite (no check is done for this)
+#' @param invertM A logical. If set to TRUE then M will be inverted before computations (defaults to FALSE)
+#' @param transposex A logical. Should the matrix be transposed before computations (defaults to FALSE).
+#' @return A matrix with dimensions k * k giving teh quadratic form
+#' @author Claus Ekstrøm <claus@@rprimer.dk>
+#' @export
+quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
+    .Call('MESS_quadform', PACKAGE = 'MESS', x, M, invertM, transposex)
+}
+
+#' Fast computation of trace of matrix product
+#'
+#' @description Fast computation of the trace of the matrix product trace(t(A) %*% B)
+#' @param A A matrix with dimensions n*k.
+#' @param B A matrix with dimenions n*k.
+#' @return The trace of the matrix product
+#' @author Claus Ekstrøm <claus@@rprimer.dk>
+#' @export
+tracemp <- function(A, B) {
+    .Call('MESS_tracemp', PACKAGE = 'MESS', A, B)
+}
+

@@ -48,3 +48,29 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// quadform
+NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM, bool transposex);
+RcppExport SEXP MESS_quadform(SEXP xSEXP, SEXP MSEXP, SEXP invertMSEXP, SEXP transposexSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type M(MSEXP);
+    Rcpp::traits::input_parameter< bool >::type invertM(invertMSEXP);
+    Rcpp::traits::input_parameter< bool >::type transposex(transposexSEXP);
+    __result = Rcpp::wrap(quadform(x, M, invertM, transposex));
+    return __result;
+END_RCPP
+}
+// tracemp
+double tracemp(NumericMatrix A, NumericMatrix B);
+RcppExport SEXP MESS_tracemp(SEXP ASEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type A(ASEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type B(BSEXP);
+    __result = Rcpp::wrap(tracemp(A, B));
+    return __result;
+END_RCPP
+}
