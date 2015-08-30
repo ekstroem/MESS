@@ -2,59 +2,6 @@
 #include <RcppArmadillo.h>
 using namespace Rcpp;
 
-//' Fast marginal simple regresion analyses
-//'
-//' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
-//' @param y A vector of outcomes.
-//' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
-//' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
-//' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
-//' @author Claus Ekstrøm <claus@@rprimer.dk>
-//' @export
-// [[Rcpp::export]]
-DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
-  arma::uword n = x.nrow(), k = x.ncol();
-  int df = n-1;
-
-  // Sanity checks
-  if (y.size() != n) {
-    stop("The length of y and the number of rows in x must match");
-  }
-  
-  arma::mat X(x.begin(), n, k, false);
-  arma::colvec Y(y.begin(), y.size(), false);
-  arma::mat newX;
-  arma::mat x0=arma::ones<arma::mat>(n,1);
-
-  if (addintercept) {
-    df = n-2;
-  }
-
-  arma::colvec rescoef = arma::zeros(k), resse = arma::zeros(k);
-  arma::colvec coef, resid, stderrest;
-  double sig2;
-  
-  for (arma::uword i=0; i<k; i++) {
-    if (addintercept) {
-      newX = join_rows(X.cols(i,i), x0);
-    } else {
-      newX = X.cols(i,i);
-    }
-
-    coef = arma::solve(newX, Y);
-    rescoef(i) = coef(0);
-    resid = Y - newX*coef;
-    sig2 = arma::as_scalar(arma::trans(resid)*resid/df);
-    stderrest = arma::sqrt(sig2 * arma::diagvec( arma::inv(arma::trans(newX)*newX)) );
-    resse(i) = stderrest(0);
-  }
-  
-  // create a new data frame and return it
-  return DataFrame::create(Rcpp::Named("coefficients")=rescoef,
-			   Rcpp::Named("stderr")=resse);
-}
-
-
 
 // Currently missing in the algorithm in the code below:
 // 1. Step halving
@@ -63,12 +10,24 @@ DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept) {
 // 4. Add convergence tolerance
 // 5. Clustered input
 
+
+//' Maximize linear mixed model with user-specified covariance matrices
+//'
+//' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
+//' @param y A vector of outcomes.
+//' @param x A design matrix of regressor variables. Must have the same number of rows as the length of y.
+//' @param vc A list of fixed variance-covariance matrices
+//' @param maxiter Maximum number of iterations
+//' @param REML A logical that determines if restricted maximum likelihood (REML - the default) or maximum likelihood (ML) 
+//' @param tolerance The Maximum number of iterations
+//' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
+//' @author Claus Ekstrom <claus@@rprimer.dk>
 //' @export
 // [[Rcpp::export]]
 List lmm_Maximize_cpp(NumericVector y,
 		      NumericMatrix x,
 		      List vc,
-		      int maxiter,
+		      int maxiter = 25,
 		      bool REML = true,
 		      double tolerance = 0.00001) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();

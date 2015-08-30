@@ -7,7 +7,7 @@
 correlation structure}
 \usage{
 geekin(formula, family = gaussian, data, weights, subset, id, na.action,
-  control = geese.control(...), varlist, ...)
+  control = geepack::geese.control(...), varlist, ...)
 }
 \arguments{
 \item{formula}{See corresponding documentation to \code{glm}.}

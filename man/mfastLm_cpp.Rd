@@ -20,6 +20,6 @@ A data frame with two variables: coefficients and stderr that gives the slope es
 Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 }
 \author{
-Claus Ekstrøm <claus@rprimer.dk>
+Claus Ekstrom <claus@rprimer.dk>
 }
 

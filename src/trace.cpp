@@ -8,7 +8,7 @@ using namespace Rcpp;
 //' @param A A matrix with dimensions n*k.
 //' @param B A matrix with dimenions n*k.
 //' @return The trace of the matrix product
-//' @author Claus Ekstrøm <claus@@rprimer.dk>
+//' @author Claus Ekstrom <claus@@rprimer.dk>
 //' @export
 // [[Rcpp::export]]
 double tracemp(NumericMatrix A, NumericMatrix B) {

@@ -22,6 +22,6 @@ A matrix with dimensions k * k giving teh quadratic form
 Fast computation of a quadratic form  t(x) %*% M %*% x
 }
 \author{
-Claus Ekstrøm <claus@rprimer.dk>
+Claus Ekstrom <claus@rprimer.dk>
 }
 

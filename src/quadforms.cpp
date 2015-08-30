@@ -10,7 +10,7 @@ using namespace Rcpp;
 //' @param invertM A logical. If set to TRUE then M will be inverted before computations (defaults to FALSE)
 //' @param transposex A logical. Should the matrix be transposed before computations (defaults to FALSE).
 //' @return A matrix with dimensions k * k giving teh quadratic form
-//' @author Claus Ekstrøm <claus@@rprimer.dk>
+//' @author Claus Ekstrom <claus@@rprimer.dk>
 //' @export
 // [[Rcpp::export]]
 NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM = false, bool transposex = false) {

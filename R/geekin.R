@@ -1,19 +1,19 @@
 #' Fit a generalized estimating equation (GEE) model with fixed additive
 #' correlation structure
-#' 
+#'
 #' The geekin function fits generalized estimating equations but where the
 #' correlation structure is given as linear function of (scaled) fixed
 #' correlation structures.
-#' 
+#'
 #' The geekin function is essentially a wrapper function to \code{geeglm}.
 #' Through the varlist argument, it allows for correlation structures of the
 #' form
-#' 
+#'
 #' R = sum_i=1^k alpha_i R_i
-#' 
+#'
 #' where alpha_i are(nuisance) scale parameters that are used to scale the
 #' off-diagonal elements of the individual correlation matrices, R_i.
-#' 
+#'
 #' @aliases geekin print.geekin
 #' @param formula See corresponding documentation to \code{glm}.
 #' @param family See corresponding documentation to \code{glm}.
@@ -34,57 +34,57 @@
 #' @seealso \code{lmekin}, \code{geeglm}
 #' @keywords models
 #' @examples
-#' 
-#' 
+#'
+#'
 #'  # Get dataset
 #'  library(kinship2)
 #'  library(mvtnorm)
 #'  data(minnbreast)
-#' 
-#'  breastpeda <- with(minnbreast[order(minnbreast$famid), ], pedigree(id, 
+#'
+#'  breastpeda <- with(minnbreast[order(minnbreast$famid), ], pedigree(id,
 #'                    fatherid, motherid, sex,
 #'                    status=(cancer& !is.na(cancer)), affected=proband,
 #'                    famid=famid))
-#' 
+#'
 #' set.seed(10)
-#' 
+#'
 #' nfam <- 6
 #' breastped <- breastpeda[1:nfam]
-#' 
+#'
 #'  # Simulate a response
-#' 
+#'
 #' # Make dataset for lme4
 #' df <- lapply(1:nfam, function(xx) {
 #'             as.data.frame(breastped[xx])
-#'             }) 
-#' 
+#'             })
+#'
 #' mydata <- do.call(rbind, df)
 #' mydata$famid <- rep(1:nfam, times=unlist(lapply(df, nrow)))
-#' 
+#'
 #' y <- lapply(1:nfam, function(xx) {
 #'             x <- breastped[xx]
 #'             rmvtnorm.pedigree(1, x, h2=0.3, c2=0)
-#'             }) 
+#'             })
 #' yy <- unlist(y)
-#' 
+#'
 #' library(geepack)
-#' 
+#'
 #' geekin(yy ~ 1, id=mydata$famid, varlist=list(2*kinship(breastped)))
-#' 
+#'
 #' # lmekin(yy ~ 1 + (1|id), data=mydata, varlist=list(2*kinship(breastped)),method="REML")
-#' 
-#' 
-#' 
-#' 
+#'
+#'
+#'
+#'
 #' @export geekin
 geekin <- function(formula,
-                   family=gaussian, 
+                   family=gaussian,
                    data,
                    weights,
                    subset,
                    id,
                    na.action,
-                   control=geese.control(...),
+                   control=geepack::geese.control(...),
                    varlist,
 #                   type=c("pearson", "OR"),
                    ...
@@ -112,7 +112,7 @@ geekin <- function(formula,
   glmFit <- eval(glmcall, parent.frame())
   mf <- model.frame(glmFit)
 
-  
+
   # Extract clusters from formula
   # Can only accept ONE simple random effect
 #  modterm <- attr(terms(formula), "term.labels")
@@ -130,15 +130,15 @@ geekin <- function(formula,
   # Eval det rigtige sted
 
   # Check subset på variansmatricerne
- 
+
 #  print(get(id))
 #  print(id)
-  
+
   # Check that data are in the correct order
   if (!ordered.clusters(id)) {
     stop("the clusters must appear as contiguous blocks")
   }
-  
+
   # The updated cluster index
   id.fixed <- id
 
@@ -167,7 +167,7 @@ geekin <- function(formula,
   geecall$control <- control
   geecall$id <- id.fixed
   geecall$data <- mf
-  
+
   geeFit <- eval(geecall, parent.frame())
 
   # Cheat the output so the varlist and data don't look too horrible
@@ -177,9 +177,9 @@ geekin <- function(formula,
   geeFit
 }
 
-         
-  
-print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...) 
+
+
+print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
 {
     xg <- x$geese
     if (is.null(digits)) {
@@ -189,7 +189,7 @@ print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
     print(x$call)
     cat("\nCoefficients:\n")
     print(unclass(x$coefficients), digits = digits)
-    cat("\nDegrees of Freedom:", length(x$y), "Total (i.e. Null); ", 
+    cat("\nDegrees of Freedom:", length(x$y), "Total (i.e. Null); ",
         x$df.residual, "Residual\n")
     if (!xg$model$scale.fix) {
         cat("\nScale Link:                  ", xg$model$sca.link)
@@ -202,9 +202,9 @@ print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
         cat("Estimated Correlation Parameters:\n")
         print(unclass(xg$alpha), digits = digits)
     }
-    cat("\nNumber of clusters:  ", length(xg$clusz), "  Maximum cluster size:", 
+    cat("\nNumber of clusters:  ", length(xg$clusz), "  Maximum cluster size:",
         max(xg$clusz), "\n")
-    if (nzchar(mess <- naprint(x$na.action))) 
+    if (nzchar(mess <- naprint(x$na.action)))
         cat("  (", mess, ")\n", sep = "")
 
     cat("\n")

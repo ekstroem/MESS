@@ -18,6 +18,6 @@ The trace of the matrix product
 Fast computation of the trace of the matrix product trace(t(A) %*% B)
 }
 \author{
-Claus Ekstrøm <claus@rprimer.dk>
+Claus Ekstrom <claus@rprimer.dk>
 }
 

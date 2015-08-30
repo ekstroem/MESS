@@ -6,19 +6,6 @@
 
 using namespace Rcpp;
 
-// lmm_maximize_cpp
-DataFrame lmm_maximize_cpp(NumericVector y, NumericMatrix x, int addintercept);
-RcppExport SEXP MESS_lmm_maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type addintercept(addinterceptSEXP);
-    __result = Rcpp::wrap(lmm_maximize_cpp(y, x, addintercept));
-    return __result;
-END_RCPP
-}
 // lmm_Maximize_cpp
 List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML, double tolerance);
 RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP, SEXP toleranceSEXP) {
