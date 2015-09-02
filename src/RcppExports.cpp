@@ -35,6 +35,17 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// qdiag
+NumericVector qdiag(NumericMatrix x);
+RcppExport SEXP MESS_qdiag(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    __result = Rcpp::wrap(qdiag(x));
+    return __result;
+END_RCPP
+}
 // quadform
 NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM, bool transposex);
 RcppExport SEXP MESS_quadform(SEXP xSEXP, SEXP MSEXP, SEXP invertMSEXP, SEXP transposexSEXP) {

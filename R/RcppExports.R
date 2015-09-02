@@ -30,6 +30,17 @@ mfastLm_cpp <- function(y, x, addintercept) {
     .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
+#' Fast extraction of matrix diagonal
+#'
+#' @description Fast extraction of matrix diagonal
+#' @param x The matrix to extract the diagonal from
+#' @return A vector with the diagonal elements
+#' @details Note this function can only be used for extraction
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+qdiag <- function(x) {
+    .Call('MESS_qdiag', PACKAGE = 'MESS', x)
+}
+
 #' Fast quadratic form computation
 #'
 #' @description Fast computation of a quadratic form  t(x) %*% M %*% x

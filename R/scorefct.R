@@ -1,7 +1,5 @@
 #' Internal functions for the MESS package
 #'
-#'
-#'
 #' @param o input geepack object from a geeglm fit.
 #' @param beta The estimated parameters. If set to \code{NULL} then the parameter estimates are extracted from the model fit object o.
 #' @param testidx Indices of the beta parameters that should be tested equal to zero
@@ -46,7 +44,7 @@ scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
         csize <- sum(idx)
 
         # Di is r*k
-#        Di <- t(x[idx,,drop=FALSE]) %*% diag(o$family$mu.eta(linear.predictors[idx]), nrow=csize)
+#        Di <- t(x[idx,,drop=FALSE]) %*% MESS:::qdiag(o$family$mu.eta(linear.predictors[idx]), nrow=csize)
         Di <- crossprod(x[idx,,drop=FALSE], diag(o$family$mu.eta(linear.predictors[idx]), nrow=csize))
         A  <- diag(sqrt(o$family$variance(mui[idx])), nrow=csize)
         Rmat <- diag(csize)
@@ -57,20 +55,19 @@ scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
         if (o$corstr=="exchangeable")
             diag(Ralpha) <- 1
 
-        V <- outer(diag(A), diag(A))*Ralpha*o$geese$gamma  # Ok
+        V <- outer(MESS:::qdiag(A), MESS:::qdiag(A))*Ralpha*o$geese$gamma  # Ok
 
         # V inverse
         Vinv <- invert(V)
-        DiVinv <- Di %*% Vinv
+        DiVinv <- tcrossprod(Di, Vinv)
         list(score = DiVinv %*% (y[idx] - mui[idx]),
-             DUD   = DiVinv %*% t(Di))
+             DUD   = tcrossprod(DiVinv, Di))
     })
 
     ## Speed improvement?
     # S <- apply(sapply(myres, function(oo) oo[[1]]), 1, sum)
     S <- rowSums(sapply(myres, function(oo) oo[[1]]))
 
-#    Vsand <- Reduce("+", lapply(myres, function(oo) { oo[[1]] %*% t(oo[[1]])})) # I_1
     Vsand <- Reduce("+", lapply(myres, function(oo) { tcrossprod(oo[[1]])})) # I_1
     VDUD  <- Reduce("+", lapply(myres, function(oo) { oo[[2]] })) #  I_0
     iVDUD <- invert(VDUD)

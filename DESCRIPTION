@@ -1,8 +1,8 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.3-6
-Date: 2015-8-30
+Version: 0.3-7
+Date: 2015-9-02
 Author: Claus Ekstrom <claus@rprimer.dk>
 Maintainer: Claus Ekstrom <claus@rprimer.dk>
 Depends:
