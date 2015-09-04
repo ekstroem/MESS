@@ -106,11 +106,17 @@ List lmm_Maximize_cpp(NumericVector y,
 
     PY = P*Y;
     for (i = 0; i < nVC+1; i++) {
-      Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
+      // Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
+      /// exp-var
+      Deriv(i) += - (arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY)))*exp(theta(i));
       
       for (j = i; j < nVC+1; j++) {
 	// Just do the VC VC multiplications once and store them for speed?
 	Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
+
+	/// exp-var
+	Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
+	
 	Fisher(j,i) = Fisher(i,j);
       }
     }
