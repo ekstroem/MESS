@@ -3,9 +3,50 @@
 using namespace Rcpp;
 
 
+double compute_logLike(const arma::colvec& Y, const arma::mat& X, const arma::colvec& beta, const std::vector<arma::mat>& vc, const arma::colvec& theta, bool REML = true) {
+
+  int i;
+  arma::uword n = X.n_rows, nVC = vc.size(); // k = X.n_cols, 
+  arma::mat Omega(n,n);
+  double logDet = 0, logDet2 = 0;
+  double sign;
+  double logLike;
+
+  Omega.zeros();
+  for (i=0; i<nVC; i++) {
+    Omega += theta(i)*vc[i];
+  }
+
+  // Invert the estimated variance matrix
+  // and compute the determinant
+  arma::mat IOmega = inv_sympd(Omega);
+  log_det(logDet, sign, Omega);
+
+  if (REML) {
+      arma::mat IOmegaX = (IOmega*X);
+      arma::mat xOx = arma::trans(X) * (IOmegaX);
+      arma::mat IxOmegax = arma::inv(xOx);
+      log_det(logDet2, sign , xOx);
+      arma::mat P = IOmega - (IOmegaX*IxOmegax)*arma::trans(IOmegaX);   
+      arma::mat IOmega2 = P*P;
+      
+      arma::mat PY = P*Y;
+      logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
+      logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
+	
+  } else {
+    arma::colvec resid = Y - X*beta;
+    logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + arma::as_scalar(arma::trans(resid)*IOmega*(resid)));
+  }
+  
+
+  return logLike;
+}
+
+
 // Currently missing in the algorithm in the code below:
-// 1. Step halving
-// 2. transform VC coefficients to have non-negative values
+// OK. Step halving
+// 2. transform VC coefficients to have non-negative values - waste of time
 // 3. Choose between ML / REML
 // 4. Add convergence tolerance
 // 5. Clustered input
@@ -29,35 +70,51 @@ List lmm_Maximize_cpp(NumericVector y,
 		      List vc,
 		      int maxiter = 25,
 		      bool REML = true,
-		      double tolerance = 0.00001) {
+		      double tolerance = 0.00001,
+		      bool reparam = false,
+		      bool scale = false
+		      ) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
   // Should do sanity checks
   
   arma::mat X(x.begin(), n, k, false);
-  arma::colvec Y(y.begin(), y.size(), false);
+  arma::colvec Y = Rcpp::as<arma::colvec>(y); // Making a full copy on purpose since I want to scale it later. Otherwise use Y(y.begin(), y.size(), false);
   arma::colvec theta = arma::zeros(nVC+1);
-
+  
   // Convert List/VC to at list of arma matrices
   std::vector<arma::mat> VC(vc.size()+1);
 
   for (int i=0; i < nVC; i++) {
     Rcpp::NumericMatrix tmpcv = vc[i];
     VC[i] = Rcpp::as<arma::mat>(tmpcv);
-    // VC[i](tmpcv.begin(), n, n, false);
   }
   VC[nVC] = arma::eye<arma::mat>(n,n);
   
   
   // Initial estimate for beta (from independence model)
+
+  double scalingfactor = stddev(Y);
+  if (scale) {
+    Y /= scalingfactor;
+  }
+
   arma::colvec beta = arma::solve(X, Y);
   arma::colvec deltaBeta;
+  
   arma::colvec resid = Y - X*beta;
   double sig2 = arma::as_scalar(arma::trans(resid)*resid/(n-k));
   double logLike = 0, oldLogLike = 0;
   double logDet = 0, logDet2 = 0;
   double sign;
+
+  // Initialize thetas
+  theta += 0.05;
   theta(nVC) = sig2;
+  
+  if (reparam)
+    theta = log(theta);
+  
   int errorcode = 25;
 
   arma::mat Omega(n,n);
@@ -65,12 +122,12 @@ List lmm_Maximize_cpp(NumericVector y,
   arma::colvec mu = X * beta;
   arma::mat Fisher(nVC+1, nVC+1), InvFisher(nVC+1, nVC+1) ;
   arma::colvec Deriv(nVC+1);
-  arma::colvec WorkingTheta(k), PY(n);
+  arma::colvec WorkingTheta(nVC+1), PY(n), WorkingBeta(k);
 
-  int i, j;
+  int i, j, iter;
 
   // Main iteration loop
-  for (int iter=0; iter<maxiter; iter++) {
+  for (iter=0; iter<maxiter; iter++) {
 
     // printf("Iter %d\n", iter);
 
@@ -78,86 +135,119 @@ List lmm_Maximize_cpp(NumericVector y,
     Omega.zeros();
     
     for (i=0; i<=nVC; i++) {
-      Omega += theta(i)*VC[i];  
+      if (reparam)
+	Omega += exp(theta(i))*VC[i];
+      else 
+	Omega += theta(i)*VC[i];  
     }
     // Invert the estimated variance matrix
     // and compute the determinant
     IOmega = inv_sympd(Omega);
     log_det(logDet, sign, Omega);
 
+    //     Rcout << "sa" << IOmega  << arma::endl;
+
+    Deriv.zeros();
+    Fisher.zeros();
     
     // X^t Omega X
     IOmegaX = (IOmega*X);
     xOx = arma::trans(X) * (IOmegaX);
     IxOmegax = arma::inv(xOx);
-    log_det(logDet2, sign , xOx);
-    P = IOmega - (IOmegaX*IxOmegax)*arma::trans(IOmegaX);   
-    IOmega2 = P*P;
-
-    if (!REML) {
-      mu = X * beta;
-      deltaBeta = arma::trans(IOmegaX) * (Y-mu);
-    }
-
-    
-
-    Deriv.zeros();
-    Fisher.zeros();
-
-    PY = P*Y;
-    for (i = 0; i < nVC+1; i++) {
-      // Deriv(i) += - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
-      /// exp-var
-      Deriv(i) += - (arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY)))*exp(theta(i));
       
-      for (j = i; j < nVC+1; j++) {
-	// Just do the VC VC multiplications once and store them for speed?
-	Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
 
-	/// exp-var
-	Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
+    if (REML) {
+      log_det(logDet2, sign , xOx);
+      P = IOmega - (IOmegaX*IxOmegax)*arma::trans(IOmegaX);   
+      IOmega2 = P*P;
+      
+      
+      PY = P*Y;
+      for (i = 0; i < nVC+1; i++) {
+	if (reparam) {
+	  Deriv(i) = (-arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY)))*exp(theta(i));
+	}
+	else {
+	  Deriv(i) = - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
+	}
 	
-	Fisher(j,i) = Fisher(i,j);
+	for (j = i; j < nVC+1; j++) {
+	  Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
+	  // Just do the VC VC multiplications once and store them for speed?	
+	  
+	  if (reparam) {
+	    if (i==j) {
+	      Fisher(i,j) = Fisher(i,j)*exp(2*theta(i)) + Deriv(i);
+	    } else {
+	      Fisher(i,j) *= exp(theta(i)+theta(j));
+	    }
+	  }	
+	  Fisher(j,i) = Fisher(i,j);
+	}
+      }
+      
+    } else {   // ML
+      mu = X*beta;
+      resid =  (Y-mu);
+      deltaBeta =  arma::trans(IOmegaX) * resid;
+
+      IOmega2 = IOmega*IOmega;
+
+      for (i = 0; i < nVC+1; i++) {
+	Deriv(i) = - arma::trace(VC[i]*IOmega2) + arma::as_scalar((arma::trans(resid)*IOmega2)*VC[i]*(IOmega2*resid)); // Could be improved
+	
+	for (j = i; j < nVC+1; j++) {
+	  Fisher(i, j) = arma::trace(VC[j]*VC[i]*IOmega2);
+	  Fisher(j, i) = Fisher(i,j);
+	}
       }
     }
-
-
-    if (!REML) {
-      //  beta += IxOmegax)*DeltaBeta;
-      //   DeltaBeta = Inverse(xOmegax)*DeltaBeta;
-    }
-
     
     // Remember to scale the 1st and 2nd derivatives by 1/2
     Deriv  *= .5;
     Fisher *= .5;
 
-    /*
-    arma::colvec OldBeta = beta;
-*/
-        
     // Inverts the matrix
     arma::mat IFisher = inv(Fisher);
 
     // Calculate the change in delta
     arma::colvec DeltaTheta = IFisher*Deriv;
-    WorkingTheta = DeltaTheta;
 
     // Possibly do step-halving
+    double step = 2.0;
+    double newll = 0;
+    int stephalvingcount =0;
+    do {
+      step /= 2;
+      stephalvingcount += 1;
+      WorkingTheta = theta + DeltaTheta*step;
+      WorkingBeta = beta + IxOmegax*deltaBeta;
 
-    theta += DeltaTheta;
-
-    for (i = 0; i<theta.size(); i++) {
-      if (theta(i)<=0)
-	theta(i)=.0001;
+      if (!reparam) {
+	for (i = 0; i<WorkingTheta.size(); i++) {
+	  if (WorkingTheta(i)<=0)
+	    WorkingTheta(i)=.0001;
+	}
+      }      
+      newll = compute_logLike(Y, X, WorkingBeta, VC, WorkingTheta, REML);
     }
+    while (newll<oldLogLike & stephalvingcount < 20);
+
+    theta = WorkingTheta;
+    beta = WorkingBeta;
     
-    logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
-    logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
-
+    // logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
+    // logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
+    logLike = newll;
+    
     Rcout << theta << arma::endl;
+    Rcout << "New log.like   " << logLike << arma::endl;
+    Rcout << "Log likelihood " << oldLogLike << arma::endl;
+    Rcout << "XXX likelihood " << compute_logLike(Y, X, beta, VC, theta) << arma::endl;
+    Rcout << "Difference     " << 10000*(logLike - oldLogLike) << arma::endl;
+    
 
-    if (iter>0 & abs(logLike-oldLogLike)<tolerance) {
+    if (iter>0 & std::abs(logLike-oldLogLike)<tolerance) {
       errorcode=0;
       break;
     }
@@ -167,21 +257,31 @@ List lmm_Maximize_cpp(NumericVector y,
     
   }
 
-  // All we can do right now
-  REML=true;
-  
+  if (reparam)
+    theta = exp(theta);
+
+  if (scale) {
+    beta *= scalingfactor;
+    Y *= scalingfactor;
+    theta *= (scalingfactor)*scalingfactor;
+    logLike = compute_logLike(Y, X, beta, VC, theta, REML);
+  }
+
+    
     // create a new data frame and return it
-  return List::create(Rcpp::Named("coefficients")=beta,
+  return List::create(Rcpp::Named("coefficients")=as<NumericVector>(wrap(beta)),
 		      Rcpp::Named("sigmas")=theta,
 		      Rcpp::Named("logLik")=logLike,
 		      Rcpp::Named("convergence")=errorcode,
-		      Rcpp::Named("REML")=REML
+		      Rcpp::Named("REML")=REML,
+		      Rcpp::Named("iterations")=iter
 		      // Need the two information matrices as well
-			   //  Rcpp::Named("Omega")=Omega,
-		      //			   Rcpp::Named("newtheta")=WorkingTheta
+		      //  Rcpp::Named("Omega")=Omega,
+		      //  Rcpp::Named("newtheta")=WorkingTheta
 			   );
   
 }
+
 
 
 

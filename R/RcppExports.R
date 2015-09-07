@@ -13,8 +13,8 @@
 #' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
-lmm_Maximize_cpp <- function(y, x, vc, maxiter = 25L, REML = TRUE, tolerance = 0.00001) {
-    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML, tolerance)
+lmm_Maximize_cpp <- function(y, x, vc, maxiter = 25L, REML = TRUE, tolerance = 0.00001, reparam = FALSE, scale = FALSE) {
+    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML, tolerance, reparam, scale)
 }
 
 #' Fast marginal simple regresion analyses
