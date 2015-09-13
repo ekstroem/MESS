@@ -72,7 +72,7 @@ List lmm_Maximize_cpp(NumericVector y,
 		      bool REML = true,
 		      double tolerance = 0.000001,
 		      bool reparam = false,
-		      bool scale = false
+		      bool scale = true
 		      ) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
@@ -215,22 +215,34 @@ List lmm_Maximize_cpp(NumericVector y,
       step /= 2;
       stephalvingcount += 1;
       WorkingTheta = theta + DeltaTheta*step;
-      // WorkingBeta = beta + IxOmegax*deltaBeta;
+      WorkingBeta = beta;
 
       if (!reparam) {
 	for (i = 0; i<WorkingTheta.size(); i++) {
 	  if (WorkingTheta(i)<=0)
-	    WorkingTheta(i)=.0001;
+	    WorkingTheta(i)=.000001;
 	}
-      }      
+      }
+
+      if (!REML) {
+	WorkingBeta += IxOmegax*deltaBeta*step;
+      }
+      
       newll = compute_logLike(Y, X, WorkingBeta, VC, WorkingTheta, REML);
+      // Rcout << "Newll " << newll << arma::endl;            
     }
-    while (newll<oldLogLike & stephalvingcount < 20);
+    while (newll<oldLogLike & stephalvingcount < 10);
+
+    // Rcout << "Step count " << stephalvingcount << arma::endl;
 
     theta = WorkingTheta;
 
-    if (!REML) 
-      beta += IxOmegax*deltaBeta;
+    if (REML) {
+      // Calculating the mean parameter estimates based on the variances	 
+      beta = IxOmegax*(arma::trans(X) *(IOmega*Y));
+    } else {
+      beta = WorkingBeta;
+    }
     
     // logLike = - 0.5*(n*log(2*arma::datum::pi) + logDet + logDet2 + arma::as_scalar(arma::trans(PY)*Y));
     // logLike -= - 0.5*beta.size()*log(2*arma::datum::pi);
