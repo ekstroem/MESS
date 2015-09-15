@@ -72,24 +72,31 @@ List lmm_Maximize_cpp(NumericVector y,
 		      bool REML = true,
 		      double tolerance = 0.000001,
 		      bool reparam = false,
-		      bool scale = true
+		      bool scale = true,
+		      bool addresidual = true
 		      ) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
   // Should do sanity checks
+
+
+  // Increment the number of VC's if the residual should be added
+  if (addresidual)
+    nVC += 1;
   
   arma::mat X(x.begin(), n, k, false);
   arma::colvec Y = Rcpp::as<arma::colvec>(y); // Making a full copy on purpose since I want to scale it later. Otherwise use Y(y.begin(), y.size(), false);
-  arma::colvec theta = arma::zeros(nVC+1);
+  arma::colvec theta = arma::zeros(nVC);
   
   // Convert List/VC to at list of arma matrices
-  std::vector<arma::mat> VC(vc.size()+1);
+  std::vector<arma::mat> VC(nVC);
 
-  for (int i=0; i < nVC; i++) {
+  for (int i=0; i < vc.size(); i++) {
     Rcpp::NumericMatrix tmpcv = vc[i];
     VC[i] = Rcpp::as<arma::mat>(tmpcv);
   }
-  VC[nVC] = arma::eye<arma::mat>(n,n);
+  if (addresidual)
+    VC[nVC-1] = arma::eye<arma::mat>(n,n);
   
   
   // Initial estimate for beta (from independence model)
@@ -110,7 +117,7 @@ List lmm_Maximize_cpp(NumericVector y,
 
   // Initialize thetas
   theta += 0.005;
-  theta(nVC) = sig2;
+  theta(nVC-1) = sig2;
   
   if (reparam)
     theta = log(theta);
@@ -120,9 +127,9 @@ List lmm_Maximize_cpp(NumericVector y,
   arma::mat Omega(n,n);
   arma::mat IOmega, P, IxOmegax, xOx, IOmegaX, IOmega2, IFisher;
   arma::colvec mu = X * beta;
-  arma::mat Fisher(nVC+1, nVC+1), InvFisher(nVC+1, nVC+1) ;
-  arma::colvec Deriv(nVC+1);
-  arma::colvec WorkingTheta(nVC+1), PY(n), WorkingBeta(k);
+  arma::mat Fisher(nVC, nVC), InvFisher(nVC, nVC) ;
+  arma::colvec Deriv(nVC);
+  arma::colvec WorkingTheta(nVC), PY(n), WorkingBeta(k);
 
   int i, j, iter;
 
@@ -134,7 +141,7 @@ List lmm_Maximize_cpp(NumericVector y,
     // Compute the Inverse variance matrix
     Omega.zeros();
     
-    for (i=0; i<=nVC; i++) {
+    for (i=0; i < nVC; i++) {
       if (reparam)
 	Omega += exp(theta(i))*VC[i];
       else 
@@ -159,7 +166,7 @@ List lmm_Maximize_cpp(NumericVector y,
       IOmega2 = P*P;
       
       PY = P*Y;
-      for (i = 0; i < nVC+1; i++) {
+      for (i = 0; i < nVC; i++) {
 	if (reparam) {
 	  Deriv(i) = (-arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY)))*exp(theta(i));
 	}
@@ -167,7 +174,7 @@ List lmm_Maximize_cpp(NumericVector y,
 	  Deriv(i) = - arma::trace(P*VC[i]) + arma::as_scalar((arma::trans(PY))*VC[i]*(PY));
 	}
 	
-	for (j = i; j < nVC+1; j++) {
+	for (j = i; j < nVC; j++) {
 	  Fisher(i,j) = arma::trace(IOmega2*VC[i]*VC[j]);
 	  // Just do the VC VC multiplications once and store them for speed?	
 	  
@@ -188,10 +195,10 @@ List lmm_Maximize_cpp(NumericVector y,
       IOmega2 = IOmega*IOmega;
 
       resid = IOmega*resid; // Note this change!!
-      for (i = 0; i < nVC+1; i++) {
+      for (i = 0; i < nVC; i++) {
 	Deriv(i) = - arma::trace(VC[i]*IOmega) + arma::as_scalar(arma::trans(resid)*VC[i]*resid);// Note the change in definition of resid
 	
-	for (j = i; j < nVC+1; j++) {
+	for (j = i; j < nVC; j++) {
 	  Fisher(i, j) = arma::trace(VC[j]*VC[i]*IOmega2);
 	  Fisher(j, i) = Fisher(i,j);
 	}
