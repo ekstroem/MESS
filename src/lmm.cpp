@@ -44,6 +44,7 @@ double compute_logLike(const arma::colvec& Y, const arma::mat& X, const arma::co
 }
 
 
+
 // Currently missing in the algorithm in the code below:
 // OK. Step halving
 // 2. transform VC coefficients to have non-negative values - waste of time
