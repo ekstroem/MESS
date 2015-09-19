@@ -5,7 +5,8 @@
 \title{Maximize linear mixed model with user-specified covariance matrices}
 \usage{
 lmm_Maximize_cpp(y, x, vc, maxiter = 25L, REML = TRUE, tolerance = 1e-06,
-  reparam = FALSE, scale = TRUE, addresidual = TRUE)
+  reparam = FALSE, scale = TRUE, addresidual = TRUE,
+  ReturnEstimatedVariance = FALSE)
 }
 \arguments{
 \item{y}{A vector of outcomes.}

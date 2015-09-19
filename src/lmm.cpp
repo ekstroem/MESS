@@ -74,7 +74,8 @@ List lmm_Maximize_cpp(NumericVector y,
 		      double tolerance = 0.000001,
 		      bool reparam = false,
 		      bool scale = true,
-		      bool addresidual = true
+		      bool addresidual = true,
+		      bool ReturnEstimatedVariance=false
 		      ) {
   arma::uword n = x.nrow(), k = x.ncol(), nVC = vc.size();
 
@@ -283,17 +284,34 @@ List lmm_Maximize_cpp(NumericVector y,
     theta *= (scalingfactor)*scalingfactor;
     logLike = compute_logLike(Y, X, beta, VC, theta, REML);
   }
-  
-  // create a new data frame and return it
-  return List::create(Rcpp::Named("coefficients")=as<NumericVector>(wrap(beta)),
-		      Rcpp::Named("sigmas")=theta,
-		      Rcpp::Named("logLik")=logLike,
-		      Rcpp::Named("convergence")=errorcode,
-		      Rcpp::Named("VarMatrix")=IxOmegax,
-		      Rcpp::Named("InvFisher")=IFisher,		      		      
-		      Rcpp::Named("REML")=REML,
-		      Rcpp::Named("iterations")=iter
-		      );
+
+  if (ReturnEstimatedVariance) {
+    // create a new data frame and return it
+    return List::create(Rcpp::Named("coefficients")=as<NumericVector>(wrap(beta)),
+			Rcpp::Named("sigmas")=theta,
+			Rcpp::Named("logLik")=logLike,
+			Rcpp::Named("convergence")=errorcode,
+			Rcpp::Named("VarMatrix")=IxOmegax,
+			Rcpp::Named("InvFisher")=IFisher,		      		      
+			Rcpp::Named("REML")=REML,
+			Rcpp::Named("iterations")=iter,
+			Rcpp::Named("EstimatedVariance")=Omega
+			);
+    
+  } else {
+    // create a new data frame and return it
+    return List::create(Rcpp::Named("coefficients")=as<NumericVector>(wrap(beta)),
+			Rcpp::Named("sigmas")=theta,
+			Rcpp::Named("logLik")=logLike,
+			Rcpp::Named("convergence")=errorcode,
+			Rcpp::Named("VarMatrix")=IxOmegax,
+			Rcpp::Named("InvFisher")=IFisher,		      		      
+			Rcpp::Named("REML")=REML,
+			Rcpp::Named("iterations")=iter,
+			Rcpp::Named("EstimatedVariance")=Omega
+			);    
+  }
+
   
 }
 

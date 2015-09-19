@@ -7,8 +7,8 @@
 using namespace Rcpp;
 
 // lmm_Maximize_cpp
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML, double tolerance, bool reparam, bool scale, bool addresidual);
-RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP, SEXP toleranceSEXP, SEXP reparamSEXP, SEXP scaleSEXP, SEXP addresidualSEXP) {
+List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML, double tolerance, bool reparam, bool scale, bool addresidual, bool ReturnEstimatedVariance);
+RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP, SEXP toleranceSEXP, SEXP reparamSEXP, SEXP scaleSEXP, SEXP addresidualSEXP, SEXP ReturnEstimatedVarianceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
@@ -21,7 +21,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type reparam(reparamSEXP);
     Rcpp::traits::input_parameter< bool >::type scale(scaleSEXP);
     Rcpp::traits::input_parameter< bool >::type addresidual(addresidualSEXP);
-    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter, REML, tolerance, reparam, scale, addresidual));
+    Rcpp::traits::input_parameter< bool >::type ReturnEstimatedVariance(ReturnEstimatedVarianceSEXP);
+    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter, REML, tolerance, reparam, scale, addresidual, ReturnEstimatedVariance));
     return __result;
 END_RCPP
 }
