@@ -19,7 +19,7 @@ Computes the correlation matrix distance between two correlation matrices
 }
 \details{
 Returns a value between 0 and 1. The correlation matrix distance becomes
-zero if the correlation matrices are equal up to a scaling factor and one if
+zero for equal correlation matrices and unity if
 they differ to a maximum extent.
 }
 \examples{
@@ -28,7 +28,7 @@ m1 <- matrix(rep(1, 16), 4)
 m2 <- matrix(c(1, 0, .5, .5, 0, 1, .5, .5, .5, .5, 1, .5, .5, .5, .5, 1), 4)
 m3 <- matrix(c(1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1), 4)
 cmd(m1, m1)
-cmd(m1, m2) 
+cmd(m1, m2)
 cmd(m2, m3)
 
 }

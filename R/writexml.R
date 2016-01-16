@@ -4,9 +4,9 @@
 #'
 #' @param data the data frame object to save
 #' @param file the file name to be written to.
-#' @param na.rm logical. Should missing values be discarded from the written XML file (defaults to FALSE)
+#' @param collapse logical. Should the output file be collapsed to make it fill less? (Defaults to TRUE)
 #' @return None
-#' @details This function requires the \pkg{XML} package to be installed to function properly.
+#' @details This function does not requires the \pkg{XML} package to be installed to function properly.
 #'
 #' @examples
 #' data(trees)
@@ -16,9 +16,7 @@
 #' @keywords file
 #' @export write.xml
 
-write.xml <- function(data, file=NULL, na.rm=FALSE) {
-#  if (!require(XML))
-#    stop("package XML must be installed")
+write.xml <- function(data, file=NULL, collapse=TRUE) {
 
   if(is.null(file))
     stop("filename not specified")
@@ -26,26 +24,22 @@ write.xml <- function(data, file=NULL, na.rm=FALSE) {
   if (!is.data.frame(data))
     stop("data must be a data frame")
 
-  # Start empty XML document tree
-  doc <- XML::newXMLDoc()
-  # Start by adding a document tag at the root of the XML file
-  root <- XML::newXMLNode("document", doc=doc)
+  con <- file(file, "w")
 
-  # Make output invisible
-  invisible(
-    # Iterate over all rows
-    lapply(1:nrow(data),
-           function(rowi) {
-             r <- XML::newXMLNode("row", parent=root)   # Create row tag
-             for(var in names(data)) {   # Iterate over variables
-               if (na.rm) {
-	         if (! is.na(data[rowi, var])) {
-	           XML::newXMLNode(var, data[rowi, var], parent = r)
-                 }
-               } else {
-                 XML::newXMLNode(var, data[rowi, var], parent = r)
-               }
-             }
-           }))
-  invisible(XML::saveXML(doc, file=file))
+  vnames <- names(data)
+  pre    <- paste0(ifelse(collapse, "", "    "), "<", vnames, ">")
+  post   <- paste0("</", vnames, ">")
+  colchar <- ifelse(collapse, "", "\n")
+  rowend  <- ifelse(collapse, "</row>\n", "  </row>")
+
+  ## Write header
+  writeLines('<?xml version="1.0"?>\n<document>', con=con)
+  sapply(1:nrow(data), function(rowi)
+      ## Start
+      writeLines(c("  <row>", paste0(pre, sapply(data[rowi,], as.character), post, collapse=colchar), rowend), con=con, sep=colchar)
+         )
+  writeLines("</document>", con=con)
+  close(con)
+
+  invisible(0)
 }

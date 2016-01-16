@@ -6,18 +6,6 @@
 
 using namespace Rcpp;
 
-// colSumProd
-NumericVector colSumProd(NumericMatrix x, NumericMatrix M);
-RcppExport SEXP MESS_colSumProd(SEXP xSEXP, SEXP MSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type M(MSEXP);
-    __result = Rcpp::wrap(colSumProd(x, M));
-    return __result;
-END_RCPP
-}
 // fwrite
 double fwrite(CharacterMatrix df);
 RcppExport SEXP MESS_fwrite(SEXP dfSEXP) {

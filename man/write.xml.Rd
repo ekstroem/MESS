@@ -4,14 +4,14 @@
 \alias{write.xml}
 \title{Write a data frame in XML format}
 \usage{
-write.xml(data, file = NULL, na.rm = FALSE)
+write.xml(data, file = NULL, collapse = TRUE)
 }
 \arguments{
 \item{data}{the data frame object to save}
 
 \item{file}{the file name to be written to.}
 
-\item{na.rm}{logical. Should missing values be discarded from the written XML file (defaults to FALSE)}
+\item{collapse}{logical. Should the output file be collapsed to make it fill less? (Defaults to TRUE)}
 }
 \value{
 None
@@ -20,7 +20,7 @@ None
 Writes the data frame to a file in the XML format.
 }
 \details{
-This function requires the \pkg{XML} package to be installed to function properly.
+This function does not requires the \pkg{XML} package to be installed to function properly.
 }
 \examples{
 data(trees)
