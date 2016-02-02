@@ -426,4 +426,28 @@ NULL
 NULL
 
 
+#' Earthquakes in 2015
+#'
+#' Information on earthquakes worldwide in 2015 with a magnitude greater than 3 on the Richteer scale. The variables are just a subset of the variables available at the source
+#'
+#'
+#' @name earthquakes
+#' @docType data
+#' @format A data frame with 19777 observations on the following 22 variables.
+#' \describe{ \item{time}{a factor with time of the earthquake}
+#' \item{\code{latitude}}{a numeric vector giving the decimal degrees latitude. Negative values for southern latitudes}
+#' \item{\code{longitude}}{a numeric vector giving the decimal degrees longitude. Negative values for western longitudes}
+#' \item{\code{depth}}{Depth of the event in kilometers}
+#' \item{\code{mag}}{The magnitude for the event}
+#' \item{\code{place}}{a factor giving a textual description of named geographic region near to the event. }
+#' \item{\code{type}}{a factor with levels \code{earthquake} \code{mining explosion} \code{rock burst}}
+#'   }
+#' @source \url{http://earthquake.usgs.gov/}
+#' @keywords datasets
+#' @examples
+#'
+#' data(earthquakes)
+#' with(earthquakes, place[which.max(mag)])
+#'
+NULL
 
