@@ -4,10 +4,12 @@
 \alias{panel.hist}
 \title{Panel plot of histogram and density curve}
 \usage{
-panel.hist(x, ...)
+panel.hist(x, col.bar = "gray", ...)
 }
 \arguments{
 \item{x}{a numeric vector of x values}
+
+\item{col.bar}{the color of the bars}
 
 \item{...}{options passed to hist}
 }

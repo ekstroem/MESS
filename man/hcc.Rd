@@ -4,7 +4,9 @@
 \alias{hcc}
 \title{Compute Hajnal-Curie-Cohen model}
 \usage{
-hcc(limit = 12, Q = 6/7, malefreq = 0.51, familyfreq = 0,
+hcc(limit = 12, S = 1, l = 0.86, A = NULL, Q = 6/7, C = 4,
+  PopAgeDifference = 1, DonorChildAge, DonorAge, NaturalChildren = c(0.2,
+  0.3, 0.3, 0.2), malefreq = 0.51, familyfreq = 0,
   criteria = c("offspring", "families"))
 }
 \arguments{

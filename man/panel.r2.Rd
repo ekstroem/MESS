@@ -14,6 +14,8 @@ panel.r2(x, y, digits = 2, cex.cor, ...)
 \item{digits}{a numeric value giving the number of digits to present}
 
 \item{cex.cor}{scaling fator for the size of text}
+
+\item{...}{extra options (not used at the moment)}
 }
 \description{
 Prints the R2 with text size depending on the size of R2
