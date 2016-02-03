@@ -61,5 +61,5 @@ panel.r2 <- function(x, y, digits=2, cex.cor, ...) {
     r <- cor(x, y, use="complete.obs")**2  # Compute R^2
     txt <- format(c(r, 0.123456789), digits=digits)[1]
     if(missing(cex.cor)) cex.cor <- 1/strwidth(txt)
-    text(0.5, 0.5, txt, cex = cex.cor * (r + .5 ))
+    text(0.5, 0.5, txt, cex = cex.cor * (r/2 + .5 ))
 }
