@@ -41,8 +41,22 @@ hcc <- function(limit = 12,
         stop("NaturalChildren must be a vector of probabilities")
     }
     NaturalChildren <- abs(NaturalChildren)/sum(abs(NaturalChildren))
-    nnat <- sample(seq(0,length(NaturalChildren)), 1, prob=NaturalChildren)
+    n.nat <- sample(seq(0,length(NaturalChildren)), 1, prob=NaturalChildren)
+    gender.nat <- rbinom(nnat, size=1, prob=malefreq)
+
+    ## AID children
+    n.aid <- limit
+    gender.aid <- rbinom(naid, size=1, prob=malefreq)
 
     ## Number of combinations
+
+
+    ## Fathers age
+
+    ## Sample AID as from our data
+    ##  res <- tmp[Donor==sample(Donor, 1)]
+    ##  n <- res$n
+
+
 
 }

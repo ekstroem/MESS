@@ -55,7 +55,7 @@ scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
         if (o$corstr=="exchangeable")
             diag(Ralpha) <- 1
 
-        V <- outer(MESS:::qdiag(A), MESS:::qdiag(A))*Ralpha*o$geese$gamma  # Ok
+        V <- outer(MESS::qdiag(A), MESS::qdiag(A))*Ralpha*o$geese$gamma  # Ok
 
         # V inverse
         Vinv <- invert(V)
