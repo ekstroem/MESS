@@ -4,12 +4,12 @@
 \alias{col.tint}
 \title{Tint an RGB color}
 \usage{
-col.tint(x, tint = 0.5)
+col.tint(col, tint = 0.5)
 }
 \arguments{
-\item{x}{an RGB color}
+\item{col}{a vector of RGB color(s)}
 
-\item{tint}{numeric value between 0 and 1. Zero results in white and 0 means no change}
+\item{tint}{numeric value between 0 and 1. Zero results in white and 1 means no change}
 }
 \description{
 Tints an RBG color

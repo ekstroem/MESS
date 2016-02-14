@@ -4,10 +4,10 @@
 \alias{col.shade}
 \title{Shade an RGB color}
 \usage{
-col.shade(x, shade = 0.5)
+col.shade(col, shade = 0.5)
 }
 \arguments{
-\item{x}{an RGB color}
+\item{col}{a vector of RGB color(s)}
 
 \item{shade}{numeric value between 0 and 1. Zero means no change and 1 results in black}
 }
