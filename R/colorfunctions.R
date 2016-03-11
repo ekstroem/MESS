@@ -82,3 +82,5 @@ col.alpha <- function(col, alpha=1) {
     apply(col2rgb(col, alpha=TRUE)/255, 2, function(x) rgb(x[1], x[2], x[3], alpha=alpha))
 
 }
+
+
