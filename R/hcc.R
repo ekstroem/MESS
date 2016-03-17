@@ -33,36 +33,45 @@ hcc <- function(limit = 12,
                 FUN.aid.fam.age = hcc.aid.family.age,
                 NaturalChildren = c(.2, .3, .3, .2),
                 malefreq = .51,
-                familyfreq = 0,
+                familyfreq = 0.14,
                 criteria = c("offspring", "families")) {
 
     ## Age
     ## Pop age difference
     ## CC
 
-
+    ##
+    ## Sanity checks.
+    ##
     criteria <- match.arg(criteria)
-
-    ## Sanity check. The geography vectors should have the same length or be scalar
+    ## The geography vectors should have the same length or be scalar
+    if (length(S)==1 & max(length(A), length(Q))> 1)
+        warning("S is donors for *each* region")
+    inputl <- sapply(list(A, Q, S), length)
+    if(length(inputl[inputl>1])>1)
+        stop("S, A, and Q should either be scalars or have the same length")
 
     ## NaturalChildren
     if (sum(abs(NaturalChildren) < .Machine$double.eps^2)) {
         stop("NaturalChildren must be a vector of probabilities")
     }
     NaturalChildren <- abs(NaturalChildren)/sum(abs(NaturalChildren))
-    n.nat <- sample(seq(0,length(NaturalChildren)-1), 1, prob=NaturalChildren)
+    n.nat <- sample(seq(0,length(NaturalChildren)-1), 1, prob=NaturalChildren) ## Number of natural children
 
     ## AID children
     n.aid <- limit
-    aid.family <- rbinom(n.aid, size=1, prob=familyfreq)
+    aid.family <- rbinom(n.aid, size=1, prob=familyfreq)     # Find out which aid children have a sibling. Can only have 1
     n.aid.family <- sum(aid.family)
+    if (criteria != "families") {   # Do not make donor families unless criteria is families
+        n.aid.family <- 0
+    }
 
-    age.donor <- FUN.aid.age(n.aid)
+    age.donor <- FUN.aid.age(n.aid)     # Donor age when getting AID children
 
     ## Glue everything together
     n <- n.aid + n.nat + n.aid.family
-    donor <- data.frame(id=seq(n),
-                        type=c(rep(1,n.aid), rep(2,n.nat), rep(1,n.aid.family)),
+    donor <- data.frame(id=seq(n),                             # Individual id within family
+                        type=c(rep(1,n.aid), rep(2,n.nat), rep(1,n.aid.family)),   # 1 is AID, 2 is natural
                         sex=rbinom(n, size=1, prob=malefreq),  # 1 male, 0 female
                         age = c(age.donor, FUN.nat.age(n.nat), age.donor[aid.family==1] + FUN.aid.fam.age(n.aid.family)),
                         momid=c(seq(n.aid+n.nat), seq(n.aid)[aid.family==1])
@@ -71,6 +80,8 @@ hcc <- function(limit = 12,
     ## Find all possible combos
     ## Keep only relevant gender combinations
     keep <- abs(outer(donor$sex, donor$sex, FUN="-"))
+
+    print(keep)
 
     ## Remove nat vs nat
     keep[donor$type==2,donor$type==2] <-  0
@@ -83,6 +94,8 @@ hcc <- function(limit = 12,
 
     RR <- outer(donor$age, donor$age, "-")[keep]
 
+    print(outer(donor$age, donor$age, "-"))
+
     ## This could be sped up by being computed outside the function
     agespan <- seq(floor(min(as.numeric(names(agediff)))), ceiling(max(as.numeric(names(agediff)))), 1)
     dr <- hist(agediff, breaks=agespan, plot=FALSE)$density
@@ -90,31 +103,34 @@ hcc <- function(limit = 12,
     dbar <- max(dr)
 
     ## Check span her
-    res <- 2* sum(dr[as.vector(RR) - agespan[1] +1]) * 2 * l * CC * Q * S/ A
+    res <- 2* sum(dr[as.vector(RR) - agespan[1] +1]) * 2 * l * CC * sum(Q * S / A)
 
-    list(probability=res, df=donor, criteria=criteria)
+    list(probability=res, df=donor, criteria=criteria, regions=max(sapply(list(S, Q, A), length)), DonorsPerRegion=S)
 }
 
 hcc.nat.age <- function(n) {
     ## Draw from the marginal distributions - then order
     ## Not ideal
-    rep(33.5, n)
+    res <- integer(0)
+
+    if (n>0) {
+        res <- rep(31.5, n) + (1:n)*2
+    }
+    res
 }
 
 hcc.aid.age <- function(n) {
-    ## Draw first age from the donor information
-    probs <- c(0.00615603614623044, 0.0184558127425089, 0.0396434133634452,
-               0.0649260847393735, 0.0863569855166136, 0.100869544200651, 0.10595658647087,
-               0.099507320379802, 0.0865748210929907, 0.0707606214357199, 0.0546002111552864,
-               0.0430105148606771, 0.0335987463285334, 0.0256644391133457, 0.0212556002279848,
-               0.0195926191617051, 0.0200303311379039, 0.0204637575051394, 0.018234457992895,
-               0.0137984877765597, 0.00976582770276006, 0.00782930985731277,
-               0.00778332018555664, 0.00830227622716194, 0.00732420653449786,
-               0.00440308177934223, 0.00174704329404207, 0.000792347200327918,
-               0.0010166226945827, 0.00100755023965697, 0.000466022238166756,
-               9.69403339694676e-05, 9.06036438747496e-06)
 
-    startage <- sample(seq(18, 55, 1), 1, prob=probs)
+    if (n==0)
+        stop("Must provide donor age")
+    ## Draw first age from the donor information
+
+    probs <- c(0.0125, 0.0273, 0.0496, 0.0570, 0.0718, 0.1014, 0.0903, 0.0792, 0.0755,
+               0.0755, 0.0533, 0.0236, 0.0570, 0.0162, 0.0310, 0.0199, 0.0162, 0.0125,
+               0.0236, 0.0199, 0.0162, 0.0125, 0.0088, 0.0051, 0.0051, 0.0051, 0.0125,
+               0.0088, 0.0019, 0.0014, 0.0014, 0.0014, 0.0051, 0.0014)
+
+    startage <- sample(seq(19, 52, 1), 1, prob=probs)
 
     ## Then draw the remaining age difference from the following
     ## distribution (based on the donor data)
@@ -122,6 +138,7 @@ hcc.aid.age <- function(n) {
       startage + cumsum(rpois(n-1, lambda=exp(-0.65 + rnorm(n-1, sd=0.34)))))
 }
 
+## Return the age difference between first donor child and 2nd donor child in a family
 hcc.aid.family.age <- function(n) {
     rnbinom(n, size=10, mu=2)+1
 }
