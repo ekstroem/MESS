@@ -4,13 +4,18 @@
 \alias{hcc}
 \title{Compute Hajnal-Curie-Cohen model}
 \usage{
-hcc(limit = 12, S = 1, l = 0.86, A = NULL, Q = 6/7, C = 4,
-  PopAgeDifference = 1, DonorChildAge, DonorAge, NaturalChildren = c(0.2,
-  0.3, 0.3, 0.2), malefreq = 0.51, familyfreq = 0,
-  criteria = c("offspring", "families"))
+hcc(limit = 12, S = 1, l = 0.86, A = 60000, Q = 6/7, CC = 4,
+  agediff = setNames(rep(1, 41), -20:20), FUN.nat.age = hcc.nat.age,
+  FUN.aid.age = hcc.aid.age, FUN.aid.fam.age = hcc.aid.family.age,
+  NaturalChildren = c(0.2, 0.3, 0.3, 0.2), malefreq = 0.51,
+  familyfreq = 0.14, criteria = c("offspring", "families"))
 }
 \arguments{
-\item{limit}{a square matrix}
+\item{limit}{the number of AID children for each donor}
+
+\item{S}{the number of donors}
+
+\item{NaturalChildren}{A vector of numbers representing the probabilities of that number of natural children (first element corresponds to zero children, second to 1 etc.).}
 
 \item{malefreq}{the frequency of male births (defaults to 0.51). Set to NULL to force equal male/female distribution among donor offspring}
 

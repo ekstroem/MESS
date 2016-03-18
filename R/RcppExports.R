@@ -34,6 +34,18 @@ lmm_Maximize_cpp <- function(y, x, vc, maxiter = 25L, REML = TRUE, tolerance = 0
     .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML, tolerance, reparam, scale, addresidual, ReturnEstimatedVariance)
 }
 
+#' Fast replication of a matrix
+#'
+#' @description Fast generation of a matrix by replicating a matrix row- and column-wise in a block-like fashion
+#' @param m1 A matrix with dimensions r*c.
+#' @param m2 An integer giving the number of times the matrix is replicated row-wise
+#' @return A matrix with dimensions (r*nrow) x (c*ncol)
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @export
+mrbind <- function(m1, m2) {
+    .Call('MESS_mrbind', PACKAGE = 'MESS', m1, m2)
+}
+
 #' Fast marginal simple regresion analyses
 #'
 #' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
@@ -70,6 +82,19 @@ qdiag <- function(x) {
 #' @export
 quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
     .Call('MESS_quadform', PACKAGE = 'MESS', x, M, invertM, transposex)
+}
+
+#' Fast replication of a matrix
+#'
+#' @description Fast generation of a matrix by replicating a matrix row- and column-wise in a block-like fashion
+#' @param x A matrix with dimensions r*c.
+#' @param nrow An integer giving the number of times the matrix is replicated row-wise
+#' @param ncol An integer giving the number of times the matrix is replicated column-wise
+#' @return A matrix with dimensions (r*nrow) x (c*ncol)
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @export
+repmat <- function(x, nrow = 1L, ncol = 1L) {
+    .Call('MESS_repmat', PACKAGE = 'MESS', x, nrow, ncol)
 }
 
 #' Fast computation of trace of matrix product

@@ -37,6 +37,18 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// mrbind
+NumericMatrix mrbind(NumericMatrix m1, NumericMatrix m2);
+RcppExport SEXP MESS_mrbind(SEXP m1SEXP, SEXP m2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type m1(m1SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type m2(m2SEXP);
+    __result = Rcpp::wrap(mrbind(m1, m2));
+    return __result;
+END_RCPP
+}
 // mfastLm_cpp
 DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept);
 RcppExport SEXP MESS_mfastLm_cpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
@@ -72,6 +84,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type invertM(invertMSEXP);
     Rcpp::traits::input_parameter< bool >::type transposex(transposexSEXP);
     __result = Rcpp::wrap(quadform(x, M, invertM, transposex));
+    return __result;
+END_RCPP
+}
+// repmat
+NumericMatrix repmat(NumericMatrix x, int nrow, int ncol);
+RcppExport SEXP MESS_repmat(SEXP xSEXP, SEXP nrowSEXP, SEXP ncolSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
+    Rcpp::traits::input_parameter< int >::type ncol(ncolSEXP);
+    __result = Rcpp::wrap(repmat(x, nrow, ncol));
     return __result;
 END_RCPP
 }
