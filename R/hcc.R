@@ -22,7 +22,7 @@
 #'
 #' @export hcc
 hcc <- function(limit = 12,
-                S = 1,
+                S = 10,
                 l = 0.86,
                 A = 60000,
                 Q = 6/7,
