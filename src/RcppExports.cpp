@@ -6,6 +6,18 @@
 
 using namespace Rcpp;
 
+// cmd
+double cmd(NumericMatrix x, NumericMatrix y);
+RcppExport SEXP MESS_cmd(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type y(ySEXP);
+    __result = Rcpp::wrap(cmd(x, y));
+    return __result;
+END_RCPP
+}
 // filldown
 SEXP filldown(SEXP x);
 RcppExport SEXP MESS_filldown(SEXP xSEXP) {

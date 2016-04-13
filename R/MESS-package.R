@@ -451,3 +451,26 @@ NULL
 #'
 NULL
 
+
+
+#' Non-parametric Kruskal Wallis data example
+#'
+#' Artificial dataset to show that the p-value obtained for the Kruskal Wallis is only valid _after_ the distributional form
+#' has been checked to be the same for all groups.
+#'
+#' @name kwdata
+#' @docType data
+#' @format An artificial data frame with 18 observations in each of three groups.
+#' \describe{ \item{x}{measurements for group 1}
+#' \item{y}{measurements for group 2}
+#' \item{z}{measurements for group 3}}
+#' @source Data example found on the internet
+#' @keywords datasets
+#' @examples
+#'
+#' data(greenland)
+#' model <- lm(airtemp ~ year, data=greenland)
+#' plot(greenland$year, greenland$airtemp, xlab="Year", ylab="Air temperature")
+#' abline(model, col="red")
+#'
+NULL
