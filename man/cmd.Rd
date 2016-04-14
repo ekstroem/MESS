@@ -12,8 +12,6 @@ cmd(x, y)
 \item{y}{Second correlation matrix}
 }
 \value{
-A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
-
 Returns the correlation matrix distance, which is a value between 0 and 1. The correlation matrix distance becomes
 zero for equal correlation matrices and unity if they differ to a maximum extent.
 }

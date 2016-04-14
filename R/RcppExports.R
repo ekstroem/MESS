@@ -6,7 +6,6 @@
 #' @description Computes the correlation matrix distance between two correlation matrices
 #' @param x First correlation matrix
 #' @param y Second correlation matrix
-#' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
 #' @return Returns the correlation matrix distance, which is a value between 0 and 1. The correlation matrix distance becomes
 #' zero for equal correlation matrices and unity if they differ to a maximum extent.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
