@@ -55,21 +55,22 @@ gkgamma <- function(x, conf.level = 0.95) {
   for (i in 1:rows) {
     for (j in 1:cols) {
       con[i,j] <- sum(x[rseq<i,cseq<j]) + sum(x[rseq>i,cseq>j])
-      dis[i,j] <- sum(x[rseq>i,cseq<j]) + sum(x[rseq>i,cseq<j])
+      dis[i,j] <- sum(x[rseq>i,cseq<j]) + sum(x[rseq<i,cseq>j])
     }
-  }
-  CC <- sum(x*con)/2
-  DC <- sum(x*dis)/2
+}
+
+  CC <- sum(x*con)
+  DC <- sum(x*dis)
 
   ESTIMATE <- (CC-DC)/(CC+DC)
 
-  se1 <- sqrt(sum(x*(DC*con - CC*dis)^2)*16/(CC+DC)^4)
-  se0 <- sqrt((sum(x*(con-dis)^2) - (CC-DC)^2/n)*4/(CC+DC)^2)
+  se1 <- sqrt(sum(x*(DC*con - CC*dis)^2))*4/((CC+DC)^2) # sqrt(sum(x*(DC*con - CC*dis)^2)*16/(CC+DC)^4)
+  se0 <- 2 / (CC + DC) * sqrt(sum(x*(con-dis)^2) - (CC-DC)^2/n)
 
   STATISTIC <- ESTIMATE / se0
 
   PVAL <- 2*pnorm(-abs(STATISTIC))
-  CINT <- ESTIMATE + c(-1,1)*qnorm(conf.level)*se1
+  CINT <- ESTIMATE + c(1,-1)*qnorm((1-conf.level)/2)*se1
   if (!is.null(CINT))
     attr(CINT, "conf.level") <- conf.level
 

@@ -74,6 +74,18 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// page
+NumericVector page(DatetimeVector from, DatetimeVector to);
+RcppExport SEXP MESS_page(SEXP fromSEXP, SEXP toSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< DatetimeVector >::type from(fromSEXP);
+    Rcpp::traits::input_parameter< DatetimeVector >::type to(toSEXP);
+    __result = Rcpp::wrap(page(from, to));
+    return __result;
+END_RCPP
+}
 // qdiag
 NumericVector qdiag(NumericMatrix x);
 RcppExport SEXP MESS_qdiag(SEXP xSEXP) {
