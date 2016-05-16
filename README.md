@@ -14,3 +14,11 @@ The stable version of MESS can always be obtained from CRAN
 ```{r}
 install.packages("MESS")
 ```
+
+
+## Planned future functions
+
+* A function to extract the estimated working correlation matrix from
+  geeglm objects
+* A fast age calculator
+  

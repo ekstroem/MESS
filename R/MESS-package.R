@@ -389,6 +389,32 @@ NULL
 
 
 
+#' Estimated life expectancy for Danish newborns
+#'
+#' The estimated life expectancy for newborn Danes split according to gender.
+#'
+#' @name lifeexpect
+#' @docType data
+#' @format  A data frame with 70 observations on the following 3 variables.
+#'   \describe{
+#'     \item{\code{year}}{a character vector} giving the calendar interval on which the estimation was based.
+#'     \item{\code{male}}{a numeric vector} Life expectancy for males (in years).
+#'     \item{\code{female}}{a numeric vector} Life expectancy for females (in years)
+#'     \item{\code{myear}}{a numeric vector} The midpoint of the year interval
+#'   }
+#' @source Data collected from Danmarsk Statistik.
+#' See \url{http://www.dst.dk} for more information.
+#' @keywords datasets
+#' @examples
+#'
+#' data(lifeexpect)
+#' plot(lifeexpect$myear, lifeexpect$male)
+#'
+#'
+NULL
+
+
+
 
 
 #' Gene expression data from two-color dye-swap experiment
@@ -468,9 +494,49 @@ NULL
 #' @keywords datasets
 #' @examples
 #'
-#' data(greenland)
-#' model <- lm(airtemp ~ year, data=greenland)
-#' plot(greenland$year, greenland$airtemp, xlab="Year", ylab="Air temperature")
-#' abline(model, col="red")
+#' data(kwdata)
+#' newdata <- stack(kwdata)
+#' kruskal.test(values ~ ind, newdata)
+#'
+NULL
+
+#' Effect of smoking on self reported health
+#'
+#' Effect of smoking at 45 years of age on self reported health five years later. Data are on a sample of males from the Glostrup survey.
+#'
+#'
+#'
+#' @name smokehealth
+#' @docType data
+#' @format A table with daily smoking categories for the rows and self reported health five years later as the columns.
+#' @source Data example found on the internet but originates from Svend Kreiner
+#' @keywords datasets
+#' @examples
+#'
+#' data(smokehealth)
+#' fisher.test(smokehealth)
+#' gkgamma(glostruphealth)
+#'
+NULL
+
+#' Ozone concentration damage to picea spruce
+#'
+#' Damage scores (ordinal scale) for Picea Sitchesis shoots at two dates, at four temperatures, and 4 ozone Levels
+#'
+#' @name picea
+#' @docType data
+#' @format An artificial data frame with 18 observations in each of three groups.
+#' \describe{\item{date}{a character vector giving the date}
+#' \item{temp}{temperature in degrees Celcius}
+#' \item{conc}{Ozone concentration at 4 different levels}
+#' \item{damage}{the damage score from 0-4, higher is more damage}
+#' \item{count}{The number of occurrences of this group}}
+#' @source P.W. Lucas, D.A. Cottam, L.J. Sheppard, B.J. Francis (1988). "Growth
+#' Responses and Delayed Winter Hardening in Sitka Spruce Following Summer
+#' Exposure to Ozone," New Phytologist, Vol. 108, pp. 495-504.
+#' @keywords datasets
+#' @examples
+#'
+#' data(picea)
 #'
 NULL
