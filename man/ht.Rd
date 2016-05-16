@@ -14,6 +14,8 @@ ht(x, n = 6L, m = n, returnList = FALSE, ...)
 \item{m}{The number of elements to list for the tail}
 
 \item{returnList}{Logical. Should the result be returned as a list}
+
+\item{...}{additional arguments passed to functions (not used at the moment)}
 }
 \value{
 NULL unless returnList is set to TRUE in which case a list is returned

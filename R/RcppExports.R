@@ -43,34 +43,6 @@ filldown <- function(x) {
     .Call('MESS_filldown', PACKAGE = 'MESS', x)
 }
 
-#' Maximize linear mixed model with user-specified covariance matrices
-#'
-#' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
-#' @param y A vector of outcomes.
-#' @param x A design matrix of regressor variables. Must have the same number of rows as the length of y.
-#' @param vc A list of fixed variance-covariance matrices
-#' @param maxiter Maximum number of iterations
-#' @param REML A logical that determines if restricted maximum likelihood (REML - the default) or maximum likelihood (ML) 
-#' @param tolerance The Maximum number of iterations
-#' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
-#' @author Claus Ekstrom <claus@@rprimer.dk>
-#' @export
-lmm_Maximize_cpp <- function(y, x, vc, maxiter = 25L, REML = TRUE, tolerance = 0.000001, reparam = FALSE, scale = TRUE, addresidual = TRUE, ReturnEstimatedVariance = FALSE) {
-    .Call('MESS_lmm_Maximize_cpp', PACKAGE = 'MESS', y, x, vc, maxiter, REML, tolerance, reparam, scale, addresidual, ReturnEstimatedVariance)
-}
-
-#' Fast replication of a matrix
-#'
-#' @description Fast generation of a matrix by replicating a matrix row- and column-wise in a block-like fashion
-#' @param m1 A matrix with dimensions r*c.
-#' @param m2 An integer giving the number of times the matrix is replicated row-wise
-#' @return A matrix with dimensions (r*nrow) x (c*ncol)
-#' @author Claus Ekstrom <claus@@rprimer.dk>
-#' @export
-mrbind <- function(m1, m2) {
-    .Call('MESS_mrbind', PACKAGE = 'MESS', m1, m2)
-}
-
 #' Fast marginal simple regresion analyses
 #'
 #' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix

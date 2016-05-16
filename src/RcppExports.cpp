@@ -29,38 +29,6 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
-// lmm_Maximize_cpp
-List lmm_Maximize_cpp(NumericVector y, NumericMatrix x, List vc, int maxiter, bool REML, double tolerance, bool reparam, bool scale, bool addresidual, bool ReturnEstimatedVariance);
-RcppExport SEXP MESS_lmm_Maximize_cpp(SEXP ySEXP, SEXP xSEXP, SEXP vcSEXP, SEXP maxiterSEXP, SEXP REMLSEXP, SEXP toleranceSEXP, SEXP reparamSEXP, SEXP scaleSEXP, SEXP addresidualSEXP, SEXP ReturnEstimatedVarianceSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< List >::type vc(vcSEXP);
-    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
-    Rcpp::traits::input_parameter< bool >::type REML(REMLSEXP);
-    Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
-    Rcpp::traits::input_parameter< bool >::type reparam(reparamSEXP);
-    Rcpp::traits::input_parameter< bool >::type scale(scaleSEXP);
-    Rcpp::traits::input_parameter< bool >::type addresidual(addresidualSEXP);
-    Rcpp::traits::input_parameter< bool >::type ReturnEstimatedVariance(ReturnEstimatedVarianceSEXP);
-    __result = Rcpp::wrap(lmm_Maximize_cpp(y, x, vc, maxiter, REML, tolerance, reparam, scale, addresidual, ReturnEstimatedVariance));
-    return __result;
-END_RCPP
-}
-// mrbind
-NumericMatrix mrbind(NumericMatrix m1, NumericMatrix m2);
-RcppExport SEXP MESS_mrbind(SEXP m1SEXP, SEXP m2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericMatrix >::type m1(m1SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type m2(m2SEXP);
-    __result = Rcpp::wrap(mrbind(m1, m2));
-    return __result;
-END_RCPP
-}
 // mfastLm_cpp
 DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept);
 RcppExport SEXP MESS_mfastLm_cpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {

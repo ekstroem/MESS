@@ -26,7 +26,7 @@
 #' drop1(fit)
 #'
 #' @import geepack
-#' @export drop1.geeglm
+#' @export
 drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sasscore"),
                          method=c("robust", "naive", "sandwich"), ...) {
   test <- match.arg(test)
