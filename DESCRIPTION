@@ -13,6 +13,7 @@ Imports:
     Rcpp,
     glmnet,
     kinship2,
+    methods,
     mvtnorm,
     parallel
 LinkingTo: Rcpp, RcppArmadillo

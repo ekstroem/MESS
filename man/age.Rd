@@ -2,40 +2,20 @@
 % Please edit documentation in R/age.R
 \name{age}
 \alias{age}
-\title{Compute the area under the curve for two vectors.}
+\title{Compute the age of a person form two dates.}
 \usage{
 age(from, to)
 }
 \arguments{
-\item{from}{The value from where to start calculating the area under the
-curve. Defaults to the smallest x value.}
+\item{from}{a vector of dates (birth dates)}
 
-\item{to}{The value from where to end the calculation of the area under the
-curve. Defaults to the smallest y value.}
-
-\item{x}{a numeric vector of x values.}
-
-\item{y}{a numeric vector of y values of the same length as x.}
-
-\item{type}{The type of interpolation. Defaults to "linear" for area under
-the curve for linear interpolation. The value "spline" results in the area
-under the natural cubic spline interpolation.}
-
-\item{absolutearea}{A logical value that determines if negative
-areas should be added to the total area under the curve.  By
-default the auc function subtracts areas that have negative y
-values. Set \code{absolutearea=TRUE} to _add_ the absolute value of the negative areas to the total area.}
-
-\item{\dots}{additional arguments passed on to approx. In particular rule
-can be set to determine how values outside the range of x is handled.}
+\item{to}{a vector of current dates}
 }
 \value{
-The value of the area under the curve.
+A vector of ages (in years)
 }
 \description{
-Compute the area under the curve using linear or natural spline
-interpolation for two vectors where one corresponds to the x values and the
-other corresponds to the y values.
+Compute the age in years of an individual based on the birth date and another date
 }
 \details{
 For linear interpolation the auc function computes the area under the curve
@@ -47,30 +27,16 @@ part of the area or even outside the area.
 }
 \examples{
 
-x <- 1:4
-y <- c(0, 1, 1, 5)
-auc(x, y)
-
-# AUC from 0 to max(x) where we allow for extrapolation
-auc(x, y, from=0, rule=2)
-
-# Use value 0 to the left
-auc(x, y, from=0, rule=2, yleft=0)
-
-# Use 1/2 to the left
-auc(x, y, from=0, rule=2, yleft=.5)
-
-# Use 1/2 to the left with spline interpolation
-auc(x, y, from=0, rule=2, yleft=.5)
-
+born <- c("1971-08-18", "2000-02-28", "2001-12-20")
+check <- c("2016-08-28")
+age(born, check)
 
 }
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \seealso{
-\code{\link{approx}}, \code{\link{splinefun}},
-\code{\link{integrate}}
+\code{\link{as.POSIXlt}}
 }
 \keyword{datagen}
 

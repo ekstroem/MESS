@@ -16,6 +16,7 @@
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}\cr Maintainer: Claus Ekstrom
 #' \email{claus@@rprimer.dk}
 #' @references Ekstrom, C. (2011). The R Primer. Chapman & Hall.
+#' @import utils stats graphics
 #' @keywords package
 NULL
 
@@ -514,8 +515,12 @@ NULL
 #' @examples
 #'
 #' data(smokehealth)
-#' fisher.test(smokehealth)
-#' gkgamma(glostruphealth)
+#' m <- smokehealth
+#' m[,3] <- m[,3]+ m[,4]
+#' m[4,] <- m[4,] + m[5,]
+#' m <- m[1:4,1:3]
+#' gkgamma(m)
+#' chisq.test(m)
 #'
 NULL
 

@@ -33,6 +33,7 @@ wallyplot.default <- function(x, y=x, FUN=residualplot,
 }
 
 
+#' @import graphics
 #' @rdname wallyplot
 #' @export
 wallyplot.lm <- function(x, y=x, FUN=residualplot,

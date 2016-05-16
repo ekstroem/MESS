@@ -9,6 +9,7 @@ using namespace Rcpp;
 //' @return A vector with the diagonal elements
 //' @details Note this function can only be used for extraction
 //' @author Claus Ekstrom <claus@@rprimer.dk>
+//' @export qdiag
 // [[Rcpp::export]]
 NumericVector qdiag(NumericMatrix x) {
 

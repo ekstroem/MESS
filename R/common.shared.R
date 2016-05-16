@@ -27,6 +27,7 @@
 ##' tped <- with(test1, pedigree(id, dad, mom, sex))
 ##' common.shared(tped)
 #'
+#' @importFrom methods as
 #' @rdname common.shared
 #' @export
 common.shared <- function (id, ...)

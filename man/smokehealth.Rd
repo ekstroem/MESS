@@ -14,8 +14,12 @@ Effect of smoking at 45 years of age on self reported health five years later. D
 \examples{
 
 data(smokehealth)
-fisher.test(smokehealth)
-gkgamma(glostruphealth)
+m <- smokehealth
+m[,3] <- m[,3]+ m[,4]
+m[4,] <- m[4,] + m[5,]
+m <- m[1:4,1:3]
+gkgamma(m)
+chisq.test(m)
 
 }
 \keyword{datasets}

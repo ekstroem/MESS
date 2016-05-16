@@ -13,6 +13,7 @@
 #'
 #' newcol <- col.shade("blue")
 #'
+#' @importFrom grDevices col2rgb rgb
 #' @export
 col.shade <- function(col, shade=.5) {
 
