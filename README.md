@@ -31,4 +31,4 @@ install.packages("MESS")
 geeglm objects
 * A function to extract the naive standard errors from geepack
 * A fast age calculator. The `age` function already implements this
-  
+* Add exact/MC test to gkgamma and partial gamma as well  

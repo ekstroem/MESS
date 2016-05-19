@@ -545,3 +545,22 @@ NULL
 #' data(picea)
 #'
 NULL
+
+#' Ice cream consumption and advertising
+#'
+#' The impact of advertizing impact, temperature, and price on ice cream consumption
+#'
+#' @name icecreamads
+#' @docType data
+#' @format A data frame with 30 observations on the following 4 variables.
+#' \describe{\item{Price}{a numeric vector character vector giving the standardized price}
+#' \item{Temperature}{temperature in degrees Fahrenheit}
+#' \item{Consumption}{a factor with levels \code{1_low} \code{2_medium} \code{3_high}}
+#' \item{Advertise}{a factor with levels \code{posters} \code{radio} \code{television}}}
+#' @source Unknown origin
+#' @keywords datasets
+#' @examples
+#'
+#' data(icecreamad)
+#'
+NULL
