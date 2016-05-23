@@ -564,3 +564,49 @@ NULL
 #' data(icecreamad)
 #'
 NULL
+
+
+#' Ammonia nitrogen found in river
+#'
+#' Monthly levels of ammonia nitrogen in a river over two years
+#'
+#' @name nh4
+#' @docType data
+#' @format A data frame with 120 observations on the following 3 variables.
+#' \describe{\item{nh4}{The ammonia nitrogen levels (mg/l). A value of zero corresponds to a censoring, but it really is censored at <0.01}
+#' \item{cens}{A logical vector indicating if the value was censored}
+#' \item{year}{The year}}
+#' @source Found on the internet and partly simulated
+#' @keywords datasets
+#' @examples
+#'
+#' data(nh4)
+#'
+NULL
+
+
+
+#' Flu hospitalization
+#'
+#' Researchers in a Midwestern county tracked flu cases requiring hospitalization in those residents aged 65
+#' and older during a two-month period one winter. They matched each case with 2 controls by sex and age (150 cases,
+#' 300 controls). They used medical records to determine whether cases and controls had received a flu vaccine shot
+#' and whether they had underlying lung disease. They wanted to know whether flu vaccination prevents hospitalization
+#' for flu (severe cases of flu). Underlying lung disease is a potential confounder.
+#'
+#' @name matched
+#' @docType data
+#' @format A data frame with 450 observations on the following 4 variables.
+#'   \describe{
+#'     \item{\code{id}}{a numeric vector}
+#'     \item{\code{iscase}}{a factor with levels \code{Control} \code{Case}}
+#'     \item{\code{vaccine}}{a factor with levels \code{Not} \code{Vaccinated}}
+#'     \item{\code{lung}}{a factor with levels \code{None} \code{Disease}}
+#'   }
+#' @source Modified from: Stokes, Davis, Koch (2000). “Categorical Data Analysis Using the SAS System,” Chapter 10.
+#' @keywords datasets
+#' @examples
+#'
+#' data(matched)
+#'
+NULL
