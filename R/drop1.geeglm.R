@@ -32,7 +32,7 @@ drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sassc
   test <- match.arg(test)
   method <- match.arg(method)
 
-  if (! ("geeglm" %in% class(object)) ) {
+  if (! any(c("geeglm", "geem") %in% class(object)) ) {
     stop("Presently drop1.geeglm only works for geeglm objects")
   }
 
