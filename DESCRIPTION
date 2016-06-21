@@ -1,7 +1,7 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.4-2
+Version: 0.4-3
 Date: 2016-06-21
 Author: Claus Ekstrøm <claus@rprimer.dk>
 Maintainer: Claus Ekstrøm <claus@rprimer.dk>
@@ -22,6 +22,7 @@ Suggests:
 Description: A mixed collection of useful and semi-useful diverse
     statistical functions, some of which may even be referenced in
     The R Primer book.
+Encoding: UTF-8
 ByteCompile: true
 License: GPL-2
 RoxygenNote: 5.0.1

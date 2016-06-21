@@ -75,7 +75,7 @@ qdiag <- function(x) {
 #' @param M A matrix with dimenions n*n. If it is to be inverted then the matrix should be symmetric and positive difinite (no check is done for this)
 #' @param invertM A logical. If set to TRUE then M will be inverted before computations (defaults to FALSE)
 #' @param transposex A logical. Should the matrix be transposed before computations (defaults to FALSE).
-#' @return A matrix with dimensions k * k giving teh quadratic form
+#' @return A matrix with dimensions k * k giving the quadratic form
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {

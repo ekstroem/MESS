@@ -16,7 +16,7 @@ quadform(x, M, invertM = FALSE, transposex = FALSE)
 \item{transposex}{A logical. Should the matrix be transposed before computations (defaults to FALSE).}
 }
 \value{
-A matrix with dimensions k * k giving teh quadratic form
+A matrix with dimensions k * k giving the quadratic form
 }
 \description{
 Fast computation of a quadratic form  t(x) %*% M %*% x
