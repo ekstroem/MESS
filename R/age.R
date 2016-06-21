@@ -1,5 +1,4 @@
-
-#' Compute the age of a person form two dates.
+#' Compute the age of a person from two dates.
 #'
 #' Compute the age in years of an individual based on the birth date and another date
 #'
@@ -28,6 +27,9 @@ age <- function(from, to) {
     to_lt = as.POSIXlt(to)
 
     age = to_lt$year - from_lt$year
+
+    if (any(age<0))
+        stop("ages cannot be negative")
 
     ifelse(to_lt$mon < from_lt$mon | (to_lt$mon == from_lt$mon & to_lt$mday < from_lt$mday),  age - 1, age)
 }

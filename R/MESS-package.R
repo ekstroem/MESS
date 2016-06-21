@@ -603,7 +603,7 @@ NULL
 #'     \item{\code{vaccine}}{a factor with levels \code{Not} \code{Vaccinated}}
 #'     \item{\code{lung}}{a factor with levels \code{None} \code{Disease}}
 #'   }
-#' @source Modified from: Stokes, Davis, Koch (2000). “Categorical Data Analysis Using the SAS System,” Chapter 10.
+#' @source Modified from: Stokes, Davis, Koch (2000). "Categorical Data Analysis Using the SAS System," Chapter 10.
 #' @keywords datasets
 #' @examples
 #'

@@ -12,7 +12,7 @@
     \item{\code{lung}}{a factor with levels \code{None} \code{Disease}}
   }}
 \source{
-Modified from: Stokes, Davis, Koch (2000). “Categorical Data Analysis Using the SAS System,” Chapter 10.
+Modified from: Stokes, Davis, Koch (2000). "Categorical Data Analysis Using the SAS System," Chapter 10.
 }
 \description{
 Researchers in a Midwestern county tracked flu cases requiring hospitalization in those residents aged 65

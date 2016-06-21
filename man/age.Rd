@@ -2,7 +2,7 @@
 % Please edit documentation in R/age.R
 \name{age}
 \alias{age}
-\title{Compute the age of a person form two dates.}
+\title{Compute the age of a person from two dates.}
 \usage{
 age(from, to)
 }
