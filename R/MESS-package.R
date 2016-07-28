@@ -51,8 +51,6 @@ NULL
 #' # Compute yearly birth frequencies per month
 #' btable.freq <- prop.table(btable, margin=1)
 #'
-#'
-#'
 NULL
 
 
@@ -413,9 +411,6 @@ NULL
 #'
 #'
 NULL
-
-
-
 
 
 #' Gene expression data from two-color dye-swap experiment

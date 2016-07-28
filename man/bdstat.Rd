@@ -31,8 +31,6 @@ btable <- xtabs(births ~ year + month, data=bdstat, subset=(year<2013))
 # Compute yearly birth frequencies per month
 btable.freq <- prop.table(btable, margin=1)
 
-
-
 }
 \keyword{datasets}
 

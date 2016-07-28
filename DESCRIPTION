@@ -1,12 +1,13 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.4-3
-Date: 2016-06-21
+Version: 0.4-4
+Date: 2016-07-28
 Author: Claus Ekstrøm <claus@rprimer.dk>
 Maintainer: Claus Ekstrøm <claus@rprimer.dk>
 Depends:
     geepack,
+    geeM,
 Imports:
     MASS,
     Matrix,
