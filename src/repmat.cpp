@@ -10,6 +10,12 @@ using namespace Rcpp;
 //' @param ncol An integer giving the number of times the matrix is replicated column-wise
 //' @return A matrix with dimensions (r*nrow) x (c*ncol)
 //' @author Claus Ekstrom <claus@@rprimer.dk>
+//' @examples
+//'
+//' m <- matrix(1:6, ncol=3)
+//' repmat(m, 2)     // Stack two copies of m on top of each other
+//' repmat(m, 2, 3)  // Replicate m with two copies on top and three copies side-by-side 
+//'
 //' @export
 // [[Rcpp::export]]
 NumericMatrix repmat(NumericMatrix x, int nrow=1, int ncol=1) {

@@ -51,8 +51,16 @@ filldown <- function(x) {
 #' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
 #' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
 #' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#' \dontrun{
+#'   // Generate 100000 predictors and 100 observations
+#'   x <- matrix(rnorm(100*100000))
+#'   y <- rnorm(100, mean=x[,1])
+#'   mfastLM_cpp(y, x)
+#'
+#' }
 #' @export
-mfastLm_cpp <- function(y, x, addintercept) {
+mfastLm_cpp <- function(y, x, addintercept = TRUE) {
     .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
@@ -116,6 +124,12 @@ quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
 #' @param ncol An integer giving the number of times the matrix is replicated column-wise
 #' @return A matrix with dimensions (r*nrow) x (c*ncol)
 #' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' m <- matrix(1:6, ncol=3)
+#' repmat(m, 2)     // Stack two copies of m on top of each other
+#' repmat(m, 2, 3)  // Replicate m with two copies on top and three copies side-by-side 
+#'
 #' @export
 repmat <- function(x, nrow = 1L, ncol = 1L) {
     .Call('MESS_repmat', PACKAGE = 'MESS', x, nrow, ncol)

@@ -4,7 +4,7 @@
 \alias{mfastLm_cpp}
 \title{Fast marginal simple regresion analyses}
 \usage{
-mfastLm_cpp(y, x, addintercept)
+mfastLm_cpp(y, x, addintercept = TRUE)
 }
 \arguments{
 \item{y}{A vector of outcomes.}
@@ -18,6 +18,15 @@ A data frame with two variables: coefficients and stderr that gives the slope es
 }
 \description{
 Fast computation of simple regression slopes for each predictor represented by a column in a matrix
+}
+\examples{
+\dontrun{
+  // Generate 100000 predictors and 100 observations
+  x <- matrix(rnorm(100*100000))
+  y <- rnorm(100, mean=x[,1])
+  mfastLM_cpp(y, x)
+
+}
 }
 \author{
 Claus Ekstrom <claus@rprimer.dk>

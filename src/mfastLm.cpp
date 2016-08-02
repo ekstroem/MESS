@@ -10,9 +10,17 @@ using namespace Rcpp;
 //' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
 //' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
 //' @author Claus Ekstrom <claus@@rprimer.dk>
+//' @examples
+//' \dontrun{
+//'   // Generate 100000 predictors and 100 observations
+//'   x <- matrix(rnorm(100*100000))
+//'   y <- rnorm(100, mean=x[,1])
+//'   mfastLM_cpp(y, x)
+//'
+//' }
 //' @export
 // [[Rcpp::export]]
-DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept) {
+DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, bool addintercept=true) {
   arma::uword n = x.nrow(), k = x.ncol();
   int df = n-1;
 

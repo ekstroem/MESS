@@ -30,14 +30,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // mfastLm_cpp
-DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, int addintercept);
+DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, bool addintercept);
 RcppExport SEXP MESS_mfastLm_cpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type addintercept(addinterceptSEXP);
+    Rcpp::traits::input_parameter< bool >::type addintercept(addinterceptSEXP);
     __result = Rcpp::wrap(mfastLm_cpp(y, x, addintercept));
     return __result;
 END_RCPP

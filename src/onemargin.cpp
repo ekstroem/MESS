@@ -69,8 +69,8 @@ List onemargintest(NumericMatrix x, int B=10000) {
   for (int i=0; i<B; i++) {
 
     // Empty the simulated table
-    testtable.zeros();
-
+    testtable.zeros();    
+    
     // Simulate each row    
     for (int j=0; j<nrows; j++) {
       IntegerVector res = RcppArmadillo::sample(frame, n(j), TRUE, PP) ;
@@ -79,6 +79,22 @@ List onemargintest(NumericMatrix x, int B=10000) {
 	testtable(j, res(k)-1) +=1;
       }
     }
+
+    /* Slightly faster but more convoluted
+
+    int row=0;
+    int idx = 0;
+    for (int k = 0; k < N; k++) {
+      if (idx == n(row)) {
+	row +=1;
+	idx=0;
+      }
+      testtable(row, res(k)-1) +=1;
+      idx +=1;
+    }
+
+
+     */
 
     if (chisqtest(testtable) >= originaltt)
       larger +=1;
