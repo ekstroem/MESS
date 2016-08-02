@@ -56,6 +56,32 @@ mfastLm_cpp <- function(y, x, addintercept) {
     .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
+#' Two-sided table test with fixed margins
+#'
+#' @description Test in a two-way contingency table with the row margin fixed. 
+#' @param x A matrix representing the contingency table.
+#' @param B The number of simulations used to compute the p-value.
+#' @details Simulation is done by random sampling from the set of all tables with given row marginals, and works only if the marginals are strictly positive. Continuity correction is never used, and the statistic is quoted without it.
+#' @return A list of class "htest" giving the simulation results.
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' m <- matrix(c(12, 4, 8, 6), 2)
+#' chisq.test(m)
+#' chisq.test(m, correct=FALSE)
+#' fisher.test(m)
+#' onemargintest(m)
+#'
+#' m2 <- matrix(c(9, 3, 3, 7), 2)
+#' chisq.test(m2, simulate.p.value=TRUE)
+#' fisher.test(m2)
+#' onemargintest(m2)
+#'
+#' @export
+onemargintest <- function(x, B = 10000L) {
+    .Call('MESS_onemargintest', PACKAGE = 'MESS', x, B)
+}
+
 #' Fast extraction of matrix diagonal
 #'
 #' @description Fast extraction of matrix diagonal

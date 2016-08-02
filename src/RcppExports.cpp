@@ -42,6 +42,18 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// onemargintest
+List onemargintest(NumericMatrix x, int B);
+RcppExport SEXP MESS_onemargintest(SEXP xSEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    __result = Rcpp::wrap(onemargintest(x, B));
+    return __result;
+END_RCPP
+}
 // qdiag
 NumericVector qdiag(NumericMatrix x);
 RcppExport SEXP MESS_qdiag(SEXP xSEXP) {
