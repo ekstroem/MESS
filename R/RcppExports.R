@@ -60,8 +60,8 @@ filldown <- function(x) {
 #'
 #' }
 #' @export
-mfastLm_cpp <- function(y, x, addintercept = TRUE) {
-    .Call('MESS_mfastLm_cpp', PACKAGE = 'MESS', y, x, addintercept)
+mfastLmCpp <- function(y, x, addintercept = TRUE) {
+    .Call('MESS_mfastLmCpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
 #' Two-sided table test with fixed margins

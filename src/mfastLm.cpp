@@ -20,7 +20,7 @@ using namespace Rcpp;
 //' }
 //' @export
 // [[Rcpp::export]]
-DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, bool addintercept=true) {
+DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept=true) {
   arma::uword n = x.nrow(), k = x.ncol();
   int df = n-1;
 
@@ -61,4 +61,6 @@ DataFrame mfastLm_cpp(NumericVector y, NumericMatrix x, bool addintercept=true) 
   return DataFrame::create(Rcpp::Named("coefficients")=rescoef,
 			   Rcpp::Named("stderr")=resse);
 }
+
+
 
