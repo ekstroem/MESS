@@ -45,7 +45,7 @@
 #'
 #' @rdname QIC
 #' @export
-QIC.geeglm <- function(object, ...) {
+QIC.geeglm <- function(object, tol=.Machine$double.eps, ...) {
 
   #
   # The majority of this code was taken from the internet
@@ -86,7 +86,7 @@ QIC.geeglm <- function(object, ...) {
     # model.indep <- update(object, corstr="independence",zcorr=NULL)
 
     # Trace term (penalty for model complexity)
-    AIinverse <- invert(model.indep$geese$vbeta.naiv)
+    AIinverse <- invert(model.indep$geese$vbeta.naiv, tol=tol)
     Vr <- object$geese$vbeta
     trace <- sum(diag(AIinverse %*% Vr))
     params <- length(coef(object)) # Mean parameters in the model
@@ -131,7 +131,7 @@ QIC.geeglm <- function(object, ...) {
 
 #' @rdname QIC
 #' @export
-QIC.ordgee <- function(object, ...) {
+QIC.ordgee <- function(object, tol = .Machine$double.eps, ...) {
 
   #
   # The majority of this code was taken from the internet
@@ -318,7 +318,7 @@ QIC.ordgee <- function(object, ...) {
 
 #' @rdname QIC
 #' @export
-QIC.geekin <- function(object, ...) {
+QIC.geekin <- function(object,  tol = .Machine$double.eps, ...) {
 
   # This functions is only needed to replace class
   # geeglm to make sure the regular
@@ -340,6 +340,6 @@ QIC.geekin <- function(object, ...) {
 
 #' @rdname QIC
 #' @export
-QIC <- function(object, ...) {
+QIC <- function(object,  tol = .Machine$double.eps, ...) {
   UseMethod("QIC")
 }

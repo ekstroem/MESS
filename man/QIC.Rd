@@ -7,13 +7,13 @@
 \alias{QIC.ordgee}
 \title{Quasi Information Criterion}
 \usage{
-\method{QIC}{geeglm}(object, ...)
+\method{QIC}{geeglm}(object, tol = .Machine$double.eps, ...)
 
-\method{QIC}{ordgee}(object, ...)
+\method{QIC}{ordgee}(object, tol = .Machine$double.eps, ...)
 
-\method{QIC}{geekin}(object, ...)
+\method{QIC}{geekin}(object, tol = .Machine$double.eps, ...)
 
-QIC(object, ...)
+QIC(object, tol = .Machine$double.eps, ...)
 }
 \arguments{
 \item{object}{a fitted GEE model from the geepack package. Currently only
