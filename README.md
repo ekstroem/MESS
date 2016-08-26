@@ -31,13 +31,15 @@ approximations in standard designs.
 
 ## Utility functions
 
-fac2num
-
+* fac2num
+* write.xml - save a data frame as an xml file
 
 
 ## Computational functions
 
-sinv
-
+* quadform - fast computation of a quadratic form $t(X) %*% X$
+* repmat - fast replication of a matrix
+* sinv - invert a symmetric positive-definite matrix
+* tracemp - fast computation of trace of matrix product
 
 
