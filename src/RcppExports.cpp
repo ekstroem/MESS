@@ -6,18 +6,6 @@
 
 using namespace Rcpp;
 
-// can
-double can(NumericVector x1, NumericVector x2);
-RcppExport SEXP MESS_can(SEXP x1SEXP, SEXP x2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject __result;
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< NumericVector >::type x1(x1SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type x2(x2SEXP);
-    __result = Rcpp::wrap(can(x1, x2));
-    return __result;
-END_RCPP
-}
 // cmd
 double cmd(NumericMatrix x, NumericMatrix y);
 RcppExport SEXP MESS_cmd(SEXP xSEXP, SEXP ySEXP) {

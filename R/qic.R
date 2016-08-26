@@ -21,6 +21,7 @@
 #' @aliases QIC QIC.geeglm QIC.geekin QIC.ordgee
 #' @param object a fitted GEE model from the geepack package. Currently only
 #' works on geeglm objects
+#' @param tol the tolerance used for matrix inversion
 #' @param \dots optionally more fitted geeglm model objects
 #' @return A vector or matrix with the QIC, QICu, quasi likelihood, CIC, the
 #' number of mean effect parameters, and the corrected QIC for each GEE object

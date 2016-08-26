@@ -19,6 +19,8 @@ QIC(object, tol = .Machine$double.eps, ...)
 \item{object}{a fitted GEE model from the geepack package. Currently only
 works on geeglm objects}
 
+\item{tol}{the tolerance used for matrix inversion}
+
 \item{\dots}{optionally more fitted geeglm model objects}
 }
 \value{
