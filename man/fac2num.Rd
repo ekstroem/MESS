@@ -13,19 +13,15 @@ fac2num(x)
 Returns a numeric vector of the same length as x
 }
 \description{
-Converts the factor labels to a vector of numeric vectors
+Converts the factor labels to numeric values and returns the factor as a numeric vector
 }
 \details{
 Returns a vector of numeric values. Elements in the input factor that cannot be converted to numeric will produce NA.
 }
 \examples{
 
-m1 <- matrix(rep(1, 16), 4)
-m2 <- matrix(c(1, 0, .5, .5, 0, 1, .5, .5, .5, .5, 1, .5, .5, .5, .5, 1), 4)
-m3 <- matrix(c(1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1), 4)
-cmd(m1, m1)
-cmd(m1, m2)
-cmd(m2, m3)
+f <- factor(c(1,2,1,3,2,1,2,3,1))
+fac2num(f)
 
 }
 \author{

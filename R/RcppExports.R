@@ -104,7 +104,7 @@ qdiag <- function(x) {
 
 #' Fast quadratic form computation
 #'
-#' @description Fast computation of a quadratic form  t(x) %*% M %*% x
+#' @description Fast computation of a quadratic form  \code{t(x) %*% M %*% x}
 #' @param x A matrix with dimensions n*k.
 #' @param M A matrix with dimenions n*n. If it is to be inverted then the matrix should be symmetric and positive difinite (no check is done for this)
 #' @param invertM A logical. If set to TRUE then M will be inverted before computations (defaults to FALSE)

@@ -33,7 +33,7 @@ drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sassc
   method <- match.arg(method)
 
   if (! any(c("geeglm", "geem") %in% class(object)) ) {
-    stop("Presently drop1.geeglm only works for geeglm objects")
+    stop("Presently drop1.geeglm only works for geeglm or geem objects")
   }
 
   x <- model.matrix(object)
@@ -135,7 +135,7 @@ drop1.geem <- function(object, scope, test = c("Wald", "none", "score", "sasscor
     method <- match.arg(method)
 
     if (! any(c("geem") %in% class(object)) ) {
-        stop("Presently drop1.geeglm only works for geeglm objects")
+        stop("Presently drop1.geeglm only works for geeglm or geem objects")
     }
 
     x <- model.matrix(object)
