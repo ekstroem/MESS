@@ -76,10 +76,6 @@ y <- rnorm(30, mean=1*x[,1])
 
 
 }
-\author{
-Claus Ekstrom \email{ekstrom@sund.ku.dk} and Kasper Brink-Jensen
-\email{kbrink@life.ku.dk}
-}
 \references{
 Brink-Jensen, K and Ekstrom, CT 2014. \emph{Inference for
 feature selection using the Lasso with high-dimensional data}.
@@ -87,6 +83,10 @@ feature selection using the Lasso with high-dimensional data}.
 }
 \seealso{
 \code{glmnet}
+}
+\author{
+Claus Ekstrom \email{ekstrom@sund.ku.dk} and Kasper Brink-Jensen
+\email{kbrink@life.ku.dk}
 }
 \keyword{~htests}
 

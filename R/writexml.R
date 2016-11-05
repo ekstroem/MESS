@@ -6,7 +6,7 @@
 #' @param file the file name to be written to.
 #' @param collapse logical. Should the output file be collapsed to make it fill less? (Defaults to TRUE)
 #' @return None
-#' @details This function does not requires the \pkg{XML} package to be installed to function properly.
+#' @details This function does not require the \pkg{XML} package to be installed to function properly.
 #'
 #' @examples
 #' data(trees)

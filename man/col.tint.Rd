@@ -22,11 +22,11 @@ This function tints an RGB color and returns the tinted RGB color (with alpha ch
 newcol <- col.tint("blue")
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Ekstrom, CT (2011) \emph{The R Primer}.
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
 

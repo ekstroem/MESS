@@ -38,11 +38,11 @@ fit <- geeglm(resp ~ age + smoke + age:smoke, id=id, data=ohio,
 drop1(fit)
 
 }
-\author{
-Claus Ekstrom \email{claus@ekstroem.dk}
-}
 \seealso{
 \code{\link{drop1}}, \code{geeglm}, \code{geese}
+}
+\author{
+Claus Ekstrom \email{claus@ekstroem.dk}
 }
 \keyword{htest}
 

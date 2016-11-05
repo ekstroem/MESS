@@ -32,11 +32,11 @@ pairs(~ Ozone + Temp + Wind + Solar.R, data=airquality,
       lower.panel=panel.smooth, upper.panel=panel.r2)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Ekstrom, CT (2011) \emph{The R Primer}.
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
 

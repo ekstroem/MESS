@@ -43,15 +43,15 @@ weights <- adaptive.weights(x, y)
 glmnet(x, y, penalty.factor=weights$weights)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Xou, H (2006). The Adaptive Lasso and Its Oracle Properties.
 JASA, Vol. 101.
 }
 \seealso{
 \code{glmnet}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{manip}
 

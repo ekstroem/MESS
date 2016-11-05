@@ -1,8 +1,8 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.4-8
-Date: 2016-08-28
+Version: 0.4-9
+Date: 2016-11-05
 Author: Claus Ekstrøm <claus@rprimer.dk>
 Maintainer: Claus Ekstrøm <claus@rprimer.dk>
 Depends:
@@ -19,11 +19,11 @@ Imports:
     parallel
 LinkingTo: Rcpp, RcppArmadillo
 Suggests:
-    lme4
+    lme4,
 Description: A mixed collection of useful and semi-useful diverse
     statistical functions, some of which may even be referenced in
     The R Primer book.
 Encoding: UTF-8
 ByteCompile: true
 License: GPL-2
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000

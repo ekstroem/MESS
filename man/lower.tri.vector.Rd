@@ -30,11 +30,11 @@ cluster <- c(1, 1, 1, 1, 2, 2, 3, 3)
 lower.tri.vector(m, cluster)
 
 }
-\author{
-Claus Ekstrom \email{claus@ekstroem.dk}
-}
 \seealso{
 \code{\link{lower.tri}}
+}
+\author{
+Claus Ekstrom \email{claus@ekstroem.dk}
 }
 \keyword{manip}
 

@@ -42,11 +42,11 @@ power.binom.test(p0 = .50, pa = .75, power = .90) ## =>     n = 41
 power.binom.test(n = 50, p0 = .25, power = .90, alternative="less")  ## => pa = 0.0954
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{\link{binom.test}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
 

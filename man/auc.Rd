@@ -66,12 +66,12 @@ auc(x, y, from=0, rule=2, yleft=.5)
 
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{\link{approx}}, \code{\link{splinefun}},
 \code{\link{integrate}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
 

@@ -22,11 +22,11 @@ This function shades an RGB color and returns the shaded RGB color (with alpha c
 newcol <- col.shade("blue")
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Ekstrom, CT (2011) \emph{The R Primer}.
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
 

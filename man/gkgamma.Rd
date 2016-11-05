@@ -38,9 +38,6 @@ gkgamma(smoke)
 chisq.test(smoke)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Goodman, Leo A. and Kruskal, William H. (1954). "Measures of
 Association for Cross Classifications". Journal of the American Statistical
@@ -48,6 +45,9 @@ Association 49 (268): 732-764.
 }
 \seealso{
 \code{\link{chisq.test}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
 

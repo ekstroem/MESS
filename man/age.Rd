@@ -32,11 +32,11 @@ check <- c("2016-08-28")
 age(born, check)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{\link{as.POSIXlt}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
 

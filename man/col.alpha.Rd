@@ -22,11 +22,11 @@ This function adds and set an alpha channel to a RGB color
 newcol <- col.alpha("blue", .5)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Ekstrom, CT (2011) \emph{The R Primer}.
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
 

@@ -96,11 +96,11 @@ geekin(yy ~ 1, id=mydata$famid, varlist=list(2*kinship(breastped)))
 
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{lmekin}, \code{geeglm}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{models}
 

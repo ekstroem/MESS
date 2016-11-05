@@ -26,12 +26,12 @@ ordered.clusters(sort(x))
 ordered.clusters(x[order(x)])
 
 }
+\seealso{
+\code{\link{duplicated}}
+}
 \author{
 Claus Ekstrom \email{claus@ekstroem.dk} with suggestions from Peter
 Dalgaard.
-}
-\seealso{
-\code{\link{duplicated}}
 }
 \keyword{utilities}
 

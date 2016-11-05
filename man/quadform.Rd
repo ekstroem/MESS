@@ -18,6 +18,9 @@ quadform(x, M, invertM = FALSE, transposex = FALSE)
 \value{
 A matrix with dimensions k * k giving the quadratic form
 }
+\description{
+Fast computation of a quadratic form  t(x) %*% M %*% x
+}
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }

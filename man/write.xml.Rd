@@ -20,7 +20,7 @@ None
 Writes the data frame to a file in the XML format.
 }
 \details{
-This function does not requires the \pkg{XML} package to be installed to function properly.
+This function does not require the \pkg{XML} package to be installed to function properly.
 }
 \examples{
 data(trees)

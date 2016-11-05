@@ -59,11 +59,11 @@ when invalid arguments are given.
 \examples{
 power.t.test(delta=300, sd=450, power=.8, ratio=4)
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{\link{power.prop.test}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
 

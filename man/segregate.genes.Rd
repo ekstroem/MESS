@@ -37,11 +37,11 @@ ped <- pedigree(id=mydata$id, dadid=mydata$dadid, momid=mydata$momid,
 segregate.genes(ped, c(.1, .3, .5))
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{pedigree}, \code{kinship},
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
 

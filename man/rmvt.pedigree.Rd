@@ -48,11 +48,11 @@ ped <- pedigree(id=mydata$id, dadid=mydata$dadid, momid=mydata$momid,
 rmvt.pedigree(2, ped, h2=.25, df=4)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{pedigree}, \code{kinship},
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
 

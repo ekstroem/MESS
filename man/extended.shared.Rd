@@ -2,8 +2,8 @@
 % Please edit documentation in R/extended.shared.R
 \name{extended.shared}
 \alias{extended.shared}
-\alias{extended.shared.pedigree}
 \alias{extended.shared.pedigreeList}
+\alias{extended.shared.pedigree}
 \title{Compute a common shared environment matrix}
 \usage{
 extended.shared(id, rho = 1, theta = 1, ...)
@@ -49,11 +49,11 @@ tped <- with(test1, pedigree(id, dad, mom, sex))
 extended.shared(tped)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \seealso{
 \code{pedigree}, \code{kinship},
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
 

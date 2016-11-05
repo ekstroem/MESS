@@ -45,15 +45,15 @@ power.mcnemar.test(n=NULL, paid=.1, psi=2, power=.8)
 
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Duffy, S (1984). Asymptotic and Exact Power for the McNemar Test
 and its Analogue with R Controls per Case
 }
 \seealso{
 \code{\link{mcnemar.test}}
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
 

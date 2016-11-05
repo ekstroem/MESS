@@ -4,6 +4,7 @@
 \name{MESS}
 \alias{MESS}
 \alias{MESS-package}
+\alias{MESS-package}
 \title{Collection of miscellaneous useful and semi-useful functions}
 \description{
 Collection of miscellaneous useful and semi-useful functions and add-on
@@ -15,12 +16,12 @@ particular in relation to statistical genetics
 1.0\cr Date: \tab 2012-03-29\cr License: \tab GPL-2\cr } % ~~ An overview of
 how to use the package, including the most important ~~ % ~~ functions ~~
 }
+\references{
+Ekstrom, C. (2011). The R Primer. Chapman & Hall.
+}
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}\cr Maintainer: Claus Ekstrom
 \email{claus@rprimer.dk}
-}
-\references{
-Ekstrom, C. (2011). The R Primer. Chapman & Hall.
 }
 \keyword{package}
 

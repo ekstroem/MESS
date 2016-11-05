@@ -28,12 +28,12 @@ cmd(m1, m2)
 cmd(m2, m3)
 
 }
-\author{
-Claus Ekstrom \email{claus@rprimer.dk}
-}
 \references{
 Herdin, M., and Czink, N., and Ozcelik, H., and Bonek, E. (2005). \emph{Correlation matrix distance, a meaningful measure for
 evaluation of non-stationary mimo channels}. IEEE VTC.
+}
+\author{
+Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{univar}
 
