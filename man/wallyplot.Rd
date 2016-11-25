@@ -63,6 +63,8 @@ be a function that accepts \code{x}, \code{y} and \code{...} arguments and
 plots the desired figure. When \code{y} is a single vector the same length
 as \code{x} then the function \code{simulateFunction} is used to generate
 the remaining y values corresponding the situations under the null.
+
+For a description of the features of the default residual plot see the help page for \code{\link{residualplot}}.
 }
 \examples{
 

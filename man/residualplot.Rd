@@ -54,13 +54,15 @@ graphics to help evaluate the variance homogeneity and mean.
 Plots a standardized residual plot from an lm object and provides additional
 graphics to help evaluate the variance homogeneity and mean.
 
-The brown area is a smoothed estimate of 1.96*SD of the standardized
-residuals in a window around the predicted value. The brown area should
+The blue area is a smoothed estimate of 1.96*SD of the standardized
+residuals in a window around the predicted value. The blue area should
 largely be rectangular if the standardized residuals have more or less the
 same variance.
 
 The dashed line shows the smoothed mean of the standardized residuals and
 should generally follow the horizontal line through (0,0).
+
+Solid circles correspond to standardized residuals outside the range from [-1.96; 1.96] while open circles are inside that interval. Roughly 5% of the observations should be outside the interval and the points should be evenly distributed.
 }
 \examples{
 
