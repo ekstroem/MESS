@@ -10,6 +10,10 @@ already installed on the system.
 devtools::install_github('ekstroem/MESS')
 ```
 
+http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen
+
+![alt text](http://cranlogs.r-pkg.org/badges/grand-total/MESS)
+
 
 # Package overview
 
