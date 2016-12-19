@@ -10,9 +10,7 @@ already installed on the system.
 devtools::install_github('ekstroem/MESS')
 ```
 
-http://cranlogs.r-pkg.org/badges/Rcpp?color=brightgreen
-
-![alt text](http://cranlogs.r-pkg.org/badges/grand-total/MESS)
+![Download counter](http://cranlogs.r-pkg.org/badges/grand-total/MESS)
 
 
 # Package overview
@@ -21,8 +19,10 @@ The package contains a collection of various functions that have
 repeatedly. Several of them are shortcuts to combinations of standard
 R function that I keep using (and forgetting) repeatedly.
 
+The list below is far from complete.
 
-## Statistical function
+
+## Statistical functions
 
 
 Power calculations are - for better or worse - part of my job, and
@@ -30,12 +30,13 @@ while I generally recommend researchers to simulate their design and
 test procedure, there are some benefits to be gained from asymptotic
 approximations in standard designs.
 
-
+In time these will be moved to the Austin package, but for now they
+still reside in MESS.
 
 
 ## Utility functions
 
-* fac2num
+* fac2num - convert a factor to numerical
 * write.xml - save a data frame as an xml file
 
 
