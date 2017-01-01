@@ -76,4 +76,3 @@ Data with Overdispersion}.  Biometrics, 46, 657-671.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
-

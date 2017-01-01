@@ -58,4 +58,3 @@ summary(res)
 
 }
 \keyword{datasets}
-

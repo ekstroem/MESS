@@ -56,4 +56,3 @@ extended.shared(tped)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
-

@@ -55,4 +55,3 @@ rmvt.pedigree(2, ped, h2=.25, df=4)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
-

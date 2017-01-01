@@ -23,4 +23,3 @@ kruskal.test(values ~ ind, newdata)
 
 }
 \keyword{datasets}
-

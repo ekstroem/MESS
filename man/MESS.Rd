@@ -24,4 +24,3 @@ Claus Ekstrom \email{claus@rprimer.dk}\cr Maintainer: Claus Ekstrom
 \email{claus@rprimer.dk}
 }
 \keyword{package}
-

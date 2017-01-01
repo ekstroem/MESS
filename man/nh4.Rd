@@ -20,4 +20,3 @@ data(nh4)
 
 }
 \keyword{datasets}
-

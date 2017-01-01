@@ -26,4 +26,3 @@ plot(lifeexpect$myear, lifeexpect$male)
 
 }
 \keyword{datasets}
-

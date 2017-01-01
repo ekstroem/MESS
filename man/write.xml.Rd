@@ -31,4 +31,3 @@ write.xml(trees, file="mydata.xml")
 Claus Ekstrom, \email{claus@rprimer.dk} based on previous work by Duncan Temple Lang.
 }
 \keyword{file}
-

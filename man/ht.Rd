@@ -37,4 +37,3 @@ ht(1:20, returnList=TRUE)
 Claus Ekstrom, \email{claus@rprimer.dk}.
 }
 \keyword{print}
-

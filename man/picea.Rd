@@ -24,4 +24,3 @@ data(picea)
 
 }
 \keyword{datasets}
-

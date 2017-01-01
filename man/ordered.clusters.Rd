@@ -34,4 +34,3 @@ Claus Ekstrom \email{claus@ekstroem.dk} with suggestions from Peter
 Dalgaard.
 }
 \keyword{utilities}
-

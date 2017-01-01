@@ -36,4 +36,3 @@ evaluation of non-stationary mimo channels}. IEEE VTC.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{univar}
-

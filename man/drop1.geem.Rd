@@ -46,4 +46,3 @@ drop1(fit)
 Claus Ekstrom \email{claus@ekstroem.dk}
 }
 \keyword{htest}
-

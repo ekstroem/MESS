@@ -74,4 +74,3 @@ auc(x, y, from=0, rule=2, yleft=.5)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
-

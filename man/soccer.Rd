@@ -30,4 +30,3 @@ birthyear <- as.numeric(format(soccer$DoB, "\%Y"))
 
 }
 \keyword{datasets}
-

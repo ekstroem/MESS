@@ -54,4 +54,3 @@ JASA, Vol. 101.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{manip}
-

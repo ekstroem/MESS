@@ -31,4 +31,3 @@ xtabs(~Admit + Gender + Dept, data=result)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{manip}
-

@@ -37,4 +37,3 @@ model <- glm(Number ~ Locality + Type*Color,
 
 }
 \keyword{datasets}
-

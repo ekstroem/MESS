@@ -13,9 +13,9 @@
 #' @docType package
 #' @useDynLib MESS
 #' @importFrom Rcpp sourceCpp
-#' @author Claus Ekstrom \email{claus@@rprimer.dk}\cr Maintainer: Claus Ekstrom
+#' @author Claus Thorn Ekstrøm \email{claus@@rprimer.dk}\cr Maintainer: Claus Thorn Ekstrøm
 #' \email{claus@@rprimer.dk}
-#' @references Ekstrom, C. (2011). The R Primer. Chapman & Hall.
+#' @references Ekstrøm, C. (2011). The R Primer. Chapman & Hall.
 #' @import utils stats graphics
 #' @keywords package
 NULL
@@ -43,8 +43,7 @@ NULL
 #'
 #' plot(bdstat$year + bdstat$month/13, bdstat$birth, type="l")
 #'
-#'
-#' # Create table of births
+#' # Create a table of births
 #' # Remove year 2013 as it is incomplete
 #' btable <- xtabs(births ~ year + month, data=bdstat, subset=(year<2013))
 #'

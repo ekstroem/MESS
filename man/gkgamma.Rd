@@ -50,4 +50,3 @@ Association 49 (268): 732-764.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
-

@@ -21,4 +21,3 @@ data(icecreamad)
 
 }
 \keyword{datasets}
-

@@ -37,4 +37,3 @@ onemargintest(m2)
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

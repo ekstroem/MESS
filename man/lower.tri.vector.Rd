@@ -37,4 +37,3 @@ lower.tri.vector(m, cluster)
 Claus Ekstrom \email{claus@ekstroem.dk}
 }
 \keyword{manip}
-

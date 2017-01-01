@@ -44,4 +44,3 @@ segregate.genes(ped, c(.1, .3, .5))
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
-

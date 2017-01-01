@@ -21,4 +21,3 @@ Note this function can only be used for extraction
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

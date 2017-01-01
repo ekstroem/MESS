@@ -27,4 +27,3 @@ sinv(m)
 Claus Ekstrom, \email{claus@rprimer.dk}.
 }
 \keyword{file}
-

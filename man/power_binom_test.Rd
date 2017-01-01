@@ -49,4 +49,3 @@ power_binom_test(n = 50, p0 = .25, power = .90, alternative="less")  ## => pa = 
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
-

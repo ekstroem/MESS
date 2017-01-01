@@ -26,4 +26,3 @@ with(earthquakes, place[which.max(mag)])
 
 }
 \keyword{datasets}
-

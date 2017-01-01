@@ -26,4 +26,3 @@ tracemp(A, A)
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

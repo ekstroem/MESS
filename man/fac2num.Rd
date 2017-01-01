@@ -28,4 +28,3 @@ fac2num(f)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{manip}
-

@@ -33,4 +33,3 @@ round_percent(f)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{manip}
-

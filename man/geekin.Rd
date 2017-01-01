@@ -103,4 +103,3 @@ geekin(yy ~ 1, id=mydata$famid, varlist=list(2*kinship(breastped)))
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{models}
-

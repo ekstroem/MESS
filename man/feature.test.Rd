@@ -89,4 +89,3 @@ Claus Ekstrom \email{ekstrom@sund.ku.dk} and Kasper Brink-Jensen
 \email{kbrink@life.ku.dk}
 }
 \keyword{~htests}
-

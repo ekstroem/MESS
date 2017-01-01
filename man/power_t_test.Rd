@@ -66,4 +66,3 @@ power_t_test(delta=300, sd=450, power=.8, ratio=4)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{htest}
-

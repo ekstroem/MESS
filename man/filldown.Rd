@@ -25,4 +25,3 @@ filldown(c(NA, NA, NA, 3:5))
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

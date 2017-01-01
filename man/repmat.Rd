@@ -29,4 +29,3 @@ repmat(m, 2, 3)  # Replicate m with two copies on top and three copies side-by-s
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

@@ -31,4 +31,3 @@ Fast computation of simple regression slopes for each predictor represented by a
 \author{
 Claus Ekstrom <claus@rprimer.dk>
 }
-

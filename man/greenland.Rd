@@ -29,4 +29,3 @@ Aktuelt Naturvidenskab september 2010. \cr
 http://aktuelnaturvidenskab.dk/fileadmin/an/nr-4/an4_2010gletscher.pdf
 }
 \keyword{datasets}
-

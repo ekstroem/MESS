@@ -23,4 +23,3 @@ chisq.test(m)
 
 }
 \keyword{datasets}
-

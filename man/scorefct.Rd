@@ -22,4 +22,3 @@ Internal functions for the MESS package
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{~kwd1}
-

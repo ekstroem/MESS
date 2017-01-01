@@ -82,4 +82,3 @@ In \emph{Statistical Papers in Honor of George W. Snedecor}, p. 293-316.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{hplot}
-

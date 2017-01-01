@@ -79,4 +79,3 @@ residualplot(model)
 Claus Ekstrom <claus@rprimer.dk>
 }
 \keyword{hplot}
-

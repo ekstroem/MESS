@@ -97,4 +97,3 @@ Graphical Model Validation Techniques}. Teaching Statistics (36), p 23-26
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
-

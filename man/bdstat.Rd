@@ -23,8 +23,7 @@ data(bdstat)
 
 plot(bdstat$year + bdstat$month/13, bdstat$birth, type="l")
 
-
-# Create table of births
+# Create a table of births
 # Remove year 2013 as it is incomplete
 btable <- xtabs(births ~ year + month, data=bdstat, subset=(year<2013))
 
@@ -33,4 +32,3 @@ btable.freq <- prop.table(btable, margin=1)
 
 }
 \keyword{datasets}
-

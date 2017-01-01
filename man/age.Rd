@@ -39,4 +39,3 @@ age(born, check)
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}
-

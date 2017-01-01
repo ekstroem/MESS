@@ -39,4 +39,3 @@ Ekstrom, CT (2011) \emph{The R Primer}.
 Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{iplot}
-
