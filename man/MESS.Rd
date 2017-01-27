@@ -17,10 +17,10 @@ particular in relation to statistical genetics
 how to use the package, including the most important ~~ % ~~ functions ~~
 }
 \references{
-Ekstrom, C. (2011). The R Primer. Chapman & Hall.
+Ekstrøm, C. (2011). The R Primer. Chapman & Hall.
 }
 \author{
-Claus Ekstrom \email{claus@rprimer.dk}\cr Maintainer: Claus Ekstrom
+Claus Thorn Ekstrøm \email{claus@rprimer.dk}\cr Maintainer: Claus Thorn Ekstrøm
 \email{claus@rprimer.dk}
 }
 \keyword{package}
