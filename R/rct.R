@@ -8,18 +8,29 @@
 #' Missing posttest response for some subjects is routine, and disregarding missing cases can lead to invalid inference.
 prepost.test <- function(baseline, post, treatment) {
 
-    ## Chck factor
-    ## if ()
+    ## Check factor
+    if ("factor" %in% class(treatment)) {
+        treat <- !(treatment==levels(treatment)[1])
+    }
+    else {
+        treat <- !(treatment==0)
+    }
 
     ## Handle missing baseline/treatment
 
+    ##
+
+    DF <- data.frame(baseline, post, treatment, treat)
+
+    print(DF)
     ## Complete case analysis
-    ccanalysis <- lm(post ~ treatment + baseline)
+    ccanalysis <- lm(post ~ treatment + baseline, data=DF)
 
-    R <- !is.na(post)   # Observed post indicator
+    miss <- is.na(DF$post)
+    R <- !miss           # Observed post indicator
 
-    Z <- is.na(post)
-    R <- 1-Z
+#    Z <- is.na(post)
+#    R <- 1-Z
     N <- length(baseline)
     N1 <- sum(treatment)
     N0 <- N - N1
@@ -27,7 +38,7 @@ prepost.test <- function(baseline, post, treatment) {
     m1 <- lm(post ~ baseline, subset=(treatment==1))
     m0 <- lm(post ~ baseline, subset=(treatment==0))
 
-    m1 <- lm(post ~ treatment*baseline)
+#    m1 <- lm(post ~ treatment*baseline)
 
     eq1 <- predict(m1)
     eq0 <- predict(m0)
@@ -37,22 +48,32 @@ prepost.test <- function(baseline, post, treatment) {
 
     delta <- N1 / N
 
-    if (sum(Z)==0) {
-        pi0 <- 0
-        pi1 <- 0
-    } else if (sum(Z)==1) {
-        pi0 <- 1
-        pi1 <- 1
-    }
 
-    if (sum(Z)>0) {
-        missmodel <- glm(Z ~ baseline*treatment, family="binomial")
-
-        pi0 <- predict(missmodel, newdata=data.frame(x, treat=rep(0, 100)), type="response")
+    pi1 <- 1
+    pi0 <- 1
+    print(sum(DF$miss[DF$treat]))
+    if ( sum(DF$miss[DF$treat])>0 ) {
+        print(DF$R)
+        missmodel <- glm( R  ~ baseline*treat, family="binomial", subset=(treat==TRUE), data=DF)
         pi1 <- predict(missmodel, newdata=data.frame(x, treat=rep(1, 100)), type="response")
-    } else if sum(Z) {
-
     }
+    if ( sum(DF$miss[!DF$treat])>0 ) {
+        missmodel <- glm( R  ~ baseline*treat, family="binomial", subset=(treat==FALSE), data=DF)
+        pi0 <- predict(missmodel, newdata=data.frame(x, treat=rep(1, 100)), type="response")
+    }
+
+    print(pi0)
+    print(pi1)
+
+    print("asdasd")
+
+#    pi0 <- predict(missmodel, newdata=data.frame(x, treat=rep(0, 100)), type="response")
+#    pi0
+#    pi1 <- predict(missmodel, newdata=data.frame(x, treat=rep(1, 100)), type="response")
+#    pi1
+#    } else if sum(Z) {
+
+#    }
 
 
 #    cat("kjhkjh")
@@ -66,10 +87,10 @@ prepost.test <- function(baseline, post, treatment) {
                   sum((R - pi1)*treatment*eq1/pi1)
                  )
 
-    mu1 <- 1/N1*( sum((treatment[R] * post[R] ) / pi1[R]) -
-                     sum((treatment - delta)*eq1) -
-                         sum((R - pi1)*treatment*eq1/pi1)
-                 )
+#    mu1 <- 1/N1*( sum((treatment[R] * post[R] ) / pi1[R]) -
+#                  sum((treatment - delta)*eq1) -
+#                  sum((R - pi1)*treatment*eq1/pi1)
+#                 )
 
 #    print(length(eq1))
 #    print(eq1)
