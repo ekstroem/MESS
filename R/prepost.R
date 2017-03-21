@@ -8,6 +8,7 @@
 #' @param baseline A vector of quantitative baseline measurements
 #' @param post A vector of quantitative post-test measurements with same length as baseline. May contain missing values
 #' @param treatment A vector of 0s and 1s corresponding to treatment indicator. 1 = treated, Same length as baseline
+#' @param conf.level confidence level of the interval
 #' @param delta A numeric between 0 and 1 OR the string "estimate" (the default). The proportion of observation treated.
 #' @author Claus Ekstrom \email{ekstrom@@sund.ku.dk}
 #' @seealso \code{\link{chisq.test}}
@@ -24,7 +25,10 @@
 #' prepost.test(bp_base, bp1w, expo)
 #'
 #' @export
-prepost.test <- function(baseline, post, treatment, delta="estimate", conf.level = 0.95) {
+prepost.test <- function(baseline, post, treatment, conf.level = 0.95, delta="estimate") {
+
+    ##
+
 
     ## Check factor
     if ("factor" %in% class(treatment)) {
@@ -84,12 +88,17 @@ prepost.test <- function(baseline, post, treatment, delta="estimate", conf.level
     mu21 <- with(DF, sum(R*Z*Y2/pihat1 - (Z-deltahat)*ehat1 -(R-pihat1)*Z*ehat1/pihat1 )/N1)
     mu20 <- ifelse(N0==0, 0, with(DF, sum(R*(1-Z)*Y2/pihat0 + (Z-deltahat)*ehat0 - (R-pihat0)*(1-Z)*ehat1/pihat0)/N0))
 
+
+    mu21 <- with(DF, sum(R*Z*Y2/pihat1 - (Z-deltahat)*ehat1 -(R-pihat1)*Z*ehat1/pihat1 )/ (deltahat*N))
+    mu20 <- ifelse(N0==0, 0, with(DF, sum(R*(1-Z)*Y2/pihat0 + (Z-deltahat)*ehat0 - (R-pihat0)*(1-Z)*ehat1/pihat0)/((1-deltahat)*N)))
+
+
     betahat <- mu21 - mu20
 
     iFun1 <- with(DF, R*Z*(Y2-mu21)/(deltahat*pihat1) -
                       (Z-deltahat)*(ehat1 - mu21)/(deltahat) -
                       (R-pihat1)*Z*(ehat1 - mu21)/(deltahat*pihat1))
-    iFun2 <- with(DF, -(R*(1-Z)*(Y2-mu20))/((1-deltahat)*pihat0) +
+    iFun2 <- with(DF, -(R*(1-Z)*(Y2-mu20))/((1-deltahat)*pihat0) -
                       ((Z-deltahat)*(ehat0-mu20))/(1-deltahat) -
                       (R-pihat0)*(1-Z)*(ehat1-mu20)/((1-deltahat)*pihat0))
 

@@ -4,8 +4,8 @@
 \alias{prepost.test}
 \title{Pretest-posttest RCT for quantitative observations with possible missing values}
 \usage{
-prepost.test(baseline, post, treatment, delta = "estimate",
-  conf.level = 0.95)
+prepost.test(baseline, post, treatment, conf.level = 0.95,
+  delta = "estimate")
 }
 \arguments{
 \item{baseline}{A vector of quantitative baseline measurements}
@@ -13,6 +13,8 @@ prepost.test(baseline, post, treatment, delta = "estimate",
 \item{post}{A vector of quantitative post-test measurements with same length as baseline. May contain missing values}
 
 \item{treatment}{A vector of 0s and 1s corresponding to treatment indicator. 1 = treated, Same length as baseline}
+
+\item{conf.level}{confidence level of the interval}
 
 \item{delta}{A numeric between 0 and 1 OR the string "estimate" (the default). The proportion of observation treated.}
 }
