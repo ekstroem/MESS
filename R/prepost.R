@@ -38,8 +38,12 @@ prepost.test <- function(baseline, post, treatment, conf.level = 0.95, delta="es
         treat <- !(treatment==0)
     }
 
-    if (length(unique(treatment))==1)
-        stop("More that one treatment needed")
+    if (length(unique(treatment))!=2)
+        stop("Can only handle exactly two treatments")
+
+    if (!(class(treatment) %in% c("integer", "numeric", "logical"))) {
+        stop("treatment must be numeric (or logical)")
+    }
 
     if (!missing(conf.level) && (length(conf.level) != 1 || !is.finite(conf.level) ||
                                      conf.level < 0 || conf.level > 1))

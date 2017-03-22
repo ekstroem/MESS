@@ -4,19 +4,20 @@
 \alias{screen_variables}
 \title{Screen variable before penalized regression}
 \usage{
-screen_variables(x, y, lambda = 0, method = c("xxx"))
+screen_variables(x, y, lambda = 0.1, method = c("global-strong",
+  "global-DPP"))
 }
 \arguments{
 \item{x}{A table or matrix}
 
-\item{y}{A vector out outcomes}
+\item{y}{A vector of outcomes}
 
-\item{lambda}{a vector of values penalized ....}
+\item{lambda}{a vector of positive values used for the penalization parameter.}
 
-\item{method}{a string giving the method used for screening. Currently not used}
+\item{method}{a string giving the method used for screening. Two possibilities are}
 }
 \value{
-A list with two elements: lambda which
+A list with three elements: lambda which contains the lambda values
 }
 \description{
 Expands a contingency table to a data frame where each observation in the table becomes a single observation in the data frame with corresponding information for each for each combination of the table dimensions.
@@ -28,8 +29,12 @@ Note that no standardization is done (not necessary?)
 
 x <- matrix(rnorm(50*100), nrow=50)
 y <- rnorm(50)
-screen_variables(x, y, lambda=c(0, 1, 2))
+screen_variables(x, y, lambda=c(.1, 1, 2))
 
+}
+\references{
+Hastie, Tibshirani and Wainwright (2015).
+"Statistical Learning with Sparsity". CRC Press.
 }
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}
