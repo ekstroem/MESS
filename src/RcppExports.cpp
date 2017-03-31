@@ -18,18 +18,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// fastprod
-DataFrame fastprod(NumericVector y, NumericMatrix x);
-RcppExport SEXP MESS_fastprod(SEXP ySEXP, SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(fastprod(y, x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // filldown
 SEXP filldown(SEXP x);
 RcppExport SEXP MESS_filldown(SEXP xSEXP) {

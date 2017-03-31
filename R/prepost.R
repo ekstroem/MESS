@@ -13,22 +13,23 @@
 #' @author Claus Ekstrom \email{ekstrom@@sund.ku.dk}
 #' @seealso \code{\link{chisq.test}}
 #' @references Marie Davidian, Anastasios A. Tsiatis and Selene Leon (2005).
-#' "Semiparametric Estimation of Treatment Effect in a Pretest–Posttest Study
+#' "Semiparametric Estimation of Treatment Effect in a Pretest-Posttest Study
 #' with Missing Data". Statistical Science 20, 261-301.
 #' @keywords htest
 #'
 #' @examples
-#' expo=c(rep(1,9),rep(0,7))
-#' bp1w=c(137,120,141,137,140,144,134,123,142,139,134,136,151,147,137,149)
-#' bp_base=c(147,129,158,164,134,155,151,141,153,133,129,152,161,154,141,156)
-#' diff=bp1w-bp_base
+#' # From Altman
+#' expo = c(rep(1,9),rep(0,7))
+#' bp1w = c(137,120,141,137,140,144,134,123,142,139,134,136,151,147,137,149)
+#' bp_base = c(147,129,158,164,134,155,151,141,153,133,129,152,161,154,141,156)
+#' diff = bp1w-bp_base
 #' prepost.test(bp_base, bp1w, expo)
 #'
 #' @export
 prepost.test <- function(baseline, post, treatment, conf.level = 0.95, delta="estimate") {
 
-    ##
-
+    ## Define Z to bypass R CMD check grievances with with below
+    Z <- NULL
 
     ## Check factor
     if ("factor" %in% class(treatment)) {
@@ -111,8 +112,7 @@ prepost.test <- function(baseline, post, treatment, conf.level = 0.95, delta="es
     sebetahat <- sqrt(sum((iFun/N)^2))
 
 
-    method <- "Semiparametric Estimation of Treatment Effect in a Pretest–Posttest Study
-with Missing Data"
+    method <- "Semiparametric Estimation of Treatment Effect in a Pretest-Posttest Study with Missing Data"
 
     tstat <- betahat/sebetahat
     alpha <- 1 - conf.level

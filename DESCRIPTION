@@ -24,6 +24,8 @@ Suggests:
 Description: A mixed collection of useful and semi-useful diverse
     statistical functions, some of which may even be referenced in
     The R Primer book.
+URL: https://github.com/ekstroem/MESS
+BugReports: https://github.com/ekstroem/MESS/issues
 Encoding: UTF-8
 ByteCompile: true
 License: GPL-2
