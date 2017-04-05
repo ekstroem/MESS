@@ -13,7 +13,7 @@
   }}
 \source{
 Data collected from Danmarsk Statistik.
-See \url{http://www.dst.dk/en#} for more information.
+See \url{https://www.dst.dk/en} for more information.
 }
 \description{
 The estimated life expectancy for newborn Danes split according to gender.

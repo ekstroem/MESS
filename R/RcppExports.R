@@ -49,7 +49,7 @@ filldown <- function(x) {
 #' @param y A vector of outcomes.
 #' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
 #' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
-#' @return A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
+#' @return A data frame with three variables: coefficients, stderr, and tstat that gives the slope estimate, the corresponding standard error, and their ratio for each column in x.
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @examples
 #' \dontrun{

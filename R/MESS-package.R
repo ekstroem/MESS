@@ -401,7 +401,7 @@ NULL
 #'     \item{\code{myear}}{a numeric vector} The midpoint of the year interval
 #'   }
 #' @source Data collected from Danmarsk Statistik.
-#' See \url{http://www.dst.dk/en#} for more information.
+#' See \url{https://www.dst.dk/en} for more information.
 #' @keywords datasets
 #' @examples
 #'

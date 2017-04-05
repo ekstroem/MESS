@@ -14,7 +14,7 @@ mfastLmCpp(y, x, addintercept = TRUE)
 \item{addintercept}{A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)}
 }
 \value{
-A data frame with two variables: coefficients and stderr that gives the slope estimate and corresponding standard error for each column in x.
+A data frame with three variables: coefficients, stderr, and tstat that gives the slope estimate, the corresponding standard error, and their ratio for each column in x.
 }
 \description{
 Fast computation of simple regression slopes for each predictor represented by a column in a matrix
