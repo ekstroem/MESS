@@ -11,7 +11,7 @@
 #' @name MESS
 #' @aliases MESS-package MESS
 #' @docType package
-#' @useDynLib MESS
+#' @useDynLib MESS, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 #' @author Claus Thorn Ekstrøm \email{claus@@rprimer.dk}\cr Maintainer: Claus Thorn Ekstrøm
 #' \email{claus@@rprimer.dk}
