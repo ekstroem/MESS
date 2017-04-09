@@ -124,7 +124,7 @@ drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sassc
 #' library(geeM)
 #' data(ohio)
 #' fit <- geem(resp ~ age + smoke + age:smoke, id=id, data=ohio,
-#'              family=binomial, corstr="exch", scale.fix=TRUE)
+#'             family="binomial", corstr="exch", scale.fix=TRUE)
 #' drop1(fit)
 #'
 #' @import geeM
@@ -135,7 +135,7 @@ drop1.geem <- function(object, scope, test = c("Wald", "none", "score", "sasscor
     method <- match.arg(method)
 
     if (! any(c("geem") %in% class(object)) ) {
-        stop("Presently drop1.geeglm only works for geeglm or geem objects")
+        stop("Presently drop1.geem only works for geeglm or geem objects")
     }
 
     x <- model.matrix(object)

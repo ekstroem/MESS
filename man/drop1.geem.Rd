@@ -35,7 +35,7 @@ library(geepack)
 library(geeM)
 data(ohio)
 fit <- geem(resp ~ age + smoke + age:smoke, id=id, data=ohio,
-             family=binomial, corstr="exch", scale.fix=TRUE)
+            family="binomial", corstr="exch", scale.fix=TRUE)
 drop1(fit)
 
 }
