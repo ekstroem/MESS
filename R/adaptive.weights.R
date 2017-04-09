@@ -24,12 +24,15 @@
 #' @keywords manip
 #' @examples
 #' 
-#' library(glmnet)
 #' set.seed(1)
 #' x <- matrix(rnorm(50000), nrow=50)
 #' y <- rnorm(50, mean=x[,1])
 #' weights <- adaptive.weights(x, y)
-#' glmnet(x, y, penalty.factor=weights$weights)
+#'
+#' if (requireNamespace("glmnet", quietly = TRUE)) {
+#'     res <- glmnet::glmnet(x, y, penalty.factor=weights$weights)
+#'     head(res)
+#' }
 #' 
 #' @export adaptive.weights
 adaptive.weights <- function(x, y, nu=1, weight.method=c("multivariate", "univariate")) {
