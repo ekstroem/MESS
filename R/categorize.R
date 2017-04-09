@@ -11,11 +11,13 @@
 #' @keywords manip
 #' @examples
 #'
-#' library(magrittr)
 #'
-#' esoph %>% categorize(alcgp, agegp)
+#' if (requireNamespace("magrittr", quietly = TRUE)) {
+#'     library(magrittr)
 #'
-#' esoph %>% categorize(~ alcgp + agegp)
+#'     esoph %>% categorize(alcgp, agegp)
+#'     esoph %>% categorize(~ alcgp + agegp)
+#' }
 #'
 #' @export
 categorize <- function(x, ...) {

@@ -123,9 +123,11 @@ drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sassc
 #' library(geeM)
 #' library(geepack)
 #' data(ohio)
+#' \dontrun{
 #' fit <- geem(resp ~ age + smoke + age:smoke, id=id, data=ohio,
 #'             family="binomial", corstr="exch", scale.fix=TRUE)
 #' drop1(fit)
+#' }
 #'
 #' @import geeM
 #' @export
