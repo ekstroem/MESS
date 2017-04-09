@@ -1,5 +1,7 @@
 # MESS
 
+[![Travis-CI Build Status](https://travis-ci.org/ekstroem/MESS.svg?branch=master)](https://travis-ci.org/ekstroem/MESS)
+
 Development version of the R package **MESS** (Miscellaneous Esoteric Statistical Scripts)
 
 To install the development version of **MESS** run the following

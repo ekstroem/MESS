@@ -1,0 +1,110 @@
+---
+title: "The MESS package"
+author: "Claus Thorn Ekstrøm"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `MESS` package contains a mix of functions.
+
+There is no real connection between the function except they have all been created by the same person, and they range from computational functions, graphical functions, statistical analysis functions, utility functions, and function that extend other packages.
+
+This vignette gives an overview of the package and shows some examples.
+
+# Overview
+
+## Statistical analysis
+
+---------------------   ----------------------------------------------
+QIC.geeglm              Quasi Information Criterion
+adaptive.weights        Compute weights for use with adaptive lasso.
+common.shared           Compute a common shared environment matrix
+drop1.geeglm            Drop All Possible Single Terms to a geeglm Model Using Wald or Score Test
+drop1.geem              Drop All Possible Single Terms to a geem Model Using Wald or Score Test
+extended.shared         Compute a common shared environment matrix
+feature.test            Inference for features identified by the Lasso
+geekin                  Fit a generalized estimating equation (GEE) model with fixed additive correlation structure
+gkgamma                 Goodman-Kruskal's gamma statistic for a two-dimensional table
+mfastLmCpp              Fast marginal simple regresion analyses
+onemargintest           Two-sided table test with fixed margins
+power_binom_test        Power Calculations for Exact Test of a simple null hypothesis in a Bernoulli experiment
+power_mcnemar_test      Power Calculations for Exact and Asymptotic McNemar Test in a 2 by 2 table
+power_t_test            Power calculations for one and two sample t tests with unequal sample size
+prepost.test            Pretest-posttest RCT for quantitative observations with possible missing values
+---------------------   ----------------------------------------------
+
+
+## Utility functions
+
+---------------------   ----------------------------------------------
+age                     Compute the age of a person from two dates.
+auc                     Compute the area under the curve for two vectors.
+categorize              A table function to use with magrittr pipes
+cmd                     Correlation matrix distance
+expand_table            Expand table or matrix to data frame
+fac2num                 Convert factor to numeric vector
+filldown                Fill down NA with the last observed observation
+ht                      Show the head and tail of an object
+lower.tri.vector        Split Matrix by Clusters and Return Lower Triangular Parts as Vector
+ordered.clusters        Check if unique elements of a vector appear in contiguous clusters
+qdiag                   Fast extraction of matrix diagonal
+qpcr                    Gene expression from real-time quantitative PCR
+quadform                Fast quadratic form computation
+repmat                  Fast replication of a matrix
+rmvt.pedigree           Simulate residual multivariate t-distributed data from a polygenic model
+rmvtnorm.pedigree       Simulate residual multivariate Gaussian data from a polygenic model
+round_percent           Round vector of number to percentages
+scorefct                Internal functions for the MESS package
+screen_variables        Screen variable before penalized regression
+segregate.genes         Segregate genes through a pedigree
+sinv                    Invert a symmetric positive-definite matrix
+tracemp                 Fast computation of trace of matrix product
+write.xml               Write a data frame in XML format
+---------------------   ----------------------------------------------
+
+
+
+
+## Graphics
+
+---------------------   ----------------------------------------------
+col.alpha               Add and set alpha channel for RGB color
+col.shade               Shade an RGB color
+col.tint                Tint an RGB color
+panel.hist              Panel plot of histogram and density curve
+panel.r2                Panel plot of R2 values for pairs
+residualplot.default    Plots a standardaized residual
+rootonorm               Hanging rootogram for normal distribution
+wallyplot.default       Plots a Wally plot
+---------------------   ----------------------------------------------
+
+
+
+
+## Datasets
+
+---------------------   ----------------------------------------------
+bdstat                  Danish live births and deaths
+bees                    Bee data. Number of different types of bees caught.
+clotting                Blood clotting for 158 rats
+earthquakes             Earthquakes in 2015
+greenland               Average yearly summer air temperature for Tasiilaq, Greenland
+happiness               Happiness score and tax rates for 148 countries
+icecreamads             Ice cream consumption and advertising
+kwdata                  Non-parametric Kruskal Wallis data example
+lifeexpect              Estimated life expectancy for Danish newborns
+matched                 Flu hospitalization
+nh4                     Ammonia nitrogen found in river
+picea                   Ozone concentration damage to picea spruce
+qpcr                    Gene expression from real-time quantitative PCR
+rainman                 Perception of points in a swarm
+smokehealth             Effect of smoking on self reported health
+soccer                  Danish national soccer players
+superroot2              Gene expression data from two-color dye-swap experiment
+---------------------   ----------------------------------------------
+
+
