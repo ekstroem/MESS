@@ -68,6 +68,7 @@ For a description of the features of the default residual plot see the help page
 }
 \examples{
 
+\dontrun{
 data(trees)
 res <- lm(Volume ~ Height + Girth, data=trees)
 wallyplot(res)
@@ -86,7 +87,7 @@ cprplot <- function(x, y, ...) {plot(x, y, pch=20, ...) ;
 # Create the Wallyplot
 wallyplot(trees$Girth, trees$Girth+rstudent(res), FUN=cprplot,
           simulateFunction=cprsimulate, xlab="Girth")
-
+}
 
 }
 \references{

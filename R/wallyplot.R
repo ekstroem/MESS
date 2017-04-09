@@ -100,6 +100,7 @@ wallyplot.lm <- function(x, y=x, FUN=residualplot,
 #' @keywords iplot
 #' @examples
 #'
+#' \dontrun{
 #' data(trees)
 #' res <- lm(Volume ~ Height + Girth, data=trees)
 #' wallyplot(res)
@@ -118,7 +119,7 @@ wallyplot.lm <- function(x, y=x, FUN=residualplot,
 #' # Create the Wallyplot
 #' wallyplot(trees$Girth, trees$Girth+rstudent(res), FUN=cprplot,
 #'           simulateFunction=cprsimulate, xlab="Girth")
-#'
+#' }
 #'
 #' @export
 wallyplot <- function(x, y=x, FUN=residualplot,

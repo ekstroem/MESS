@@ -31,8 +31,8 @@ model, and compute a table of the corresponding Wald test statistics.
 }
 \examples{
 
-library(geepack)
 library(geeM)
+library(geepack)
 data(ohio)
 fit <- geem(resp ~ age + smoke + age:smoke, id=id, data=ohio,
             family="binomial", corstr="exch", scale.fix=TRUE)

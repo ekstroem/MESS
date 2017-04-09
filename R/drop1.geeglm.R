@@ -120,8 +120,8 @@ drop1.geeglm <- function(object, scope, test = c("Wald", "none", "score", "sassc
 #' @keywords htest
 #' @examples
 #'
-#' library(geepack)
 #' library(geeM)
+#' library(geepack)
 #' data(ohio)
 #' fit <- geem(resp ~ age + smoke + age:smoke, id=id, data=ohio,
 #'             family="binomial", corstr="exch", scale.fix=TRUE)
