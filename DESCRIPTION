@@ -2,7 +2,7 @@ Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
 Version: 0.4-15
-Date: 2017-04-00
+Date: 2017-04-10
 Author: Claus Thorn Ekstrøm <claus@rprimer.dk>
 Maintainer: Claus Ekstrøm <claus@rprimer.dk>
 Depends:
@@ -23,7 +23,8 @@ Suggests:
     knitr,
     lme4,
     magrittr,    
-    rmarkdown
+    rmarkdown,
+    testthat
 Description: A mixed collection of useful and semi-useful diverse
     statistical functions, some of which may even be referenced in
     The R Primer book.

@@ -1,0 +1,6 @@
+context("fast marginal lm solver (mfastLm)")
+
+
+test_that("estimation", {
+  expect_equal(mfastLmCpp(1:10, as.matrix(1:10))[1], 1)
+})

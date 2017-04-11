@@ -47,7 +47,7 @@ filldown <- function(x) {
 #'
 #' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 #' @param y A vector of outcomes.
-#' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
+#' @param x A matrix of regressor variables. Must have the same number of rows as the length of y. Missing variables are not handled
 #' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
 #' @return A data frame with three variables: coefficients, stderr, and tstat that gives the slope estimate, the corresponding standard error, and their ratio for each column in x.
 #' @author Claus Ekstrom <claus@@rprimer.dk>

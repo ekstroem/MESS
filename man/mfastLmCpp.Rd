@@ -9,7 +9,7 @@ mfastLmCpp(y, x, addintercept = TRUE)
 \arguments{
 \item{y}{A vector of outcomes.}
 
-\item{x}{A matrix of regressor variables. Must have the same number of rows as the length of y.}
+\item{x}{A matrix of regressor variables. Must have the same number of rows as the length of y. Missing variables are not handled}
 
 \item{addintercept}{A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)}
 }
