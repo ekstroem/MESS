@@ -44,10 +44,13 @@ filldown <- function(x) {
 }
 
 #' Fast marginal simple regresion analyses
+#' 
+#' Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 #'
-#' @description Fast computation of simple regression slopes for each predictor represented by a column in a matrix
+#' Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used for the analysis.
+#' 
 #' @param y A vector of outcomes.
-#' @param x A matrix of regressor variables. Must have the same number of rows as the length of y. Missing variables are not handled
+#' @param x A matrix of regressor variables. Must have the same number of rows as the length of y. 
 #' @param addintercept A logical that determines if the intercept should be included in all analyses (TRUE) or not (FALSE)
 #' @return A data frame with three variables: coefficients, stderr, and tstat that gives the slope estimate, the corresponding standard error, and their ratio for each column in x.
 #' @author Claus Ekstrom <claus@@rprimer.dk>
