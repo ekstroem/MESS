@@ -43,6 +43,27 @@ filldown <- function(x) {
     .Call('MESS_filldown', PACKAGE = 'MESS', x)
 }
 
+#' Kolmogorov-Smirnov goodness of fit test for cumulative discrete data
+#'
+#' The name of the function might change in the future so keep that in mind!
+#'
+#' @description Kolmogorov-Smirnov goodness of fit test for cumulative discrete data. 
+#' @param x A vector representing the contingency table.
+#' @param B The number of simulations used to compute the p-value.
+#' @param prob A positive vector of the same length as x representing the distribution under the null hypothesis. It will be scaled to sum to 1. If NULL (the default) then a uniform distribution is assumed.
+#' @details Simulation is done by random sampling from the null hypothesis.
+#' @return A list of class "htest" giving the simulation results.
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' x <- 1:6
+#' kstest(x)
+#'
+#' @export
+kstest <- function(x, B = 10000L, prob = NULL) {
+    .Call('MESS_kstest', PACKAGE = 'MESS', x, B, prob)
+}
+
 #' Fast marginal simple regresion analyses
 #' 
 #' Fast computation of simple regression slopes for each predictor represented by a column in a matrix

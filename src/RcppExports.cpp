@@ -29,6 +29,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// kstest
+List kstest(NumericVector x, int B, Rcpp::Nullable<Rcpp::NumericVector> prob);
+RcppExport SEXP MESS_kstest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type prob(probSEXP);
+    rcpp_result_gen = Rcpp::wrap(kstest(x, B, prob));
+    return rcpp_result_gen;
+END_RCPP
+}
 // mfastLmCpp
 DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept);
 RcppExport SEXP MESS_mfastLmCpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
