@@ -5,13 +5,18 @@
 using namespace Rcpp;
 
 
-// Compute chisq test statistic with no correction
+// Compute ks test statistic with no correction
+// Assumes two-sided
 double ksteststatistic(arma::colvec x) {
   arma::uword k=x.n_elem;
   arma::uword n=arma::accu(x);
-  arma::colvec b = arma::linspace(double(n)/double(k), n, k); 
+  arma::colvec b = arma::linspace(double(n)/double(k), n, k);
+  arma::colvec b2 = arma::linspace(0.0, double(n)*double(k-1)/double(k), k); 
 
-  return(  arma::max(arma::abs(arma::cumsum(x) - b)));
+  return(  std::max(arma::max(arma::abs(arma::cumsum(x) - b)),
+	       arma::max(arma::abs(arma::cumsum(x) - b2))
+	       )
+	   );
 }
 
 
@@ -40,7 +45,6 @@ List kstest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector> pr
   // Sanity checks
   if (B<1)
     Rcpp::stop("The number of permutation must be greater than 0");
-
 
   arma::uword N = sum(X);
   arma::uword K = X.n_elem;
