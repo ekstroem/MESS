@@ -14,14 +14,14 @@ double ksteststatistic(arma::colvec x, arma::colvec probs) {
   //  arma::uword k=x.n_elem;
   // arma::uword n=arma::accu(x);
   arma::colvec b = arma::cumsum(probs);
-  arma::colvec b2 = arma::shift(b,1);
+  //  arma::colvec b2 = arma::shift(b,1);   b2(0) = 0.0;
   arma::colvec normcumsumX = arma::cumsum(arma::normalise(x, 1));
-  b2(0) = 0.0;
 
-  return(  std::max(arma::max(arma::abs(normcumsumX - b)),
-   	            arma::max(arma::abs(normcumsumX - b2))
-	       )
-	   );
+
+  return(  std::max(arma::max(arma::abs(normcumsumX - b)), 0.0 )); //,
+		    //   	            arma::max(arma::abs(normcumsumX - b2))
+  //	       )
+  //	   );
 }
 
 
