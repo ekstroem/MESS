@@ -6,15 +6,20 @@ using namespace Rcpp;
 
 
 // Compute ks test statistic with no correction
-// Assumes two-sided
-double ksteststatistic(arma::colvec x) {
-  arma::uword k=x.n_elem;
-  arma::uword n=arma::accu(x);
-  arma::colvec b = arma::linspace(double(n)/double(k), n, k);
-  arma::colvec b2 = arma::linspace(0.0, double(n)*double(k-1)/double(k), k); 
+// probs are the individual probabilities
+// Assumes two-sided test.
+// Note that no checking of same vector lengths
+double ksteststatistic(arma::colvec x, arma::colvec probs) {
+  
+  //  arma::uword k=x.n_elem;
+  // arma::uword n=arma::accu(x);
+  arma::colvec b = arma::cumsum(probs);
+  arma::colvec b2 = arma::shift(b,1);
+  arma::colvec normcumsumX = arma::cumsum(arma::normalise(x, 1));
+  b2(0) = 0.0;
 
-  return(  std::max(arma::max(arma::abs(arma::cumsum(x) - b)),
-	       arma::max(arma::abs(arma::cumsum(x) - b2))
+  return(  std::max(arma::max(arma::abs(normcumsumX - b)),
+   	            arma::max(arma::abs(normcumsumX - b2))
 	       )
 	   );
 }
@@ -77,8 +82,10 @@ List kstest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector> pr
   }
 
   IntegerVector frame = seq_len(K);  // Sampling set
+  
+  arma::colvec probabilities(PP.begin(), PP.length(), false);
 
-  double originalks = ksteststatistic(X);
+  double originalks = ksteststatistic(X, probabilities);
 
   arma::colvec testtable(K);
 
@@ -96,15 +103,16 @@ List kstest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector> pr
       testtable(res(k)-1) +=1;
     }
 
-    if (ksteststatistic(testtable) >= originalks)
+    if (ksteststatistic(testtable, probabilities) >= originalks)
       larger +=1;
 
   }
   
   NumericVector statistic = NumericVector::create(_["KS-statistic"] = originalks) ;
 
-  Rcpp::List RVAL =  Rcpp::List::create(Rcpp::Named("method") = "Kolmogorov-Smirnov discrete cumulative goodness-of-fit test",
+  Rcpp::List RVAL =  Rcpp::List::create(Rcpp::Named("method") = "One-sample Kolmogorov-Smirnov discrete cumulative goodness-of-fit test",
 					Rcpp::Named("statistic") = statistic,
+					//					Rcpp::Named("alternative") = "two.sided",
 					Rcpp::Named("p.value") = (1+larger)/(B+1.0));
 
   RVAL.attr("class") = "htest";
