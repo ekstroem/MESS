@@ -32,6 +32,7 @@ The list below is far from complete.
 two-dimensional table of ordered categories
 * mfastLmCpp - fast computation of simple regression slopes for each
 predictor represented by a column in a matrix
+* ksstat - One-sample Kolmogorov-Smirnov discrete cumulative comparison.
 
 Power calculations are - for better or worse - part of my job, and
 while I generally recommend researchers to simulate their design and
