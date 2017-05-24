@@ -117,3 +117,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+
+static const R_CallMethodDef CallEntries[] = {
+    {"MESS_cmd", (DL_FUNC) &MESS_cmd, 2},
+    {"MESS_filldown", (DL_FUNC) &MESS_filldown, 1},
+    {"MESS_kstest", (DL_FUNC) &MESS_kstest, 3},
+    {"MESS_mfastLmCpp", (DL_FUNC) &MESS_mfastLmCpp, 3},
+    {"MESS_onemargintest", (DL_FUNC) &MESS_onemargintest, 2},
+    {"MESS_qdiag", (DL_FUNC) &MESS_qdiag, 1},
+    {"MESS_quadform", (DL_FUNC) &MESS_quadform, 4},
+    {"MESS_repmat", (DL_FUNC) &MESS_repmat, 3},
+    {"MESS_tracemp", (DL_FUNC) &MESS_tracemp, 2},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_MESS(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+}

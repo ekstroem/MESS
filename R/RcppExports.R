@@ -23,7 +23,7 @@
 #'
 #' @export cmd
 cmd <- function(x, y) {
-    .Call('MESS_cmd', PACKAGE = 'MESS', x, y)
+    .Call(MESS_cmd, x, y)
 }
 
 #' Fill down NA with the last observed observation
@@ -40,7 +40,7 @@ cmd <- function(x, y) {
 #'
 #' @export
 filldown <- function(x) {
-    .Call('MESS_filldown', PACKAGE = 'MESS', x)
+    .Call(MESS_filldown, x)
 }
 
 #' Kolmogorov-Smirnov goodness of fit test for cumulative discrete data
@@ -61,7 +61,7 @@ filldown <- function(x) {
 #'
 #' @export
 kstest <- function(x, B = 10000L, prob = NULL) {
-    .Call('MESS_kstest', PACKAGE = 'MESS', x, B, prob)
+    .Call(MESS_kstest, x, B, prob)
 }
 
 #' Fast marginal simple regresion analyses
@@ -85,7 +85,7 @@ kstest <- function(x, B = 10000L, prob = NULL) {
 #' }
 #' @export
 mfastLmCpp <- function(y, x, addintercept = TRUE) {
-    .Call('MESS_mfastLmCpp', PACKAGE = 'MESS', y, x, addintercept)
+    .Call(MESS_mfastLmCpp, y, x, addintercept)
 }
 
 #' Two-sided table test with fixed margins
@@ -111,7 +111,7 @@ mfastLmCpp <- function(y, x, addintercept = TRUE) {
 #'
 #' @export
 onemargintest <- function(x, B = 10000L) {
-    .Call('MESS_onemargintest', PACKAGE = 'MESS', x, B)
+    .Call(MESS_onemargintest, x, B)
 }
 
 #' Fast extraction of matrix diagonal
@@ -123,7 +123,7 @@ onemargintest <- function(x, B = 10000L) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export qdiag
 qdiag <- function(x) {
-    .Call('MESS_qdiag', PACKAGE = 'MESS', x)
+    .Call(MESS_qdiag, x)
 }
 
 #' Fast quadratic form computation
@@ -137,7 +137,7 @@ qdiag <- function(x) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
-    .Call('MESS_quadform', PACKAGE = 'MESS', x, M, invertM, transposex)
+    .Call(MESS_quadform, x, M, invertM, transposex)
 }
 
 #' Fast replication of a matrix
@@ -156,7 +156,7 @@ quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
 #'
 #' @export
 repmat <- function(x, nrow = 1L, ncol = 1L) {
-    .Call('MESS_repmat', PACKAGE = 'MESS', x, nrow, ncol)
+    .Call(MESS_repmat, x, nrow, ncol)
 }
 
 #' Fast computation of trace of matrix product
@@ -173,6 +173,6 @@ repmat <- function(x, nrow = 1L, ncol = 1L) {
 #'
 #' @export
 tracemp <- function(A, B) {
-    .Call('MESS_tracemp', PACKAGE = 'MESS', A, B)
+    .Call(MESS_tracemp, A, B)
 }
 
