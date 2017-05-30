@@ -7,7 +7,7 @@
 mestimate(x, y)
 }
 \arguments{
-\item{x}{input matrix, of dimension nobs x nvars; each row is an observation
+\item{x}{input vector, of dimension nobs x nvars; each row is an observation
 vector.}
 
 \item{y}{quantitative response variable of length nobs}
@@ -29,6 +29,13 @@ the indices of the non-zero variables selected by \code{glmnet} sorted from
 To be filled out at a later date
 }
 \examples{
+
+n <- 1000
+p <- rbinom(n, size=1, prob=.20)
+x <- rnorm(n)
+y <- rnorm(n, mean=x)*p
+
+mestimate(x, y)
 
 }
 \seealso{

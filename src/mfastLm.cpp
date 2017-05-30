@@ -16,9 +16,9 @@ using namespace Rcpp;
 //' @examples
 //' \dontrun{
 //'   // Generate 100000 predictors and 100 observations
-//'   x <- matrix(rnorm(100*100000))
+//'   x <- matrix(rnorm(100*100000), nrow=100)
 //'   y <- rnorm(100, mean=x[,1])
-//'   mfastLM_cpp(y, x)
+//'   mfastLmCpp(y, x)
 //'
 //' }
 //' @export
@@ -81,6 +81,3 @@ DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept=true) {
 			   Rcpp::Named("tstat")=tstat
 			   );
 }
-
-
-

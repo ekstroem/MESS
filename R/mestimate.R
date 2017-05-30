@@ -2,7 +2,7 @@
 #'
 #' To be filled out at a later date
 #'
-#' @param x input matrix, of dimension nobs x nvars; each row is an observation
+#' @param x input vector, of dimension nobs x nvars; each row is an observation
 #' vector.
 #' @param y quantitative response variable of length nobs
 #' @return Returns a list of 7 variables: \item{p.full }{The p-value for the
@@ -21,14 +21,23 @@
 #' @keywords ~htests
 #' @examples
 #'
+#' n <- 1000
+#' p <- rbinom(n, size=1, prob=.20)
+#' x <- rnorm(n)
+#' y <- rnorm(n, mean=x)*p
+#'
+#' mestimate(x, y)
+#' 
 #' @export
 mestimate <- function(x, y) {
+
+    res1 <- coef(mfastLmCpp(y, cbind(x)))     # Model 1 (simple linear regression)
+    res2 <- coef(mfastLmCpp(y^2, cbind(x^2))) # Model 2 (simple linear regression)
+
+    ## Problem is coefficient for 1 is close to 0
     
-    res1 <- lm(y ~ x)             # Model 1
-    res2 <- lm(I(y^2) ~ I(x^2))   # Model 2
-    
-    betahat <- (coef(res2)/coef(res1))[2]
-    phat <- coef(res1)[2]/betahat
+    betahat <- res2/res1
+    phat <- res1/betahat
 
     list(phat=unname(phat),
          betahat=unname(betahat))
