@@ -127,12 +127,12 @@ onemargintest <- function(x, B = 10000L) {
 #' @examples
 #'
 #' X <- cbind(rep(1, 4), 1:4, 4:1)
-#' pairwiseSchurProduct(X)
-#' pairwiseSchurProduct(X, self=TRUE)
+#' pairwise_Schur_product(X)
+#' pairwise_Schur_product(X, self=TRUE)
 #'
 #' @export
-pairwiseSchurProduct <- function(x, self = FALSE) {
-    .Call(MESS_pairwiseSchurProduct, x, self)
+pairwise_Schur_product <- function(x, self = FALSE) {
+    .Call(MESS_pairwise_Schur_product, x, self)
 }
 
 #' Fast extraction of matrix diagonal

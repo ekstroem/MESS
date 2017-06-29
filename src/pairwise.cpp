@@ -15,12 +15,12 @@ using namespace Rcpp;
 //' @examples
 //'
 //' X <- cbind(rep(1, 4), 1:4, 4:1)
-//' pairwiseSchurProduct(X)
-//' pairwiseSchurProduct(X, self=TRUE)
+//' pairwise_Schur_product(X)
+//' pairwise_Schur_product(X, self=TRUE)
 //'
 //' @export
 // [[Rcpp::export]]
-NumericMatrix pairwiseSchurProduct(NumericMatrix x, bool self=false) {
+NumericMatrix pairwise_Schur_product(NumericMatrix x, bool self=false) {
 
   arma::mat X(x.begin(), x.nrow(), x.ncol(), false);
   arma::mat res(x.nrow(), (x.ncol()*(x.ncol()-1)/2  + ((self) ? x.ncol() : 0 )));

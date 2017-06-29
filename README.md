@@ -80,7 +80,8 @@ value. A last measurement carried forward function. And fast.
 
 ## Computational functions
 
-* qdiag - fast extraction of matrix diagonal
+* `pairwise_Schur_product` - compute Schur products (element-wise) of all pairwise combinations of columns in matrix
+* `qdiag` - fast extraction of matrix diagonal
 * quadform - fast computation of a quadratic form $t(X) %*% X$
 * `repmat` - fast replication of a matrix. Can be replicated both row-wise and columns-wise.
 * sinv - invert a symmetric positive-definite matrix
