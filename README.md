@@ -52,10 +52,12 @@ accommodate different group sizes and/or variances.
 
 ## Graphical functions
 
-* wallyplot
 * col.shade
 * col.tint
 * col.alpha
+* rootonorm
+* wallyplot
+
 
 ## Utility functions
 
@@ -63,7 +65,7 @@ accommodate different group sizes and/or variances.
   current date) 
 * `auc` - computes the area under the curve for two vectors (x-values
 and y-values). Can handle ranges and missing observations
-* expand - Expand table or matrix to data frame where each observation
+* `expand_table` - Expand table or matrix to data frame where each observation
 in the table becomes a single observation in the data frame with
 corresponding information for each for each combination of the table
 dimensions.
