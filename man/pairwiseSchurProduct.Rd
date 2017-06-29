@@ -18,7 +18,7 @@ A matrix with the same number of rows as x and a number of columns corresponding
 Fast computation of all pairwise element-wise column products of a matrix.
 }
 \details{
-Note that the output order of columns corresponds to the order of the columns in x. First columns 1 is multiplied wiht each of the other columns, then columns 2 with the remaining columns etc. Missing values and that missing values are not handled.
+Note that the output order of columns corresponds to the order of the columns in x. First column 1 is multiplied with each of the other columns, then column 2 with the remaining columns etc.
 }
 \examples{
 

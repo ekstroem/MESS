@@ -6,7 +6,7 @@ using namespace Rcpp;
 //'
 //' Fast computation of all pairwise element-wise column products of a matrix.
 //'
-//' Note that the output order of columns corresponds to the order of the columns in x. First columns 1 is multiplied wiht each of the other columns, then columns 2 with the remaining columns etc. Missing values and that missing values are not handled.
+//' Note that the output order of columns corresponds to the order of the columns in x. First column 1 is multiplied with each of the other columns, then column 2 with the remaining columns etc. 
 //'
 //' @param x A matrix with dimensions r*c.
 //' @param self A logical that determines whether a column should also be multiplied by itself.
