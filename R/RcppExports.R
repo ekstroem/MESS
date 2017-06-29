@@ -114,6 +114,27 @@ onemargintest <- function(x, B = 10000L) {
     .Call(MESS_onemargintest, x, B)
 }
 
+#' Compute Schur products (element-wise) of all pairwise combinations of columns in matrix
+#'
+#' Fast computation of all pairwise element-wise column products of a matrix.
+#'
+#' Note that the output order of columns corresponds to the order of the columns in x. First columns 1 is multiplied wiht each of the other columns, then columns 2 with the remaining columns etc. Missing values and that missing values are not handled.
+#'
+#' @param x A matrix with dimensions r*c.
+#' @param self A logical that determines whether a column should also be multiplied by itself.
+#' @return A matrix with the same number of rows as x and a number of columns corresponding to c choose 2 (+ c if self is TRUE), where c is the number of columns of x. 
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' X <- cbind(rep(1, 4), 1:4, 4:1)
+#' pairwiseSchurProduct(X)
+#' pairwiseSchurProduct(X, self=TRUE)
+#'
+#' @export
+pairwiseSchurProduct <- function(x, self = FALSE) {
+    .Call(MESS_pairwiseSchurProduct, x, self)
+}
+
 #' Fast extraction of matrix diagonal
 #'
 #' @description Fast extraction of matrix diagonal

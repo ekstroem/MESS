@@ -67,6 +67,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// pairwiseSchurProduct
+NumericMatrix pairwiseSchurProduct(NumericMatrix x, bool self);
+RcppExport SEXP MESS_pairwiseSchurProduct(SEXP xSEXP, SEXP selfSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type self(selfSEXP);
+    rcpp_result_gen = Rcpp::wrap(pairwiseSchurProduct(x, self));
+    return rcpp_result_gen;
+END_RCPP
+}
 // qdiag
 NumericVector qdiag(NumericMatrix x);
 RcppExport SEXP MESS_qdiag(SEXP xSEXP) {
@@ -124,6 +136,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"MESS_kstest", (DL_FUNC) &MESS_kstest, 3},
     {"MESS_mfastLmCpp", (DL_FUNC) &MESS_mfastLmCpp, 3},
     {"MESS_onemargintest", (DL_FUNC) &MESS_onemargintest, 2},
+    {"MESS_pairwiseSchurProduct", (DL_FUNC) &MESS_pairwiseSchurProduct, 2},
     {"MESS_qdiag", (DL_FUNC) &MESS_qdiag, 1},
     {"MESS_quadform", (DL_FUNC) &MESS_quadform, 4},
     {"MESS_repmat", (DL_FUNC) &MESS_repmat, 3},
