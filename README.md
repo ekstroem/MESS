@@ -44,6 +44,8 @@ approximations in standard designs.
 In time these will be moved to the `Austin` package, but for now they
 still reside in `MESS`.
 
+* `power_prop_test` extends the standard power.prop.test function to
+accommodate different group sizes.
 * `power_t_test` extends the standard power.t.test function to
 accommodate different group sizes and/or variances.
 * power_mcnemar_test
