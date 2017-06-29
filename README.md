@@ -1,11 +1,16 @@
 # MESS
 
 
-Development version of the R package **MESS** (Miscellaneous Esoteric Statistical Scripts)
+Development version of the R package **MESS** (Miscellaneous Esoteric
+Statistical Scripts). This package contains a collection of various
+semi-useful functions that I have written and over the years. 
+
+There is no real overall theme to the functions in the package but I
+have tried to group the contents in the overview below.
 
 To install the development version of **MESS** run the following
 command from within R (this requires that the devtools package is
-already installed on the system.
+already installed on the system.)
 
 ```r
 devtools::install_github('ekstroem/MESS')
@@ -17,16 +22,13 @@ devtools::install_github('ekstroem/MESS')
 
 # Package overview
 
-The package contains a collection of various functions that have
-repeatedly. Several of them are shortcuts to combinations of standard
-R function that I keep using (and forgetting) repeatedly.
 
 The list below is far from complete.
 
 
 ## Statistical functions
 
-* cmd - Correlation matrix distnce
+* `cmd` - Correlation matrix distance. A measure of the similarity of two matrices of equal dimensions.
 * drop1.geeglm - 
 * gkgamma - compute Goodman-Kruskal's gamma statistic for a
 two-dimensional table of ordered categories
@@ -59,15 +61,15 @@ accommodate different group sizes and/or variances.
 
 * age - compute the age of a person from two date (birth date and
   current date)
-* auc - computes the area under the curve for two vectors (x-values
-and y-values)
+* `auc` - computes the area under the curve for two vectors (x-values
+and y-values). Can handle ranges and missing observations
 * expand - Expand table or matrix to data frame where each observation
 in the table becomes a single observation in the data frame with
 corresponding information for each for each combination of the table
 dimensions.
-* fac2num - convert a factor to numerical
-* filldown - Fill down missing values with the latest non-missing
-value
+* `fac2num` - convert a factor to numerical. I keep forgetting the simple code for this so ended up writing a function that could do it.
+* `filldown` - Fill down missing values in a vector with the latest non-missing
+value. A last measurement carried forward function. And fast.
 * lower.tri.vector - 
 * write.xml - save a data frame as an xml file
 
@@ -76,7 +78,7 @@ value
 
 * qdiag - fast extraction of matrix diagonal
 * quadform - fast computation of a quadratic form $t(X) %*% X$
-* repmat - fast replication of a matrix
+* `repmat` - fast replication of a matrix. Can be replicated both row-wise and columns-wise.
 * sinv - invert a symmetric positive-definite matrix
 * tracemp - fast computation of trace of matrix product trace(t(A) %*% B)
 

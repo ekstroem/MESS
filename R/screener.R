@@ -7,16 +7,15 @@
 #' @param x A table or matrix
 #' @param y A vector of outcomes
 #' @param lambda a vector of positive values used for the penalization parameter.
-#' @param method a string giving the method used for screening. Two possibilities are
-#' @references Hastie, Tibshirani and Wainwright (2015).
-#' "Statistical Learning with Sparsity". CRC Press.
-#' @return A list with three elements: lambda which contains the lambda values
+#' @param method a string giving the method used for screening. Two possibilities are "global-strong" and "global-DPP"
+#' @references Hastie, Tibshirani and Wainwright (2015). "Statistical Learning with Sparsity". CRC Press.
+#' @return A list with three elements: lambda which contains the lambda values, selected which contains the indices of the selected variables, and method a string listing the method used.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
 #' @keywords manip
 #' @examples
 #'
 #' x <- matrix(rnorm(50*100), nrow=50)
-#' y <- rnorm(50)
+#' y <- rnorm(50, mean=x[,1])
 #' screen_variables(x, y, lambda=c(.1, 1, 2))
 #'
 #' @export
