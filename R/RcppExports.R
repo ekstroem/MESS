@@ -57,11 +57,11 @@ filldown <- function(x) {
 #' @examples
 #'
 #' x <- 1:6
-#' kstest(x)
+#' ks_cumtest(x)
 #'
 #' @export
-kstest <- function(x, B = 10000L, prob = NULL) {
-    .Call(MESS_kstest, x, B, prob)
+ks_cumtest <- function(x, B = 10000L, prob = NULL) {
+    .Call(MESS_ks_cumtest, x, B, prob)
 }
 
 #' Fast marginal simple regresion analyses

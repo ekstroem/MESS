@@ -14,10 +14,10 @@ screen_variables(x, y, lambda = 0.1, method = c("global-strong",
 
 \item{lambda}{a vector of positive values used for the penalization parameter.}
 
-\item{method}{a string giving the method used for screening. Two possibilities are}
+\item{method}{a string giving the method used for screening. Two possibilities are "global-strong" and "global-DPP"}
 }
 \value{
-A list with three elements: lambda which contains the lambda values
+A list with three elements: lambda which contains the lambda values, selected which contains the indices of the selected variables, and method a string listing the method used.
 }
 \description{
 Expands a contingency table to a data frame where each observation in the table becomes a single observation in the data frame with corresponding information for each for each combination of the table dimensions.
@@ -28,13 +28,12 @@ Note that no standardization is done (not necessary?)
 \examples{
 
 x <- matrix(rnorm(50*100), nrow=50)
-y <- rnorm(50)
+y <- rnorm(50, mean=x[,1])
 screen_variables(x, y, lambda=c(.1, 1, 2))
 
 }
 \references{
-Hastie, Tibshirani and Wainwright (2015).
-"Statistical Learning with Sparsity". CRC Press.
+Hastie, Tibshirani and Wainwright (2015). "Statistical Learning with Sparsity". CRC Press.
 }
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}

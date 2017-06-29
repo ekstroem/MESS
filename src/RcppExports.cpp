@@ -29,16 +29,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// kstest
-List kstest(NumericVector x, int B, Rcpp::Nullable<Rcpp::NumericVector> prob);
-RcppExport SEXP MESS_kstest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
+// ks_cumtest
+List ks_cumtest(NumericVector x, int B, Rcpp::Nullable<Rcpp::NumericVector> prob);
+RcppExport SEXP MESS_ks_cumtest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< int >::type B(BSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type prob(probSEXP);
-    rcpp_result_gen = Rcpp::wrap(kstest(x, B, prob));
+    rcpp_result_gen = Rcpp::wrap(ks_cumtest(x, B, prob));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -133,7 +133,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"MESS_cmd", (DL_FUNC) &MESS_cmd, 2},
     {"MESS_filldown", (DL_FUNC) &MESS_filldown, 1},
-    {"MESS_kstest", (DL_FUNC) &MESS_kstest, 3},
+    {"MESS_ks_cumtest", (DL_FUNC) &MESS_ks_cumtest, 3},
     {"MESS_mfastLmCpp", (DL_FUNC) &MESS_mfastLmCpp, 3},
     {"MESS_onemargintest", (DL_FUNC) &MESS_onemargintest, 2},
     {"MESS_pairwiseSchurProduct", (DL_FUNC) &MESS_pairwiseSchurProduct, 2},

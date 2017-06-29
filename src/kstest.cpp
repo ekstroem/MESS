@@ -39,11 +39,11 @@ double ksteststatistic(arma::colvec x, arma::colvec probs) {
 //' @examples
 //'
 //' x <- 1:6
-//' kstest(x)
+//' ks_cumtest(x)
 //'
 //' @export
 // [[Rcpp::export]]
-List kstest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector> prob=R_NilValue) {
+List ks_cumtest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector> prob=R_NilValue) {
 
   arma::colvec X(x.begin(), x.length(), false);
 
