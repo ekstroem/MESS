@@ -35,6 +35,9 @@ two-dimensional table of ordered categories
 * mfastLmCpp - fast computation of simple regression slopes for each
 predictor represented by a column in a matrix
 * `ks_cumtest` - One-sample Kolmogorov-Smirnov discrete cumulative comparison.
+* qic - 
+* `rud` - Randomized treatments for an RCT based on an urn model
+* screenr -
 
 Power calculations are - for better or worse - part of my job, and
 while I generally recommend researchers to simulate their design and
@@ -57,8 +60,8 @@ accommodate different group sizes and/or variances.
 * col.shade
 * col.tint
 * col.alpha
-* rootonorm
-* wallyplot
+* `rootonorm` - plot Tukey's hanging root-o-gram for comparison of a histogram to a normal distribution.
+* `wallyplot` - plot a Wally plot for evaluation of a residual plot.
 
 
 ## Utility functions
@@ -85,6 +88,6 @@ value. A last measurement carried forward function. And fast.
 * `quadform` - fast computation of a quadratic form `t(X) %*% M %*% X`
 * `repmat` - fast replication of a matrix. Can be replicated both row-wise and columns-wise.
 * `sinv` - invert a symmetric positive-definite matrix. Some speedup can be gained if we know the matrix is symmetric
-* tracemp - fast computation of trace of matrix product trace(t(A) %*% B)
+* `tracemp` - fast computation of trace of matrix product `trace(t(A) %*% B)`
 
 

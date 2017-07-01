@@ -18,10 +18,14 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 double tracemp(NumericMatrix A, NumericMatrix B) {
 
+  if ((A.nrow() != B.nrow()) || (A.ncol() != B.ncol()))
+    Rcpp::stop("the two matrices must have the same dimensions");
+
   arma::mat X(A.begin(), A.nrow(), A.ncol(), false);
   arma::mat Y(B.begin(), B.nrow(), B.ncol(), false);
   double res = arma::as_scalar(accu(X % Y));
     
   return res;
 }
+
 
