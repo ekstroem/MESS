@@ -51,9 +51,8 @@ still reside in `MESS`.
 accommodate different group sizes.
 * `power_t_test` extends the standard power.t.test function to
 accommodate different group sizes and/or variances.
-* power_mcnemar_test
-* power_binomial_test
-
+* `power_mcnemar_test` - power calculations for exact and asymptotic McNemar test in a 2 by 2 table 
+* `power_binomial_test` - power calculations for exact test of a simple null hypothesis in a Bernoulli experiment
 
 ## Graphical functions
 
@@ -90,4 +89,9 @@ value. A last measurement carried forward function. And fast.
 * `sinv` - invert a symmetric positive-definite matrix. Some speedup can be gained if we know the matrix is symmetric
 * `tracemp` - fast computation of trace of matrix product `trace(t(A) %*% B)`
 
+
+## Datasets
+
+* `happiness` - Data on happiness, taxation rates, countris and continents
+* `kwdata` - example data to show that Krushkal-Wallis' test examines more than differences in medians.
 
