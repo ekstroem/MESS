@@ -60,10 +60,6 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
                    function(y) {
                 lgamma(n+1) - lgamma(n-x+1) - lgamma(y+1) - lgamma(x-y+1) + (n-x)*log(1-pd) + y*log((d+pd)/2) + (x-y)*log((pd-d)/2)
             } )
-#            cat("====\n")
-#            print(res)
-#            print(hhh)
-#            print(exp(hhh))
             sum(exp(hhh))
         })
         )

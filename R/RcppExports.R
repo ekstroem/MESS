@@ -23,7 +23,7 @@
 #'
 #' @export cmd
 cmd <- function(x, y) {
-    .Call(MESS_cmd, x, y)
+    .Call(`_MESS_cmd`, x, y)
 }
 
 #' Fill down NA with the last observed observation
@@ -40,7 +40,7 @@ cmd <- function(x, y) {
 #'
 #' @export
 filldown <- function(x) {
-    .Call(MESS_filldown, x)
+    .Call(`_MESS_filldown`, x)
 }
 
 #' Kolmogorov-Smirnov goodness of fit test for cumulative discrete data
@@ -61,7 +61,7 @@ filldown <- function(x) {
 #'
 #' @export
 ks_cumtest <- function(x, B = 10000L, prob = NULL) {
-    .Call(MESS_ks_cumtest, x, B, prob)
+    .Call(`_MESS_ks_cumtest`, x, B, prob)
 }
 
 #' Fast marginal simple regresion analyses
@@ -85,7 +85,7 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
 #' }
 #' @export
 mfastLmCpp <- function(y, x, addintercept = TRUE) {
-    .Call(MESS_mfastLmCpp, y, x, addintercept)
+    .Call(`_MESS_mfastLmCpp`, y, x, addintercept)
 }
 
 #' Two-sided table test with fixed margins
@@ -111,7 +111,7 @@ mfastLmCpp <- function(y, x, addintercept = TRUE) {
 #'
 #' @export
 onemargintest <- function(x, B = 10000L) {
-    .Call(MESS_onemargintest, x, B)
+    .Call(`_MESS_onemargintest`, x, B)
 }
 
 #' Compute Schur products (element-wise) of all pairwise combinations of columns in matrix
@@ -132,7 +132,7 @@ onemargintest <- function(x, B = 10000L) {
 #'
 #' @export
 pairwise_Schur_product <- function(x, self = FALSE) {
-    .Call(MESS_pairwise_Schur_product, x, self)
+    .Call(`_MESS_pairwise_Schur_product`, x, self)
 }
 
 #' Fast extraction of matrix diagonal
@@ -144,7 +144,7 @@ pairwise_Schur_product <- function(x, self = FALSE) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export qdiag
 qdiag <- function(x) {
-    .Call(MESS_qdiag, x)
+    .Call(`_MESS_qdiag`, x)
 }
 
 #' Fast quadratic form computation
@@ -158,7 +158,7 @@ qdiag <- function(x) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
-    .Call(MESS_quadform, x, M, invertM, transposex)
+    .Call(`_MESS_quadform`, x, M, invertM, transposex)
 }
 
 #' Fast replication of a matrix
@@ -177,7 +177,7 @@ quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
 #'
 #' @export
 repmat <- function(x, nrow = 1L, ncol = 1L) {
-    .Call(MESS_repmat, x, nrow, ncol)
+    .Call(`_MESS_repmat`, x, nrow, ncol)
 }
 
 #' Fast computation of trace of matrix product
@@ -194,6 +194,6 @@ repmat <- function(x, nrow = 1L, ncol = 1L) {
 #'
 #' @export
 tracemp <- function(A, B) {
-    .Call(MESS_tracemp, A, B)
+    .Call(`_MESS_tracemp`, A, B)
 }
 

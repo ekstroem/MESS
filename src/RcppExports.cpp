@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // cmd
 double cmd(NumericMatrix x, NumericMatrix y);
-RcppExport SEXP MESS_cmd(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _MESS_cmd(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ END_RCPP
 }
 // filldown
 SEXP filldown(SEXP x);
-RcppExport SEXP MESS_filldown(SEXP xSEXP) {
+RcppExport SEXP _MESS_filldown(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,7 @@ END_RCPP
 }
 // ks_cumtest
 List ks_cumtest(NumericVector x, int B, Rcpp::Nullable<Rcpp::NumericVector> prob);
-RcppExport SEXP MESS_ks_cumtest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
+RcppExport SEXP _MESS_ks_cumtest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,7 +44,7 @@ END_RCPP
 }
 // mfastLmCpp
 DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept);
-RcppExport SEXP MESS_mfastLmCpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
+RcppExport SEXP _MESS_mfastLmCpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -57,7 +57,7 @@ END_RCPP
 }
 // onemargintest
 List onemargintest(NumericMatrix x, int B);
-RcppExport SEXP MESS_onemargintest(SEXP xSEXP, SEXP BSEXP) {
+RcppExport SEXP _MESS_onemargintest(SEXP xSEXP, SEXP BSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -69,7 +69,7 @@ END_RCPP
 }
 // pairwise_Schur_product
 NumericMatrix pairwise_Schur_product(NumericMatrix x, bool self);
-RcppExport SEXP MESS_pairwise_Schur_product(SEXP xSEXP, SEXP selfSEXP) {
+RcppExport SEXP _MESS_pairwise_Schur_product(SEXP xSEXP, SEXP selfSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -80,19 +80,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // qdiag
-NumericVector qdiag(NumericMatrix x);
-RcppExport SEXP MESS_qdiag(SEXP xSEXP) {
+NumericVector qdiag(const NumericMatrix& x);
+RcppExport SEXP _MESS_qdiag(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(qdiag(x));
     return rcpp_result_gen;
 END_RCPP
 }
 // quadform
 NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM, bool transposex);
-RcppExport SEXP MESS_quadform(SEXP xSEXP, SEXP MSEXP, SEXP invertMSEXP, SEXP transposexSEXP) {
+RcppExport SEXP _MESS_quadform(SEXP xSEXP, SEXP MSEXP, SEXP invertMSEXP, SEXP transposexSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -106,7 +106,7 @@ END_RCPP
 }
 // repmat
 NumericMatrix repmat(NumericMatrix x, int nrow, int ncol);
-RcppExport SEXP MESS_repmat(SEXP xSEXP, SEXP nrowSEXP, SEXP ncolSEXP) {
+RcppExport SEXP _MESS_repmat(SEXP xSEXP, SEXP nrowSEXP, SEXP ncolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -119,7 +119,7 @@ END_RCPP
 }
 // tracemp
 double tracemp(NumericMatrix A, NumericMatrix B);
-RcppExport SEXP MESS_tracemp(SEXP ASEXP, SEXP BSEXP) {
+RcppExport SEXP _MESS_tracemp(SEXP ASEXP, SEXP BSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -131,16 +131,16 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"MESS_cmd", (DL_FUNC) &MESS_cmd, 2},
-    {"MESS_filldown", (DL_FUNC) &MESS_filldown, 1},
-    {"MESS_ks_cumtest", (DL_FUNC) &MESS_ks_cumtest, 3},
-    {"MESS_mfastLmCpp", (DL_FUNC) &MESS_mfastLmCpp, 3},
-    {"MESS_onemargintest", (DL_FUNC) &MESS_onemargintest, 2},
-    {"MESS_pairwise_Schur_product", (DL_FUNC) &MESS_pairwise_Schur_product, 2},
-    {"MESS_qdiag", (DL_FUNC) &MESS_qdiag, 1},
-    {"MESS_quadform", (DL_FUNC) &MESS_quadform, 4},
-    {"MESS_repmat", (DL_FUNC) &MESS_repmat, 3},
-    {"MESS_tracemp", (DL_FUNC) &MESS_tracemp, 2},
+    {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
+    {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
+    {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
+    {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
+    {"_MESS_onemargintest", (DL_FUNC) &_MESS_onemargintest, 2},
+    {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
+    {"_MESS_qdiag", (DL_FUNC) &_MESS_qdiag, 1},
+    {"_MESS_quadform", (DL_FUNC) &_MESS_quadform, 4},
+    {"_MESS_repmat", (DL_FUNC) &_MESS_repmat, 3},
+    {"_MESS_tracemp", (DL_FUNC) &_MESS_tracemp, 2},
     {NULL, NULL, 0}
 };
 

@@ -11,7 +11,7 @@ using namespace Rcpp;
 //' @author Claus Ekstrom <claus@@rprimer.dk>
 //' @export qdiag
 // [[Rcpp::export]]
-NumericVector qdiag(NumericMatrix x) {
+NumericVector qdiag(const NumericMatrix& x) {
 
   int nrows = x.nrow();
 
