@@ -3,5 +3,5 @@
 language: r
 pandoc_version: 1.19
 sudo: true
-dist: precise
+dist: trusty
 cache: packages
