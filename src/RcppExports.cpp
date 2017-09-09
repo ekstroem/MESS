@@ -79,17 +79,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// pnormcpp
-NumericVector pnormcpp(NumericVector x);
-RcppExport SEXP _MESS_pnormcpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(pnormcpp(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // qdiag
 NumericVector qdiag(const NumericMatrix& x);
 RcppExport SEXP _MESS_qdiag(SEXP xSEXP) {
@@ -148,7 +137,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
     {"_MESS_onemargintest", (DL_FUNC) &_MESS_onemargintest, 2},
     {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
-    {"_MESS_pnormcpp", (DL_FUNC) &_MESS_pnormcpp, 1},
     {"_MESS_qdiag", (DL_FUNC) &_MESS_qdiag, 1},
     {"_MESS_quadform", (DL_FUNC) &_MESS_quadform, 4},
     {"_MESS_repmat", (DL_FUNC) &_MESS_repmat, 3},

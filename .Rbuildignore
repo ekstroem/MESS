@@ -11,3 +11,4 @@
 ^.*\.tar\.gz
 ^\.rda
 ^\.travis\.yml$
+^\.git

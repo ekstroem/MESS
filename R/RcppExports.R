@@ -135,27 +135,6 @@ pairwise_Schur_product <- function(x, self = FALSE) {
     .Call(`_MESS_pairwise_Schur_product`, x, self)
 }
 
-#' Kolmogorov-Smirnov goodness of fit test for cumulative discrete data
-#'
-#' The name of the function might change in the future so keep that in mind!
-#'
-#' @description Kolmogorov-Smirnov goodness of fit test for cumulative discrete data. 
-#' @param x A vector representing the contingency table.
-#' @param B The number of simulations used to compute the p-value.
-#' @param prob A positive vector of the same length as x representing the distribution under the null hypothesis. It will be scaled to sum to 1. If NULL (the default) then a uniform distribution is assumed.
-#' @details Simulation is done by random sampling from the null hypothesis.
-#' @return A list of class "htest" giving the simulation results.
-#' @author Claus Ekstrom <claus@@rprimer.dk>
-#' @examples
-#'
-#' x <- 1:6
-#' ks_cumtest(x)
-#'
-#' @export
-pnormcpp <- function(x) {
-    .Call(`_MESS_pnormcpp`, x)
-}
-
 #' Fast extraction of matrix diagonal
 #'
 #' @description Fast extraction of matrix diagonal
