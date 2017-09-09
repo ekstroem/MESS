@@ -26,6 +26,29 @@ cmd <- function(x, y) {
     .Call(`_MESS_cmd`, x, y)
 }
 
+#' Binning based on cumulative sum with reset above threshold
+#' 
+#' Fast binning of cumulative vector sum with new groups when the sum passes a threshold or the group size becomes too large
+#'
+#' Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used f
+#' 
+#' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
+#' @param cutoff The value of the threshold that the cumulative group sum must not cross. 
+#' @param maxgroupsize An integer that defines the maximum number of elements in each group. NULL (the default) corresponds to no group size.
+#' @return An integer vector giving the group indices
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' set.seed(1)
+#' x <- sample(10, 20, replace = TRUE)
+#' cumsumbinning(x, 15)
+#' cumsumbinning(x, 15, 3)
+#' 
+#' @export
+cumsumbinning <- function(x, cutoff, maxgroupsize = NULL) {
+    .Call(`_MESS_cumsumbinning`, x, cutoff, maxgroupsize)
+}
+
 #' Fill down NA with the last observed observation
 #'
 #' @description Fill down missing values with the latest non-missing value
