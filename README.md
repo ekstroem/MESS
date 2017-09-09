@@ -1,6 +1,5 @@
 # MESS
 
-
 Development version of the R package **MESS** (Miscellaneous Esoteric
 Statistical Scripts). This package contains a collection of various
 semi-useful functions that I have written and over the years. 
@@ -65,10 +64,8 @@ accommodate different group sizes and/or variances.
 
 ## Utility functions
 
-* `age` - computes the age in years of a person from two date (birth date and
-  current date) 
-* `auc` - computes the area under the curve for two vectors (x-values
-and y-values). Can handle ranges and missing observations
+* `age` - computes the age in years of a person from two date (birth date and current date) 
+* `auc` - computes the area under the curve for two vectors (x-values and y-values). Can handle ranges and missing observations
 * `expand_table` - Expand table or matrix to data frame where each observation
 in the table becomes a single observation in the data frame with
 corresponding information for each for each combination of the table
@@ -92,6 +89,8 @@ value. A last measurement carried forward function. And fast.
 
 ## Datasets
 
+* `bdstat` - Monthly live births and deaths in Denmark from January 1901 to March 2013
+* `earthquakes` - Information on earthquakes worldwide in 2015 with a magnitude greater than 3 on the Richter scale.
 * `happiness` - Data on happiness, taxation rates, countris and continents
 * `kwdata` - example data to show that Krushkal-Wallis' test examines more than differences in medians.
-
+* `soccer` - List of players on the Danish national soccer team
