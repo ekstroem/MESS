@@ -10,7 +10,7 @@
 \usage{
 \method{residualplot}{default}(x, y = NULL, candy = TRUE, bandwidth = 0.3,
   xlab = "Fitted values", ylab = "Std.res.", col.sd = "blue",
-  col.alpha = 0.3, ...)
+  col.alpha = 0.3, ylim = NA, ...)
 
 \method{residualplot}{lm}(x, y, candy = TRUE, bandwidth = 0.3,
   xlab = "Fitted values", ylab = "Stud.res.", col.sd = "blue",
@@ -18,7 +18,7 @@
 
 residualplot(x, y = NULL, candy = TRUE, bandwidth = 0.3,
   xlab = "Fitted values", ylab = "Std.res.", col.sd = "blue",
-  col.alpha = 0.3, ...)
+  col.alpha = 0.3, ylim = NA, ...)
 }
 \arguments{
 \item{x}{lm object or a numeric vector}
@@ -40,6 +40,8 @@ smoothed version of the mean and the variance. Value should be between 0 and
 
 \item{col.alpha}{number between 0 and 1 determining the transprency of the
 standard deviation plotting color}
+
+\item{ylim}{pair of observations that set the minimum and maximum of the y axis. If set to NA (the default) then the limits are computed from the data.}
 
 \item{...}{Other arguments passed to the plot function}
 }
@@ -70,6 +72,8 @@ Solid circles correspond to standardized residuals outside the range from [-1.96
 data(trees)
 model <- lm(Volume ~ Girth + Height, data=trees)
 residualplot(model)
+model2 <- lm(Volume ~ Girth + I(Girth^2) + Height, data=trees)
+residualplot(model2)
 
 }
 \seealso{
