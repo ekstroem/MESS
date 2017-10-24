@@ -6,8 +6,8 @@
 #'
 #' @param n Number of observations (number of pairs)
 #' @param paid The probability that a case patient is not exposed and that the
-#' corresponding control patient was exposed (specifying p_12 in the 2 x 2 table)
-#' @param psi The odds ratio for exposure in case and control individuals
+#' corresponding control patient was exposed (specifying p_12 in the 2 x 2 table).
+#' @param psi The relative probability that a control patient is not exposed and that the corresponding case patient was exposed compared to the probability that a case patient is not exposed and that the corresponding control patient was exposed (p12 / p21 in the 2x2 table).
 #' @param sig.level Significance level (Type I error probability)
 #' @param power Power of test (1 minus Type II error probability)
 #' @param alternative One- or two-sided test
