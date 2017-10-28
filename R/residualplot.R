@@ -60,7 +60,7 @@ residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted val
     if (!(family %in% c("binomial", "poisson")))
         stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
 
-    y <- rstudent(x)
+    y <- rstudent(x, type="response")
     x <- predict(x)
     residualplot(x, y, candy, bandwidth, xlab, ylab, col.sd, col.alpha, ...)
 }
