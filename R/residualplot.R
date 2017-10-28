@@ -36,7 +36,6 @@ residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="F
                   col = "black")
         }
 
-
         polygon(c(uniqx, rev(uniqx)), c(vary, -(rev(vary))),
                 col = col.trans, border = NA)
     }
@@ -50,6 +49,20 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
   y <- rstudent(x)
   x <- predict(x)
   residualplot(x, y, candy, bandwidth, xlab, ylab, col.sd, col.alpha, ...)
+}
+
+
+#' @rdname residualplot
+#' @export
+residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", col.alpha=0.3,...) {
+    
+    family <- family(x)$family
+    if (!(family %in% c("binomial", "poisson")))
+        stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
+
+    y <- rstudent(x)
+    x <- predict(x)
+    residualplot(x, y, candy, bandwidth, xlab, ylab, col.sd, col.alpha, ...)
 }
 
 

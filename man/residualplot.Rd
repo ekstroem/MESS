@@ -3,6 +3,7 @@
 \name{residualplot.default}
 \alias{residualplot.default}
 \alias{residualplot.lm}
+\alias{residualplot.glm}
 \alias{residualplot}
 \alias{residualplot.lm}
 \alias{residualplot.default}
@@ -13,6 +14,10 @@
   col.alpha = 0.3, ylim = NA, ...)
 
 \method{residualplot}{lm}(x, y, candy = TRUE, bandwidth = 0.3,
+  xlab = "Fitted values", ylab = "Stud.res.", col.sd = "blue",
+  col.alpha = 0.3, ...)
+
+\method{residualplot}{glm}(x, y, candy = TRUE, bandwidth = 0.3,
   xlab = "Fitted values", ylab = "Stud.res.", col.sd = "blue",
   col.alpha = 0.3, ...)
 
