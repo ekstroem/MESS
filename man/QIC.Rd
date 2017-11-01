@@ -5,9 +5,6 @@
 \alias{QIC}
 \alias{QIC.geekin}
 \alias{QIC.ordgee}
-\alias{QIC.ordgee}
-\alias{QIC.geekin}
-\alias{QIC}
 \title{Quasi Information Criterion}
 \usage{
 \method{QIC}{geeglm}(object, tol = .Machine$double.eps, ...)

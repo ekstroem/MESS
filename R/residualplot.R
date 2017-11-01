@@ -60,8 +60,9 @@ residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted val
     if (!(family %in% c("binomial", "poisson")))
         stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
 
-    y <- rstudent(x, type="response")
-    x <- predict(x)
+#    y <- rstudent(x, type="response")
+    y <- rstandard(x) # Deviance residuals
+    x <- predict(x, type="link")
     residualplot(x, y, candy, bandwidth, xlab, ylab, col.sd, col.alpha, ...)
 }
 
@@ -71,12 +72,13 @@ residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted val
 
 #' Plots a standardaized residual
 #'
-#' Plots a standardized residual plot from an lm object and provides additional
+#' Plots a standardized residual plot from an lm or glm object and provides additional
 #' graphics to help evaluate the variance homogeneity and mean.
 #'
-#' Plots a standardized residual plot from an lm object and provides additional
-#' graphics to help evaluate the variance homogeneity and mean.
-#'
+#' The y axis shows the studentized residuals (for lm objects) or
+#' standardized deviance residuals (for glm objects). The x axis shows the linear predictor, i.e., the
+#' predicted values for lm objects.
+#' 
 #' The blue area is a smoothed estimate of 1.96*SD of the standardized
 #' residuals in a window around the predicted value. The blue area should
 #' largely be rectangular if the standardized residuals have more or less the

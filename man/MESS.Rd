@@ -4,7 +4,6 @@
 \name{MESS}
 \alias{MESS}
 \alias{MESS-package}
-\alias{MESS-package}
 \title{Collection of miscellaneous useful and semi-useful functions}
 \description{
 Collection of miscellaneous useful and semi-useful functions and add-on

@@ -4,8 +4,6 @@
 \alias{wallyplot.default}
 \alias{wallyplot.lm}
 \alias{wallyplot}
-\alias{wallyplot.lm}
-\alias{wallyplot.default}
 \title{Plots a Wally plot}
 \usage{
 \method{wallyplot}{default}(x, y = x, FUN = residualplot, hide = TRUE,

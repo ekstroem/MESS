@@ -5,8 +5,6 @@
 \alias{residualplot.lm}
 \alias{residualplot.glm}
 \alias{residualplot}
-\alias{residualplot.lm}
-\alias{residualplot.default}
 \title{Plots a standardaized residual}
 \usage{
 \method{residualplot}{default}(x, y = NULL, candy = TRUE, bandwidth = 0.3,
@@ -54,12 +52,13 @@ standard deviation plotting color}
 Produces a standardized residual plot
 }
 \description{
-Plots a standardized residual plot from an lm object and provides additional
+Plots a standardized residual plot from an lm or glm object and provides additional
 graphics to help evaluate the variance homogeneity and mean.
 }
 \details{
-Plots a standardized residual plot from an lm object and provides additional
-graphics to help evaluate the variance homogeneity and mean.
+The y axis shows the studentized residuals (for lm objects) or
+standardized deviance residuals (for glm objects). The x axis shows the linear predictor, i.e., the
+predicted values for lm objects.
 
 The blue area is a smoothed estimate of 1.96*SD of the standardized
 residuals in a window around the predicted value. The blue area should

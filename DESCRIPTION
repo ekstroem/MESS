@@ -33,4 +33,4 @@ BugReports: https://github.com/ekstroem/MESS/issues
 Encoding: UTF-8
 ByteCompile: true
 License: GPL-2
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
