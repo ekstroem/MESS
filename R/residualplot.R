@@ -54,11 +54,11 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
 
 #' @rdname residualplot
 #' @export
-residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", col.alpha=0.3,...) {
+residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.4, xlab="Fitted values", ylab="Std. dev. res.", col.sd="blue", col.alpha=0.3,...) {
     
-    family <- family(x)$family
-    if (!(family %in% c("binomial", "poisson")))
-        stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
+#    family <- family(x)$family
+#    if (!(family %in% c("binomial", "poisson", "gaussian")))
+#        stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
 
 #    y <- rstudent(x, type="response")
     y <- rstandard(x) # Deviance residuals
