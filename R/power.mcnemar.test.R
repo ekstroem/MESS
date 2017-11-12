@@ -3,6 +3,8 @@
 #' Compute power of test, or determine parameters to obtain target power for
 #' matched case-control studies.
 #'
+#' If psi is less than 1 then the two probabilities p_12 and p_21 are reversed.
+#'
 #'
 #' @param n Number of observations (number of pairs)
 #' @param paid The probability that a case patient is not exposed and that the
@@ -42,9 +44,21 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
         stop("exactly one of 'n', 'paid', 'psi', 'power', and 'sig.level' must be NULL")
     if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > sig.level | sig.level > 1))
         stop("'sig.level' must be numeric in [0, 1]")
+    if (any(paid <=0) || any(paid>=1)) {
+        stop("paid is a probability and must be 0<paid<1")
+    }
+    if (any(psi <=0)) {
+        stop("psi must be non-negative")
+    }    
     alternative <- match.arg(alternative)
     method <- match.arg(method)
     tside <- switch(alternative, one.sided = 1, two.sided = 2)
+
+    ## Fix if psi was specified to be less that 1
+    if (psi<1) {
+        paid <- paid*psi
+        psi <- 1/psi
+    }
 
 
     f <- function(n, paid, psi, sig.level, power) {

@@ -32,6 +32,9 @@ Object of class \code{power.htest}, a list of the arguments
 Compute power of test, or determine parameters to obtain target power for
 matched case-control studies.
 }
+\details{
+If psi is less than 1 then the two probabilities p_12 and p_21 are reversed.
+}
 \note{
 \code{uniroot} is used to solve power equation for unknowns, so you
 may see errors from it, notably about inability to bracket the root when
