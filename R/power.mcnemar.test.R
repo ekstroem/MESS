@@ -53,33 +53,22 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
     alternative <- match.arg(alternative)
     method <- match.arg(method)
     tside <- switch(alternative, one.sided = 1, two.sided = 2)
-
+    
     ## Fix if psi was specified to be less that 1
     if (psi<1) {
         paid <- paid*psi
         psi <- 1/psi
     }
 
+    ## Use something like this instead
+##    hhh <- sapply(0:(which.min(pbinom(0:x, size=x, prob=.5) <= sig.level)-2),
 
     f <- function(n, paid, psi, sig.level, power) {
-        pd <- (1 + psi)*paid
-        d <- (psi-1)*paid
-        r <- ceiling(log(sig.level)/log(.5))
-        n <- ceiling(n)
-
-        power <- sum(
-
-         sapply(r:n, function(x) {
-            hhh <- sapply(0:(which.min(pbinom(0:x, size=x, prob=.5) <= sig.level)-2),
-                   function(y) {
-                lgamma(n+1) - lgamma(n-x+1) - lgamma(y+1) - lgamma(x-y+1) + (n-x)*log(1-pd) + y*log((d+pd)/2) + (x-y)*log((pd-d)/2)
-            } )
-            sum(exp(hhh))
-        })
-        )
-        power
+        bc <- ceiling(paid * n * (1+psi))
+        pbinom(qbinom(0.025, size=bc, prob=0.5)-1, size=bc, prob=1/(1+psi)) + 1-pbinom(qbinom(0.975, size=bc, prob=0.5), size=bc, prob=1/(1+psi))
     }
-
+    
+    
     if (method=="normal") {
         p.body <- quote( pnorm (
             (sqrt(n * paid) * (psi-1) - qnorm(sig.level/tside, lower.tail=FALSE)*sqrt(psi+1)) / sqrt((psi+1) - paid*(psi-1)^2)))
@@ -87,27 +76,6 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
         p.body <- quote( f(n, paid, psi, sig.level, power) )
     }
 
-
-
-
-
-
-
-
-#    print(f(n))
-
-
-#    if (is.null(power)) {
-#        power <- uniroot(function(power) eval(n.body) - n, c(0.001, 1-1e-10))$root
-#    } else if (is.null(n)) {
-#        n <- eval(n.body)
-#    } else if (is.null(paid))
-#        paid <- uniroot(function(paid) eval(n.body) - n, c(0, 1-p10-1e-10))$root
-#    else if (is.null(psi))
-#        psi <- uniroot(function(psi) eval(n.body) - n, c(1e-10, 10))$root
-#    else if (is.null(sig.level))
-#        sig.level <- uniroot(function(sig.level) eval(n.body) -
-#            n, c(1e-10, 1 - 1e-10))$root
 
     if (is.null(power)) {
         power <- eval(p.body)
