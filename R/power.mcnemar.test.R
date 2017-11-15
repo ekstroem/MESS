@@ -5,15 +5,14 @@
 #'
 #' If psi is less than 1 then the two probabilities p_12 and p_21 are reversed.
 #'
-#'
 #' @param n Number of observations (number of pairs)
 #' @param paid The probability that a case patient is not exposed and that the
 #' corresponding control patient was exposed (specifying p_12 in the 2 x 2 table).
-#' @param psi The relative probability that a control patient is not exposed and that the corresponding case patient was exposed compared to the probability that a case patient is not exposed and that the corresponding control patient was exposed (p12 / p21 in the 2x2 table).
+#' @param psi The relative probability that a control patient is not exposed and that the corresponding case patient was exposed compared to the probability that a case patient is not exposed and that the corresponding control patient was exposed (p12 / p21 in the 2x2 table). Also called the discordant proportion ratio
 #' @param sig.level Significance level (Type I error probability)
 #' @param power Power of test (1 minus Type II error probability)
 #' @param alternative One- or two-sided test
-#' @param method Power calculations based on exact or asymptotic test
+#' @param method Power calculations based on exact or asymptotic test. The default (normal) corresponds to an approximative test, "exact" is the unconditional exact test, while "cond.exact" is a conditional exact test (given fixed n).
 #' @return Object of class \code{power.htest}, a list of the arguments
 #' (including the computed one) augmented with method and note elements.
 #' @note \code{uniroot} is used to solve power equation for unknowns, so you
@@ -23,6 +22,9 @@
 #' @seealso \code{\link{mcnemar.test}}
 #' @references Duffy, S (1984). Asymptotic and Exact Power for the McNemar Test
 #' and its Analogue with R Controls per Case
+#'
+#' Fagerland MW, Lydersen S, Laake P. (2013) The McNemar test for binary matched-pairs data: mid-p and asymptotic
+#' are better than exact conditional. BMC Medical Research Methodology.
 #' @keywords htest
 #' @examples
 #'
@@ -38,7 +40,7 @@
 #' @export
 power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.05, power = NULL,
                                alternative = c("two.sided", "one.sided"),
-                               method = c("normal", "exact")) {
+                               method = c("normal", "exact", "cond.exact")) {
 
     if (sum(sapply(list(n, paid, psi, power, sig.level), is.null)) != 1)
         stop("exactly one of 'n', 'paid', 'psi', 'power', and 'sig.level' must be NULL")
@@ -60,18 +62,25 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
         psi <- 1/psi
     }
 
-    ## Use something like this instead
-##    hhh <- sapply(0:(which.min(pbinom(0:x, size=x, prob=.5) <= sig.level)-2),
-
+    ## Conditional power (conditional on n)
     f <- function(n, paid, psi, sig.level, power) {
         bc <- ceiling(paid * n * (1+psi))
         pbinom(qbinom(0.025, size=bc, prob=0.5)-1, size=bc, prob=1/(1+psi)) + 1-pbinom(qbinom(0.975, size=bc, prob=0.5), size=bc, prob=1/(1+psi))
     }
-    
-    
+
+    ## Unconditional power
+    fexact <- function(n, paid, psi, sig.level, power, alt=alternative) {
+        sum(dbinom(seq(n), size=n, prob=paid*(1+psi))*power_binom_test(seq(n), p0=.5, pa=1/(1+psi),
+                                                                       power=power, sig.level=sig.level,
+                                                                       alternative=ifelse(alt=="two.sided", "two.sided", "less"))$power)
+    }
+
+        
     if (method=="normal") {
         p.body <- quote( pnorm (
             (sqrt(n * paid) * (psi-1) - qnorm(sig.level/tside, lower.tail=FALSE)*sqrt(psi+1)) / sqrt((psi+1) - paid*(psi-1)^2)))
+    } else if (method=="exact") { 
+        p.body <- quote( fexact(n, paid, psi, sig.level, power) )
     } else {
         p.body <- quote( f(n, paid, psi, sig.level, power) )
     }

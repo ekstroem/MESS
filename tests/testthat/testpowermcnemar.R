@@ -1,0 +1,1 @@
+../../../Austin/tests/testthat/testpowermcnemar.R
