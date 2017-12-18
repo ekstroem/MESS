@@ -15,7 +15,7 @@ already installed on the system.)
 devtools::install_github('ekstroem/MESS')
 ```
 
-![Download counter](http://cranlogs.r-pkg.org/badges/grand-total/MESS)  (CRAN checks : [![Travis-CI Build Status](https://travis-ci.org/ekstroem/MESS.svg?branch=master)](https://travis-ci.org/ekstroem/MESS))
+[![Travis-CI Build Status](https://travis-ci.org/ekstroem/MESS.svg?branch=master)](https://travis-ci.org/ekstroem/MESS) ![Download counter](http://cranlogs.r-pkg.org/badges/grand-total/MESS)
 
 
 
