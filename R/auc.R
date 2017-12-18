@@ -76,7 +76,7 @@ function(x, y, from = min(x), to = max(x), type=c("linear", "spline"), absolutea
 
     } else {
         if (absolutearea)
-            myfunction <- function(x) { abs(splinefun(x, y, method="natural")) }
+            myfunction <- function(z) { abs(splinefun(x, y, method="natural")(z)) }
         else
             myfunction <- splinefun(x, y, method="natural")
 
