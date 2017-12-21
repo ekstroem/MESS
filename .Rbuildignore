@@ -13,3 +13,4 @@
 ^\.rda
 ^\.travis\.yml$
 ^\.git
+^docs$
