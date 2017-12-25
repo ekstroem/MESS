@@ -51,7 +51,7 @@ accommodate different group sizes.
 * `power_t_test` extends the standard power.t.test function to
 accommodate different group sizes and/or variances.
 * `power_mcnemar_test` - power calculations for exact and asymptotic McNemar test in a 2 by 2 table 
-* `power_binomial_test` - power calculations for exact test of a simple null hypothesis in a Bernoulli experiment
+* `power_binom_test` - power calculations for exact test of a simple null hypothesis in a Bernoulli experiment
 
 ## Graphical functions
 
