@@ -25,7 +25,7 @@ residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="F
         vary[is.na(vary)] <- 0
 
 
-        if (is.na(ylim)) {
+        if (any(is.na(ylim))) {
             ylim <- c(min(y, -vary), max(y, vary))
         }
         

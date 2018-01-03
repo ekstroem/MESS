@@ -28,10 +28,10 @@ The list below is far from complete.
 ## Statistical functions
 
 * `cmd` - Correlation matrix distance. A measure of the similarity of two matrices of equal dimensions.
-* drop1.geeglm - 
+* `drop1.geeglm` - A `drop1` extension for `geeglm` objects
 * `gkgamma` - compute Goodman-Kruskal's gamma statistic for a
 two-dimensional table of ordered categories
-* mfastLmCpp - fast computation of simple regression slopes for each
+* `mfastLmCpp` - fast computation of simple regression slopes for each
 predictor represented by a column in a matrix
 * `ks_cumtest` - One-sample Kolmogorov-Smirnov discrete cumulative comparison.
 * qic - 
