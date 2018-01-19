@@ -4,7 +4,7 @@ using namespace Rcpp;
 
 //' Fast quadratic form computation
 //'
-//' @description Fast computation of a quadratic form  t(x) %*% M %*% x
+//' @description Fast computation of a quadratic form  \eqn{t(x) * M * x}.
 //' @param x A matrix with dimensions n*k.
 //' @param M A matrix with dimenions n*n. If it is to be inverted then the matrix should be symmetric and positive difinite (no check is done for this)
 //' @param invertM A logical. If set to TRUE then M will be inverted before computations (defaults to FALSE)
@@ -16,9 +16,9 @@ using namespace Rcpp;
 NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM = false, bool transposex = false) {
 
   arma::mat X(x.begin(), x.nrow(), x.ncol(), false);
-  arma::mat A(M.begin(), M.nrow(), M.ncol(), false);
   arma::mat res;
-
+  arma::mat A(M.begin(), M.nrow(), M.ncol(), false);
+  
   if (invertM) {
     if (transposex) {
       res = X *  (arma::inv_sympd(A)*X.t());
@@ -35,7 +35,11 @@ NumericMatrix quadform(NumericMatrix x, NumericMatrix M, bool invertM = false, b
       res = X.t() * (A*X);
     }
   }
-    
+  
+  /* else {
+     res = X.t() * (X);
+     }
+  */
   return wrap(res);
 }
 
