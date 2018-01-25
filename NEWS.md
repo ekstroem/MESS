@@ -1,3 +1,12 @@
+# MESS 0.5.1
+
+## Bug fixes
+
+*  Fixed a case in `screen_variables` where R currently only emits a
+   warning when if/while statement is used with a condition of length
+   greater than one.
+
+
 # MESS 0.5.0
 
 ## Changes and bug fixes

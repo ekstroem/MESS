@@ -25,7 +25,7 @@ screen_variables <- function(x, y, lambda=.1, method=c("global-strong", "global-
     if (!any(c("matrix", "table") %in% class(x)))
         stop("needs matrix or table as input")
 
-    if (lambda<=0)
+    if (any(lambda<=0))
         stop("lambda must be positive")
 
     method <- match.arg(method)
