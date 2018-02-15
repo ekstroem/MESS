@@ -16,7 +16,7 @@ auc(x, y, from = min(x), to = max(x), type = c("linear", "spline"),
 curve. Defaults to the smallest x value.}
 
 \item{to}{The value from where to end the calculation of the area under the
-curve. Defaults to the smallest y value.}
+curve. Defaults to the greatest x value.}
 
 \item{type}{The type of interpolation. Defaults to "linear" for area under
 the curve for linear interpolation. The value "spline" results in the area

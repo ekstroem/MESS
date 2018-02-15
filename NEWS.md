@@ -1,3 +1,8 @@
+# Upcoming version
+
+*   Fixed a bug in the documentation for auc for the from argument. Thanks to Maria Meier for finding this.
+
+
 # MESS 0.5.1
 
 ## Bug fixes
