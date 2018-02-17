@@ -1,7 +1,7 @@
 # Upcoming version
 
 *   Fixed a bug in the documentation for auc for the from argument. Thanks to Maria Meier for finding this.
-
+*   Added the bin function for fast binning of a numeric vector into equidistant bins
 
 # MESS 0.5.1
 

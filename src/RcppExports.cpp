@@ -6,6 +6,20 @@
 
 using namespace Rcpp;
 
+// bin
+List bin(NumericVector x, double width, double origin, bool missinglast);
+RcppExport SEXP _MESS_bin(SEXP xSEXP, SEXP widthSEXP, SEXP originSEXP, SEXP missinglastSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< double >::type origin(originSEXP);
+    Rcpp::traits::input_parameter< bool >::type missinglast(missinglastSEXP);
+    rcpp_result_gen = Rcpp::wrap(bin(x, width, origin, missinglast));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cmd
 double cmd(NumericMatrix x, NumericMatrix y);
 RcppExport SEXP _MESS_cmd(SEXP xSEXP, SEXP ySEXP) {
@@ -144,6 +158,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_MESS_bin", (DL_FUNC) &_MESS_bin, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
     {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 3},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
