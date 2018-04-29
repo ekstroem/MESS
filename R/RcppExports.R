@@ -181,6 +181,26 @@ pairwise_Schur_product <- function(x, self = FALSE) {
     .Call(`_MESS_pairwise_Schur_product`, x, self)
 }
 
+#' Compute all pairwise combinations of indices
+#'
+#' Fast computation of indices of all pairwise element of a vector of length n.
+#'
+#' Note that the output order of columns corresponds to the order of the columns in x. First column 1 is multiplied with each of the other columns, then column 2 with the remaining columns etc. 
+#'
+#' @param n A number giving the number of elements to create all pairwise indices from
+#' @param self A logical that determines whether a column should also be multiplied by itself.
+#' @return A matrix with n*(n+1)/2 rows (if self=TRUE) or n*(n-1)/2 rows (if self=FALSE, the default) and two columns gicing all possible combinations of indices.
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' pairwise_combination_indices(3)
+#' pairwise_combination_indices(4, self=TRUE)
+#'
+#' @export
+pairwise_combination_indices <- function(n, self = FALSE) {
+    .Call(`_MESS_pairwise_combination_indices`, n, self)
+}
+
 #' Fast extraction of matrix diagonal
 #'
 #' @description Fast extraction of matrix diagonal
