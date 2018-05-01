@@ -1,8 +1,9 @@
-# Upcoming version
+# MESS 0.5.2
 
 *   Fixed a bug in the documentation for auc for the from argument. Thanks to Maria Meier for finding this.
 *   Added the bin function for fast binning of a numeric vector into equidistant bins
 *   Added the function pairwise_combination_indices to compute all possible pairs of indices.
+*   Fixed a bug with _R_CHECK_LENGTH_1_CONDITION_ set to TRUE
 
 # MESS 0.5.1
 
