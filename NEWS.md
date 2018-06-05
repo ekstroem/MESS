@@ -1,3 +1,8 @@
+# MESS 0.5.3
+
+*   Added the monte_carlo_chisq_test function to perform simulation-based chi-square tests with 0, 1 or 2 marginals fixed.
+*   Deprecated onemargintest as that is now part of monte_carlo_chisq_test.
+
 # MESS 0.5.2
 
 *   Fixed a bug in the documentation for auc for the from argument. Thanks to Maria Meier for finding this.

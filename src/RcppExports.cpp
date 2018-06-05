@@ -20,6 +20,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// chisq_test_cpp
+List chisq_test_cpp(NumericMatrix x, int margin, int statistic, int B);
+RcppExport SEXP _MESS_chisq_test_cpp(SEXP xSEXP, SEXP marginSEXP, SEXP statisticSEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type margin(marginSEXP);
+    Rcpp::traits::input_parameter< int >::type statistic(statisticSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    rcpp_result_gen = Rcpp::wrap(chisq_test_cpp(x, margin, statistic, B));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cmd
 double cmd(NumericMatrix x, NumericMatrix y);
 RcppExport SEXP _MESS_cmd(SEXP xSEXP, SEXP ySEXP) {
@@ -79,18 +93,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< bool >::type addintercept(addinterceptSEXP);
     rcpp_result_gen = Rcpp::wrap(mfastLmCpp(y, x, addintercept));
-    return rcpp_result_gen;
-END_RCPP
-}
-// onemargintest
-List onemargintest(NumericMatrix x, int B);
-RcppExport SEXP _MESS_onemargintest(SEXP xSEXP, SEXP BSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type B(BSEXP);
-    rcpp_result_gen = Rcpp::wrap(onemargintest(x, B));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -171,12 +173,12 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_MESS_bin", (DL_FUNC) &_MESS_bin, 4},
+    {"_MESS_chisq_test_cpp", (DL_FUNC) &_MESS_chisq_test_cpp, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
     {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 3},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
-    {"_MESS_onemargintest", (DL_FUNC) &_MESS_onemargintest, 2},
     {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
     {"_MESS_pairwise_combination_indices", (DL_FUNC) &_MESS_pairwise_combination_indices, 2},
     {"_MESS_qdiag", (DL_FUNC) &_MESS_qdiag, 1},

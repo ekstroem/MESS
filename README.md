@@ -31,6 +31,7 @@ The list below is far from complete.
 * `drop1.geeglm` - A `drop1` extension for `geeglm` objects
 * `gkgamma` - compute Goodman-Kruskal's gamma statistic for a
 two-dimensional table of ordered categories
+* `monte_carlo_chisq_test` - Monte Carlo tests of 2x2 tables with fixed margin(s). Also works for r x c tables.
 * `mfastLmCpp` - fast computation of simple regression slopes for each
 predictor represented by a column in a matrix
 * `ks_cumtest` - One-sample Kolmogorov-Smirnov discrete cumulative comparison.

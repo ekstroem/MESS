@@ -24,6 +24,10 @@ bin <- function(x, width, origin = 0, missinglast = FALSE) {
     .Call(`_MESS_bin`, x, width, origin, missinglast)
 }
 
+.chisq_test_cpp <- function(x, margin = 0L, statistic = 1L, B = 100000L) {
+    .Call(`_MESS_chisq_test_cpp`, x, margin, statistic, B)
+}
+
 #' Correlation matrix distance
 #'
 #' @description Computes the correlation matrix distance between two correlation matrices
@@ -132,32 +136,6 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
 #' @export
 mfastLmCpp <- function(y, x, addintercept = TRUE) {
     .Call(`_MESS_mfastLmCpp`, y, x, addintercept)
-}
-
-#' Two-sided table test with fixed margins
-#'
-#' @description Test in a two-way contingency table with the row margin fixed. 
-#' @param x A matrix representing the contingency table.
-#' @param B The number of simulations used to compute the p-value.
-#' @details Simulation is done by random sampling from the set of all tables with given row marginals, and works only if the marginals are strictly positive. Continuity correction is never used, and the statistic is quoted without it.
-#' @return A list of class "htest" giving the simulation results.
-#' @author Claus Ekstrom <claus@@rprimer.dk>
-#' @examples
-#'
-#' m <- matrix(c(12, 4, 8, 6), 2)
-#' chisq.test(m)
-#' chisq.test(m, correct=FALSE)
-#' fisher.test(m)
-#' onemargintest(m)
-#'
-#' m2 <- matrix(c(9, 3, 3, 7), 2)
-#' chisq.test(m2, simulate.p.value=TRUE)
-#' fisher.test(m2)
-#' onemargintest(m2)
-#'
-#' @export
-onemargintest <- function(x, B = 10000L) {
-    .Call(`_MESS_onemargintest`, x, B)
 }
 
 #' Compute Schur products (element-wise) of all pairwise combinations of columns in matrix
