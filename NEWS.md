@@ -1,5 +1,6 @@
 # MESS 0.5.3
 
+*   A few boundary bugs in the auc function were fixed.
 *   Added the monte_carlo_chisq_test function to perform simulation-based chi-square tests with 0, 1 or 2 marginals fixed.
 *   Deprecated onemargintest as that is now part of monte_carlo_chisq_test.
 

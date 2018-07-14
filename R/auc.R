@@ -52,27 +52,34 @@
 #'
 #' @export auc
 auc <-
-function(x, y, from = min(x), to = max(x), type=c("linear", "spline"), absolutearea=FALSE, ...)
+function(x, y, from = min(x, na.rm=TRUE), to = max(x, na.rm=TRUE), type=c("linear", "spline"), absolutearea=FALSE, ...)
 {
     type <- match.arg(type)
 
-    if (length(x) != length(y))
-        stop("x and y must have the same length")
+    # Sanity checks
+    stopifnot(length(x) == length(y))
+
+    stopifnot(!is.na(from))
+
     if (length(unique(x)) < 2)
         return(NA)
 
     if (type=="linear") {
 
-        ## Boost all y's to be non-negative
-        if (absolutearea)
-            y <- y - min(y)
+        ## Boost all y's to be non-negative by adding the smallest value
+        ## Will remove this later on but ensures that we can use the same function for the rest
+        if (absolutearea) {
+            miny <- min(y, na.rm=TRUE)
+            y <- y - miny
+        }
 
+        ## Use approx to make the approximation
         values <- approx(x, y, xout = sort(unique(c(from, to, x[x > from & x < to]))), ...)
         res <- 0.5 * sum(diff(values$x) * (values$y[-1] + values$y[-length(values$y)]))
 
         ## Remove the rectangle we artificially introduced above
         if (absolutearea)
-            res <- res - min(y)*(max(x) - min(x))
+            res <- res + miny*(to - from)
 
     } else {
         if (absolutearea)
