@@ -9,9 +9,9 @@
 #' @return A numeric vector containing the row sums or NA if not enough non-NA observations are present
 #'
 #' @examples
-#' rowMeansCond(1:5, c(1:4, NA), c(1:3, NA, NA))
-#' rowMeansCond(1:5, c(1:4, NA), c(1:3, NA, NA), minobs=0)
-#' rowMeansCond(1:5, c(1:4, NA), c(1:3, NA, NA), minobs=2)
+#' conditional_rowMeans(1:5, c(1:4, NA), c(1:3, NA, NA))
+#' conditional_rowMeans(1:5, c(1:4, NA), c(1:3, NA, NA), minobs=0)
+#' conditional_rowMeans(1:5, c(1:4, NA), c(1:3, NA, NA), minobs=2)
 #'
 #' @export
 conditional_rowMeans <- function(..., minobs=1L) {
