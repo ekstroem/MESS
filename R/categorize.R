@@ -4,13 +4,12 @@
 #'
 #' categorize is a wrapper to xtabs or table such that a data frame can be given as the first argument.
 #'
-#' @param x A data frame
+#' @param .data A data frame
 #' @param ... A formula (as in xtabs) or one or more objects which can be interpreted as factors (including character strings), or a list (or data frame) whose components can be so interpreted.
 #' @return A table (possibly as an xtabs class if a model formula was used)
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
 #' @keywords manip
 #' @examples
-#'
 #'
 #' if (requireNamespace("magrittr", quietly = TRUE)) {
 #'     library(magrittr)
@@ -20,11 +19,11 @@
 #' }
 #'
 #' @export
-categorize <- function(x, ...) {
+categorize <- function(.data, ...) {
     dots <- eval(substitute(alist(...)));
     if ("call" %in% sapply(dots, class))
-        xtabs(..., data=x)
+        xtabs(..., data=.data)
     else {
-        with(x, do.call("table", dots))
+        with(.data, do.call("table", dots))
     }
 }

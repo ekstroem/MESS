@@ -4,10 +4,10 @@
 \alias{categorize}
 \title{A table function to use with magrittr pipes}
 \usage{
-categorize(x, ...)
+categorize(.data, ...)
 }
 \arguments{
-\item{x}{A data frame}
+\item{.data}{A data frame}
 
 \item{...}{A formula (as in xtabs) or one or more objects which can be interpreted as factors (including character strings), or a list (or data frame) whose components can be so interpreted.}
 }
@@ -21,7 +21,6 @@ Accepts a data frame as input and computes a contingency table for direct use in
 categorize is a wrapper to xtabs or table such that a data frame can be given as the first argument.
 }
 \examples{
-
 
 if (requireNamespace("magrittr", quietly = TRUE)) {
     library(magrittr)

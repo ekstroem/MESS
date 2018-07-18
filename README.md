@@ -18,12 +18,9 @@ devtools::install_github('ekstroem/MESS')
 [![Travis-CI Build Status](https://travis-ci.org/ekstroem/MESS.svg?branch=master)](https://travis-ci.org/ekstroem/MESS) ![Download counter](http://cranlogs.r-pkg.org/badges/grand-total/MESS)
 
 
-
 # Package overview
 
-
 The list below is far from complete.
-
 
 ## Statistical functions
 
@@ -67,6 +64,7 @@ accommodate different group sizes and/or variances.
 
 * `age` - computes the age in years of a person from two date (birth date and current date) 
 * `auc` - computes the area under the curve for two vectors (x-values and y-values). Can handle ranges and missing observations
+* `categorize` - produce tables using a data argument 
 * `expand_table` - Expand table or matrix to data frame where each observation
 in the table becomes a single observation in the data frame with
 corresponding information for each for each combination of the table
@@ -80,6 +78,7 @@ value. A last measurement carried forward function. And fast.
 
 ## Computational functions
 
+* `conditional_rowMeans` - a function similar to `rowMeans` but it only returns the mean if a prespecified number of observations is available.
 * `pairwise_Schur_product` - compute Schur products (element-wise) of all pairwise combinations of columns in matrix
 * `qdiag` - fast extraction of matrix diagonal
 * `quadform` - fast computation of a quadratic form `t(X) %*% M %*% X`
