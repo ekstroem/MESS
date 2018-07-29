@@ -73,9 +73,9 @@ monte_carlo_chisq_test <- function(x,
                 stop("All row marginals must be non-negative")
             marg <- 1
             fixed = "row margins"
-            res <- MESS:::.chisq_test_cpp(x, margin=marg, B=B);            
+            res <- .chisq_test_cpp(x, margin=marg, B=B);            
         } else if (margin=="N") {
-            res <- MESS:::.chisq_test_cpp(x, margin=marg, B=B);            
+            res <- .chisq_test_cpp(x, margin=marg, B=B);            
         }        
     }
 
