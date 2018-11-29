@@ -11,7 +11,7 @@
 #' @examples
 #'
 #' A <- matrix(1:12, ncol=3)
-#' B <- c(1, 2 3)
+#' B <- c(1, 2, 3)
 #'
 #' add_torows(A, B)
 #'
