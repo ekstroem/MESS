@@ -1,3 +1,7 @@
+# Upcoming version
+
+*   Added the `add_torows()` function for fast computation of t(t(A) + v)
+
 # MESS 0.5.3
 
 *   A few boundary bugs in the auc function were fixed.

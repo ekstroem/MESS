@@ -8,7 +8,8 @@
 rootonorm(x, breaks = "Sturges", type = c("hanging", "deviation"),
   scale = c("sqrt", "raw"), zeroline = TRUE, linecol = "red",
   rectcol = "lightgrey", xlab = xname, ylab = "Sqrt(frequency)",
-  yaxt = "n", ylim = NULL, mu = mean(x), s = sd(x), gap = 0.1, ...)
+  yaxt = "n", ylim = NULL, mu = mean(x), s = sd(x), gap = 0.1,
+  ...)
 }
 \arguments{
 \item{x}{a numeric vector of values for which the rootogram is desired}

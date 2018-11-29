@@ -7,9 +7,9 @@
 \alias{residualplot}
 \title{Plots a standardaized residual}
 \usage{
-\method{residualplot}{default}(x, y = NULL, candy = TRUE, bandwidth = 0.3,
-  xlab = "Fitted values", ylab = "Std.res.", col.sd = "blue",
-  col.alpha = 0.3, ylim = NA, ...)
+\method{residualplot}{default}(x, y = NULL, candy = TRUE,
+  bandwidth = 0.3, xlab = "Fitted values", ylab = "Std.res.",
+  col.sd = "blue", col.alpha = 0.3, ylim = NA, ...)
 
 \method{residualplot}{lm}(x, y, candy = TRUE, bandwidth = 0.3,
   xlab = "Fitted values", ylab = "Stud.res.", col.sd = "blue",

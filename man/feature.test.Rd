@@ -4,9 +4,10 @@
 \alias{feature.test}
 \title{Inference for features identified by the Lasso}
 \usage{
-feature.test(x, y, B = 100, type.measure = "deviance", s = "lambda.min",
-  keeplambda = FALSE, olsestimates = TRUE, penalty.factor = rep(1, nvars),
-  alpha = 1, control = list(trace = FALSE, maxcores = 24), ...)
+feature.test(x, y, B = 100, type.measure = "deviance",
+  s = "lambda.min", keeplambda = FALSE, olsestimates = TRUE,
+  penalty.factor = rep(1, nvars), alpha = 1, control = list(trace =
+  FALSE, maxcores = 24), ...)
 }
 \arguments{
 \item{x}{input matrix, of dimension nobs x nvars; each row is an observation

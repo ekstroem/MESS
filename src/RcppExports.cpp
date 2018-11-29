@@ -6,6 +6,18 @@
 
 using namespace Rcpp;
 
+// add_torows
+arma::mat add_torows(const arma::mat& x, const arma::rowvec& v);
+RcppExport SEXP _MESS_add_torows(SEXP xSEXP, SEXP vSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::rowvec& >::type v(vSEXP);
+    rcpp_result_gen = Rcpp::wrap(add_torows(x, v));
+    return rcpp_result_gen;
+END_RCPP
+}
 // bin
 List bin(NumericVector x, double width, double origin, bool missinglast);
 RcppExport SEXP _MESS_bin(SEXP xSEXP, SEXP widthSEXP, SEXP originSEXP, SEXP missinglastSEXP) {
@@ -172,6 +184,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_MESS_add_torows", (DL_FUNC) &_MESS_add_torows, 2},
     {"_MESS_bin", (DL_FUNC) &_MESS_bin, 4},
     {"_MESS_chisq_test_cpp", (DL_FUNC) &_MESS_chisq_test_cpp, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
