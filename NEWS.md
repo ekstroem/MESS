@@ -1,6 +1,7 @@
 # Upcoming version
 
 *   Added the `add_torows()` function for fast computation of t(t(A) + v)
+*   Fixed a bug in `power_t_test()` with unequal variances. Thanks to Oren Ben-Harim
 
 # MESS 0.5.3
 

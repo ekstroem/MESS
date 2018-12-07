@@ -70,14 +70,14 @@ power_t_test <-
   p.body <- quote({
     nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)),
 classical=(1+ratio)*n-2))
-    pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd, lower = FALSE)
+    pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio^2/ratio))) * delta/sd, lower = FALSE)
   })
   if (strict & tside == 2)
     p.body <- quote({
       nu <- switch(tsample, n-1, switch(df.method, welch=(sd^2/n + (sd*sd.ratio)^2/(n*ratio))^2/((sd^2/n)^2/(n-1) + ((sd*sd.ratio)^2/(ratio*n))^2/(n*ratio-1)),
 classical=(1+ratio)*n-2))
       qu <- qt(sig.level/tside, nu, lower = FALSE)
-      ncp <- switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio/ratio))) * delta/sd
+      ncp <- switch(tsample, sqrt(n/tsample), sqrt(n/(1+sd.ratio^2/ratio))) * delta/sd
       pt(qu, nu, ncp = ncp, lower = FALSE) +
         pt(-qu, nu, ncp = ncp, lower = TRUE)
     })

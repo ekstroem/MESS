@@ -1,8 +1,8 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.5.3
-Date: 2018-11-23
+Version: 0.5.4
+Date: 2018-12-07
 Authors@R: person(given="Claus Thorn", family="Ekstrøm", role = c("aut", "cre"), email = "claus@rprimer.dk")
 Maintainer: Claus Thorn Ekstrøm <claus@rprimer.dk>
 Depends:
@@ -33,4 +33,4 @@ BugReports: https://github.com/ekstroem/MESS/issues
 Encoding: UTF-8
 ByteCompile: true
 License: GPL-2
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
