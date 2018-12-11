@@ -3,7 +3,7 @@
 #' Compute power of test, or determine parameters to obtain target
 #' power for equal and unequal sample sizes.
 #'
-#' @param n Number of observations (per group)
+#' @param n Number of observations (in the smallest group if two groups)
 #' @param delta True difference in means
 #' @param sd Standard deviation
 #' @param sig.level Significance level (Type I error probability)
@@ -49,10 +49,10 @@ power_t_test <-
     if (sum(sapply(list(n, delta, sd, power, sig.level, ratio, sd.ratio), is.null)) != 1)
       stop("exactly one of n, delta, sd, power, sig.level, ratio and sd.ratio must be NULL")
 
-    if (!is.null(ratio) && ratio <= 0)
-      stop("ratio between group sizes must be positive")
-    if (!is.null(sd.ratio) && sd.ratio <= 0)
-      stop("sd.ratio between group sd's must be positive")
+    if (!is.null(ratio) && ratio < 1)
+      stop("ratio between group sizes cannot be less than 1")
+    if (!is.null(sd.ratio) && sd.ratio < 1)
+      stop("sd.ratio between group sd's cannot be less than 1")
   }
   else {
       ratio <- 1
@@ -105,7 +105,7 @@ classical=(1+ratio)*n-2))
 
   if (type=="two.sample" & ratio!=1) {
       n <- c(n, n*ratio)
-      sd <- c(sd*sd.ratio)
+      sd <- c(sd, sd*sd.ratio)
   }
 
 

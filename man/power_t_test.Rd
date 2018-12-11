@@ -10,7 +10,7 @@ power_t_test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
   df.method = c("welch", "classical"), strict = FALSE)
 }
 \arguments{
-\item{n}{Number of observations (per group)}
+\item{n}{Number of observations (in the smallest group if two groups)}
 
 \item{delta}{True difference in means}
 
