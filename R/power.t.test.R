@@ -51,7 +51,7 @@ power_t_test <-
 
     if (!is.null(ratio) && ratio < 1)
       stop("ratio between group sizes cannot be less than 1")
-    if (!is.null(sd.ratio) && sd.ratio < 1)
+    if (!is.null(sd.ratio) && sd.ratio < 0)
       stop("sd.ratio between group sd's cannot be less than 1")
   }
   else {
@@ -103,7 +103,7 @@ classical=(1+ratio)*n-2))
 #  n <- switch(type, paired=n, two.sample=c(n, ifelse(ratio==1, NULL, n*ratio)), one.sample=n)
 #  sd <- switch(type, paired=sd, two.sample=c(sd, ifelse(ratio==1, NULL, sd*sd.ratio)), one.sample=sd)
 
-  if (type=="two.sample" & ratio!=1) {
+  if (type=="two.sample" & (ratio!=1 | sd.ratio !=1)) {
       n <- c(n, n*ratio)
       sd <- c(sd, sd*sd.ratio)
   }
