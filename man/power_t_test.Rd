@@ -20,7 +20,7 @@ power_t_test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 
 \item{power}{Power of test (1 minus Type II error probability)}
 
-\item{ratio}{The ratio n2/n1 between the larger group and the smaller group. Should be a value equal to or greater than 1 since n2 is the larger group. Defaults to 1 (equal group sizes)}
+\item{ratio}{The ratio n2/n1 between the larger group and the smaller group. Should be a value equal to or greater than 1 since n2 is the larger group. Defaults to 1 (equal group sizes). If ratio is set to NULL (i.e., find the ratio) then the ratio might be smaller than 1 depending on the desired power and ratio of the sd's.}
 
 \item{sd.ratio}{The ratio sd2/sd1 between the standard deviations in the larger group and the smaller group. Defaults to 1 (equal standard deviations in the two groups)}
 
@@ -57,7 +57,16 @@ see errors from it, notably about inability to bracket the root
 when invalid arguments are given.
 }
 \examples{
+# Sampling with a ratio of 1:4
 power_t_test(delta=300, sd=450, power=.8, ratio=4)
+
+# Equal group sizes but different sd's
+# The sd in the first group is twice the sd in the second group
+power_t_test(delta=300, sd=450, power=.8, sd.ratio=.5)
+
+# Fixed group one size to 50 individuals, but looking for the number of individuals in the
+# second group. Different sd's with twice the sd in the larger group
+power_t_test(n=50, delta=300, sd=450, power=.8, ratio=NULL, sd.ratio=2)
 }
 \seealso{
 \code{\link{power.t.test}}, \code{\link{power_prop_test}}, \code{\link{power.prop.test}}
