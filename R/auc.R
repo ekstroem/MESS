@@ -66,22 +66,24 @@ function(x, y, from = min(x, na.rm=TRUE), to = max(x, na.rm=TRUE), type=c("linea
 
     if (type=="linear") {
 
-        ## Boost all y's to be non-negative by adding the smallest value
-        ## Will remove this later on but ensures that we can use the same function for the rest
-        if (absolutearea) {
-            miny <- min(y, na.rm=TRUE)
-            y <- y - miny
+        ## Default option
+        if (absolutearea==FALSE) {
+            values <- approx(x, y, xout = sort(unique(c(from, to, x[x > from & x < to]))), ...)
+            res <- 0.5 * sum(diff(values$x) * (values$y[-1] + values$y[-length(values$y)]))
+        } else { ## Absolute areas
+            ## This is done by adding artificial dummy points on the x axis
+            o <- order(x)
+            ox <- x[o]
+            oy <- y[o]
+
+            idx <- which(diff(oy >= 0)!=0)
+            newx <- c(x, x[idx] - oy[idx]*(x[idx+1]-x[idx]) / (y[idx+1]-y[idx]))
+            newy <- c(y, rep(0, length(idx)))
+            values <- approx(newx, newy, xout = sort(unique(c(from, to, newx[newx > from & newx < to]))), ...)
+            res <- 0.5 * sum(diff(values$x) * (abs(values$y[-1]) + abs(values$y[-length(values$y)])))
         }
-
-        ## Use approx to make the approximation
-        values <- approx(x, y, xout = sort(unique(c(from, to, x[x > from & x < to]))), ...)
-        res <- 0.5 * sum(diff(values$x) * (values$y[-1] + values$y[-length(values$y)]))
-
-        ## Remove the rectangle we artificially introduced above
-        if (absolutearea)
-            res <- res + miny*(to - from)
-
-    } else {
+        
+    } else { ## If it is not linear approximation
         if (absolutearea)
             myfunction <- function(z) { abs(splinefun(x, y, method="natural")(z)) }
         else
