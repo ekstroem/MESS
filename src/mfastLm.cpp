@@ -6,7 +6,7 @@ using namespace Rcpp;
 //' 
 //' Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 //'
-//' Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used for the analysis.
+//' No error checking is done
 //' 
 //' @param y A vector of outcomes.
 //' @param x A matrix of regressor variables. Must have the same number of rows as the length of y. 
@@ -59,20 +59,27 @@ DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept=true) {
 
     arma::uvec index = arma::conv_to<arma::uvec>::from(find(indY % indX));
 
+    // Set the degrees of freedom depending on the number of mean parameters in the model
     df = index.n_elem-1;
     if (addintercept) {
       df -= 1;
     }
-
-
-
     coef = arma::solve(newX.rows(index), Y(index));
     rescoef(i) = coef(0);
     resid = Y(index) - newX.rows(index)*coef;
     sig2 = arma::as_scalar(arma::trans(resid)*resid/df);
-    stderrest = arma::sqrt(sig2 * arma::diagvec( arma::inv(arma::trans(newX.rows(index))*newX.rows(index))) );
-    resse(i) = stderrest(0);
-    tstat(i) = rescoef(i)/resse(i);
+
+    arma::mat xtx = arma::trans(newX.rows(index))*newX.rows(index);
+
+    if (det(xtx)<1e-5) {
+      // Singular matrix, så SE is NA and so is the test statistic
+      resse(i) = NA_REAL;
+      tstat(i) = NA_REAL;
+    } else {
+      stderrest = arma::sqrt(sig2 * arma::diagvec( arma::inv(xtx)) );
+      resse(i) = stderrest(0);
+      tstat(i) = rescoef(i)/resse(i);
+    }
   }
 
   // create a new data frame and return it

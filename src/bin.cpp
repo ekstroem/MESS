@@ -33,8 +33,7 @@ List bin(NumericVector x, double width, double origin = 0, bool missinglast=fals
     double val = *x_it;
     if (ISNAN(val)) {
       ++nmissing;
-    } else {
-      
+    } else {      
       if (val<origin)
 	continue;
       

@@ -20,7 +20,7 @@ A data frame with three variables: coefficients, stderr, and tstat that gives th
 Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 }
 \details{
-Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used for the analysis.
+No error checking is done
 }
 \examples{
 \dontrun{

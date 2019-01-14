@@ -137,7 +137,7 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
 #' 
 #' Fast computation of simple regression slopes for each predictor represented by a column in a matrix
 #'
-#' Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used for the analysis.
+#' No error checking is done
 #' 
 #' @param y A vector of outcomes.
 #' @param x A matrix of regressor variables. Must have the same number of rows as the length of y. 

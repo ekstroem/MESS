@@ -1,4 +1,9 @@
-# Upcoming version
+# MESS 0.5.5
+
+*   Fixed a bug in auc for absolute areas. Thanks to Richard Pearse.
+*   Made mfastLmCpp continue gracefully for predictors with no variation
+
+# MESS 0.5.4
 
 *   Added the `add_torows()` function for fast computation of t(t(A) + v)
 *   Fixed a bug in `power_t_test()` with unequal variances. Thanks to Oren Ben-Harim
