@@ -119,7 +119,7 @@ classical=(1+ratio)*n-2))
 
 
   METHOD <- paste(switch(type, one.sample = "One-sample t test power calculation",
-                               two.sample = ifelse(ratio==1, "Two-sample t test power calculation", "Two-sample t test power calculation with unequal sizes"),
+                               two.sample = ifelse(ratio==1, "Two-sample t test power calculation", "Two-sample t test power calculation with unequal sample sizes"),
                          paired = "Paired t test power calculation"))
   if (type=="two.sample" & sd.ratio != 1) {
       METHOD <- paste0(METHOD, ifelse(ratio==1, " with", " and"), " unequal variances")

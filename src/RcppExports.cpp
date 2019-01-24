@@ -58,6 +58,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// colCumSum
+NumericMatrix colCumSum(const NumericMatrix& m);
+RcppExport SEXP _MESS_colCumSum(SEXP mSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type m(mSEXP);
+    rcpp_result_gen = Rcpp::wrap(colCumSum(m));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cumsumbinning
 IntegerVector cumsumbinning(NumericVector x, double cutoff, Rcpp::Nullable<int> maxgroupsize);
 RcppExport SEXP _MESS_cumsumbinning(SEXP xSEXP, SEXP cutoffSEXP, SEXP maxgroupsizeSEXP) {
@@ -188,6 +199,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_bin", (DL_FUNC) &_MESS_bin, 4},
     {"_MESS_chisq_test_cpp", (DL_FUNC) &_MESS_chisq_test_cpp, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
+    {"_MESS_colCumSum", (DL_FUNC) &_MESS_colCumSum, 1},
     {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 3},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
