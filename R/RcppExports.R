@@ -80,9 +80,9 @@ cmd <- function(x, y) {
 #' @return A matrix the same size as m with the column-wise cumulative sums.
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @examples
-#'   // Generate 100000 predictors and 100 observations
-#'   x <- matrix(rnorm(100*100000), nrow=100)
-#'   colCumSum(y, x)
+#'   # Generate a 100 by 10000 matrix
+#'   x <- matrix(rnorm(100*10000), nrow=100)
+#'   colCumSum(x)
 #'
 #' @export
 colCumSum <- function(m) {

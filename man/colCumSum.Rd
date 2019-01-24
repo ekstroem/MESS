@@ -16,8 +16,8 @@ A matrix the same size as m with the column-wise cumulative sums.
 Fast computation of apply(x,2,cumsum)
 }
 \examples{
-  // Generate 100000 predictors and 100 observations
-  x <- matrix(rnorm(100*100000), nrow=100)
+  # Generate a 100 by 10000 matrix
+  x <- matrix(rnorm(100*10000), nrow=100)
   colCumSum(y, x)
 
 }
