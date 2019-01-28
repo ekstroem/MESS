@@ -60,7 +60,7 @@ inline NumericMatrix c_cor_helper(const NumericMatrix& mat, const int rstart, co
 //' 
 //' I'll need to fill this out.
 //'
-//' @param x A matrix 
+//' @param mat A matrix 
 //' @param threshold The threshold. Should be a number between 0 and 1. 
 //' @return A logical vector where the elements that are TRUE correspond to the variables that are not correlated above the threshold with any of the subsequent variables.
 //' @author Claus Ekstrøm <claus@@rprimer.dk>
