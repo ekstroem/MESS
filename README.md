@@ -65,6 +65,7 @@ accommodate different group sizes and/or variances.
 * `age` - computes the age in years of a person from two date (birth date and current date) 
 * `auc` - computes the area under the curve for two vectors (x-values and y-values). Can handle ranges and missing observations
 * `categorize` - produce tables using a data argument 
+* `colCumSum` - fast computation of column cumulative sums for matrices
 * `expand_table` - Expand table or matrix to data frame where each observation
 in the table becomes a single observation in the data frame with
 corresponding information for each for each combination of the table
