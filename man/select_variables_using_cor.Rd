@@ -7,9 +7,9 @@
 select_variables_using_cor(mat, threshold)
 }
 \arguments{
-\item{threshold}{The threshold. Should be a number between 0 and 1.}
+\item{mat}{A matrix}
 
-\item{x}{A matrix}
+\item{threshold}{The threshold. Should be a number between 0 and 1.}
 }
 \value{
 A logical vector where the elements that are TRUE correspond to the variables that are not correlated above the threshold with any of the subsequent variables.
