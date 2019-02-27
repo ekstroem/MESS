@@ -5,6 +5,8 @@ Version: 0.5.5
 Date: 2019-01-27
 Authors@R: person(given="Claus Thorn", family="Ekstrøm", role = c("aut", "cre"), email = "claus@rprimer.dk")
 Maintainer: Claus Thorn Ekstrøm <claus@rprimer.dk>
+Depends:
+    R (>= 3.5)
 Imports:
     MASS,
     Matrix,
