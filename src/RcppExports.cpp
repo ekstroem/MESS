@@ -32,19 +32,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// carol
-int carol(IntegerVector nums, int value, int target);
-RcppExport SEXP _MESS_carol(SEXP numsSEXP, SEXP valueSEXP, SEXP targetSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< IntegerVector >::type nums(numsSEXP);
-    Rcpp::traits::input_parameter< int >::type value(valueSEXP);
-    Rcpp::traits::input_parameter< int >::type target(targetSEXP);
-    rcpp_result_gen = Rcpp::wrap(carol(nums, value, target));
-    return rcpp_result_gen;
-END_RCPP
-}
 // chisq_test_cpp
 List chisq_test_cpp(NumericMatrix x, int margin, int statistic, int B);
 RcppExport SEXP _MESS_chisq_test_cpp(SEXP xSEXP, SEXP marginSEXP, SEXP statisticSEXP, SEXP BSEXP) {
@@ -222,7 +209,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_MESS_add_torows", (DL_FUNC) &_MESS_add_torows, 2},
     {"_MESS_bin", (DL_FUNC) &_MESS_bin, 4},
-    {"_MESS_carol", (DL_FUNC) &_MESS_carol, 3},
     {"_MESS_chisq_test_cpp", (DL_FUNC) &_MESS_chisq_test_cpp, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
     {"_MESS_colCumSum", (DL_FUNC) &_MESS_colCumSum, 1},
