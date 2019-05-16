@@ -21,4 +21,4 @@ Internal functions for the MESS package
 \author{
 Claus Ekstrom \email{claus@rprimer.dk}
 }
-\keyword{~kwd1}
+\keyword{manip}

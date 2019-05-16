@@ -555,7 +555,7 @@ NULL
 #' @keywords datasets
 #' @examples
 #'
-#' data(icecreamad)
+#' data("icecreamads")
 #'
 NULL
 

@@ -18,7 +18,7 @@ Fast computation of apply(x,2,cumsum)
 \examples{
   # Generate a 100 by 10000 matrix
   x <- matrix(rnorm(100*10000), nrow=100)
-  colCumSum(x)
+  result <- colCumSum(x)
 
 }
 \author{

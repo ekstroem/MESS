@@ -5,7 +5,7 @@
 #' @param testidx Indices of the beta parameters that should be tested equal to zero
 #' @param sas Logical. Should the SAS version of the score test be computed. Defaults to \code{FALSE}.
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
-#' @keywords ~kwd1
+#' @keywords manip
 scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
 
     # Check that ids are correctly ordered

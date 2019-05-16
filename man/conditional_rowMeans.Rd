@@ -2,7 +2,7 @@
 % Please edit documentation in R/rowmeanscond.R
 \name{conditional_rowMeans}
 \alias{conditional_rowMeans}
-\title{Parallel means conditional on number of non-missing}
+\title{Form row means conditional on number of non-missing}
 \usage{
 conditional_rowMeans(..., minobs = 1L)
 }

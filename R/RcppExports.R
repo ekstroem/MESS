@@ -82,7 +82,7 @@ cmd <- function(x, y) {
 #' @examples
 #'   # Generate a 100 by 10000 matrix
 #'   x <- matrix(rnorm(100*10000), nrow=100)
-#'   colCumSum(x)
+#'   result <- colCumSum(x)
 #'
 #' @export
 colCumSum <- function(m) {

@@ -17,7 +17,7 @@ The impact of advertizing impact, temperature, and price on ice cream consumptio
 }
 \examples{
 
-data(icecreamad)
+data("icecreamads")
 
 }
 \keyword{datasets}
