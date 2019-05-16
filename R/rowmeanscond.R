@@ -1,4 +1,4 @@
-#' Parallel means conditional on number of non-missing
+#' Form row means conditional on number of non-missing
 #'
 #' Form row means for multiple vectors, numeric arrays (or data frames) conditional on the number of non-missing observations.
 #' NA is returned unless a minimum number of observations is observed.

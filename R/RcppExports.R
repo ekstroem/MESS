@@ -89,24 +89,6 @@ colCumSum <- function(m) {
     .Call(`_MESS_colCumSum`, m)
 }
 
-#' Fast selection of variables below correlation threshold
-#' 
-#' I'll need to fill this out.
-#'
-#' @param mat A matrix 
-#' @param threshold The threshold. Should be a number between 0 and 1. 
-#' @return A logical vector where the elements that are TRUE correspond to the variables that are not correlated above the threshold with any of the subsequent variables.
-#' @author Claus Ekstrøm <claus@@rprimer.dk>
-#' @examples
-#'
-#' x <- sample(10, 20, replace = TRUE)
-#' bin(x, 15)
-#' 
-#' @export
-select_variables_using_cor <- function(mat, threshold) {
-    .Call(`_MESS_select_variables_using_cor`, mat, threshold)
-}
-
 #' Binning based on cumulative sum with reset above threshold
 #' 
 #' Fast binning of cumulative vector sum with new groups when the sum passes a threshold or the group size becomes too large

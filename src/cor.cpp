@@ -1,4 +1,5 @@
-#include <Rcpp.h>
+#include "RcppArmadillo.h"
+// #include <Rcpp.h>
 using namespace Rcpp;
 using namespace std;
 
@@ -55,6 +56,7 @@ inline NumericMatrix c_cor_helper(const NumericMatrix& mat, const int rstart, co
 }
 
 
+/*
 
 //' Fast selection of variables below correlation threshold
 //' 
@@ -95,7 +97,7 @@ LogicalVector select_variables_using_cor(const NumericMatrix& mat, double thresh
       rmat(c1, c2) = (nperiod * sXY - info[c1].sum * info[c2].sum) / (info[c1].stdev * info[c2].stdev);
     }
   }
-  */
+  * /
 
 
   // From here
@@ -128,4 +130,42 @@ LogicalVector select_variables_using_cor(const NumericMatrix& mat, double thresh
 
   return (!keep);
 }
+
+
+
+
+
+//' Fast selection of variables below correlation threshold
+//' 
+//' I'll need to fill this out.
+//'
+//' @param mat A matrix 
+//' @param threshold The threshold. Should be a number between 0 and 1. 
+//' @return A logical vector where the elements that are TRUE correspond to the variables that are not correlated above the threshold with any of the subsequent variables.
+//' @author Claus Ekstrøm <claus@@rprimer.dk>
+//' @source https://arxiv.org/pdf/1810.11332.pdf
+//' @examples
+//'
+//' x <- sample(10, 20, replace = TRUE)
+//' bin(x, 15)
+//' 
+//' @export
+// [[Rcpp::export]]
+double dcov(const arma::vec & x, const arma::vec & y) {
+
+  int n = x.size();
+
+  // Sanity check
+
+  arma::uvec indices = arma::sort_index(x);
+
+  x = x(indices);
+  y = y(indices);
+
+
+  arma::vec si = cumsum(x);
+}
+
+
+*/
 
