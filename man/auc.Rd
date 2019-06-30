@@ -27,7 +27,7 @@ areas should be added to the total area under the curve.  By
 default the auc function subtracts areas that have negative y
 values. Set \code{absolutearea=TRUE} to _add_ the absolute value of the negative areas to the total area.}
 
-\item{\dots}{additional arguments passed on to approx. In particular rule
+\item{\dots}{additional arguments passed on to approx (for linear approximations) or integrate (for non-linear approximations). In particular rule
 can be set to determine how values outside the range of x is handled.}
 }
 \value{

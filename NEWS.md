@@ -1,6 +1,7 @@
 # Next version
 
 *   Added the colCumSum function for fast computation of cumulative sums for each column in a matrix.
+*   Fixed a bug in auc 
 
 # MESS 0.5.5
 
