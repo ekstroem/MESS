@@ -5,7 +5,8 @@
 \title{Compute the area under the curve for two vectors.}
 \usage{
 auc(x, y, from = min(x, na.rm = TRUE), to = max(x, na.rm = TRUE),
-  type = c("linear", "spline"), absolutearea = FALSE, ...)
+  type = c("linear", "spline"), absolutearea = FALSE,
+  subdivisions = 100, ...)
 }
 \arguments{
 \item{x}{a numeric vector of x values.}
@@ -27,8 +28,9 @@ areas should be added to the total area under the curve.  By
 default the auc function subtracts areas that have negative y
 values. Set \code{absolutearea=TRUE} to _add_ the absolute value of the negative areas to the total area.}
 
-\item{\dots}{additional arguments passed on to approx (for linear approximations) or integrate (for non-linear approximations). In particular rule
-can be set to determine how values outside the range of x is handled.}
+\item{subdivisions}{an integer telling how many subdivisions should be used for integrate (for non-linear approximations)}
+
+\item{\dots}{additional arguments passed on to approx (for linear approximations). In particular rule can be set to determine how values outside the range of x is handled.}
 }
 \value{
 The value of the area under the curve.
