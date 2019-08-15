@@ -2,6 +2,7 @@
 
 *   Added the colCumSum function for fast computation of cumulative sums for each column in a matrix.
 *   Fixed a bug in auc 
+*   Fixed a bug in power_mcnemar_test and modified the default arguments [Thanks to John Lockwood]
 
 # MESS 0.5.5
 
