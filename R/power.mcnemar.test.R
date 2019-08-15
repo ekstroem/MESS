@@ -3,12 +3,10 @@
 #' Compute power of test, or determine parameters to obtain target power for
 #' matched case-control studies.
 #'
-#' If psi is less than 1 then the two probabilities p_12 and p_21 are reversed.
-#'
 #' @param n Number of observations (number of pairs)
 #' @param paid The probability that a case patient is not exposed and that the
-#' corresponding control patient was exposed (specifying p_12 in the 2 x 2 table).
-#' @param psi The relative probability that a control patient is not exposed and that the corresponding case patient was exposed compared to the probability that a case patient is not exposed and that the corresponding control patient was exposed (p12 / p21 in the 2x2 table). Also called the discordant proportion ratio
+#' corresponding control patient was exposed (specifying p_12 in the 2 x 2 table). It is assumed that this is the _smaller_ of the two discordant probabilities.
+#' @param psi The relative probability that a control patient is not exposed and that the corresponding case patient was exposed compared to the probability that a case patient is not exposed and that the corresponding control patient was exposed (i.e., p_21 / p_12 in the 2x2 table). Also called the discordant proportion ratio. psi must be larger than or equal to 1 since paid was the smaller of the two discordant probabilities.
 #' @param sig.level Significance level (Type I error probability)
 #' @param power Power of test (1 minus Type II error probability)
 #' @param alternative One- or two-sided test
@@ -28,7 +26,7 @@
 #' @keywords htest
 #' @examples
 #'
-#' # Assume that pi_21 is 0.125 and we wish to detect an OR of 2.
+#' # Assume that pi_12 is 0.125 and we wish to detect an OR of 2.
 #' # This implies that pi_12=0.25, and with alpha=0.05, and a power of 90% you get
 #' power_mcnemar_test(n=NULL, paid=.125, psi=2, power=.9)
 #' 
@@ -46,21 +44,28 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
         stop("exactly one of 'n', 'paid', 'psi', 'power', and 'sig.level' must be NULL")
     if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > sig.level | sig.level > 1))
         stop("'sig.level' must be numeric in [0, 1]")
-    if (any(paid <=0) || any(paid>=1)) {
-        stop("paid is a probability and must be 0<paid<1")
+    if (!is.null(paid)) {
+        if (any(paid <=0) || any(paid>=0.5)) {
+            stop("paid is the smallest discordant probability and must be 0<paid<0.5")
+        }
     }
-    if (any(psi <=0)) {
-        stop("psi must be non-negative")
-    }    
+    if (!is.null(psi)) {
+       if (any(psi <= 1)) {
+           stop("psi must be 1 or greater since it is the ratio of the larger discordant probability to the smaller discordant probability")
+       }    
+       if (any((psi + 1)*paid > 1)) {
+           stop("psi cannot be so big that the sum of the discordant probabilities exceed 1: ie., (1+paid)*psi>1")
+       }    
+    }
     alternative <- match.arg(alternative)
     method <- match.arg(method)
     tside <- switch(alternative, one.sided = 1, two.sided = 2)
     
     ## Fix if psi was specified to be less that 1
-    if (psi<1) {
-        paid <- paid*psi
-        psi <- 1/psi
-    }
+#    if (psi<1 && !is.null(psi)) {
+#        paid <- paid*psi
+#        psi <- 1/psi
+#    }
 
     ## Conditional power (conditional on n)
     f <- function(n, paid, psi, sig.level, power) {
@@ -91,9 +96,9 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
     } else if (is.null(n)) {
         n <- uniroot(function(n) eval(p.body) - power, c(ceiling(log(sig.level)/log(.5)), 1e+07))$root
     } else if (is.null(paid))
-        paid <- uniroot(function(paid) eval(p.body) - power, c(0, 1-psi-1e-10))$root
+        paid <- uniroot(function(paid) eval(p.body) - power, c(1e-10, 1/(1+psi)-1e-10))$root
     else if (is.null(psi))
-        psi <- uniroot(function(psi) eval(p.body) - power, c(1e-10, 1/paid-1-1e-10))$root
+        psi <- uniroot(function(psi) eval(p.body) - power, c(1+1e-10, 1/paid-1-1e-10))$root
     else if (is.null(sig.level))
         sig.level <- uniroot(function(sig.level) eval(p.body) -
             power, c(1e-10, 1 - 1e-10))$root
