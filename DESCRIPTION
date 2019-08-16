@@ -13,6 +13,8 @@ Imports:
     Rcpp,
     geepack,
     geeM,
+    ggplot2,
+    ggformula,
     glmnet,
     kinship2,
     methods,

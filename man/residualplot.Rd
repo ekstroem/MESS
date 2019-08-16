@@ -5,7 +5,7 @@
 \alias{residualplot.lm}
 \alias{residualplot.glm}
 \alias{residualplot}
-\title{Plots a standardaized residual}
+\title{Plots a standardized residual}
 \usage{
 \method{residualplot}{default}(x, y = NULL, candy = TRUE,
   bandwidth = 0.3, xlab = "Fitted values", ylab = "Std.res.",
