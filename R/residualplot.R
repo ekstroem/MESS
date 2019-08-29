@@ -32,7 +32,7 @@ residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="F
         plot(x, y, xlab = xlab, ylab = ylab, pch = 1 + 15 * (abs(y) > 1.96), ylim=ylim, ...)
                
         if (length(uniqx) > 3) {
-            lines(smooth.spline(x, y, df = 3), lty = 2, lwd = 2,
+            lines(smooth.spline(x, y, df = 3), lty = 2, lwd = 2.5,
                   col = "black")
         }
 
@@ -177,11 +177,16 @@ residualplot <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3,
 #' model2 <- lm(Volume ~ Girth + I(Girth^2) + Height, data=trees)
 #' residual_plot(model2)
 #'
+#' # Add extra information about points by adding geom_text to the object produced
+#'
+#' m <- lm(mpg ~ hp + factor(vs), data=mtcars)
+#' residual_plot(m) + ggplot2::geom_point(aes(color=factor(cyl)), data=mtcars) 
+#'
 #' @import ggplot2 ggformula
 #' @export
 residual_plot <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3,
 	                 xlab="Fitted values", ylab="Std.res.",
-                         col.sd="blue", alpha=0.3, ylim=NA, ...) {
+                         col.sd="blue", alpha=0.1, ylim=NA, ...) {
   UseMethod("residual_plot")
 }
 
@@ -189,7 +194,7 @@ residual_plot <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3,
 #' @rdname residual_plot
 #' @export
 residual_plot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, 
-     xlab="Fitted values", ylab="Std.res.", col.sd="blue", alpha=0.3, ylim=NA, ...) {
+     xlab="Fitted values", ylab="Std.res.", col.sd="blue", alpha=0.1, ylim=NA, ...) {
 
     if (is.null(y))
         stop("y must be specified")
@@ -237,7 +242,7 @@ if (candy) {
 
 #' @rdname residual_plot
 #' @export
-residual_plot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", alpha=0.3,...) {
+residual_plot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", alpha=0.1,...) {
   y <- rstudent(x)
   x <- predict(x)
   residual_plot(x, y, candy, bandwidth, xlab, ylab, col.sd, alpha=alpha, ...)
@@ -246,13 +251,8 @@ residual_plot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted val
 
 #' @rdname residual_plot
 #' @export
-residual_plot.glm <- function(x, y, candy=TRUE, bandwidth = 0.4, xlab="Fitted values", ylab="Std. dev. res.", col.sd="blue", alpha=0.8,...) {
+residual_plot.glm <- function(x, y, candy=TRUE, bandwidth = 0.4, xlab="Fitted values", ylab="Std. dev. res.", col.sd="blue", alpha=0.1,...) {
     
-#    family <- family(x)$family
-#    if (!(family %in% c("binomial", "poisson", "gaussian")))
-#        stop(paste0("Residualplot for family ", family, " in glm is not implemented yet"))
-
-#    y <- rstudent(x, type="response")
     y <- rstandard(x) # Deviance residuals
     x <- predict(x, type="link")
     residual_plot(x, y, candy, bandwidth, xlab, ylab, col.sd, alpha=alpha, ...)
