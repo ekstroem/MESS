@@ -82,7 +82,7 @@ residual_plot(model2)
 # Add extra information about points by adding geom_text to the object produced
 
 m <- lm(mpg ~ hp + factor(vs), data=mtcars)
-residual_plot(m) + ggplot2::geom_point(aes(color=factor(cyl)), data=mtcars) 
+residual_plot(m) + ggplot2::geom_point(ggplot2::aes(color=factor(cyl)), data=mtcars) 
 
 }
 \seealso{
