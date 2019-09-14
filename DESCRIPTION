@@ -1,8 +1,8 @@
 Package: MESS
 Type: Package
 Title: Miscellaneous Esoteric Statistical Scripts
-Version: 0.5.5
-Date: 2019-01-27
+Version: 0.5.6
+Date: 2019-09-14
 Authors@R: person(given="Claus Thorn", family="Ekstrøm", role = c("aut", "cre"), email = "claus@rprimer.dk")
 Maintainer: Claus Thorn Ekstrøm <claus@rprimer.dk>
 Depends:
