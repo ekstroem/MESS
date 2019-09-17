@@ -23,8 +23,11 @@ Writes the data frame to a file in the XML format.
 This function does not require the \pkg{XML} package to be installed to function properly.
 }
 \examples{
+
+\dontrun{
 data(trees)
 write.xml(trees, file="mydata.xml")
+}
 
 }
 \author{

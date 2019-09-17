@@ -9,8 +9,11 @@
 #' @details This function does not require the \pkg{XML} package to be installed to function properly.
 #'
 #' @examples
+#'
+#' \dontrun{
 #' data(trees)
 #' write.xml(trees, file="mydata.xml")
+#' }
 #'
 #' @author Claus Ekstrom, \email{claus@@rprimer.dk} based on previous work by Duncan Temple Lang.
 #' @keywords file
