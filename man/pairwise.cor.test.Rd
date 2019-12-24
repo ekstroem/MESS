@@ -4,8 +4,13 @@
 \alias{pairwise.cor.test}
 \title{Pairwise Tests for Association/Correlation Between Paired Samples}
 \usage{
-pairwise.cor.test(x, g, p.adjust.method = p.adjust.methods,
-  method = c("pearson", "kendall", "spearman"), ...)
+pairwise.cor.test(
+  x,
+  g,
+  p.adjust.method = p.adjust.methods,
+  method = c("pearson", "kendall", "spearman"),
+  ...
+)
 }
 \arguments{
 \item{x}{response vector.}

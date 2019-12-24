@@ -4,8 +4,13 @@
 \alias{drop1.geeglm}
 \title{Drop All Possible Single Terms to a geeglm Model Using Wald or Score Test}
 \usage{
-\method{drop1}{geeglm}(object, scope, test = c("Wald", "none", "score",
-  "sasscore"), method = c("robust", "naive", "sandwich"), ...)
+\method{drop1}{geeglm}(
+  object,
+  scope,
+  test = c("Wald", "none", "score", "sasscore"),
+  method = c("robust", "naive", "sandwich"),
+  ...
+)
 }
 \arguments{
 \item{object}{a fitted object of class geese.}

@@ -4,10 +4,19 @@
 \alias{power_t_test}
 \title{Power calculations for one and two sample t tests with unequal sample size}
 \usage{
-power_t_test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
-  power = NULL, ratio = 1, sd.ratio = 1, type = c("two.sample",
-  "one.sample", "paired"), alternative = c("two.sided", "one.sided"),
-  df.method = c("welch", "classical"), strict = FALSE)
+power_t_test(
+  n = NULL,
+  delta = NULL,
+  sd = 1,
+  sig.level = 0.05,
+  power = NULL,
+  ratio = 1,
+  sd.ratio = 1,
+  type = c("two.sample", "one.sample", "paired"),
+  alternative = c("two.sided", "one.sided"),
+  df.method = c("welch", "classical"),
+  strict = FALSE
+)
 }
 \arguments{
 \item{n}{Number of observations (in the smallest group if two groups)}

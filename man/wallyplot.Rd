@@ -6,14 +6,32 @@
 \alias{wallyplot}
 \title{Plots a Wally plot}
 \usage{
-\method{wallyplot}{default}(x, y = x, FUN = residualplot,
-  hide = TRUE, simulateFunction = rnorm, ...)
+\method{wallyplot}{default}(
+  x,
+  y = x,
+  FUN = residualplot,
+  hide = TRUE,
+  simulateFunction = rnorm,
+  ...
+)
 
-\method{wallyplot}{lm}(x, y = x, FUN = residualplot, hide = TRUE,
-  simulateFunction = rnorm, ...)
+\method{wallyplot}{lm}(
+  x,
+  y = x,
+  FUN = residualplot,
+  hide = TRUE,
+  simulateFunction = rnorm,
+  ...
+)
 
-wallyplot(x, y = x, FUN = residualplot, hide = TRUE,
-  simulateFunction = rnorm, ...)
+wallyplot(
+  x,
+  y = x,
+  FUN = residualplot,
+  hide = TRUE,
+  simulateFunction = rnorm,
+  ...
+)
 }
 \arguments{
 \item{x}{a numeric vector of x values, or an lm object.}

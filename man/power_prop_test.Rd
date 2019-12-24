@@ -4,9 +4,16 @@
 \alias{power_prop_test}
 \title{Power Calculations for Two-Sample Test for Proportions with unequal sample size}
 \usage{
-power_prop_test(n = NULL, p1 = NULL, p2 = NULL, sig.level = 0.05,
-  power = NULL, ratio = 1, alternative = c("two.sided", "one.sided"),
-  tol = .Machine$double.eps^0.25)
+power_prop_test(
+  n = NULL,
+  p1 = NULL,
+  p2 = NULL,
+  sig.level = 0.05,
+  power = NULL,
+  ratio = 1,
+  alternative = c("two.sided", "one.sided"),
+  tol = .Machine$double.eps^0.25
+)
 }
 \arguments{
 \item{n}{Number of observations (in group 1)}

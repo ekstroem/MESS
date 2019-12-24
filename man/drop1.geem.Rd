@@ -4,8 +4,13 @@
 \alias{drop1.geem}
 \title{Drop All Possible Single Terms to a geem Model Using Wald or Score Test}
 \usage{
-\method{drop1}{geem}(object, scope, test = c("Wald", "none", "score",
-  "sasscore"), method = c("robust", "naive", "sandwich"), ...)
+\method{drop1}{geem}(
+  object,
+  scope,
+  test = c("Wald", "none", "score", "sasscore"),
+  method = c("robust", "naive", "sandwich"),
+  ...
+)
 }
 \arguments{
 \item{object}{a fitted object of class geese.}

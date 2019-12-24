@@ -6,8 +6,18 @@
 \title{Fit a generalized estimating equation (GEE) model with fixed additive
 correlation structure}
 \usage{
-geekin(formula, family = gaussian, data, weights, subset, id, na.action,
-  control = geepack::geese.control(...), varlist, ...)
+geekin(
+  formula,
+  family = gaussian,
+  data,
+  weights,
+  subset,
+  id,
+  na.action,
+  control = geepack::geese.control(...),
+  varlist,
+  ...
+)
 }
 \arguments{
 \item{formula}{See corresponding documentation to \code{glm}.}

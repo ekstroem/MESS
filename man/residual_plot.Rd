@@ -7,21 +7,55 @@
 \alias{residual_plot.glm}
 \title{Plots a standardized residual}
 \usage{
-residual_plot(x, y = NULL, candy = TRUE, bandwidth = 0.3,
-  xlab = "Fitted values", ylab = "Std.res.", col.sd = "blue",
-  alpha = 0.1, ylim = NA, ...)
+residual_plot(
+  x,
+  y = NULL,
+  candy = TRUE,
+  bandwidth = 0.3,
+  xlab = "Fitted values",
+  ylab = "Std.res.",
+  col.sd = "blue",
+  alpha = 0.1,
+  ylim = NA,
+  ...
+)
 
-\method{residual_plot}{default}(x, y = NULL, candy = TRUE,
-  bandwidth = 0.3, xlab = "Fitted values", ylab = "Std.res.",
-  col.sd = "blue", alpha = 0.1, ylim = NA, ...)
+\method{residual_plot}{default}(
+  x,
+  y = NULL,
+  candy = TRUE,
+  bandwidth = 0.3,
+  xlab = "Fitted values",
+  ylab = "Std.res.",
+  col.sd = "blue",
+  alpha = 0.1,
+  ylim = NA,
+  ...
+)
 
-\method{residual_plot}{lm}(x, y, candy = TRUE, bandwidth = 0.3,
-  xlab = "Fitted values", ylab = "Stud.res.", col.sd = "blue",
-  alpha = 0.1, ...)
+\method{residual_plot}{lm}(
+  x,
+  y,
+  candy = TRUE,
+  bandwidth = 0.3,
+  xlab = "Fitted values",
+  ylab = "Stud.res.",
+  col.sd = "blue",
+  alpha = 0.1,
+  ...
+)
 
-\method{residual_plot}{glm}(x, y, candy = TRUE, bandwidth = 0.4,
-  xlab = "Fitted values", ylab = "Std. dev. res.", col.sd = "blue",
-  alpha = 0.1, ...)
+\method{residual_plot}{glm}(
+  x,
+  y,
+  candy = TRUE,
+  bandwidth = 0.4,
+  xlab = "Fitted values",
+  ylab = "Std. dev. res.",
+  col.sd = "blue",
+  alpha = 0.1,
+  ...
+)
 }
 \arguments{
 \item{x}{lm object or a numeric vector}

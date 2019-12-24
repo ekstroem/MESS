@@ -4,8 +4,7 @@
 \alias{adaptive.weights}
 \title{Compute weights for use with adaptive lasso.}
 \usage{
-adaptive.weights(x, y, nu = 1, weight.method = c("multivariate",
-  "univariate"))
+adaptive.weights(x, y, nu = 1, weight.method = c("multivariate", "univariate"))
 }
 \arguments{
 \item{x}{input matrix, of dimension nobs x nvars; each row is an observation

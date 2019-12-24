@@ -4,8 +4,7 @@
 \alias{prepost.test}
 \title{Pretest-posttest RCT for quantitative observations with possible missing values}
 \usage{
-prepost.test(baseline, post, treatment, conf.level = 0.95,
-  delta = "estimate")
+prepost.test(baseline, post, treatment, conf.level = 0.95, delta = "estimate")
 }
 \arguments{
 \item{baseline}{A vector of quantitative baseline measurements}

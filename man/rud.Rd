@@ -4,8 +4,14 @@
 \alias{rud}
 \title{Simulate randomized urn design}
 \usage{
-rud(n, alpha = c(1, 1), beta = 1, labels = seq(1, length(alpha)),
-  data.frame = FALSE, startid = 1)
+rud(
+  n,
+  alpha = c(1, 1),
+  beta = 1,
+  labels = seq(1, length(alpha)),
+  data.frame = FALSE,
+  startid = 1
+)
 }
 \arguments{
 \item{n}{the number of individuals to randomize}

@@ -4,8 +4,7 @@
 \alias{screen_variables}
 \title{Screen variable before penalized regression}
 \usage{
-screen_variables(x, y, lambda = 0.1, method = c("global-strong",
-  "global-DPP"))
+screen_variables(x, y, lambda = 0.1, method = c("global-strong", "global-DPP"))
 }
 \arguments{
 \item{x}{A table or matrix}

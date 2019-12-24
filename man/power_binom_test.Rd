@@ -5,8 +5,14 @@
 \title{Power Calculations for Exact Test of a simple null hypothesis in a Bernoulli
 experiment}
 \usage{
-power_binom_test(n = NULL, p0 = NULL, pa = NULL, sig.level = 0.05,
-  power = NULL, alternative = c("two.sided", "less", "greater"))
+power_binom_test(
+  n = NULL,
+  p0 = NULL,
+  pa = NULL,
+  sig.level = 0.05,
+  power = NULL,
+  alternative = c("two.sided", "less", "greater")
+)
 }
 \arguments{
 \item{n}{Number of observations}

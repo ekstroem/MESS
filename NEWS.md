@@ -1,5 +1,7 @@
 # Next version
 
+*   Added the plr function
+
 # MESS 0.5.6
 
 *   Added the colCumSum function for fast computation of cumulative sums for each column in a matrix.

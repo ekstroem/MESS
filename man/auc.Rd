@@ -4,9 +4,16 @@
 \alias{auc}
 \title{Compute the area under the curve for two vectors.}
 \usage{
-auc(x, y, from = min(x, na.rm = TRUE), to = max(x, na.rm = TRUE),
-  type = c("linear", "spline"), absolutearea = FALSE,
-  subdivisions = 100, ...)
+auc(
+  x,
+  y,
+  from = min(x, na.rm = TRUE),
+  to = max(x, na.rm = TRUE),
+  type = c("linear", "spline"),
+  absolutearea = FALSE,
+  subdivisions = 100,
+  ...
+)
 }
 \arguments{
 \item{x}{a numeric vector of x values.}
