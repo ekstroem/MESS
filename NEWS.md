@@ -1,6 +1,7 @@
 # Next version
 
 *   Added the plr function
+*   Added usd function for unbiased sd estimation
 
 # MESS 0.5.6
 
