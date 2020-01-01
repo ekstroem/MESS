@@ -215,6 +215,10 @@ pairwise_combination_indices <- function(n, self = FALSE) {
     .Call(`_MESS_pairwise_combination_indices`, n, self)
 }
 
+rcpp_distance2 <- function(x, y) {
+    .Call(`_MESS_rcpp_distance2`, x, y)
+}
+
 #' Fast extraction of matrix diagonal
 #'
 #' @description Fast extraction of matrix diagonal
