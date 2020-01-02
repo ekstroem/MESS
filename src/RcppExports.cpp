@@ -143,18 +143,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_distance2
-NumericMatrix rcpp_distance2(NumericMatrix x, NumericMatrix y);
-RcppExport SEXP _MESS_rcpp_distance2(SEXP xSEXP, SEXP ySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_distance2(x, y));
-    return rcpp_result_gen;
-END_RCPP
-}
 // qdiag
 NumericVector qdiag(const NumericMatrix& x);
 RcppExport SEXP _MESS_qdiag(SEXP xSEXP) {
@@ -218,7 +206,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
     {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
     {"_MESS_pairwise_combination_indices", (DL_FUNC) &_MESS_pairwise_combination_indices, 2},
-    {"_MESS_rcpp_distance2", (DL_FUNC) &_MESS_rcpp_distance2, 2},
     {"_MESS_qdiag", (DL_FUNC) &_MESS_qdiag, 1},
     {"_MESS_quadform", (DL_FUNC) &_MESS_quadform, 4},
     {"_MESS_repmat", (DL_FUNC) &_MESS_repmat, 3},
