@@ -4,14 +4,16 @@
 \alias{cumsumbinning}
 \title{Binning based on cumulative sum with reset above threshold}
 \usage{
-cumsumbinning(x, cutoff, maxgroupsize = NULL)
+cumsumbinning(x, threshold, cutwhenpassed = FALSE, maxgroupsize = NULL)
 }
 \arguments{
 \item{x}{A matrix of regressor variables. Must have the same number of rows as the length of y.}
 
-\item{cutoff}{The value of the threshold that the cumulative group sum must not cross.}
+\item{threshold}{The value of the threshold that the cumulative group sum must not cross OR the threshold that each group sum must pass (when the argument cuwhatpassed is set to TRUE).}
 
-\item{maxgroupsize}{An integer that defines the maximum number of elements in each group. NULL (the default) corresponds to no group size.}
+\item{cutwhenpassed}{A boolean. Should the threshold be the upper limit of the group sum (the default) or the value that each group sum needs to pass (when set to TRUE).}
+
+\item{maxgroupsize}{An integer that defines the maximum number of elements in each group. NAs count as part of each group but do not add to the group sum. NULL (the default) corresponds to no group size limits.}
 }
 \value{
 An integer vector giving the group indices
@@ -28,6 +30,10 @@ set.seed(1)
 x <- sample(10, 20, replace = TRUE)
 cumsumbinning(x, 15)
 cumsumbinning(x, 15, 3)
+
+x <- c(3, 4, 5, 12, 1, 5, 3)
+cumsumbinning(x, 10)
+cumsumbinning(x, 10, cutwhenpassed=TRUE)
 
 }
 \author{

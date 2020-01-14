@@ -96,8 +96,9 @@ colCumSum <- function(m) {
 #' Missing values (NA, Inf, NaN) are completely disregarded and pairwise complete cases are used f
 #' 
 #' @param x A matrix of regressor variables. Must have the same number of rows as the length of y.
-#' @param cutoff The value of the threshold that the cumulative group sum must not cross. 
-#' @param maxgroupsize An integer that defines the maximum number of elements in each group. NULL (the default) corresponds to no group size.
+#' @param threshold The value of the threshold that the cumulative group sum must not cross OR the threshold that each group sum must pass (when the argument cuwhatpassed is set to TRUE). 
+#' @param cutwhenpassed A boolean. Should the threshold be the upper limit of the group sum (the default) or the value that each group sum needs to pass (when set to TRUE).
+#' @param maxgroupsize An integer that defines the maximum number of elements in each group. NAs count as part of each group but do not add to the group sum. NULL (the default) corresponds to no group size limits.
 #' @return An integer vector giving the group indices
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @examples
@@ -107,9 +108,13 @@ colCumSum <- function(m) {
 #' cumsumbinning(x, 15)
 #' cumsumbinning(x, 15, 3)
 #' 
+#' x <- c(3, 4, 5, 12, 1, 5, 3)
+#' cumsumbinning(x, 10)
+#' cumsumbinning(x, 10, cutwhenpassed=TRUE)
+#'
 #' @export
-cumsumbinning <- function(x, cutoff, maxgroupsize = NULL) {
-    .Call(`_MESS_cumsumbinning`, x, cutoff, maxgroupsize)
+cumsumbinning <- function(x, threshold, cutwhenpassed = FALSE, maxgroupsize = NULL) {
+    .Call(`_MESS_cumsumbinning`, x, threshold, cutwhenpassed, maxgroupsize)
 }
 
 #' Fill down NA with the last observed observation

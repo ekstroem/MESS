@@ -70,15 +70,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // cumsumbinning
-IntegerVector cumsumbinning(NumericVector x, double cutoff, Rcpp::Nullable<int> maxgroupsize);
-RcppExport SEXP _MESS_cumsumbinning(SEXP xSEXP, SEXP cutoffSEXP, SEXP maxgroupsizeSEXP) {
+IntegerVector cumsumbinning(NumericVector x, double threshold, bool cutwhenpassed, Rcpp::Nullable<int> maxgroupsize);
+RcppExport SEXP _MESS_cumsumbinning(SEXP xSEXP, SEXP thresholdSEXP, SEXP cutwhenpassedSEXP, SEXP maxgroupsizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type cutoff(cutoffSEXP);
+    Rcpp::traits::input_parameter< double >::type threshold(thresholdSEXP);
+    Rcpp::traits::input_parameter< bool >::type cutwhenpassed(cutwhenpassedSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type maxgroupsize(maxgroupsizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(cumsumbinning(x, cutoff, maxgroupsize));
+    rcpp_result_gen = Rcpp::wrap(cumsumbinning(x, threshold, cutwhenpassed, maxgroupsize));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -200,7 +201,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_chisq_test_cpp", (DL_FUNC) &_MESS_chisq_test_cpp, 4},
     {"_MESS_cmd", (DL_FUNC) &_MESS_cmd, 2},
     {"_MESS_colCumSum", (DL_FUNC) &_MESS_colCumSum, 1},
-    {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 3},
+    {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 4},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
