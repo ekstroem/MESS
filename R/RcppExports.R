@@ -74,7 +74,7 @@ cmd <- function(x, y) {
 
 #' Apply cumsum to each column of matrix
 #' 
-#' Fast computation of apply(x,2,cumsum)
+#' Fast computation of apply(m, 2, cumsum)
 #'
 #' @param m A matrix
 #' @return A matrix the same size as m with the column-wise cumulative sums.

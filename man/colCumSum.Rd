@@ -13,7 +13,7 @@ colCumSum(m)
 A matrix the same size as m with the column-wise cumulative sums.
 }
 \description{
-Fast computation of apply(x,2,cumsum)
+Fast computation of apply(m, 2, cumsum)
 }
 \examples{
   # Generate a 100 by 10000 matrix

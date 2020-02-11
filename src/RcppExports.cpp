@@ -59,12 +59,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // colCumSum
-NumericMatrix colCumSum(const NumericMatrix& m);
+NumericMatrix colCumSum(NumericMatrix m);
 RcppExport SEXP _MESS_colCumSum(SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericMatrix& >::type m(mSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type m(mSEXP);
     rcpp_result_gen = Rcpp::wrap(colCumSum(m));
     return rcpp_result_gen;
 END_RCPP
