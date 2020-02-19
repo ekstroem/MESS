@@ -2,6 +2,7 @@
 
 *   Added the plr function
 *   Added usd function for unbiased sd estimation
+*   Fixed a bug in the power_mcnemar_test function
 
 # MESS 0.5.6
 

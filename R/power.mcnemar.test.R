@@ -10,7 +10,7 @@
 #' @param sig.level Significance level (Type I error probability)
 #' @param power Power of test (1 minus Type II error probability)
 #' @param alternative One- or two-sided test
-#' @param method Power calculations based on exact or asymptotic test. The default (normal) corresponds to an approximative test, "exact" is the unconditional exact test, while "cond.exact" is a conditional exact test (given fixed n).
+#' @param method Power calculations based on exact or asymptotic test. The default (normal) corresponds to an approximative test, "exact" is the unconditional exact test, while "cond.exact" is a conditional exact test (given fixed n). The "exact" method is very slow for large values of n so it is most useful for fixed (and moderately-sized) n.
 #' @return Object of class \code{power.htest}, a list of the arguments
 #' (including the computed one) augmented with method and note elements.
 #' @note \code{uniroot} is used to solve power equation for unknowns, so you
@@ -40,8 +40,9 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
                                alternative = c("two.sided", "one.sided"),
                                method = c("normal", "exact", "cond.exact")) {
 
-    if (sum(sapply(list(n, paid, psi, power, sig.level), is.null)) != 1)
+    if (sum(sapply(list(n, paid, psi, power, sig.level), is.null)) != 1) {
         stop("exactly one of 'n', 'paid', 'psi', 'power', and 'sig.level' must be NULL")
+   }
     if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > sig.level | sig.level > 1))
         stop("'sig.level' must be numeric in [0, 1]")
     if (!is.null(paid)) {
@@ -70,13 +71,13 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
     ## Conditional power (conditional on n)
     f <- function(n, paid, psi, sig.level, power) {
         bc <- ceiling(paid * n * (1+psi))
-        pbinom(qbinom(0.025, size=bc, prob=0.5)-1, size=bc, prob=1/(1+psi)) + 1-pbinom(qbinom(0.975, size=bc, prob=0.5), size=bc, prob=1/(1+psi))
+        pbinom(qbinom(sig.level/tside, size=bc, prob=0.5)-1, size=bc, prob=1/(1+psi)) + 1-pbinom(qbinom(1-sig.level/tside, size=bc, prob=0.5), size=bc, prob=1/(1+psi))
     }
 
     ## Unconditional power
     fexact <- function(n, paid, psi, sig.level, power, alt=alternative) {
-        sum(dbinom(seq(n), size=n, prob=paid*(1+psi))*power_binom_test(seq(n), p0=.5, pa=1/(1+psi),
-                                                                       power=power, sig.level=sig.level,
+        sum(dbinom(seq(0, n), size=n, prob=paid*(1+psi))*power_binom_test(seq(0, n), p0=.5, pa=1/(1+psi),
+                                                                       power=NULL, sig.level=sig.level,
                                                                        alternative=ifelse(alt=="two.sided", "two.sided", "less"))$power)
     }
 
@@ -104,7 +105,7 @@ power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.
             power, c(1e-10, 1 - 1e-10))$root
     else stop("internal error", domain = NA)
     NOTE <- "n is number of pairs"
-    METHOD <- paste("McNemar paired comparison of proportions", ifelse(method=="normal", "approximate", "exact") ,"power calculation")
+    METHOD <- paste("McNemar paired comparison of proportions", ifelse(method=="normal", "approximate", ifelse(method=="exact", "exact unconditional", "exact conditional")) ,"power calculation")
     structure(list(n = n, paid = paid, psi = psi, sig.level = sig.level,
         power = power, alternative = alternative, note = NOTE,
         method = METHOD), class = "power.htest")
