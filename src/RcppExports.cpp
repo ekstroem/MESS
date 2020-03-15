@@ -94,6 +94,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// hwe_frequencies
+List hwe_frequencies(IntegerVector allele1, IntegerVector allele2, int min_alleles);
+RcppExport SEXP _MESS_hwe_frequencies(SEXP allele1SEXP, SEXP allele2SEXP, SEXP min_allelesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type allele1(allele1SEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type allele2(allele2SEXP);
+    Rcpp::traits::input_parameter< int >::type min_alleles(min_allelesSEXP);
+    rcpp_result_gen = Rcpp::wrap(hwe_frequencies(allele1, allele2, min_alleles));
+    return rcpp_result_gen;
+END_RCPP
+}
 // ks_cumtest
 List ks_cumtest(NumericVector x, int B, Rcpp::Nullable<Rcpp::NumericVector> prob);
 RcppExport SEXP _MESS_ks_cumtest(SEXP xSEXP, SEXP BSEXP, SEXP probSEXP) {
@@ -203,6 +216,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_colCumSum", (DL_FUNC) &_MESS_colCumSum, 1},
     {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 4},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
+    {"_MESS_hwe_frequencies", (DL_FUNC) &_MESS_hwe_frequencies, 3},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
     {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
