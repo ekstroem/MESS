@@ -82,7 +82,9 @@ x <- matrix(rnorm(30*100), nrow=30)
 y <- rnorm(30, mean=1*x[,1])
 
 # Make inference for features
-\dontrun{feature.test(x, y)}
+\dontrun{
+feature.test(x, y)
+}
 
 
 }
