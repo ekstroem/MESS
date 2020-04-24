@@ -4,13 +4,15 @@
 \name{lifeexpect}
 \alias{lifeexpect}
 \title{Estimated life expectancy for Danish newborns}
-\format{A data frame with 70 observations on the following 3 variables.
+\format{
+A data frame with 70 observations on the following 3 variables.
   \describe{
     \item{\code{year}}{a character vector} giving the calendar interval on which the estimation was based.
     \item{\code{male}}{a numeric vector} Life expectancy for males (in years).
     \item{\code{female}}{a numeric vector} Life expectancy for females (in years)
     \item{\code{myear}}{a numeric vector} The midpoint of the year interval
-  }}
+  }
+}
 \source{
 Data collected from Danmarsk Statistik.
 See \url{https://www.dst.dk/en} for more information.

@@ -3,6 +3,7 @@
 *   Added the plr function
 *   Added usd function for unbiased sd estimation
 *   Fixed a bug in the power_mcnemar_test function
+*   Added functions for computing the distance covariance/correlation function
 
 # MESS 0.5.6
 

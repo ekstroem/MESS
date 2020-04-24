@@ -4,7 +4,8 @@
 \name{bees}
 \alias{bees}
 \title{Bee data. Number of different types of bees caught.}
-\format{A data frame with 72 observations on the following 7 variables.
+\format{
+A data frame with 72 observations on the following 7 variables.
 \describe{ \item{Locality}{a factor with levels \code{Havreholm}
 \code{Kragevig} \code{Saltrup} \code{Svaerdborg}. Four different localities
 in Denmark.} \item{Replicate}{a factor with levels \code{A} \code{B}
@@ -16,7 +17,8 @@ the current data frame until the full data has been released.}
 \item{Type}{a factor with levels \code{Bumblebees} \code{Solitary}.
 Type of bee.} \item{Number}{a numeric vector. The response variable
 with number of bees catched.} \item{id}{a numeric vector. The id of
-the clusters (each containg three plates).} }}
+the clusters (each containg three plates).} }
+}
 \source{
 Data were kindly provided by Casper Ingerslev Henriksen, Department
 of Agricultural Sciences, KU-LIFE. Added by Torben Martinussen

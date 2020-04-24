@@ -4,7 +4,8 @@
 \name{superroot2}
 \alias{superroot2}
 \title{Gene expression data from two-color dye-swap experiment}
-\format{A data frame with 258000 observations on the following 5 variables.
+\format{
+A data frame with 258000 observations on the following 5 variables.
 \describe{ \item{color}{a factor with levels \code{green} \code{red}
 representing the dye used for the gene expression} \item{array}{a
 factor with levels \code{1} \code{2} \code{3} \code{4} \code{5} \code{6}
@@ -12,7 +13,8 @@ corresponding to the 6 arrays} \item{gene}{a factor with 21500
 levels representing the genes on the arrays} \item{plant}{a factor
 with levels \code{rnt} \code{wt} for the two types of plants: runts and wild
 type} \item{signal}{a numeric vector with the gene expression level
-(normalized but not log transformed)} }}
+(normalized but not log transformed)} }
+}
 \source{
 Data provided by Soren Bak <bak@life.ku.dk>. \cr Added by Claus
 Ekstrom <ekstrom@sund.ku.dk>

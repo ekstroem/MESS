@@ -4,10 +4,12 @@
 \name{kwdata}
 \alias{kwdata}
 \title{Non-parametric Kruskal Wallis data example}
-\format{An artificial data frame with 18 observations in each of three groups.
+\format{
+An artificial data frame with 18 observations in each of three groups.
 \describe{ \item{x}{measurements for group 1}
 \item{y}{measurements for group 2}
-\item{z}{measurements for group 3}}}
+\item{z}{measurements for group 3}}
+}
 \source{
 Data example found on the internet
 }

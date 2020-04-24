@@ -4,7 +4,8 @@
 \name{happiness}
 \alias{happiness}
 \title{Happiness score and tax rates for 148 countries}
-\format{A data frame with 148 observations on the following 6 variables.
+\format{
+A data frame with 148 observations on the following 6 variables.
 \describe{ \item{country}{a factor with 148 levels that contain the
 country names} \item{happy}{a numeric vector with the average
 subject happiness score (on a scale from 0-10)} \item{tax}{a numeric
@@ -15,7 +16,8 @@ vector showing the tax revenue as percentage of GDP}
 \code{EU}, \code{NA}, \code{OC}, \code{SA}, corresponding to the continents
 Africa, Asia, Europe, North America, Ocenaia, South American, respectively}
 \item{population}{a numeric vector showing the population (in
-millions)} }}
+millions)} }
+}
 \source{
 Data collected by Ellen Ekstroem. \cr Population sizes are from
 Wikipedia per August 2nd, 2012

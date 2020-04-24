@@ -4,12 +4,14 @@
 \name{qpcr}
 \alias{qpcr}
 \title{Gene expression from real-time quantitative PCR}
-\format{A data frame with 630 observations on the following 4 variables.
+\format{
+A data frame with 630 observations on the following 4 variables.
 \tabular{lll}{ \code{flour} \tab numeric \tab Fluorescence level\cr
 \code{line} \tab factor \tab Plant lines \code{rnt} (mutant) and \code{wt}
 (wildtype)\cr \code{cycle} \tab numeric \tab Cycle number for the
 experiment\cr \code{transcript}\tab factor \tab Transcript used for the
-different runs\cr }}
+different runs\cr }
+}
 \source{
 Data provided by Kirsten Jorgensen <kij@life.ku.dk>. \cr Added by Claus Ekstrom <ekstrom@life.ku.dk>
 }

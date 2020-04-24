@@ -4,7 +4,8 @@
 \name{earthquakes}
 \alias{earthquakes}
 \title{Earthquakes in 2015}
-\format{A data frame with 19777 observations on the following 22 variables.
+\format{
+A data frame with 19777 observations on the following 22 variables.
 \describe{ \item{time}{a factor with time of the earthquake}
 \item{\code{latitude}}{a numeric vector giving the decimal degrees latitude. Negative values for southern latitudes}
 \item{\code{longitude}}{a numeric vector giving the decimal degrees longitude. Negative values for western longitudes}
@@ -12,7 +13,8 @@
 \item{\code{mag}}{The magnitude for the event}
 \item{\code{place}}{a factor giving a textual description of named geographic region near to the event. }
 \item{\code{type}}{a factor with levels \code{earthquake} \code{mining explosion} \code{rock burst}}
-  }}
+  }
+}
 \source{
 \url{http://earthquake.usgs.gov/}
 }

@@ -4,7 +4,9 @@
 \name{smokehealth}
 \alias{smokehealth}
 \title{Effect of smoking on self reported health}
-\format{A table with daily smoking categories for the rows and self reported health five years later as the columns.}
+\format{
+A table with daily smoking categories for the rows and self reported health five years later as the columns.
+}
 \source{
 Data example found on the internet but originates from Svend Kreiner
 }

@@ -4,13 +4,15 @@
 \name{matched}
 \alias{matched}
 \title{Flu hospitalization}
-\format{A data frame with 450 observations on the following 4 variables.
+\format{
+A data frame with 450 observations on the following 4 variables.
   \describe{
     \item{\code{id}}{a numeric vector}
     \item{\code{iscase}}{a factor with levels \code{Control} \code{Case}}
     \item{\code{vaccine}}{a factor with levels \code{Not} \code{Vaccinated}}
     \item{\code{lung}}{a factor with levels \code{None} \code{Disease}}
-  }}
+  }
+}
 \source{
 Modified from: Stokes, Davis, Koch (2000). "Categorical Data Analysis Using the SAS System," Chapter 10.
 }

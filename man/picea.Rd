@@ -4,12 +4,14 @@
 \name{picea}
 \alias{picea}
 \title{Ozone concentration damage to picea spruce}
-\format{An artificial data frame with 18 observations in each of three groups.
+\format{
+An artificial data frame with 18 observations in each of three groups.
 \describe{\item{date}{a character vector giving the date}
 \item{temp}{temperature in degrees Celcius}
 \item{conc}{Ozone concentration at 4 different levels}
 \item{damage}{the damage score from 0-4, higher is more damage}
-\item{count}{The number of occurrences of this group}}}
+\item{count}{The number of occurrences of this group}}
+}
 \source{
 P.W. Lucas, D.A. Cottam, L.J. Sheppard, B.J. Francis (1988). "Growth
 Responses and Delayed Winter Hardening in Sitka Spruce Following Summer

@@ -4,10 +4,12 @@
 \name{nh4}
 \alias{nh4}
 \title{Ammonia nitrogen found in river}
-\format{A data frame with 120 observations on the following 3 variables.
+\format{
+A data frame with 120 observations on the following 3 variables.
 \describe{\item{nh4}{The ammonia nitrogen levels (mg/l). A value of zero corresponds to a censoring, but it really is censored at <0.01}
 \item{cens}{A logical vector indicating if the value was censored}
-\item{year}{The year}}}
+\item{year}{The year}}
+}
 \source{
 Found on the internet and partly simulated
 }

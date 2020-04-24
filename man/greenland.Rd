@@ -4,9 +4,11 @@
 \name{greenland}
 \alias{greenland}
 \title{Average yearly summer air temperature for Tasiilaq, Greenland}
-\format{A data frame with 51 observations on the following 2 variables.
+\format{
+A data frame with 51 observations on the following 2 variables.
 \describe{ \item{year}{year} \item{airtemp}{average air
-temperature (degrees Celcius)} }}
+temperature (degrees Celcius)} }
+}
 \source{
 Data provided by Sebastian Mernild.\cr Originally obtained from
 http://www.dmi.dk/dmi/index/gronland/vejrarkiv-gl.htm. \cr Added by Claus

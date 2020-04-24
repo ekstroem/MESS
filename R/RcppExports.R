@@ -117,6 +117,30 @@ cumsumbinning <- function(x, threshold, cutwhenpassed = FALSE, maxgroupsize = NU
     .Call(`_MESS_cumsumbinning`, x, threshold, cutwhenpassed, maxgroupsize)
 }
 
+#' Fast distance covariance matrix
+#'
+#' @description Fast computation of the distance covariance between two matrices with the same number of rows.
+#' @param x A matrix with dimensions n*k.
+#' @param y A matrix with dimensions n*l.
+#' @return A number representing the distance covariance between x and y
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @export
+dCov <- function(x, y) {
+    .Call(`_MESS_dCov`, x, y)
+}
+
+#' Fast distance correlation matrix
+#'
+#' @description Fast computation of the distance correation matrix between two matrices with the same number of rows. Note that this is not the same as the correlation matrix distance that can be computed with the cmd function.
+#' @param x A matrix with dimensions n*k.
+#' @param y A matrix with dimensions n*l.
+#' @return A number between 0 and 1 representing the distance covariance between x and y
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @export
+dCor <- function(x, y) {
+    .Call(`_MESS_dCor`, x, y)
+}
+
 #' Fill down NA with the last observed observation
 #'
 #' @description Fill down missing values with the latest non-missing value

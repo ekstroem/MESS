@@ -4,13 +4,15 @@
 \name{clotting}
 \alias{clotting}
 \title{Blood clotting for 158 rats}
-\format{A data frame with 158 observations on the following 6 variables.
+\format{
+A data frame with 158 observations on the following 6 variables.
 \describe{ \item{rat}{a numeric vector} \item{locality}{a
 factor with levels \code{Loc1} \code{Loc2}} \item{sex}{a factor with
 levels \code{F} \code{M}} \item{weight}{a numeric vector}
 \item{PCA0}{a numeric vector with percent blood clotting activity at
 baseline} \item{PCA4}{a numeric vector with percent blood clotting
-activity on day 4} }}
+activity on day 4} }
+}
 \source{
 Ann-Charlotte Heiberg, project at The Royal Veterinary and
 Agricultural University, 1999. \cr Added by Ib M. Skovgaard <ims@life.ku.dk>

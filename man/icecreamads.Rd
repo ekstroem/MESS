@@ -4,11 +4,13 @@
 \name{icecreamads}
 \alias{icecreamads}
 \title{Ice cream consumption and advertising}
-\format{A data frame with 30 observations on the following 4 variables.
+\format{
+A data frame with 30 observations on the following 4 variables.
 \describe{\item{Price}{a numeric vector character vector giving the standardized price}
 \item{Temperature}{temperature in degrees Fahrenheit}
 \item{Consumption}{a factor with levels \code{1_low} \code{2_medium} \code{3_high}}
-\item{Advertise}{a factor with levels \code{posters} \code{radio} \code{television}}}}
+\item{Advertise}{a factor with levels \code{posters} \code{radio} \code{television}}}
+}
 \source{
 Unknown origin
 }
