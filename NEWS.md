@@ -4,6 +4,7 @@
 *   Added usd function for unbiased sd estimation
 *   Fixed a bug in the power_mcnemar_test function
 *   Added functions for computing the distance covariance/correlation function
+*   Have changed the argument strict=FALSE to strict=TRUE in power_t_test()
 
 # MESS 0.5.6
 

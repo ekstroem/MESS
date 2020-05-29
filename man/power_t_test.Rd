@@ -15,7 +15,7 @@ power_t_test(
   type = c("two.sample", "one.sample", "paired"),
   alternative = c("two.sided", "one.sided"),
   df.method = c("welch", "classical"),
-  strict = FALSE
+  strict = TRUE
 )
 }
 \arguments{
@@ -39,7 +39,7 @@ power_t_test(
 
 \item{df.method}{Method for calculating the degrees of default. Possibilities are welch (the default) or classical.}
 
-\item{strict}{Use strict interpretation in two-sided case}
+\item{strict}{Use strict interpretation in two-sided case. Defaults to TRUE unlike the standard power.t.test function.}
 }
 \value{
 Object of class \code{power.htest}, a list of the arguments (including the computed one)
@@ -55,7 +55,7 @@ must be passed as NULL,
 and that parameter is determined from the others. Notice that the last two have non-NULL defaults
 so NULL must be explicitly passed if you want to compute them.
 
-If \code{strict = TRUE} is used, the power will include the probability
+The default \code{strict = TRUE} ensures that the power will include the probability
 of rejection in the opposite direction of the true effect, in the
 two-sided case. Without this the power will be half the
 significance level if the true difference is zero.
