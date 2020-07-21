@@ -5,6 +5,7 @@
 *   Fixed a bug in the power_mcnemar_test function
 *   Added functions for computing the distance covariance/correlation function
 *   Have changed the argument strict=FALSE to strict=TRUE in power_t_test()
+*   Added the maximum_subarray function to compute the contiguous maximum of a vector
 
 # MESS 0.5.6
 

@@ -199,6 +199,25 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
     .Call(`_MESS_ks_cumtest`, x, B, prob)
 }
 
+#' Fast computation of maximum sum subarray
+#'
+#' @description Fast computation of the maximum subarray sum of a vector using Kadane's algorithm. The implementation handles purely negative numbers.
+#' @param x A vector
+#' @return A list with three elements: sum (the maximum subarray sum), start (the starting index of the subarray) and end (the ending index of the subarray)
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#'
+#' maximum_subarray(1:4)
+#' 
+#' maximum_subarray(c(-2, 1, -3, 4, -1, 2, 1, -5, 4))
+#'  
+#' maximum_subarray(rnorm(100000)
+#'
+#' @export
+maximum_subarray <- function(x) {
+    .Call(`_MESS_maximum_subarray`, x)
+}
+
 #' Fast marginal simple regresion analyses
 #' 
 #' Fast computation of simple regression slopes for each predictor represented by a column in a matrix

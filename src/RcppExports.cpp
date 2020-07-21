@@ -144,6 +144,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// maximum_subarray
+List maximum_subarray(const arma::vec& x);
+RcppExport SEXP _MESS_maximum_subarray(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(maximum_subarray(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // mfastLmCpp
 DataFrame mfastLmCpp(NumericVector y, NumericMatrix x, bool addintercept);
 RcppExport SEXP _MESS_mfastLmCpp(SEXP ySEXP, SEXP xSEXP, SEXP addinterceptSEXP) {
@@ -244,6 +255,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
     {"_MESS_hwe_frequencies", (DL_FUNC) &_MESS_hwe_frequencies, 3},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},
+    {"_MESS_maximum_subarray", (DL_FUNC) &_MESS_maximum_subarray, 1},
     {"_MESS_mfastLmCpp", (DL_FUNC) &_MESS_mfastLmCpp, 3},
     {"_MESS_pairwise_Schur_product", (DL_FUNC) &_MESS_pairwise_Schur_product, 2},
     {"_MESS_pairwise_combination_indices", (DL_FUNC) &_MESS_pairwise_combination_indices, 2},
