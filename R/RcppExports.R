@@ -211,7 +211,7 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
 #' 
 #' maximum_subarray(c(-2, 1, -3, 4, -1, 2, 1, -5, 4))
 #'  
-#' maximum_subarray(rnorm(100000)
+#' maximum_subarray(rnorm(100000))
 #'
 #' @export
 maximum_subarray <- function(x) {

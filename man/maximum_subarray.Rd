@@ -21,7 +21,7 @@ maximum_subarray(1:4)
 
 maximum_subarray(c(-2, 1, -3, 4, -1, 2, 1, -5, 4))
  
-maximum_subarray(rnorm(100000)
+maximum_subarray(rnorm(100000))
 
 }
 \author{
