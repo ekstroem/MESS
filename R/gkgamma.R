@@ -60,8 +60,13 @@ gkgamma <- function(x, conf.level = 0.95) {
         }
     }
 
-    CC <- sum(x*con)
-    DC <- sum(x*dis)
+    # Convert to numeric (double) to prevent overflow. Thanks to Julián Darío Otero Niño
+
+    CC <- sum(as.numeric(x)*as.numeric(con))
+    DC <- sum(as.numeric(x)*as.numeric(dis))
+
+    #  CC <- sum(x*con)
+    #  DC <- sum(x*dis)
 
     ESTIMATE <- (CC-DC)/(CC+DC)
 
