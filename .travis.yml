@@ -1,7 +1,9 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
-pandoc_version: 1.19
+r:
+  - oldrel
+  - release
+  - devel
 sudo: true
-dist: trusty
 cache: packages
