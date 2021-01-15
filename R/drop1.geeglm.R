@@ -140,7 +140,7 @@ drop1.geem <- function(object, scope, test = c("Wald", "none", "score", "sasscor
         stop("Presently drop1.geem only works for geeglm or geem objects")
     }
 
-    x <- model.matrix(object)
+    x <- object$X
                                         #  y <- object$y
                                         #  id <- object$id
                                         #  n <- nrow(x)
