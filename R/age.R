@@ -1,13 +1,8 @@
 #' Compute the age of a person from two dates.
 #'
-#' Compute the age in years of an individual based on the birth date and another date
+#' Compute the age in years of an individual based on the birth date and another (subsequent) date
 #'
-#' For linear interpolation the auc function computes the area under the curve
-#' using the composite trapezoid rule.  For area under a spline interpolation,
-#' auc uses the splinefun function in combination with the integrate to
-#' calculate a numerical integral. The auc function can handle unsorted time
-#' values, missing observations, ties for the time values, and integrating over
-#' part of the area or even outside the area.
+#' Returns the full number of years that a person is old on a given date.
 #'
 #' @param from a vector of dates (birth dates)
 #' @param to a vector of current dates

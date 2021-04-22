@@ -25,7 +25,9 @@ scorefct <- function(o, beta=NULL, testidx=NULL, sas=FALSE) {
 
     # Offsets handled correctly?
     y <- o$y
+
     x <- model.matrix(o)
+
     linear.predictors <- x%*%beta
     if (!is.null(o$offset))
         linear.predictors <- linear.predictors + o$offset

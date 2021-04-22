@@ -230,6 +230,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ssinv
+NumericMatrix ssinv(NumericMatrix obj);
+RcppExport SEXP _MESS_ssinv(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(ssinv(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
 // tracemp
 double tracemp(NumericMatrix A, NumericMatrix B);
 RcppExport SEXP _MESS_tracemp(SEXP ASEXP, SEXP BSEXP) {
@@ -262,6 +273,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_qdiag", (DL_FUNC) &_MESS_qdiag, 1},
     {"_MESS_quadform", (DL_FUNC) &_MESS_quadform, 4},
     {"_MESS_repmat", (DL_FUNC) &_MESS_repmat, 3},
+    {"_MESS_ssinv", (DL_FUNC) &_MESS_ssinv, 1},
     {"_MESS_tracemp", (DL_FUNC) &_MESS_tracemp, 2},
     {NULL, NULL, 0}
 };

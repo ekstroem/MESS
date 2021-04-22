@@ -262,3 +262,8 @@ drop1.geese <- function(object, scope, test = c("Wald", "none"),
   aod
 }
 
+
+#' @export
+model.matrix.geem <- function(object, ...) {
+    object$X
+}

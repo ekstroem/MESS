@@ -1,6 +1,7 @@
 # Next version
 
 *   Changed the internals of gkgamma to reduce the risk of integer overflow (thanks to Julián Darío Otero Niño)
+*   Changed the manual page for the age() function to reflect what it is actually doing (thanks to sfn-mes)
 
 # MESS 0.5.7
 
