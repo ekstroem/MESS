@@ -341,23 +341,6 @@ repmat <- function(x, nrow = 1L, ncol = 1L) {
 #' tracemp(A, A)
 #'
 #' @export
-ssinv <- function(obj) {
-    .Call(`_MESS_ssinv`, obj)
-}
-
-#' Fast computation of trace of matrix product
-#'
-#' @description Fast computation of the trace of the matrix product trace(t(A) %*% B)
-#' @param A A matrix with dimensions n*k.
-#' @param B A matrix with dimenions n*k.
-#' @return The trace of the matrix product
-#' @author Claus Ekstrom <claus@@rprimer.dk>
-#' @examples
-#'
-#' A <- matrix(1:12, ncol=3)
-#' tracemp(A, A)
-#'
-#' @export
 tracemp <- function(A, B) {
     .Call(`_MESS_tracemp`, A, B)
 }
