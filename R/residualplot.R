@@ -226,7 +226,7 @@ if (candy) {
  
     DF2 <- data.frame(x=uniqx, y=uniqx, ymin=-vary, ymax=vary)
 
-    p <- p + geom_ribbon(data=DF2, aes(x=x, ymin=ymin, ymax=ymax), fill="blue", alpha=alpha) 
+    p <- p + geom_ribbon(data=DF2, aes(x=x, ymin=ymin, ymax=ymax), fill=col.sd, alpha=alpha) 
 
     # Add outlier colouring if any
 

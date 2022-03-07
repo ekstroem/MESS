@@ -1,7 +1,13 @@
 # Next version
 
+
+
+# MESS 0.5.8
+
 *   Changed the internals of gkgamma to reduce the risk of integer overflow (thanks to Julián Darío Otero Niño)
 *   Changed the manual page for the age() function to reflect what it is actually doing (thanks to sfn-mes)
+*   Fixed a bug in power_t_test checking for the ratio between sd's (thanks to shunranw)
+
 
 # MESS 0.5.7
 
