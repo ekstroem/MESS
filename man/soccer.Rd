@@ -15,7 +15,7 @@ numeric vector. The number of goals scored by the player in A matches} }
 }
 \source{
 Data collected from the player database of DBU on March 21st, 2014.
-See \url{http://www.dbu.dk} for more information.
+See \url{https://www.dbu.dk} for more information.
 }
 \description{
 Players on the Danish national soccer team. The dataset consists of all

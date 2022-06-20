@@ -83,7 +83,7 @@ QIC.geeglm <- function(object, tol=.Machine$double.eps, ...) {
     # Fit model with independence correlation structure
     object$call$corstr <- "independence"
     object$call$zcor <- NULL
-    model.indep <- eval(object, parent.frame())
+    model.indep <- eval(object$call, parent.frame())
     # model.indep <- update(object, corstr="independence",zcorr=NULL)
 
     # Trace term (penalty for model complexity)

@@ -194,15 +194,15 @@ NULL
 #' millions)} }
 #' @source Data collected by Ellen Ekstroem. \cr Population sizes are from
 #' Wikipedia per August 2nd, 2012
-#' \url{http://en.wikipedia.org/wiki/List_of_countries_by_population} \cr Major
+#' \url{https://en.wikipedia.org/wiki/List_of_countries_by_population} \cr Major
 #' religions are from Wikipedia per August 2nd, 2012
-#' \url{http://en.wikipedia.org/wiki/Religions_by_country} \cr Tax rates are
+#' \url{https://en.wikipedia.org/wiki/Religions_by_country} \cr Tax rates are
 #' from Wikipedia per August 2nd, 2012
-#' \url{http://en.wikipedia.org/wiki/List_of_countries_by_tax_revenue_as_percentage_of_GDP}
+#' \url{https://en.wikipedia.org/wiki/List_of_countries_by_tax_revenue_as_percentage_of_GDP}
 #' \cr Average happiness scores are from "Veenhoven, R. Average happiness in
 #' 148 nations 2000-2009, World Database of Happiness, Erasmus University
 #' Rotterdam, The Netherlands". Assessed on August 2nd, 2012 at:
-#' \url{http://worlddatabaseofhappiness.eur.nl/hap_nat/findingreports/RankReport_AverageHappiness.php}
+#' \url{https://worlddatabaseofhappiness-archive.eur.nl/hap_nat/findingreports/RankReport_AverageHappiness.php}
 #' @keywords datasets
 #' @examples
 #'
@@ -374,7 +374,7 @@ NULL
 #' vector. The number of A matches played by the player} \item{goals}{a
 #' numeric vector. The number of goals scored by the player in A matches} }
 #' @source Data collected from the player database of DBU on March 21st, 2014.
-#' See \url{http://www.dbu.dk} for more information.
+#' See \url{https://www.dbu.dk} for more information.
 #' @keywords datasets
 #' @examples
 #'
@@ -401,7 +401,7 @@ NULL
 #'     \item{\code{female}}{a numeric vector} Life expectancy for females (in years)
 #'     \item{\code{myear}}{a numeric vector} The midpoint of the year interval
 #'   }
-#' @source Data collected from Danmarsk Statistik.
+#' @source Data collected from Danmarks Statistik.
 #' See \url{https://www.dst.dk/en} for more information.
 #' @keywords datasets
 #' @examples
@@ -464,7 +464,7 @@ NULL
 #' \item{\code{place}}{a factor giving a textual description of named geographic region near to the event. }
 #' \item{\code{type}}{a factor with levels \code{earthquake} \code{mining explosion} \code{rock burst}}
 #'   }
-#' @source \url{http://earthquake.usgs.gov/}
+#' @source \url{https://earthquake.usgs.gov/}
 #' @keywords datasets
 #' @examples
 #'

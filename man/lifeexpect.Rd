@@ -14,7 +14,7 @@ A data frame with 70 observations on the following 3 variables.
   }
 }
 \source{
-Data collected from Danmarsk Statistik.
+Data collected from Danmarks Statistik.
 See \url{https://www.dst.dk/en} for more information.
 }
 \description{

@@ -47,7 +47,7 @@
 #' @seealso \code{glmnet}
 #' @references Brink-Jensen, K and Ekstrom, CT 2014. \emph{Inference for
 #' feature selection using the Lasso with high-dimensional data}.
-#' \url{http://arxiv.org/abs/1403.4296}
+#' \url{https://arxiv.org/abs/1403.4296}
 #' @keywords ~htests
 #' @examples
 #'

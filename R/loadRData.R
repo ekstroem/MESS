@@ -16,8 +16,8 @@
 #' }
 #'
 #' @export loadRData
-loadRData <- function(fileName){
+loadRData <- function(filename){
     #loads an RData file, and returns it
-    load(fileName)
-    get(ls()[ls() != "fileName"])
+    load(filename)
+    get(ls()[ls() != "filename"])
 }

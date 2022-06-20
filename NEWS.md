@@ -1,6 +1,11 @@
 # Next version
 
 
+# MESS 0.5.9
+
+*   Fixed a critical error in QIC() (thanks to Brian McLoone for finding this)
+
+
 
 # MESS 0.5.8
 

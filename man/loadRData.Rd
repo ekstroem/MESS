@@ -4,7 +4,7 @@
 \alias{loadRData}
 \title{Load and extract object from RData file}
 \usage{
-loadRData(fileName)
+loadRData(filename)
 }
 \arguments{
 \item{filename}{The path to the RData file}
