@@ -12,7 +12,7 @@
 #'
 #' clipit(mtcars$mpg)
 #'
-#' @importFrom clipr wite_clip
+#' @importFrom clipr write_clip
 #' @export clipit
 clipit <- function (x) 
 {
