@@ -37,32 +37,49 @@ power_prop_test <- function (n = NULL, p1 = NULL, p2 = NULL, sig.level = 0.05, p
     
     alternative <- match.arg(alternative)
     tside <- switch(alternative, one.sided = 1, two.sided = 2)
-    p.body <- quote({
-            qu <- qnorm(sig.level/tside, lower.tail = FALSE)
+    # Adding two "bodies" to improve stability of calculations.
+    # The sample size can go haywire for small powers
+    n.body <- quote({
             d <- abs(p1 - p2)
             q1 <- 1 - p1
             q2 <- 1 - p2
             pbar <- (p1 + ratio*p2)/(1+ratio)
             qbar <- 1 - pbar
-
-            (  qnorm(sig.level/tside)* sqrt(pbar*qbar*(1+ratio))  + qnorm(1-power)* sqrt(ratio*p1*q1 + p2*q2) )^2  / (ratio*d^2)
-
+            mprime <- ( qnorm(sig.level/tside, lower.tail=FALSE) * sqrt(pbar*qbar*(1+ratio)) + qnorm(power) * sqrt(ratio*p1*q1 + p2*q2) )^2  / (ratio*d^2)
+	    mprime/4*(1 + sqrt(1 + 2*(ratio+1)/(ratio*mprime*d)))^2
+            mprime
         })
+	
+    p.body <- quote({
+	    qu <- qnorm(1-sig.level/tside)
+	    
+            q1 <- 1 - p1
+            q2 <- 1 - p2
+            pbar <- (p1 + ratio*p2)/(1+ratio)
+            qbar <- 1 - pbar
+
+            denom <- sqrt(p1*q1/n + p2*q2/n/ratio)
+	    
+            A <- (-qu * sqrt(pbar*qbar/n + pbar*qbar/n/ratio) - (p1 - p2)) / denom
+            B <- (qu  * sqrt(pbar*qbar/n + pbar*qbar/n/ratio) - (p1 - p2)) / denom
+	    pnorm(A) + pnorm(B, lower.tail=FALSE)
+        })
+
+
     if (is.null(n)) 
-        n <- eval(p.body)
-    else if (is.null(power)) 
-        power <- uniroot(function(power) eval(p.body) - n, c(0.00001, .99999), 
-            tol = tol, extendInt = "upX")$root    
+        n <- eval(n.body)
+    else if (is.null(power))
+        power <- eval(p.body)
     else if (is.null(p1)) 
-        p1 <- uniroot(function(p1) eval(p.body) - n, c(0, 
-            p2), tol = tol, extendInt = "yes")$root
+        p1 <- uniroot(function(p1) eval(n.body) - n, c(0.000001, 
+            p2), tol = tol, extendInt = "no")$root
     else if (is.null(p2)) 
-        p2 <- uniroot(function(p2) eval(p.body) - n, c(p1, 
-            1), tol = tol, extendInt = "yes")$root
+        p2 <- uniroot(function(p2) eval(n.body) - n, c(p1, 
+            .999999), tol = tol, extendInt = "no")$root
     else if (is.null(ratio))
-        ratio <- uniroot(function(ratio) eval(p.body) - n, c(2/n, 1e+07))$root
+        ratio <- uniroot(function(ratio) eval(n.body) - n, c(2/n, 1e+07))$root
     else if (is.null(sig.level)) 
-        sig.level <- uniroot(function(sig.level) eval(p.body) - 
+        sig.level <- uniroot(function(sig.level) eval(n.body) - 
             n, c(1e-10, 1 - 1e-10), tol = tol, extendInt = "upX")$root
     else stop("internal error", domain = NA)
 
