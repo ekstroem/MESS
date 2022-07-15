@@ -70,6 +70,6 @@ Data with Overdispersion}.  Biometrics, 46, 657-671.
 \code{geeglm}
 }
 \author{
-Claus Ekstrom \email{claus@rprimer.dk} and Brian McLoone \email{bmcloone@pdx.edu}
+Claus Ekstrom \email{claus@rprimer.dk}, Brian McLoone \email{bmcloone@pdx.edu}, and Steven Orzack \email{orzack@freshpond.org}
 }
 \keyword{htest}

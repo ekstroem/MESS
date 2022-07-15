@@ -3,7 +3,7 @@
 
 # MESS 0.5.9
 
-*   Fixed a critical error in QIC() (thanks to Brian McLoone for finding this)
+*   Fixed a critical error in QIC() (thanks to Brian McLoone and Steven Orzack for finding this)
 *   Improved stability of power_prop_test() (thanks to Kathrine King for pointing this out)
 
 # MESS 0.5.8

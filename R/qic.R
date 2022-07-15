@@ -25,7 +25,7 @@
 #' @param \dots optionally more fitted geeglm model objects
 #' @return A vector or matrix with the QIC, QICu, quasi likelihood, CIC, the
 #' number of mean effect parameters, and the corrected QIC for each GEE object
-#' @author Claus Ekstrom \email{claus@@rprimer.dk} and Brian McLoone \email{bmcloone@pdx.edu}
+#' @author Claus Ekstrom \email{claus@@rprimer.dk}, Brian McLoone \email{bmcloone@pdx.edu}, and Steven Orzack \email{orzack@freshpond.org}
 #' @seealso \code{geeglm}
 #' @references Pan, W. (2001). \emph{Akaike's information criterion in
 #' generalized estimating equations}. Biometrics, 57, 120-125.\cr Hardin, J.W.
