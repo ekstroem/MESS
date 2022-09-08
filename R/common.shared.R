@@ -47,7 +47,8 @@ common.shared.pedigreeList <- function (id, ...)
     for (i in 1:length(famlist)) {
       family <- id[i]
       temp <- common.shared(family)
-      matlist[[i]] <- as(Matrix::forceSymmetric(temp), "dsCMatrix")
+      # matlist[[i]] <- as(Matrix::forceSymmetric(temp), "dsCMatrix")
+      matlist[[i]] <- as(as(as(Matrix::forceSymmetric(temp), "dMatrix"), "symmetricMatrix"), "CsparseMatrix")      
     }
     result <- Matrix::bdiag(matlist)
 

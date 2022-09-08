@@ -1,5 +1,6 @@
 # Next version
 
+*   Fixed code to match changes to the Matrix package
 
 # MESS 0.5.9
 
