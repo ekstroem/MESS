@@ -41,8 +41,9 @@ lmsimresiduals <- function(L) {
   data <- L$model
   data[[1]] <- simulate(L, nsim = 1)[[1]]
   r <- L$call
+  r["data"] <- NULL # remove references to existing data frames
   L.ny <- eval(r, envir = data)
-  rstandard(L)
+  rstandard(L.ny)
 }
 
 
@@ -53,7 +54,7 @@ lmsimresiduals <- function(L) {
 #' @export
 wallyplot.lm <- function(x, y=x, FUN=residualplot,
 	                 hide=TRUE,
-                         simulateFunction=lmresiduals,
+                         simulateFunction=lmsimresiduals,
                          ...) {
 
   xp <- predict(x)
