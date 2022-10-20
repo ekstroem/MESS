@@ -59,7 +59,7 @@ wallyplot.lm <- function(x, y=x, FUN=residualplot,
   xp <- predict(x)
   y <- rstandard(x)
 
-  wallyplot.default(x, y, FUN=FUN, hide=hide, simulateFunction=simulateFunction, ...)
+  wallyplot.default(xp, y, FUN=FUN, hide=hide, simulateFunction=lmsimresiduals, model = x, ...)
 }
 
 
