@@ -12,6 +12,7 @@
   FUN = residualplot,
   hide = TRUE,
   simulateFunction = rnorm,
+  model,
   ...
 )
 
@@ -20,7 +21,7 @@
   y = x,
   FUN = residualplot,
   hide = TRUE,
-  simulateFunction = rnorm,
+  simulateFunction = lmsimresiduals,
   ...
 )
 
@@ -30,6 +31,7 @@ wallyplot(
   FUN = residualplot,
   hide = TRUE,
   simulateFunction = rnorm,
+  model,
   ...
 )
 }
@@ -50,6 +52,8 @@ then the true residual plot is shown in the center.}
 
 \item{simulateFunction}{The function used to produce y values under the null
 hypothesis. Defaults to rnorm}
+
+\item{model}{Optional input to simulateFunction}
 
 \item{...}{Other arguments passed to the plot function \code{FUN}}
 }
