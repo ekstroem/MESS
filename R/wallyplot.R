@@ -8,16 +8,11 @@ wallyplot.default <- function(x, y=x, FUN=residualplot,
 
   simulateFunction <- match.fun(simulateFunction)
 
-#  if (is.vector(y) && length(x)==length(y))
-#    y <- cbind(y, sapply(1:8, function(k) {simulateFunction(length(x))}))
-
-
-### Nedenstående
   if (is.vector(y) && length(x)==length(y)) {
-    if (!is.null(model)) y <- cbind(y, sapply(1:8, function(k) {simulateFunction(model)}))
+    if (!is.null(model))  # If an lm/glm object was given to model then simulate from that model
+      y <- cbind(y, sapply(1:8, function(k) {simulateFunction(model)}))
     else y <- cbind(y, sapply(1:8, function(k) {simulateFunction(length(x))}))    
   }
-
 
   if (!is.numeric(x) || !is.matrix(y))
     stop("x and y input must be a vector and matrix, respectively")
@@ -41,19 +36,20 @@ wallyplot.default <- function(x, y=x, FUN=residualplot,
   invisible(NULL)
 }
 
-
-
+#
+# Simulate residuals from an lm object with the (slight dependence) they will exhibit
+#
 lmsimresiduals <- function(L) {
-  if (!inherits(L, 'lm')) stop("L must be a glm/lm output!")
-
+  if (!inherits(L, 'lm'))
+    stop("L must be a glm/lm output!")
+  
   data <- L$model
   data[[1]] <- simulate(L, nsim = 1)[[1]]
   r <- L$call
-  r["data"] <- NULL
+  r["data"] <- NULL # remove references to existing data frames
   L.ny <- eval(r, envir = data)
   rstandard(L.ny)
 }
-
 
 
 
@@ -65,13 +61,12 @@ wallyplot.lm <- function(x,
                          y=x,
 			 FUN=residualplot,
 	                 hide=TRUE,
-simulateFunction=lmsimresiduals,
+                         simulateFunction=lmsimresiduals,
                          ...) {
 
   # Extract information from model fit
   xp <- predict(x)
   y <- rstandard(x)
-#  x <- predict(x)
 
   wallyplot.default(xp, y, FUN=FUN, hide=hide, simulateFunction=simulateFunction, model=x, ...)
 }

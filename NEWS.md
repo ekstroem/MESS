@@ -1,6 +1,10 @@
 # Next version
 
+
+# MESS 0.5.12
+
 *   Fixed code to match changes to the Matrix package
+*   Added improved residuals for Wallyplot thanks to Niels Aske Lundtorp Olsen
 
 # MESS 0.5.9
 
