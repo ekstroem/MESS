@@ -3,12 +3,21 @@
 wallyplot.default <- function(x, y=x, FUN=residualplot,
                               hide=TRUE,
                               simulateFunction=rnorm,
+			      model=NULL,
                               ...) {
 
   simulateFunction <- match.fun(simulateFunction)
 
-  if (is.vector(y) && length(x)==length(y))
-    y <- cbind(y, sapply(1:8, function(k) {simulateFunction(length(x))}))
+#  if (is.vector(y) && length(x)==length(y))
+#    y <- cbind(y, sapply(1:8, function(k) {simulateFunction(length(x))}))
+
+
+### Nedenstående
+  if (is.vector(y) && length(x)==length(y)) {
+    if (!is.null(model)) y <- cbind(y, sapply(1:8, function(k) {simulateFunction(model)}))
+    else y <- cbind(y, sapply(1:8, function(k) {simulateFunction(length(x))}))    
+  }
+
 
   if (!is.numeric(x) || !is.matrix(y))
     stop("x and y input must be a vector and matrix, respectively")
@@ -33,19 +42,38 @@ wallyplot.default <- function(x, y=x, FUN=residualplot,
 }
 
 
+
+lmsimresiduals <- function(L) {
+  if (!inherits(L, 'lm')) stop("L must be a glm/lm output!")
+
+  data <- L$model
+  data[[1]] <- simulate(L, nsim = 1)[[1]]
+  r <- L$call
+  r["data"] <- NULL
+  L.ny <- eval(r, envir = data)
+  rstandard(L.ny)
+}
+
+
+
+
+
 #' @import graphics
 #' @rdname wallyplot
 #' @export
-wallyplot.lm <- function(x, y=x, FUN=residualplot,
+wallyplot.lm <- function(x,
+                         y=x,
+			 FUN=residualplot,
 	                 hide=TRUE,
-                         simulateFunction=rnorm,
+simulateFunction=lmsimresiduals,
                          ...) {
 
   # Extract information from model fit
+  xp <- predict(x)
   y <- rstandard(x)
-  x <- predict(x)
+#  x <- predict(x)
 
-  wallyplot.default(x, y, FUN=FUN, hide=hide, simulateFunction=simulateFunction, ...)
+  wallyplot.default(xp, y, FUN=FUN, hide=hide, simulateFunction=simulateFunction, model=x, ...)
 }
 
 
@@ -93,6 +121,7 @@ wallyplot.lm <- function(x, y=x, FUN=residualplot,
 #' then the true residual plot is shown in the center.
 #' @param simulateFunction The function used to produce y values under the null
 #' hypothesis. Defaults to rnorm
+#' @param model Optional input to simulateFunction
 #' @param ... Other arguments passed to the plot function \code{FUN}
 #' @author Claus Ekstrom \email{claus@@rprimer.dk}
 #' @references Ekstrom, CT (2014) \emph{Teaching 'Instant Experience' with
