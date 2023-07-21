@@ -40,7 +40,7 @@ adaptive.weights <- function(x, y, nu=1, weight.method=c("multivariate", "univar
     weight.method <- match.arg(weight.method)
 
     nobs <- nrow(x)
-    if (nobs+1 <= ncol(x)) {
+    if ((nobs+1) <= ncol(x)) {
         warning("using univariate weight method since p>n")
         weight.method <- "univariate"
     }

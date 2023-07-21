@@ -5,6 +5,7 @@
 
 *   Fixed code to match changes to the Matrix package
 *   Added improved residuals for Wallyplot thanks to Niels Aske Lundtorp Olsen
+*   Fixed a bug in adaptive.weights()
 
 # MESS 0.5.9
 
