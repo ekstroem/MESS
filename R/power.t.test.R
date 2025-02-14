@@ -60,8 +60,8 @@ power_t_test <-
 
     if (!is.null(ratio) && ratio < 1)
       stop("ratio between group sizes cannot be less than 1")
-    if (!is.null(sd.ratio) && sd.ratio < 1)
-      stop("sd.ratio between group sd's cannot be less than 1")
+    if (!is.null(sd.ratio) && sd.ratio <= 0) 
+      stop("sd.ratio between group sd's must be positive")    
   }
   else {
       ratio <- 1

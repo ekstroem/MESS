@@ -1,5 +1,9 @@
 # Next version
 
+# MESS 0.5.13
+
+*   Fixed a bug to handle unequal sds in power_t_test (thanks to atzs-hun)
+
 
 # MESS 0.5.12
 

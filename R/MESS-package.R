@@ -464,7 +464,7 @@ NULL
 #' \item{\code{place}}{a factor giving a textual description of named geographic region near to the event. }
 #' \item{\code{type}}{a factor with levels \code{earthquake} \code{mining explosion} \code{rock burst}}
 #'   }
-#' @source \url{https://earthquake.usgs.gov/}
+#' @source \url{https://www.usgs.gov/programs/earthquake-hazards}
 #' @keywords datasets
 #' @examples
 #'

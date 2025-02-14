@@ -20,10 +20,12 @@ Returns nothing but will place the object in the clipboard
 }
 \examples{
 
+\dontrun{
 clipit(mtcars$mpg)
+}
 
 }
 \author{
-Jonas LindeLøv posted on twitter \url{https://twitter.com/jonaslindeloev/status/1539182627554570240}. Copied shamelessly by Claus Ekstrom \email{claus@rprimer.dk}
+Jonas LindeLøv posted on twitter. Copied shamelessly by Claus Ekstrom \email{claus@rprimer.dk}
 }
 \keyword{datagen}

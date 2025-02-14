@@ -18,6 +18,14 @@ how to use the package, including the most important ~~ % ~~ functions ~~
 \references{
 Ekstrøm, C. (2011). The R Primer. Chapman & Hall.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ekstroem/MESS}
+  \item Report bugs at \url{https://github.com/ekstroem/MESS/issues}
+}
+
+}
 \author{
 Claus Thorn Ekstrøm \email{claus@rprimer.dk}\cr Maintainer: Claus Thorn Ekstrøm
 \email{claus@rprimer.dk}

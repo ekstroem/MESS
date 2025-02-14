@@ -6,11 +6,13 @@
 #'
 #' @param x object to copy
 #' @return Nothing but will put the R object into the clipboard as a side effect
-#' @author Jonas LindeLøv posted on twitter \url{https://twitter.com/jonaslindeloev/status/1539182627554570240}. Copied shamelessly by Claus Ekstrom \email{claus@@rprimer.dk}
+#' @author Jonas LindeLøv posted on twitter. Copied shamelessly by Claus Ekstrom \email{claus@@rprimer.dk}
 #' @keywords datagen
 #' @examples
 #'
+#'\dontrun{
 #' clipit(mtcars$mpg)
+#' }
 #'
 #' @importFrom clipr write_clip
 #' @export clipit
