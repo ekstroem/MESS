@@ -203,6 +203,7 @@ drop1.geem <- function(object, scope, test = c("Wald", "none", "score", "sasscor
 }
 
 
+#' @export
 drop1.geese <- function(object, scope, test = c("Wald", "none"),
                         method=c("robust", "naive", "sandwich"), ...) {
   test <- match.arg(test)

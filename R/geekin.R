@@ -179,6 +179,8 @@ geekin <- function(formula,
 
 
 
+
+#' @export
 print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
 {
     xg <- x$geese

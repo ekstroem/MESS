@@ -1,5 +1,8 @@
 # Next version
 
+*   Updated documentation of datasets
+*   Move ... as they have now been moved to ....
+
 # MESS 0.5.13
 
 *   Fixed a bug to handle unequal sds in power_t_test (thanks to atzs-hun)

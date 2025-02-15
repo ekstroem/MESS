@@ -1,3 +1,4 @@
+#' @export
 fitted.geese <- function(object, ...) {
 
     # Get the linear predictor
