@@ -62,6 +62,7 @@
 #' }
 #'
 #'
+#' @importFrom stats lm predict pf
 #' @export feature.test
 feature.test <- function(x, y, B=100,
                          type.measure="deviance", s="lambda.min",

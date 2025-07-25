@@ -17,7 +17,7 @@
 #'
 #' @export
 add_torows <- function(x, v) {
-    .Call(`_MESS_add_torows`, x, v)
+    .Call('_MESS_add_torows', PACKAGE = 'MESS', x, v)
 }
 
 #' Fast binning of numeric vector into equidistant bins
@@ -40,11 +40,11 @@ add_torows <- function(x, v) {
 #' 
 #' @export
 bin <- function(x, width, origin = 0, missinglast = FALSE) {
-    .Call(`_MESS_bin`, x, width, origin, missinglast)
+    .Call('_MESS_bin', PACKAGE = 'MESS', x, width, origin, missinglast)
 }
 
 .chisq_test_cpp <- function(x, margin = 0L, statistic = 1L, B = 100000L) {
-    .Call(`_MESS_chisq_test_cpp`, x, margin, statistic, B)
+    .Call('_MESS_chisq_test_cpp', PACKAGE = 'MESS', x, margin, statistic, B)
 }
 
 #' Correlation matrix distance
@@ -69,7 +69,7 @@ bin <- function(x, width, origin = 0, missinglast = FALSE) {
 #'
 #' @export cmd
 cmd <- function(x, y) {
-    .Call(`_MESS_cmd`, x, y)
+    .Call('_MESS_cmd', PACKAGE = 'MESS', x, y)
 }
 
 #' Apply cumsum to each column of matrix
@@ -86,7 +86,7 @@ cmd <- function(x, y) {
 #'
 #' @export
 colCumSum <- function(m) {
-    .Call(`_MESS_colCumSum`, m)
+    .Call('_MESS_colCumSum', PACKAGE = 'MESS', m)
 }
 
 #' Binning based on cumulative sum with reset above threshold
@@ -114,7 +114,7 @@ colCumSum <- function(m) {
 #'
 #' @export
 cumsumbinning <- function(x, threshold, cutwhenpassed = FALSE, maxgroupsize = NULL) {
-    .Call(`_MESS_cumsumbinning`, x, threshold, cutwhenpassed, maxgroupsize)
+    .Call('_MESS_cumsumbinning', PACKAGE = 'MESS', x, threshold, cutwhenpassed, maxgroupsize)
 }
 
 #' Fast distance covariance matrix
@@ -126,7 +126,7 @@ cumsumbinning <- function(x, threshold, cutwhenpassed = FALSE, maxgroupsize = NU
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 dCov <- function(x, y) {
-    .Call(`_MESS_dCov`, x, y)
+    .Call('_MESS_dCov', PACKAGE = 'MESS', x, y)
 }
 
 #' Fast distance correlation matrix
@@ -138,7 +138,27 @@ dCov <- function(x, y) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 dCor <- function(x, y) {
-    .Call(`_MESS_dCor`, x, y)
+    .Call('_MESS_dCor', PACKAGE = 'MESS', x, y)
+}
+
+#' Compute pairwise distance correlation metrics of each column to a vector
+#' 
+#' Fast computation of pairwise distance correlations.
+#'
+#' Note: To get the same result as from the energy package you need to take the square root of the results here.
+#'
+#' @param x A matrix. The number of rows should match the length of the vector y
+#' @param y A vector
+#' @return A vector with the same length as the number of columns in x. Each element contains the pairwise distance correlation to y.
+#' @author Claus Ekstrom <claus@@rprimer.dk>
+#' @examples
+#' y <- rnorm(100)
+#' x <- matrix(rnorm(100 * 10), ncol = 10)
+#' pairwise_distance_correlation(x, y)
+#'
+#' @export
+pairwise_distance_correlation <- function(x, y) {
+    .Call('_MESS_pairwise_distance_correlation', PACKAGE = 'MESS', x, y)
 }
 
 #' Fill down NA with the last observed observation
@@ -155,7 +175,7 @@ dCor <- function(x, y) {
 #'
 #' @export
 filldown <- function(x) {
-    .Call(`_MESS_filldown`, x)
+    .Call('_MESS_filldown', PACKAGE = 'MESS', x)
 }
 
 #' Fast estimation of allele and genotype frequencies under Hardy-Weinberg equilibrium
@@ -175,7 +195,7 @@ filldown <- function(x) {
 #'
 #' @export
 hwe_frequencies <- function(allele1, allele2, min_alleles = 0L) {
-    .Call(`_MESS_hwe_frequencies`, allele1, allele2, min_alleles)
+    .Call('_MESS_hwe_frequencies', PACKAGE = 'MESS', allele1, allele2, min_alleles)
 }
 
 #' Kolmogorov-Smirnov goodness of fit test for cumulative discrete data
@@ -196,7 +216,7 @@ hwe_frequencies <- function(allele1, allele2, min_alleles = 0L) {
 #'
 #' @export
 ks_cumtest <- function(x, B = 10000L, prob = NULL) {
-    .Call(`_MESS_ks_cumtest`, x, B, prob)
+    .Call('_MESS_ks_cumtest', PACKAGE = 'MESS', x, B, prob)
 }
 
 #' Fast computation of maximum sum subarray
@@ -215,7 +235,7 @@ ks_cumtest <- function(x, B = 10000L, prob = NULL) {
 #'
 #' @export
 maximum_subarray <- function(x) {
-    .Call(`_MESS_maximum_subarray`, x)
+    .Call('_MESS_maximum_subarray', PACKAGE = 'MESS', x)
 }
 
 #' Fast marginal simple regresion analyses
@@ -239,7 +259,7 @@ maximum_subarray <- function(x) {
 #' }
 #' @export
 mfastLmCpp <- function(y, x, addintercept = TRUE) {
-    .Call(`_MESS_mfastLmCpp`, y, x, addintercept)
+    .Call('_MESS_mfastLmCpp', PACKAGE = 'MESS', y, x, addintercept)
 }
 
 #' Compute Schur products (element-wise) of all pairwise combinations of columns in matrix
@@ -260,7 +280,7 @@ mfastLmCpp <- function(y, x, addintercept = TRUE) {
 #'
 #' @export
 pairwise_Schur_product <- function(x, self = FALSE) {
-    .Call(`_MESS_pairwise_Schur_product`, x, self)
+    .Call('_MESS_pairwise_Schur_product', PACKAGE = 'MESS', x, self)
 }
 
 #' Compute all pairwise combinations of indices
@@ -280,7 +300,7 @@ pairwise_Schur_product <- function(x, self = FALSE) {
 #'
 #' @export
 pairwise_combination_indices <- function(n, self = FALSE) {
-    .Call(`_MESS_pairwise_combination_indices`, n, self)
+    .Call('_MESS_pairwise_combination_indices', PACKAGE = 'MESS', n, self)
 }
 
 #' Fast extraction of matrix diagonal
@@ -292,7 +312,7 @@ pairwise_combination_indices <- function(n, self = FALSE) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export qdiag
 qdiag <- function(x) {
-    .Call(`_MESS_qdiag`, x)
+    .Call('_MESS_qdiag', PACKAGE = 'MESS', x)
 }
 
 #' Fast quadratic form computation
@@ -306,7 +326,7 @@ qdiag <- function(x) {
 #' @author Claus Ekstrom <claus@@rprimer.dk>
 #' @export
 quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
-    .Call(`_MESS_quadform`, x, M, invertM, transposex)
+    .Call('_MESS_quadform', PACKAGE = 'MESS', x, M, invertM, transposex)
 }
 
 #' Fast replication of a matrix
@@ -325,7 +345,7 @@ quadform <- function(x, M, invertM = FALSE, transposex = FALSE) {
 #'
 #' @export
 repmat <- function(x, nrow = 1L, ncol = 1L) {
-    .Call(`_MESS_repmat`, x, nrow, ncol)
+    .Call('_MESS_repmat', PACKAGE = 'MESS', x, nrow, ncol)
 }
 
 #' Fast computation of trace of matrix product
@@ -342,6 +362,6 @@ repmat <- function(x, nrow = 1L, ncol = 1L) {
 #'
 #' @export
 tracemp <- function(A, B) {
-    .Call(`_MESS_tracemp`, A, B)
+    .Call('_MESS_tracemp', PACKAGE = 'MESS', A, B)
 }
 

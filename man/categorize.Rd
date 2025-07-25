@@ -22,12 +22,8 @@ categorize is a wrapper to xtabs or table such that a data frame can be given as
 }
 \examples{
 
-if (requireNamespace("magrittr", quietly = TRUE)) {
-    library(magrittr)
-
-    esoph \%>\% categorize(alcgp, agegp)
-    esoph \%>\% categorize(~ alcgp + agegp)
-}
+esoph |> categorize(alcgp, agegp)
+esoph |> categorize(~ alcgp + agegp)
 
 }
 \author{

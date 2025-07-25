@@ -35,6 +35,7 @@
 #'
 #'
 #'
+#' @importFrom stats pbinom qbinom dbinom uniroot
 #' @export
 power_mcnemar_test <- function(n = NULL, paid = NULL, psi = NULL, sig.level = 0.05, power = NULL,
                                alternative = c("two.sided", "one.sided"),

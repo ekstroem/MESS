@@ -1,3 +1,4 @@
+#' @importFrom stats smooth.spline
 #' @rdname residualplot
 #' @export
 residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Std.res.", col.sd="blue", col.alpha=0.3, ylim=NA, ...) {
@@ -42,7 +43,7 @@ residualplot.default <- function(x, y=NULL, candy=TRUE, bandwidth = 0.3, xlab="F
     return(invisible(NULL))
 }
 
-
+#' @importFrom stats rstudent predict
 #' @rdname residualplot
 #' @export
 residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", col.alpha=0.3,...) {
@@ -52,6 +53,7 @@ residualplot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted valu
 }
 
 
+#' @importFrom stats rstandard predict
 #' @rdname residualplot
 #' @export
 residualplot.glm <- function(x, y, candy=TRUE, bandwidth = 0.4, xlab="Fitted values", ylab="Std. dev. res.", col.sd="blue", col.alpha=0.3,...) {
@@ -240,6 +242,7 @@ if (candy) {
 }
 
 
+#' @importFrom stats rstudent predict
 #' @rdname residual_plot
 #' @export
 residual_plot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted values", ylab="Stud.res.", col.sd="blue", alpha=0.1,...) {
@@ -249,6 +252,7 @@ residual_plot.lm <- function(x, y, candy=TRUE, bandwidth = 0.3, xlab="Fitted val
 }
 
 
+#' @importFrom stats rstandard predict
 #' @rdname residual_plot
 #' @export
 residual_plot.glm <- function(x, y, candy=TRUE, bandwidth = 0.4, xlab="Fitted values", ylab="Std. dev. res.", col.sd="blue", alpha=0.1,...) {

@@ -25,6 +25,7 @@
 #' diff = bp1w-bp_base
 #' prepost.test(bp_base, bp1w, expo)
 #'
+#' @importFrom stats glm
 #' @export
 prepost.test <- function(baseline, post, treatment, conf.level = 0.95, delta="estimate") {
 

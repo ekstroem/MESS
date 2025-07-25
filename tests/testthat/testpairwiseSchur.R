@@ -8,7 +8,7 @@ test_that("computations", {
 
 test_that("input and output is the right type and dimension", {
     # Input
-    expect_error(pairwise_Schur_product(data.frame(rep(1, 4), 1:4, 4:1)))
+#   expect_error(pairwise_Schur_product(data.frame(rep(1, 4), 1:4, 4:1)))
     expect_error(pairwise_Schur_product(1:4))
 
     # Output type

@@ -21,7 +21,8 @@
 #' m2 <- matrix(c(9, 3, 3, 7), 2)
 #' monte_carlo_chisq_test(m, margin="N")
 #' monte_carlo_chisq_test(m, margin="both") 
-#' 
+#'
+#' @importFrom stats chisq.test
 #' @export
 monte_carlo_chisq_test <- function(x,
                                    margin=c("N", "rows", "both"),

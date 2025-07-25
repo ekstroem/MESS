@@ -11,13 +11,10 @@
 #' @keywords manip
 #' @examples
 #'
-#' if (requireNamespace("magrittr", quietly = TRUE)) {
-#'     library(magrittr)
+#' esoph |> categorize(alcgp, agegp)
+#' esoph |> categorize(~ alcgp + agegp)
 #'
-#'     esoph %>% categorize(alcgp, agegp)
-#'     esoph %>% categorize(~ alcgp + agegp)
-#' }
-#'
+#' @importFrom stats xtabs
 #' @export
 categorize <- function(.data, ...) {
     dots <- eval(substitute(alist(...)));

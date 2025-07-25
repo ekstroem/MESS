@@ -48,7 +48,8 @@
 #' rootonorm(rnorm(200), mu=1)
 #' rootonorm(rexp(200), mu=1)
 #' par(oldpar)
-#' 
+#'
+#' @importFrom stats sd pnorm dnorm
 #' @export rootonorm
 rootonorm <- function(x, breaks="Sturges",
                       type=c("hanging", "deviation"),

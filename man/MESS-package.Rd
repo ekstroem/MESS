@@ -6,7 +6,7 @@
 \alias{MESS-package}
 \title{MESS: Miscellaneous Esoteric Statistical Scripts}
 \description{
-A mixed collection of useful and semi-useful diverse statistical functions, some of which may even be referenced in The R Primer book.
+A mixed collection of useful and semi-useful diverse statistical functions, some of which may even be referenced in The R Primer book. See Ekstrøm, C. T. (2016). The R Primer. 2nd edition. Chapman & Hall.
 }
 \seealso{
 Useful links:

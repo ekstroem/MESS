@@ -32,6 +32,7 @@
 #' gkgamma(smoke)
 #' chisq.test(smoke)
 #'
+#' @importFrom stats pnorm qnorm
 #' @export gkgamma
 gkgamma <- function(x, conf.level = 0.95) {
 

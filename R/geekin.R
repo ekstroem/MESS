@@ -76,6 +76,7 @@
 #'
 #'
 #'
+#' @importFrom stats model.frame gaussian
 #' @export geekin
 geekin <- function(formula,
                    family=gaussian,
@@ -180,6 +181,7 @@ geekin <- function(formula,
 
 
 
+#' @importFrom stats naprint
 #' @export
 print.geekin <- function (x, digits = NULL, quote = FALSE, prefix = "", ...)
 {

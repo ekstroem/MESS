@@ -16,7 +16,7 @@ auc(
 )
 }
 \arguments{
-\item{x}{a numeric vector of x values.}
+\item{x}{a numeric vector of unique x values.}
 
 \item{y}{a numeric vector of y values of the same length as x.}
 

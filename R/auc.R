@@ -11,7 +11,7 @@
 #' values, missing observations, ties for the time values, and integrating over
 #' part of the area or even outside the area.
 #'
-#' @param x a numeric vector of x values.
+#' @param x a numeric vector of unique x values.
 #' @param y a numeric vector of y values of the same length as x.
 #' @param from The value from where to start calculating the area under the
 #' curve. Defaults to the smallest x value.
@@ -50,6 +50,7 @@
 #' auc(x, y, from=0, rule=2, yleft=.5)
 #'
 #'
+#' @importFrom stats approx splinefun integrate
 #' @export auc
 auc <-
 function(x, y, from = min(x, na.rm=TRUE), to = max(x, na.rm=TRUE), type=c("linear", "spline"), absolutearea=FALSE, subdivisions =100, ...)
@@ -58,6 +59,7 @@ function(x, y, from = min(x, na.rm=TRUE), to = max(x, na.rm=TRUE), type=c("linea
 
     # Sanity checks
     stopifnot(length(x) == length(y))
+    stopifnot(length(x) == length(unique(x)))
     stopifnot(!is.na(from))
 
     if (length(unique(x)) < 2)
@@ -78,6 +80,24 @@ function(x, y, from = min(x, na.rm=TRUE), to = max(x, na.rm=TRUE), type=c("linea
             idx <- which(diff(oy >= 0)!=0)
             newx <- c(x, x[idx] - oy[idx]*(x[idx+1]-x[idx]) / (y[idx+1]-y[idx]))
             newy <- c(y, rep(0, length(idx)))
+
+
+            # Get the order of the first occurrence of unique values in sorted x
+            # This works because the new points are added to the end of the vector
+            unique_order <- order(match(sort(unique(newx)), newx))
+      
+            # Get the unique sorted x values
+            x_sorted_unique <- sort(unique(newx))
+      
+            # Match the sorted unique x values to their first occurrence in x
+            match_indices <- match(x_sorted_unique, newx)
+      
+            # Reorder y accordingly
+            y_sorted <- newy[match_indices]
+       
+            newx <- x_sorted_unique
+            newy <- y_sorted
+
             values <- approx(newx, newy, xout = sort(unique(c(from, to, newx[newx > from & newx < to]))), ...)
             res <- 0.5 * sum(diff(values$x) * (abs(values$y[-1]) + abs(values$y[-length(values$y)])))
         }

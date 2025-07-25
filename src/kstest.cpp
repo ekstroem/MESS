@@ -63,16 +63,16 @@ List ks_cumtest(NumericVector x, int B=10000, Rcpp::Nullable<Rcpp::NumericVector
       Rcpp::stop("The lengths of x and prob must match");
     }    
 	
-    double probsum = 0;
+    //    double probsum = 0;
     // Check if any element is non-negative
     for(int i = 0; i < K; i++) {
-      probsum += PP(i);
+      //      probsum += PP(i);
       if (PP(i) <= 0 )
 	Rcpp::stop("The probabilities under H0 must be positive");
     }
-    for(int i = 0; i < K; i++) {
+    //    for(int i = 0; i < K; i++) {
       //      PP(i) /= probsum;
-    }
+    //    }
 
   } else {
     // NULL - set uniform distribution

@@ -1,7 +1,14 @@
 # Next version
 
+
+# MESS 0.5.14
+
 *   Updated documentation of datasets
-*   Move ... as they have now been moved to ....
+*   Fixed Rd \link{} targets missing package anchors
+*   Added #' @useDynLib MESS to package NAMESPACE to make it work with the cpp files
+*   Added the pairwise_distance_correlation() function
+*   Set requirements to R 4.1
+*   Fixed a ton of missing @importFrom
 
 # MESS 0.5.13
 

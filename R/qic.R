@@ -14,7 +14,7 @@
 #'
 #' Models with smaller values of QIC, CIC, QICu, or QICC are preferred.
 #'
-#' If the MASS package is loaded then the \code{\link{ginv}} function is used
+#' If the MASS package is loaded then the \code{\link[MASS]{ginv}} function is used
 #' for matrix inversion. Otherwise the standard \code{\link{solve}} function is
 #' used.
 #'
@@ -130,6 +130,7 @@ QIC.geeglm <- function(object, tol=.Machine$double.eps, ...) {
 
 
 
+#' @importFrom stats family
 #' @rdname QIC
 #' @export
 QIC.ordgee <- function(object, tol = .Machine$double.eps, ...) {
@@ -317,6 +318,7 @@ QIC.ordgee <- function(object, tol = .Machine$double.eps, ...) {
 ## }
 
 
+#' @ importFrom stats family
 #' @rdname QIC
 #' @export
 QIC.geekin <- function(object,  tol = .Machine$double.eps, ...) {

@@ -16,6 +16,7 @@
 #'       lower.panel=panel.smooth, diag.panel=panel.hist,
 #'       upper.panel=panel.r2)
 #'
+#' @importFrom stats density
 #' @export
 panel.hist <- function(x, col.bar="gray", ...)  {
     funArgs <- list(...)
@@ -53,6 +54,7 @@ panel.hist <- function(x, col.bar="gray", ...)  {
 #' pairs(~ Ozone + Temp + Wind + Solar.R, data=airquality,
 #'       lower.panel=panel.smooth, upper.panel=panel.r2)
 #'
+#' @importFrom stats cor
 #' @export
 panel.r2 <- function(x, y, digits=2, cex.cor, ...) {
     ## Set user coordinates of plotting region

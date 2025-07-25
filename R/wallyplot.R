@@ -1,4 +1,5 @@
 #' @rdname wallyplot
+#' @importFrom stats rnorm complete.cases
 #' @export
 wallyplot.default <- function(x, y=x, FUN=residualplot,
                               hide=TRUE,
@@ -39,6 +40,7 @@ wallyplot.default <- function(x, y=x, FUN=residualplot,
 #
 # Simulate residuals from an lm object with the (slight dependence) they will exhibit
 #
+#' @importFrom stats simulate
 lmsimresiduals <- function(L) {
   if (!inherits(L, 'lm'))
     stop("L must be a glm/lm output!")
@@ -55,6 +57,7 @@ lmsimresiduals <- function(L) {
 
 
 #' @import graphics
+#' @importFrom stats rstandard
 #' @rdname wallyplot
 #' @export
 wallyplot.lm <- function(x,
@@ -145,6 +148,7 @@ wallyplot.lm <- function(x,
 #'           simulateFunction=cprsimulate, xlab="Girth")
 #' }
 #'
+#' @importFrom stats rnorm
 #' @export
 wallyplot <- function(x, y=x, FUN=residualplot,
                       hide=TRUE,

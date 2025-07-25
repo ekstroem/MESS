@@ -26,6 +26,7 @@
 #' power_binom_test(p0 = .50, pa = .75, power = .90) ## =>     n = 41
 #' power_binom_test(n = 50, p0 = .25, power = .90, alternative="less")  ## => pa = 0.0954
 #'
+#' @importFrom stats pbinom qbinom dbinom uniroot
 #' @export
 power_binom_test <- function(n = NULL, p0 = NULL, pa = NULL, sig.level = 0.05, power = NULL,
                                alternative = c("two.sided", "less", "greater")) {

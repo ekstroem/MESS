@@ -1,3 +1,4 @@
+#' @importFrom stats model.offset
 #' @export
 fitted.geese <- function(object, ...) {
 

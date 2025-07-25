@@ -15,6 +15,7 @@
 #' }
 #'
 #' @importFrom clipr write_clip
+#' @importFrom utils capture.output
 #' @export clipit
 clipit <- function (x) 
 {

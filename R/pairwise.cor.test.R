@@ -23,6 +23,7 @@
 #' pairwise.cor.test(Ozone, Month)
 #' pairwise.cor.test(Ozone, Month, p.adj = "bonf")
 #' detach()
+#' @importFrom stats p.adjust.methods cor.test
 #' @export
 pairwise.cor.test <- function (x, g, p.adjust.method = p.adjust.methods,
                                method = c("pearson", "kendall", "spearman"), ...)

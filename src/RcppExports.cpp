@@ -112,6 +112,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// pairwise_distance_correlation
+arma::vec pairwise_distance_correlation(const arma::mat& x, const arma::vec& y);
+RcppExport SEXP _MESS_pairwise_distance_correlation(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(pairwise_distance_correlation(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
 // filldown
 SEXP filldown(SEXP x);
 RcppExport SEXP _MESS_filldown(SEXP xSEXP) {
@@ -257,6 +269,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_MESS_cumsumbinning", (DL_FUNC) &_MESS_cumsumbinning, 4},
     {"_MESS_dCov", (DL_FUNC) &_MESS_dCov, 2},
     {"_MESS_dCor", (DL_FUNC) &_MESS_dCor, 2},
+    {"_MESS_pairwise_distance_correlation", (DL_FUNC) &_MESS_pairwise_distance_correlation, 2},
     {"_MESS_filldown", (DL_FUNC) &_MESS_filldown, 1},
     {"_MESS_hwe_frequencies", (DL_FUNC) &_MESS_hwe_frequencies, 3},
     {"_MESS_ks_cumtest", (DL_FUNC) &_MESS_ks_cumtest, 3},

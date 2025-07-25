@@ -33,7 +33,8 @@
 #'     res <- glmnet::glmnet(x, y, penalty.factor=weights$weights)
 #'     head(res)
 #' }
-#' 
+#'
+#' @importFrom stats lm.fit
 #' @export adaptive.weights
 adaptive.weights <- function(x, y, nu=1, weight.method=c("multivariate", "univariate")) {
 

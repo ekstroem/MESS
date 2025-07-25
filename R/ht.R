@@ -18,8 +18,8 @@
 #'
 #' @author Claus Ekstrom, \email{claus@@rprimer.dk}.
 #' @keywords print
+#' @importFrom utils head tail
 #' @export
-
 ht <- function(x, n = 6L, m=n, returnList=FALSE, ...) {
 
     if (!returnList) {

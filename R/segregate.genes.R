@@ -27,7 +27,8 @@
 #' ped <- pedigree(id=mydata$id, dadid=mydata$dadid, momid=mydata$momid, 
 #'                 sex=mydata$sex, relation=relation)
 #' segregate.genes(ped, c(.1, .3, .5))
-#' 
+#'
+#' @importFrom stats rbinom
 #' @export segregate.genes
 segregate.genes <- function(pedigree, maf) {
 
