@@ -13,6 +13,6 @@ test_that("Produces validated results", {
 
 
 
-test_that("Checking symmetry of results", {
+#test_that("Checking symmetry of results", {
 #    expect_equivalent(power_mcnemar_test(paid=0.05, psi=45/5, power=.8), power_mcnemar_test(paid=0.45, psi=5/45, power=.8))
-})
+#})
